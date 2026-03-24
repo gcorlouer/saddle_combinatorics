@@ -1,0 +1,141 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Mat}{\mathrm{Mat}}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Determinantal, Cyclic, and Critical Loci in Weight Space}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Direct Weight-Space Varieties}
+
+We now define the geometric objects needed for the saddle-combinatorics paper directly in the weight space $\Omega$, without passing through a residual parametrization.
+
+\begin{definition}[Determinantal locus]
+For $0\le r\le \min_\ell d_\ell$, define
+\[
+\Sigma_d^r
+:=
+\{W\in \Omega : \rk(\mu(W))=r\}.
+\]
+\end{definition}
+
+\begin{definition}[Weight-space cyclic locus]
+Fix a subset $S\subset \{1,\dots,r_{\max}\}$ with $|S|=r$, and let
+\[
+W_0=W_S:=\Sigma_{XY}P_Q.
+\]
+Define
+\[
+\Gamma_{d,S}
+:=
+\left\{
+W\in \Omega
+\;\middle|\;
+\bigl(\nabla_{W_\ell}\mathcal L(W)\bigr)^\top=0
+\text{ for every }1\le \ell\le L
+\right\}
+\]
+\[
+=
+\left\{
+W\in \Omega
+\;\middle|\;
+W_{<\ell}W_0W_{>\ell}=0
+\text{ for every }1\le \ell\le L
+\right\}.
+\]
+\end{definition}
+
+\begin{definition}[Rank-$r$ cyclic locus]
+The rank-$r$ part of the cyclic locus is
+\[
+\Gamma_{d,S}^r
+:=
+\Sigma_d^r\cap \Gamma_{d,S}.
+\]
+\end{definition}
+
+\begin{definition}[Critical locus associated with $S$]
+Define
+\[
+\mathcal C_{d,S}^r
+:=
+\left\{
+W\in \Omega
+\;\middle|\;
+\mu(W)=P_SW^\ast
+\text{ and }
+\bigl(\nabla_{W_\ell}\mathcal L(W)\bigr)^\top=0
+\text{ for all }1\le \ell\le L
+\right\}.
+\]
+\end{definition}
+
+\begin{proposition}[Equivalent description of the critical locus]
+For fixed $r$ and $S$,
+\[
+\mathcal C_{d,S}^r
+=
+\left\{
+W\in \Omega
+\;\middle|\;
+\mu(W)=P_SW^\ast
+\text{ and }
+W_{<\ell}W_0W_{>\ell}=0
+\text{ for all }1\le \ell\le L
+\right\}.
+\]
+In particular,
+\[
+\mathcal C_{d,S}^r \subseteq \Gamma_{d,S}^r.
+\]
+\end{proposition}
+
+\begin{proof}
+The equivalence follows from the gradient formula in the previous setup note and from the fact that, for critical points of rank $r$, the end-to-end map is equal to $P_SW^\ast$ for a unique subset $S$ of cardinality $r$.
+
+Since $\mu(W)=P_SW^\ast$ has rank $r$, every point of $\mathcal C_{d,S}^r$ lies in $\Sigma_d^r$, and the cyclic equations place it in $\Gamma_{d,S}$. Hence $\mathcal C_{d,S}^r\subseteq \Gamma_{d,S}^r$.
+\end{proof}
+
+\begin{remark}[Why $\Gamma_{d,S}^r$ is larger than $\mathcal C_{d,S}^r$]
+The variety $\Gamma_{d,S}^r$ only imposes:
+\begin{itemize}
+\item rank-$r$ on the end-to-end map;
+\item the cyclic equations associated with $W_0=\Sigma_{XY}P_Q$.
+\end{itemize}
+The critical locus $\mathcal C_{d,S}^r$ imposes one more condition:
+\[
+\mu(W)=P_SW^\ast.
+\]
+Therefore the conjectural relation between $\Gamma_{d,S}^r$ and $\mathcal C_{d,S}^r$ cannot be literal equality. It must be expressed through an orbit correspondence under a group that is allowed to move the endpoint map.
+\end{remark}
+
+\begin{remark}[Comparison with the previous versions]
+In \texttt{paper\_v0.tex} and \texttt{paper\_v1.tex}, the cyclic equations were encoded in a residual variety and then lifted to the critical locus through a block-normal-form slice. Here the order is reversed:
+\begin{itemize}
+\item first define the determinantal and cyclic loci directly in $\Omega$;
+\item then formulate the relation with the critical locus directly in weight space.
+\end{itemize}
+This is the setup needed for the new saddle-combinatorics paper.
+\end{remark}
+
+\end{document}

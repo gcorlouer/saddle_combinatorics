@@ -1,0 +1,219 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Mat}{\mathrm{Mat}}
+\newcommand{\tr}{\operatorname{tr}}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\title{Gradient Equations in Weight Space}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Direct Weight-Space Formulation}
+
+We work directly on the parameter space
+\[
+\Omega = \prod_{\ell=1}^L \Mat_{d_\ell\times d_{\ell-1}}(\mathbb R),
+\qquad
+W=(W_1,\dots,W_L),
+\]
+with product map
+\[
+\mu(W)=W_L\cdots W_1 \in \Mat_{d_L\times d_0}(\mathbb R).
+\]
+
+For each layer $\ell$, we use the partial-product convention
+\[
+W_{>\ell}:=W_L\cdots W_{\ell+1}\in \Mat_{d_L\times d_\ell}(\mathbb R),
+\qquad
+W_{<\ell}:=W_{\ell-1}\cdots W_1\in \Mat_{d_{\ell-1}\times d_0}(\mathbb R),
+\]
+so that
+\[
+\mu(W)=W_{>\ell}W_\ell W_{<\ell},
+\qquad
+W_{>L}=I_{d_L},
+\qquad
+W_{<1}=I_{d_0}.
+\]
+
+\begin{definition}[Population quadratic loss]
+The population loss is
+\[
+\mathcal L(W)
+:=
+\mathbb E \bigl[\|Y-\mu(W)X\|_2^2\bigr].
+\]
+Equivalently,
+\[
+\mathcal L(W)
+=
+\tr(\Sigma_Y)-2\tr(\mu(W)\Sigma_{XY})+\tr\bigl(\mu(W)\Sigma_X\mu(W)^\top\bigr).
+\]
+\end{definition}
+
+\begin{proposition}[Gradient formula in weight space]
+For each $\ell\in\{1,\dots,L\}$,
+\[
+\nabla_{W_\ell}\mathcal L(W)
+=
+2\,W_{>\ell}^{\top}\bigl(\mu(W)\Sigma_X-\Sigma_{YX}\bigr)W_{<\ell}^{\top}.
+\]
+\end{proposition}
+
+\begin{proof}
+The differential of the product map in the direction $\dot W_\ell$ is
+\[
+D\mu(W)[\dot W_\ell]
+=
+W_{>\ell}\dot W_\ell W_{<\ell}.
+\]
+Since
+\[
+\nabla_M\mathcal L(M)=2(M\Sigma_X-\Sigma_{YX})
+\]
+for the quadratic loss viewed as a function of the end-to-end map $M=\mu(W)$, the chain rule gives
+\[
+\nabla_{W_\ell}\mathcal L(W)
+=
+W_{>\ell}^{\top}\nabla_M\mathcal L(\mu(W))W_{<\ell}^{\top}
+=
+2\,W_{>\ell}^{\top}\bigl(\mu(W)\Sigma_X-\Sigma_{YX}\bigr)W_{<\ell}^{\top}.
+\]
+\end{proof}
+
+\begin{proposition}[Transpose-gradient formula]
+For each $\ell\in\{1,\dots,L\}$,
+\[
+\bigl(\nabla_{W_\ell}\mathcal L(W)\bigr)^\top
+=
+2\,W_{<\ell}\bigl(\Sigma_X\mu(W)^\top-\Sigma_{XY}\bigr)W_{>\ell}.
+\]
+\end{proposition}
+
+\begin{proof}
+Transpose the formula from the previous proposition and use the symmetry of $\Sigma_X$:
+\[
+\bigl(\mu(W)\Sigma_X-\Sigma_{YX}\bigr)^\top
+=
+\Sigma_X\mu(W)^\top-\Sigma_{XY}.
+\]
+\end{proof}
+
+\begin{proposition}[Critical equations on the rank-$r$ sheet]
+Assume that $W$ is a first-order critical point and let
+\[
+\mu(W)=P_S W^\ast
+=
+P_S\Sigma_{YX}\Sigma_X^{-1}
+\]
+for the unique subset $S$ given by the critical-point theorem. Then
+\[
+\Sigma_X\mu(W)^\top-\Sigma_{XY}
+=
+\Sigma_X\Sigma_X^{-1}\Sigma_{XY}P_S-\Sigma_{XY}
+=
+\Sigma_{XY}P_S-\Sigma_{XY}
+=
+-\Sigma_{XY}P_Q.
+\]
+Hence the transpose-gradient equations are equivalent to
+\[
+W_{<\ell}W_0 W_{>\ell}=0,
+\qquad
+1\leq \ell\leq L,
+\]
+where
+\[
+W_0:=W_S:=\Sigma_{XY}P_Q.
+\]
+\end{proposition}
+
+\begin{remark}[Equivalent forms]
+Since
+\[
+W^{\ast\top}=\Sigma_X^{-1}\Sigma_{XY},
+\qquad
+\tau_S:=W^{\ast\top}P_Q,
+\qquad
+W_0=\Sigma_X\tau_S,
+\]
+the same equations may also be written as
+\[
+W_{<\ell}\Sigma_XW^{\ast\top}P_QW_{>\ell}=0.
+\]
+If the data are whitened so that $\Sigma_X=I_{d_0}$, this simplifies to
+\[
+W_{<\ell}W^{\ast\top}P_QW_{>\ell}=0.
+\]
+\end{remark}
+
+\begin{definition}[Weight-space cyclic equations]\label{def:weight-space-cyclic-equations}
+For fixed $S$, define the matrices
+\[
+E_\ell(W):=W_{<\ell}W_0W_{>\ell}
+\in \Mat_{d_{\ell-1}\times d_\ell}(\mathbb R).
+\]
+The cyclic equations in weight space are
+\[
+E_\ell(W)=0,
+\qquad
+1\leq \ell\leq L.
+\]
+\end{definition}
+
+\begin{remark}
+This is the direct weight-space replacement for the residual-space equations from the previous versions. The role of the fixed closing arrow is now played by the matrix
+\[
+W_0=W_S:=\Sigma_{XY}P_Q
+\]
+acting directly between the two endpoint spaces.
+\end{remark}
+
+\begin{example}[The case $L=3$]
+When there are three weight matrices $W_1,W_2,W_3$, the definition gives exactly three vanishing relations:
+\begin{align*}
+E_1(W)=0 &\iff W_0W_3W_2 = 0, \\
+E_2(W)=0 &\iff W_1W_0W_3 = 0, \\
+E_3(W)=0 &\iff W_2W_1W_0 = 0.
+\end{align*}
+
+So the cyclic pattern is now visible directly on the matrices
+\[
+W_0,W_1,W_2,W_3
+\]
+with no extra transposes. The correct statement is not that all cyclic products
+\[
+W_kW_{k-1}W_{k-2}
+\qquad (k \bmod 4)
+\]
+vanish. Rather, the relations are precisely the length-$L$ cyclic products that pass through the closing map $W_0$.
+
+For $L=3$, the only length-$3$ cyclic product that is \emph{not} forced to vanish is
+\[
+W_3W_2W_1
+=
+\mu(W),
+\]
+which is consistent with Definition~\ref{def:weight-space-cyclic-equations} because the end-to-end map is not supposed to vanish on the rank-$r$ critical sheet.
+\end{example}
+
+\end{document}

@@ -1,0 +1,4 @@
+# Ignore everything in Making setup except TeX sources and PDFs
+work_files/Making setup/*
+!work_files/Making setup/*.tex
+!work_files/Making setup/*.pdf

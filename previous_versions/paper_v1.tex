@@ -1,0 +1,437 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{natbib} 
+\bibliographystyle{unsrtnat}
+% Operators
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Rep}{\operatorname{Rep}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\hid}{\operatorname{hid}}
+\newcommand{\dhid}{\operatorname{d_{hid}}}
+
+\newcommand{\Ext}{\operatorname{Ext}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\Lie}{\operatorname{Lie}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Mat}{\mathrm{Mat}}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+% Required packages for algorithms
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{subcaption}
+\usepackage[normalem]{ulem}
+\usepackage{comment}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+% theorem/proposition environments
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\title{Combinatorics of the critical loci of deep linear networks}
+\begin{document}
+\maketitle
+\begin{abstract}
+    We study the critical loci of deep linear networks i.e. the set of parameters at which the gradient of the loss vanishes. The set of vanishing gradients can be described as an algebraic variety described by cyclic vanishing conditions. Using cyclic quiver representation theory we stratify the critical loci into orbits parametrized by cyclic rank patterns which are ranks of partial products of the deep linear networks weights matrices. The strata provides a combinatorial description of critical loci and in particular saddle points of a given rank. This stratification promise to be a useful tool to globally understand how the critical loci shape the training dynamics of stochastic gradient descent in deep linear networks.  
+\end{abstract}
+\section{Introduction}
+Critical points of deep linear networks were parametrized in \cite{achour2024loss}, where they were shown to satisfy vanishing cyclic conditions (see the proof of Proposition 10 in Appendix B.5). Furthermore, the stratification of the locus of global minima was obtained in \cite{lehalleur2024geometry} through the use of affine quiver representation theory. The present work relies heavily on both of these results.
+
+Our starting point is the observation that the cyclic vanishing conditions defining critical points can be interpreted as the vanishing of cyclic products in a representation of a cyclic quiver. This interpretation makes it possible to apply methods from cyclic quiver representation theory to the study of critical loci. In particular, the cyclic vanishing conditions effectively reduce the difficult problem of classifying indecomposable representations of cyclic quivers to that of classifying indecomposable modules over Nakayama algebras, which form a class of finite-dimensional algebras.
+
+Using this framework, and following a strategy similar to that of \cite{lehalleur2024geometry}, we show that the critical locus admits a stratification indexed by a finite set. This provides a combinatorial description of saddle points, in which different classes of saddles are identified by their cyclic rank patterns.
+\subsection{Related works}
+
+
+\subsection{Contributions}
+
+
+\section{Setup and background}
+\subsection{Notations}
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{p{0.28\textwidth} p{0.66\textwidth}}
+\toprule
+\textbf{Notation} & \textbf{Meaning} \\
+\midrule
+$1,\dots,L$ & Indices of the layers of the deep linear network (DLN) \\
+
+$0$ & Index of the input space \\
+
+$L$ & Index of the output space \\
+
+$d_l$ & Width of layer $l$, for $0 \leq l \leq L$ \\
+
+$d=(d_0,\dots,d_L)$ & Dimension vector \\
+
+$\Omega$ & Parameter space of the DLN \\
+
+$\mathcal{F}$ & Function space of the DLN \\
+
+$W \in \mathcal{F}$ & Student matrix (realized end-to-end map) \\
+
+$\mu:\Omega\to\mathcal{F}$ & Product map of the DLN \\
+
+$r=\rk(W)$ & Rank of the student matrix \\
+
+$d_r=(d_0,d_1-r,\dots,d_L-r)$ & Reduced dimension vector associated with rank $r$ \\
+
+$W^\ast$ & Teacher matrix; equivalently, the global minimizer in function space \\
+
+$d_L$ & Maximal possible rank \\
+
+$\Sigma_{YX}=\mathbb{E}[YX^\top]$ & Input-output covariance matrix \\
+
+$\Sigma_X=\mathbb{E}[XX^\top]$ & Input covariance matrix \\
+
+$S$ & Subset of singular directions of the teacher matrix $W^\ast$ \\
+
+$U=[\,U_S\;U_Q\,]$ & Matrix of left singular vectors of $W^\ast$ \\
+
+$U_S$ & Left singular vectors of $W^\ast$ corresponding to the singular values indexed by $S$ \\
+
+$P_S=U_SU_S^\top$ & Orthogonal projector onto the singular subspace indexed by $S$ \\
+
+$G_d=\prod_{l=0}^L \GL(d_l)$ & Full base-change group \\
+
+$G_{d_{\mathrm{hid}}}=\prod_{l=1}^{L-1}\GL(d_l)$ & Hidden-layer symmetry group \\
+
+$\Sigma_d^r$ & Determinantal variety of matrices of rank $r$ \\
+
+$\Gamma_{d,\sigma}$ & Cyclic variety with dimension vector $d$ and closing arrow $\sigma$ \\
+
+$\Gamma_{d,S}$ & Cyclic variety with closing arrow $\sigma=\Sigma_{YX}U_Q$ \\
+
+$\mathcal{C}_{S,d}^r$ & Critical locus associated with subset $S$, rank $r$, and dimension vector $d$ \\
+
+$\rho\in\mathcal{R}_d^{\mathrm{orb}}$ & Cyclic rank pattern \\
+
+$m\in\mathcal{M}_d^{+}$ & Cyclic multiplicity pattern \\
+
+$M[i,j]$ & Indecomposable representation of the cyclic quiver with relations, supported from vertex $i$ to vertex $j$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\subsection{Deep linear networks setup}
+A deep linear network is a neural network for which all the activation function are linear maps. 
+\begin{definition}\label{def:dln-function}
+    A $L$-layers Deep Linear Network (DLN) is a function:
+\begin{align*}
+    f: \ & \mathbb{R}^{d_0} \times \prod_{l=0}^{L-1}\mathbb{R}^{d_l \times d_{l+1}}  \to \mathbb{R}^{d_L} \\
+       & (x,W_1,...,W_L) \mapsto W_L...W_1 x
+\end{align*}
+The dimension $d_0$ is the dimension of the input data and the dimensions $d_l,\ 1\leq l \leq L$ are the width of the layers. A Deep Linear Network is a multi-linear function which is linear in each of the weight matrix $W_l$ and the data.
+\end{definition}
+\begin{definition}\label{def:product-map}
+    Consider the product map:
+\begin{align*}
+    \mu : & \prod_{l=0}^{L-1}\mathbb{R}^{d_l \times d_{l+1}} \to \mathbb{R}^{d_0\times d_L}\\
+           &  W:=(W_1,...,W_L) \mapsto W_L...W_1
+\end{align*}
+This function $\mu$ maps the parameter space $\Omega:=\{(W_1,...,W_L) \in \prod_{l=0}^{L-1}\mathbb{R}^{d_l \times d_{l+1}}\}$ to the function space $\mathcal{F} \cong \mathbb{R}^{d_0\times d_L}$ of a Deep Neural Network. A DLN is a matrix-monomial (so non-linear) in the parameter space $\Omega$ (the space above) and linear map in the function space $\mathcal{F}$ (the space below).
+\end{definition}
+\begin{definition}
+We consider the quadratic loss function of a DLN with training data $\{(x_i,y_i)\}_{i=1}^N$ i.i.d: :
+    \begin{equation*}
+        \mathcal{L}_N(W) = \frac{1}{N}\sum_{i=1}^N \||y_i - W_L...W_1 x_i\||_2^2
+    \end{equation*}
+With the covariance matrices $\Sigma_X = \frac{1}{N}\sum_{i=1}^N x_i x_i^\top$, $\Sigma_{XY} = \frac{1}{N}\sum_{i=1}^N x_i y_i^\top$, $\Sigma_{YX} = \frac{1}{N}\sum_{i=1}^N y_i x_i^\top$ and $\Sigma_Y = \frac{1}{N}\sum_{i=1}^N y_i y_i^\top$ identified with their expectation in the limit of large samples.
+\end{definition}
+We define the SVD of the teacher matrix, the important object is $U$ the matrix of the left singular vectors of the teacher matrix that we will refer to throughout the paper.
+\begin{definition}\label{def:teacher-matrix}
+    The teacher matrix (global minimum of the loss function) is defined as $W^* = \Sigma_{YX}\Sigma_X^{-1}$ and the teacher rank is defined as $r_{\max} = \text{rk}(W^*)$. The teacher SVD decomposition writes:
+    \begin{equation*}
+        W^* = U \Sigma_{YX}\Sigma_X^{-1} V^\top
+    \end{equation*}
+    With $U = [U_S\; U_Q]$ where $U_S$ are the left singular vectors of $W^*$ corresponding to the singular values indexed by $S={1,...,r}$ and $U_Q$ are the left singular vectors orthogonal to $U_S$. 
+\end{definition}
+\paragraph{Assumptions} We will assume that $\Sigma_X$ is invertible, that $\Sigma_{XY}$ has full rank $d_L$. Furthermore we assume that the matrix: $\Sigma_{YX}\Sigma_X^{-1}$ has distinct singular values (non degenerate data). Furthermore the DLN has no bottleneck i.e. $d_i \geq d_L$ for all $i$. These are the same assumptions as in \cite{achour2024loss}. 
+\subsection{Determinantal and cyclic varieties}
+\begin{definition}[Residual space $\mathcal Z$]
+Fix $r \le \min_i d_i$. Define the space of residuals:
+\[
+\mathcal Z_{d}
+:=
+\mathrm{Mat}_{d_1 ,\; d_0}
+\times
+\prod_{\ell=2}^{L   }
+\mathrm{Mat}_{d_\ell ,\; d_{\ell-1} }.
+\]
+We will be interested in the space of residuals with dimension vector $d_r:=(d_0, d_1-r\dots,d_L-r)$:
+\[
+\mathcal Z_{d_r}
+:=
+\mathrm{Mat}_{d_1-r ,\; d_0-r}
+\times
+\prod_{\ell=2}^{L   }\mathrm{Mat}_{d_\ell-r ,\; d_{\ell-1}-r }.
+\]
+\end{definition}
+
+\begin{definition}[Cyclic variety $\Gamma_{d_r}$]
+Let $\Sigma_{XY} \in \mathrm{Mat}_{d_0,\; d_L}$ and $U_Q \in \mathrm{Mat}_{d_L,\; d_L - r}$ as defined in \ref{def:teacher-matrix}. Define the the algebraic variety:
+\[
+\Gamma^1_{d_r,S}
+:=
+\left\{
+Z \in \mathcal Z_{d_r}
+\;\middle|\;
+Z_{\ell-1}\cdots Z_2 Z_1 \,\Sigma_{XY} U_Q\, Z_L \cdots Z_{\ell+1} = 0,
+\;\; 1 \le \ell \le L \ \text{mod } L+1
+\right\},
+\]
+\end{definition}
+\begin{definition}[Determinantal Variety $\Sigma_d$]\label{def:determinantal-variety} Let $d=(d_0,\dots,d_L)$ and $r\le \min_i d_i$. Define the determinantal variety of rank $r$ matrices:
+\begin{equation*}
+    \Sigma_{d}^r := \{W\in\Omega \ | \ \text{rk}(W_L...W_1) = r\}
+\end{equation*}
+We can relate $\Sigma_{d}^r$ to the residual variety $\Sigma_{d-r}^0$:
+\begin{equation*}
+    \Sigma_{d-r}^0 = \{Z\in\mathcal{Z}_d, 1\leq l \leq L| Z_L...Z_1 = 0\}
+\end{equation*}
+via the action of $GL(d) = \prod_{\ell=0}^L GL(d_{\ell})$ on $\Omega$:
+\begin{align*}
+    \Sigma_{d}^r = GL(d).\iota_r(\Sigma_{d-r}^0) \\
+    g.W = (g_L W_L g_{L-1}^{-1}, \dots, g_1 W_1 g_0^{-1}) \\
+    \iota_r(Z)_\ell = \begin{pmatrix} I_r & 0 \\ 0 & Z_\ell \end{pmatrix}
+\end{align*}
+We will be interested in the space of residuals with dimension vector $d_r:=(d_0, d_1-r\dots,d_L-r)$:
+\[\
+\Sigma^0_{d_r}
+:=
+\left\{
+Z\in \mathcal Z
+\;\middle|\;
+Z_L\cdots Z_1=0
+\right\}.
+\]
+\end{definition}
+\begin{definition}[Cyclic variety $\Gamma_{d_r,XY}$]
+Let $d_r:=(d_0, d_1-r\dots,d_L-r)$, define the cyclic variety as an algebraic variety of residuals satisfying  cyclic vanishing conditions:
+\[
+\Gamma_{d_r,S}:= \Sigma^0_{d_r}\cap\Gamma^1_{d_r,S}
+\]
+\end{definition}
+\noindent
+The cyclic variety is an important object as we will stratify it and ``lift'' that stratification to the critical locus. 
+\subsection{Combinatorics of the global minima}
+We briefly recall the combinatorial description of the global minima. Consider the action of $G_d$ on the determinantal variety $\Sigma_d^r$ defined in \ref{def:determinantal-variety}. Since the multiplication map $\mu$ is $G_d$-equivariant, the determinantal variety $\Sigma_d^r$ is $G_d$-stable. This allows one to stratify $\Sigma_d^r$ by rank patterns:
+\begin{align*}
+    \rho_{ij} & = \rk(W_{j}\cdots W_{i+1}), \qquad \text{for } 0 \leq i < j \leq L, \\
+    \rho_{ii} & = d_i
+\end{align*}
+Using the quiver representation theory of affine quivers, and in particular Krull--Schmidt and Gabriel's theorem for affine quivers \cite{lehalleur2024geometry}, the determinantal variety admits a stratification into $G_d$-orbits parameterized by rank patterns:
+\begin{equation*}
+    \Sigma_d^r = \bigsqcup_{\rho\in \mathcal{R}_d^r} \mathcal{O}_{\rho}.
+\end{equation*}
+Here,
+\begin{equation*}
+    \mathcal{R}_d^r := \left\{\rho_{ij}\ \middle|\ \rho_{ij} - \rho_{i,j+1} - \rho_{i-1,j} + \rho_{i-1,j+1} \geq 0,\ \rho_{0L} = r \right\}.
+\end{equation*}
+This stratification allow to stratify the global minima using a correspondence between the irreducible components of the global minima with the irreducible component of the determinantal variety $\Sigma_d^r$. We propose that this correspondance can be obtained by showing the following bijective relation:
+\begin{equation*}
+    \Sigma_d^{r} \cong G_{d_0,d_L} \times_{G^{\star}_{d_0,d_L}} \mu^{-1}(W^{\star})
+\end{equation*}
+With:
+\begin{align*}
+    G_{d_0,d_L} & := \text{GL}_{d_0}\times\text{GL}_{d_L} \\ 
+    G^{\star}_{d_0,d_L} & := \text{Stab}_{G_{d_0,d_L}}(\mu^{-1}(W^{\star})) \\
+    G_{d_0,d_L} \times_{G^{\star}_{d_0,d_L}} \mu^{-1}(W^{\star}) & := G_{d_0,d_L} \times \mu^{-1}(W^{\star})/G^{\star}_{d_0,d_L}
+\end{align*}
+In other words, for a full-rank teacher matrix, the global minima admit a combinatorial description in which each global minimum is characterized by its rank $r=d_L$ and its rank pattern $\rho$. We aim to extend this construction to critical points that are not global minima, namely saddle points.
+\subsection{Critical loci parametrization}
+Recall proposition 1 in \cite{achour2024loss}:
+\begin{proposition}\label{prop:dln-critical-points-project}
+Let $W = (W_L, \dots, W_1)$ be a first-order critical point of the population loss $\mathcal{L}$ and set
+\[
+r = \text{rk}(W_L \cdots W_1) \in \{ 0, \dots, d_L \}.
+\]
+Then there exists a unique subset $S \subset \{ 1, \dots, d_L \}$ with $|S| = r$ such that
+\[
+W_H \cdots W_1 = U_S U_S^\top \, \Sigma_{YX} \, \Sigma_{X}^{-1}.
+\]
+\end{proposition}
+\begin{definition}[Action of $G_{\hid}$] Let $\dhid = (d_1, \dots, d_{L-1})$. Define a group action of $G_{\dhid} = \prod_{\ell=1}^{L-1} GL(d_\ell,\R)$ on $\Omega$ by:
+\begin{align*}
+    g\cdot W = (W_Lg_{L-1}^{-1}, (g_\ell W_\ell g_{\ell-1}^{-1})_{2\leq \ell \leq L-1}, g_1W_1)
+\end{align*}
+\end{definition}
+\begin{proposition}
+From \cite{achour2024loss} proposition 9, proposition 10 and proof of proposition 10, appendix B.5 (gradient formulas), we can write the set of rank $r$ critical points of a DLN associated with the subset of $S$ indexing a subset of $r$ singular vectors of $W^{\star}$ as the following algebraic variety:
+\begin{equation*}
+    \mathcal{C}^r_{d,S} := \{W\in \Omega| \exists Z\in\Gamma_{d_r,XY}, W_L \sim [U_S, U_QZ_L],  W_l \sim \begin{pmatrix} I_r & 0 \\
+                                                      0.  & Z_l      
+                                        \end{pmatrix}, W_1 \sim [\Sigma_X^{-1}\Sigma_{XY}U_S, Z_1^{\top}]^{\top}\}
+\end{equation*} 
+In other words, $\mathcal{C}^r_{d,S} \subset \Omega$ denote the set of rank-$r$ first-order critical points in a normal form of the DLN associated with $S$ indexing the singular vectors of $W^{\star}$, i.e.\ the set described by the existence of residual blocks $Z = (Z_1, \dots, Z_L)\in \Gamma_{d_r,XY}$ such that there exists $g \in G_{\dhid}$ with
+\[
+W_L = [U_S,\, U_Q Z_L]g_{L-1}^{-1}, \qquad
+W_\ell = g_\ell\begin{pmatrix} I_r & 0 \\ 0 & Z_\ell \end{pmatrix}g_{\ell-1}^{-1} \quad (2\leq \ell \leq L-1), \qquad 
+W_1 = g_1\begin{pmatrix} U_S^\top \Sigma_{YX}\Sigma_X^{-1} \\ Z_1 \end{pmatrix}
+\]
+In particular when computing the value of a DLN at a point in $\mathcal{C}^r_{d,S}$ we recover proposition \ref{prop:dln-critical-points-project}.  Furthermore, when $r=d_L$, one has $U_Q=0$ and hence $\sigma=\Sigma_{XY}U_Q=0$.
+In this case the cyclic residual variety $\Gamma_{d_r,XY}$ reduces to the residual
+representation space of an equioriented type-$A$ quiver with dimension vector
+\[
+d_r = (d_0,d_1-d_L,\dots,d_{L-1}-d_L),
+\]
+i.e. the corresponding stratification reduces to an affine-quiver stratification analogous to the treatment of the global-minimum
+stratification studied by Lehalleur--Rim\'anyi. In the remaining of the document we will be interested in the case $r<d_L$ where the closing arrow $\sigma$ is nonzero, i.e. the stratification of saddle points.
+\end{proposition}
+\section{From the cyclic variety to the critical locus}
+\subsection{Lifting the cyclic variety onto the critical locus}
+We relate the cyclic variety $\Gamma_{d_r,S}$ with the critical locus $\mathcal{C}^r_{d,S}$. First we define a gauged-fixed slice of $\mathcal{C}^r_{d,S}$ as an embedding of $\Gamma_{d_r,S}$ whose orbits by $G_{\dhid}$ is the whole critical locus. Then we essentially lift $\Gamma_{d_r,S}$ into $\mathcal{C}^r_{d,S}$ by formalizing it as some principal bundle over $\mathcal{C}^r_{d,S}$. That perspective will enable to lift a stratification of $\Gamma_{d_r,S}$ into a stratification of $\mathcal{C}^r_{d,S}$.
+\begin{definition}[A gauge-fixed slice of rank-$r$ critical points.]
+    Define the map $\iota:\mathcal Z\to \Omega$ by putting residual blocks on the diagonal:
+\begin{equation}\label{eq:iota-Z}
+\iota(Z)_\ell \;:=\;
+\begin{pmatrix}
+I_r & 0\\
+0 & Z_\ell
+\end{pmatrix}
+\in \Mat_{d_\ell\times d_{\ell-1}}(\R),
+\qquad \ell=2,\dots,L-1,
+\end{equation}
+and set the endpoints to match the standard DLN critical-point normal form:
+\begin{equation}\label{eq:endpoints-slice}
+\iota(Z)_L \;:=\; [\,U_S,\; U_Q Z_L\,]\in \Mat_{d_L\times d_{L-1}}(\R),
+\qquad
+\iota(Z)_1 \;:=\;
+\begin{pmatrix}
+U_S^\top \Sigma_{YX}\Sigma_X^{-1}\\
+Z_1
+\end{pmatrix}
+\in \Mat_{d_1\times d_0}(\R).
+\end{equation}
+(Only the hidden block structure matters for what follows)
+\end{definition}
+\noindent
+Define the \emph{gauge-fixed critical slice}
+\begin{equation}\label{eq:Scrit-def}
+ \mathcal{X}_{r, S} \;:=\; \iota(\Gamma_{d_r,S}) \;\subset\; \Omega .
+\end{equation}
+
+\begin{definition}[Hidden-layer gauge group and its slice stabilizer.]
+Define the subgroup $H_{r}\le G_{\dhid}$ consisting of those hidden reparametrizations that preserve the block decomposition
+$\R^{d_\ell}\cong \R^r\oplus \R^{d_\ell-r}$ for every hidden layer \emph{and} leave the endpoint embeddings
+\eqref{eq:endpoints-slice} invariant:
+\begin{equation}\label{eq:Hrsigma-def}
+H_{r}
+\;:=\;
+\left\{
+h=(h_1,\dots,h_{L-1})\in G_{\dhid} \;\middle|\;
+h_\ell=
+\begin{pmatrix}
+A & 0\\
+0 & K_\ell
+\end{pmatrix},
+\ A\in GL(r,\R),\ K_\ell\in GL(d_\ell-r,\R),
+\ \text{and } h\cdot \mathcal X_r =\mathcal X_r
+\right\}.
+\end{equation}
+(Equivalently: $H_{r}$ is the setwise stabilizer of $\mathcal X_{r,S}$ inside $G_{\dhid}$).
+\noindent
+The induced action of $H_{r}$ on $\mathcal Z$ is the residual base-change action:
+for $h_\ell=\begin{psmallmatrix}A&0\\0&K_\ell\end{psmallmatrix}$ we set
+\begin{equation}\label{eq:Hrsigma-on-Z}
+(h\cdot Z)_\ell \;:=\; K_\ell\, Z_\ell\, K_{\ell-1}^{-1}
+\qquad (\ell=2,\dots,L-1),
+\end{equation}
+with the endpoint conventions for $\ell=1$ and $\ell=L$ determined by the action of $G_{\dhid}$ over the fixed endpoint embeddings
+\eqref{eq:endpoints-slice}.
+By construction, $\Gamma_{d_r,S }\subset \mathcal Z$ is $H_{r}$-stable (since
+$h\cdot \mathcal X_{r,S}=\mathcal X_{r,S}$).
+\end{definition}
+\noindent
+\begin{lemma}\label{prop:orbit-saturation}
+The critical loci $\mathcal{C}^r_{d,S}$ is the orbit of the gauge-fixed critical slice $\mathcal{X}_{r,S}$ by the hidden-layer gauge group $G_{\dhid}$:
+\begin{equation}\label{eq:orbit-saturation}
+\mathcal{C}^r_{d,S} = G_{\dhid} \cdot \mathcal{X}_{r,S}.
+\end{equation}
+\end{lemma}
+\noindent
+\begin{proof}[Proof of \ref{prop:orbit-saturation} critical locus as a single $G_{\dhid}$--orbit of a block gauge-fixed subset]\label{proof:orbit-saturation}
+    By the assumed DLN normal form for rank-$r$ critical points, $W \in \mathcal{C}^r_{d,S}$ if and only if there exists $Z \in \Gamma_{d_r,S}$ and a hidden invertible changes of basis $g = (g_1, \dots, g_{L-1}) \in G_{\hid}$ such that the transformed weights satisfy the block gauge-fixed identities.  Equivalently, $g^{-1} \cdot W = \iota(Z) \in \mathcal{X}_{r,S}$.  Therefore $W = g \cdot \iota(Z) \in G_{\dhid} \cdot \mathcal{X}_{r,S}$, proving $\mathcal{C}^r_{d,S} \subseteq G_{\dhid} \cdot \mathcal{X}_{r,S}$.  Conversely, if $W = g \cdot \iota(Z)$ with $Z \in \Gamma_{d_r,S}$, then $W$ has the required normal form up to the hidden reparametrisation~$g$, and since $Z\in \Gamma_{d_r,S}$, $W$ is critical.  Thus $G_{\dhid} \cdot \mathcal{X}_{r,S} \subseteq \mathcal{C}^r_{d,S}$.
+\end{proof}
+\begin{theorem}\label{prop:parameters-as-bundle}
+    Define $\Phi \colon G_{\dhid} \times \Gamma_{d_r,S} \to \Omega$ by
+\begin{equation}
+\Phi(g, Z) := g \cdot \iota(Z),
+\end{equation}
+Then $\Phi(G_{\dhid} \times \Gamma_{d_r,S}) = \mathcal{C}^r_{d,S}$ and $\Phi$ is invariant under the right action of $H_{r}$ on $G_{\dhid}   \times \Gamma_{d_r,S}$ given by
+\begin{equation}
+(g, Z) \cdot h := (g h,\; h^{-1} \cdot Z).
+\end{equation}
+Hence $\Phi$ descends to a surjective map
+\[\
+\bar\Phi \colon G_{\dhid} \times_{H_{r}} \Gamma_{d_r,S} \longrightarrow \mathcal{C}^r_{d,S}.
+\]
+With 
+\begin{equation*}
+     G_{\dhid} \times_{H_{r}} \Gamma_{d_r,S} := (G_{\dhid} \times \Gamma_{d_r,S}) / H_{r}
+\end{equation*}
+\end{theorem}
+\begin{proof}[Proof of \ref{prop:parameters-as-bundle}]\label{proof:parameters-as-bundle}
+    By definition, $\Phi(g, Z) = g \cdot \iota(Z) \in G_{\dhid} \cdot \mathcal{X}_{r,S} = \mathcal{C}^r_{d,S}$.  Hence $\Phi(G_{\dhid} \times \Gamma_{d_r,S}) \subseteq \mathcal{C}^r_{d,S}$.  Conversely, we have shown every $W \in \mathcal{C}^r_{d,S}$ can be written $W = g \cdot \iota(Z)$ with $Z \in \Gamma_{d_r,S}$.  Therefore $\Phi(G_{\dhid} \times \Gamma_{d_r,S}) = \mathcal{C}^r_{d,S}$.
+Fix $(g, Z) \in G_{\dhid} \times \Gamma_{d_r,S}$ and $h \in H_{r}$.  Then
+\[
+\Phi\bigl((g, Z) \cdot h\bigr) = \Phi\bigl(gh,\; h^{-1} \cdot Z\bigr)
+= (gh) \cdot \iota(h^{-1} \cdot Z).
+\]
+Using associativity of the group action, this equals $g \cdot \bigl(h \cdot \iota(h^{-1} \cdot Z)\bigr)$.  Thus it suffices to show
+\begin{equation}\tag{$\star$}
+h \cdot \iota(h^{-1} \cdot Z) = \iota(Z).
+\end{equation}
+Write each $h_\ell = \bigl(\begin{smallmatrix} I_r & 0 \\ 0 & K_\ell \end{smallmatrix}\bigr)$ (recall that the setwise stabiliser condition and the endpoint structure force $A = I_r$).
+\noindent
+\\
+\emph{Middle layers $(\ell = 2, \dots, L{-}1)$:}  Here $(h^{-1} \cdot Z)_\ell = K_\ell^{-1} Z_\ell K_{\ell-1}$, and then:
+\[
+h_\ell \begin{pmatrix} I_r & 0 \\ 0 & K_\ell^{-1} Z_\ell K_{\ell-1} \end{pmatrix} h_{\ell-1}^{-1}
+= \begin{pmatrix} I_r & 0 \\ 0 & Z_\ell \end{pmatrix} = \iota(Z)_\ell.
+\]
+\noindent
+\emph{Last layer $(\ell = L)$:}  Since $g_L = I$ in $G_h$, the action gives $(h \cdot \iota(h^{-1} \cdot Z))_L = \iota(h^{-1} \cdot Z)_L \, h_{L-1}^{-1}$.  Now $(h^{-1} \cdot Z)_L = Z_L K_{L-1}$ (since $g_L = I$ implies the effective residual action at layer~$L$ is right multiplication by $K_{L-1}$), so
+\[
+[U_S,\; U_Q Z_L K_{L-1}]
+\begin{pmatrix} I_r & 0 \\ 0 & K_{L-1}^{-1} \end{pmatrix}
+= [U_S,\; U_Q Z_L] = \iota(Z)_L.
+\]
+\\
+\noindent
+\emph{First layer $(\ell = 1)$:}  Since $g_0 = I$, the action gives $(h \cdot \iota(h^{-1} \cdot Z))_1 = h_1 \, \iota(h^{-1} \cdot Z)_1$.  Now $(h^{-1} \cdot Z)_1 = K_1^{-1} Z_1$ (since $g_0 = I$), so
+\[
+\begin{pmatrix} I_r & 0 \\ 0 & K_1 \end{pmatrix}
+\begin{pmatrix} U_S^\top \Sigma_{YX} \Sigma_X^{-1} \\ K_1^{-1} Z_1 \end{pmatrix}
+= \begin{pmatrix} U_S^\top \Sigma_{YX} \Sigma_X^{-1} \\ Z_1 \end{pmatrix}
+= \iota(Z)_1.
+\]
+This proves~($\star$), hence $\Phi$ is $H_{r}$-invariant and descends to $\bar\Phi$.
+\end{proof}
+\subsection{Stratifying the critical locus from the cyclic variety}
+
+\section{Stratification of cyclic quivers with finite relation}
+
+\section{Application: stratification of the critical loci}
+
+\section{Discussion and future works}
+
+\bibliography{bibliography}
+
+\section*{Appendix}
+
+\end{document}

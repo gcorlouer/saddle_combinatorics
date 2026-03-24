@@ -1,0 +1,132 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Mat}{\mathrm{Mat}}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\title{First Conjecture Draft}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{First Main Conjecture}
+
+This file records successive versions of the first main conjecture in the new direct weight-space setup.
+
+\subsubsection*{Informal version}
+
+The cyclic equations should define a weight-space variety whose orbit decomposition already contains the information needed to stratify the corresponding critical locus. The missing condition that turns a point of the cyclic locus into a genuine critical point should be recoverable by moving along the correct symmetry group.
+
+\subsubsection*{Geometric setup}
+
+Fix:
+\begin{itemize}
+\item a rank $r$;
+\item a subset $S\subset \{1,\dots,r_{\max}\}$ with $|S|=r$;
+\item the matrix $W_0=W_S=\Sigma_{XY}P_Q$;
+\item the loci $\Gamma_{d,S}^r$ and $\mathcal C_{d,S}^r$ defined in the previous setup files.
+\end{itemize}
+
+\subsubsection*{Conjecture A: orbit-surjectivity}
+
+\begin{conjecture}
+For every point $W\in \Gamma_{d,S}^r$, there exists an element
+\[
+g\in G_d^{W_0}
+\]
+such that
+\[
+\mu(g\cdot W)=P_SW^\ast.
+\]
+Equivalently, every $G_d^{W_0}$-orbit in $\Gamma_{d,S}^r$ meets the critical locus $\mathcal C_{d,S}^r$.
+\end{conjecture}
+
+\subsubsection*{Conjecture B: orbit-bijection}
+
+\begin{conjecture}
+The inclusion
+\[
+\mathcal C_{d,S}^r \hookrightarrow \Gamma_{d,S}^r
+\]
+induces a bijection
+\[
+\mathcal C_{d,S}^r / G_d^{W_0}
+\xrightarrow{\ \sim\ }
+\Gamma_{d,S}^r / G_d^{W_0}.
+\]
+\end{conjecture}
+
+\begin{remark}
+Conjecture B packages two statements:
+\begin{itemize}
+\item every orbit of $\Gamma_{d,S}^r$ contains a critical point with end-to-end map $P_SW^\ast$;
+\item if two points of $\mathcal C_{d,S}^r$ are equivalent through an element of $G_d^{W_0}$ inside $\Gamma_{d,S}^r$, then they are not identified in any genuinely new way beyond the critical locus itself.
+\end{itemize}
+\end{remark}
+
+\subsubsection*{Preferred first main conjecture}
+
+\begin{conjecture}[Orbit correspondence between the cyclic locus and the critical locus]
+Fix $r$ and $S$. Let
+\[
+\Gamma_{d,S}^r
+=
+\Sigma_d^r\cap \Gamma_{d,S}
+\]
+be the rank-$r$ weight-space cyclic locus, and let
+\[
+\mathcal C_{d,S}^r
+=
+\{W\in \Gamma_{d,S}^r : \mu(W)=P_SW^\ast\}
+\]
+be the corresponding rank-$r$ critical locus. Then the inclusion
+\[
+\mathcal C_{d,S}^r \hookrightarrow \Gamma_{d,S}^r
+\]
+induces a bijection on orbit spaces for the stabilizer group
+\[
+G_d^{W_0}
+=
+\{g\in G_d : g_0W_0 g_L^{-1}=W_0\}.
+\]
+In particular,
+\[
+\mathcal C_{d,S}^r / G_d^{W_0}
+\cong
+\Gamma_{d,S}^r / G_d^{W_0}.
+\]
+\end{conjecture}
+
+\subsubsection*{Why this replaces the old lifting statement}
+
+In \texttt{paper\_v0.tex} and \texttt{paper\_v1.tex}, the passage from the cyclic variety to the critical locus went through a residual normal form and a lifting map from residual blocks to weight matrices. The new conjecture avoids that detour:
+\begin{itemize}
+\item the source and target spaces now both live directly in $\Omega$;
+\item the relation between them is expressed purely by an orbit statement in weight space;
+\item the projected student map $P_SW^\ast$ replaces the old gauge-fixed residual slice as the anchor condition that singles out critical points inside the larger cyclic locus.
+\end{itemize}
+
+\subsubsection*{Sanity check}
+
+The hidden-layer gauge group $G_{\mathrm{hid}}$ cannot be the acting group in this conjecture, because it preserves $\mu(W)$ exactly. Hence it cannot move a general point of $\Gamma_{d,S}^r$ to a point with end-to-end map $P_SW^\ast$ unless that condition already holds.
+
+This is why the first conjecture should be stated using a group with nontrivial endpoint action, such as $G_d^{W_0}$.
+
+\end{document}
