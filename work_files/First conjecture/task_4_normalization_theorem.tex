@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Mat}{\mathrm{Mat}}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Task 4: Normalization Theorem}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Goal}
+
+This file contains the core step of the proof of Conjecture A.
+
+The target theorem is:
+
+\begin{theorem}[Normalization theorem for the end-to-end map]
+If $W\in \Gamma_{d,S}^r$, then the product $\mu(W)$ lies in the endpoint orbit of $P_SW^\ast$ under the group $K_S$.
+\end{theorem}
+
+\section{Suggested route}
+
+Possible ingredients:
+
+\begin{itemize}
+\item show that $P_SW^\ast$ satisfies the same invariants extracted in Task 3;
+\item prove that those invariants characterize the endpoint orbit of $P_SW^\ast$;
+\item if necessary, rewrite the problem using image and kernel flags adapted to the decomposition indexed by $S$ and $Q$.
+\end{itemize}
+
+\section{Deliverables}
+
+This task is complete once the normalization theorem is stated in final form and proved.
+
+\end{document}

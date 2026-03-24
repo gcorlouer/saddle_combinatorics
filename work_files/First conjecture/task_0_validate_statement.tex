@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Mat}{\mathrm{Mat}}
+\newcommand{\Stab}{\operatorname{Stab}}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Task 0: Validate the Statement of Conjecture B}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Goal}
+
+The purpose of this task is to determine whether the current quotient statement in Conjecture B is mathematically well-defined.
+
+The current candidate statement is:
+\[
+\mathcal C_{d,S}^r / G_d^{W_0}
+\cong
+\Gamma_{d,S}^r / G_d^{W_0},
+\qquad
+G_d^{W_0}:=\{g\in G_d : g_0W_0g_L^{-1}=W_0\}.
+\]
+
+\section{Main check}
+
+We must determine whether the critical locus
+\[
+\mathcal C_{d,S}^r
+=
+\{W\in \Gamma_{d,S}^r : \mu(W)=P_SW^\ast\}
+\]
+is stable under the action of $G_d^{W_0}$.
+
+\begin{remark}
+Since
+\[
+\mu(g\cdot W)=g_L\mu(W)g_0^{-1},
+\]
+the critical locus can only be $G_d^{W_0}$-stable if the distinguished product $P_SW^\ast$ is itself fixed by all elements of $G_d^{W_0}$.
+\end{remark}
+
+\section{Expected outcomes}
+
+\subsection*{Case 1: the critical locus is stable}
+
+If
+\[
+g_L(P_SW^\ast)g_0^{-1}=P_SW^\ast
+\qquad
+\text{for all } g\in G_d^{W_0},
+\]
+then the current quotient statement survives unchanged.
+
+\subsection*{Case 2: the critical locus is not stable}
+
+If not, then the corrected statement should be
+\[
+\Gamma_{d,S}^r/G_d^{W_0}
+\cong
+\mathcal C_{d,S}^r/H_S,
+\qquad
+H_S:=\Stab_{G_d^{W_0}}(P_SW^\ast),
+\]
+or equivalently:
+each $G_d^{W_0}$-orbit in $\Gamma_{d,S}^r$ meets $\mathcal C_{d,S}^r$ in exactly one $H_S$-orbit.
+
+\section{Deliverables}
+
+This task is complete once the file contains:
+
+\begin{itemize}
+\item a lemma deciding stability or non-stability of $\mathcal C_{d,S}^r$ under $G_d^{W_0}$;
+\item the final corrected statement of Conjecture B;
+\item the definition of the stabilizer subgroup $H_S$ if needed.
+\end{itemize}
+
+\end{document}

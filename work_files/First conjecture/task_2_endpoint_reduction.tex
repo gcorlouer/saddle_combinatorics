@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Mat}{\mathrm{Mat}}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Task 2: Endpoint Reduction}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Goal}
+
+Reduce Conjecture A to a statement about the endpoint orbit of the end-to-end map $\mu(W)$.
+
+\section{Endpoint group}
+
+Define
+\[
+K_S:=\{(g_0,g_L)\in \GL(d_0,\R)\times \GL(d_L,\R) : g_0W_0g_L^{-1}=W_0\}.
+\]
+
+\begin{remark}
+The group $K_S$ is the endpoint shadow of the full stabilizer group $G_d^{W_0}$.
+\end{remark}
+
+\section{Target reduction}
+
+The main lemma to prove in this file is:
+
+\begin{lemma}
+Conjecture A is equivalent to the following endpoint normalization statement:
+for every $W\in \Gamma_{d,S}^r$, the product $\mu(W)$ lies in the $K_S$-orbit of $P_SW^\ast$.
+\end{lemma}
+
+\section{Deliverables}
+
+This task is complete once the file contains:
+
+\begin{itemize}
+\item the definition of the endpoint group $K_S$;
+\item the precise reduction lemma;
+\item a proof that the full orbit-surjectivity problem is equivalent to the endpoint normalization problem.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Mat}{\mathrm{Mat}}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\title{Examples and Counterchecks}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Goal}
+
+Maintain explicit examples and edge-case checks in parallel with the abstract proof work.
+
+\section{Required examples}
+
+\begin{itemize}
+\item an example with $L=2$;
+\item an example with $L=3$;
+\item one low-rank saddle example with $r<d_L$;
+\item one maximal-rank example with $r=d_L$.
+\end{itemize}
+
+\section{Required edge checks}
+
+\begin{itemize}
+\item the case $r=0$;
+\item the case $r=d_L$;
+\item where distinct singular values are used;
+\item where the no-bottleneck assumption is used.
+\end{itemize}
+
+\section{Purpose}
+
+This file should be updated throughout the proof process to:
+
+\begin{itemize}
+\item test the cyclic equations;
+\item test the group action;
+\item detect counterexamples early;
+\item track exactly where assumptions enter the argument.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Mat}{\mathrm{Mat}}
+\newcommand{\Stab}{\operatorname{Stab}}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Task 7: Uniqueness of the Critical Representative}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Goal}
+
+Prove that the intersection of a $G_d^{W_0}$-orbit in $\Gamma_{d,S}^r$ with the critical locus is exactly one orbit of the correct stabilizer subgroup.
+
+\section{Target statement}
+
+\begin{lemma}
+If $W,W'\in \mathcal C_{d,S}^r$ lie in the same $G_d^{W_0}$-orbit inside $\Gamma_{d,S}^r$, then the group element relating them preserves the distinguished product $P_SW^\ast$ and therefore belongs to
+\[
+H_S:=\Stab_{G_d^{W_0}}(P_SW^\ast).
+\]
+\end{lemma}
+
+\section{Deliverable}
+
+This file is complete once the uniqueness lemma is proved and rewritten in the final orbit language needed for Conjecture B.
+
+\end{document}

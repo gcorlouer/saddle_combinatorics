@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Mat}{\mathrm{Mat}}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Task 1: Group Action Lemmas}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Goal}
+
+Collect the action formulas needed for the proof of Conjecture A and prove the basic equivariance facts.
+
+\section{Objects}
+
+The key groups are:
+\[
+G_d=\prod_{\ell=0}^L \GL(d_\ell,\R),
+\qquad
+G_{\mathrm{hid}}=\prod_{\ell=1}^{L-1}\GL(d_\ell,\R),
+\qquad
+G_d^{W_0}=\{g\in G_d : g_0W_0g_L^{-1}=W_0\}.
+\]
+
+\section{Required lemmas}
+
+\begin{lemma}
+The action of $G_d$ on $\Omega$ satisfies
+\[
+\mu(g\cdot W)=g_L\mu(W)g_0^{-1}.
+\]
+\end{lemma}
+
+\begin{lemma}
+The hidden gauge group preserves the end-to-end map:
+\[
+\mu(g\cdot W)=\mu(W)
+\qquad
+\text{for } g\in G_{\mathrm{hid}}.
+\]
+\end{lemma}
+
+\begin{lemma}
+The cyclic locus $\Gamma_{d,S}$ is stable under $G_d^{W_0}$.
+\end{lemma}
+
+\begin{lemma}
+The rank-$r$ cyclic locus $\Gamma_{d,S}^r$ is stable under $G_d^{W_0}$.
+\end{lemma}
+
+\section{Deliverables}
+
+This task is complete once the file contains full proofs of the four lemmas above and an explicit statement explaining why $G_{\mathrm{hid}}$ alone cannot prove Conjecture A.
+
+\end{document}

@@ -1,0 +1,59 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Mat}{\mathrm{Mat}}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\title{Task 5: Proof of Conjecture A}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Goal}
+
+Deduce Conjecture A from the normalization theorem proved in Task 4.
+
+\begin{conjecture}[Conjecture A]
+For every point $W\in \Gamma_{d,S}^r$, there exists an element
+\[
+g\in G_d^{W_0}
+\]
+such that
+\[
+\mu(g\cdot W)=P_SW^\ast.
+\]
+Equivalently, every $G_d^{W_0}$-orbit in $\Gamma_{d,S}^r$ meets the critical locus $\mathcal C_{d,S}^r$.
+\end{conjecture}
+
+\section{Required proof structure}
+
+\begin{enumerate}
+\item start from $W\in \Gamma_{d,S}^r$;
+\item apply the normalization theorem to $\mu(W)$;
+\item choose an element of $G_d^{W_0}$ realizing the endpoint normalization;
+\item prove that the transformed tuple remains in $\Gamma_{d,S}^r$;
+\item conclude that the transformed tuple lies in $\mathcal C_{d,S}^r$.
+\end{enumerate}
+
+\section{Deliverable}
+
+This file is complete once Conjecture A is fully proved.
+
+\end{document}

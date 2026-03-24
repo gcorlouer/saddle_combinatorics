@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Mat}{\mathrm{Mat}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\Ker}{\operatorname{Ker}}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Task 3: Invariants of the End-to-End Map}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Goal}
+
+Extract all constraints on the end-to-end map
+\[
+M=\mu(W)
+\]
+that are forced by the cyclic equations
+\[
+W_{<\ell}W_0W_{>\ell}=0.
+\]
+
+\section{Questions to answer}
+
+This file should address the following:
+
+\begin{itemize}
+\item Which image and kernel constraints on $M$ are visible from the cyclic equations?
+\item Which constraints depend only on $M$, and which still depend on the full tuple $W$?
+\item Which of these constraints are invariant under the endpoint group $K_S$?
+\end{itemize}
+
+\section{Required outcome}
+
+The goal is to isolate a list of necessary conditions on $M$ for membership in $\Gamma_{d,S}^r$ and to prove a separation lemma of the form:
+
+\begin{lemma}
+The cyclic equations impose a family of constraints, some depending only on $M=\mu(W)$ and some depending on the full factorization $W$.
+\end{lemma}
+
+\section{Deliverables}
+
+This task is complete once the file contains:
+
+\begin{itemize}
+\item a list of candidate invariants of $M$;
+\item a proof of which ones descend to the end-to-end map;
+\item a clear statement of the remaining information that still lives at the factorized level.
+\end{itemize}
+
+\end{document}
