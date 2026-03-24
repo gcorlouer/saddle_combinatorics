@@ -10,6 +10,7 @@
 \newcommand{\GL}{\operatorname{GL}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Mat}{\mathrm{Mat}}
+\newcommand{\Stab}{\operatorname{Stab}}
 
 \theoremstyle{definition}
 \newtheorem{theorem}{Theorem}[section]
@@ -61,15 +62,15 @@ Equivalently, every $G_d^{W_0}$-orbit in $\Gamma_{d,S}^r$ meets the critical loc
 \subsubsection*{Conjecture B: orbit-bijection}
 
 \begin{conjecture}
-The inclusion
+Define
 \[
-\mathcal C_{d,S}^r \hookrightarrow \Gamma_{d,S}^r
+H_S:=\Stab_{G_d^{W_0}}(P_SW^\ast).
 \]
-induces a bijection
+Then every $G_d^{W_0}$-orbit in $\Gamma_{d,S}^r$ meets $\mathcal C_{d,S}^r$ in exactly one $H_S$-orbit. Equivalently,
 \[
-\mathcal C_{d,S}^r / G_d^{W_0}
+\Gamma_{d,S}^r / G_d^{W_0}
 \xrightarrow{\ \sim\ }
-\Gamma_{d,S}^r / G_d^{W_0}.
+\mathcal C_{d,S}^r / H_S.
 \]
 \end{conjecture}
 
@@ -77,7 +78,7 @@ induces a bijection
 Conjecture B packages two statements:
 \begin{itemize}
 \item every orbit of $\Gamma_{d,S}^r$ contains a critical point with end-to-end map $P_SW^\ast$;
-\item if two points of $\mathcal C_{d,S}^r$ are equivalent through an element of $G_d^{W_0}$ inside $\Gamma_{d,S}^r$, then they are not identified in any genuinely new way beyond the critical locus itself.
+\item if two points of $\mathcal C_{d,S}^r$ are equivalent through an element of $G_d^{W_0}$ inside $\Gamma_{d,S}^r$, then they differ by an element of the smaller stabilizer group $H_S$.
 \end{itemize}
 \end{remark}
 
@@ -100,17 +101,21 @@ be the corresponding rank-$r$ critical locus. Then the inclusion
 \[
 \mathcal C_{d,S}^r \hookrightarrow \Gamma_{d,S}^r
 \]
-induces a bijection on orbit spaces for the stabilizer group
+does not induce a quotient by $G_d^{W_0}$ on the critical locus itself, because $\mathcal C_{d,S}^r$ is not stable under that full group when $r>0$. Instead, define
+\[
+H_S:=\Stab_{G_d^{W_0}}(P_SW^\ast),
+\]
+where
 \[
 G_d^{W_0}
 =
 \{g\in G_d : g_0W_0 g_L^{-1}=W_0\}.
 \]
-In particular,
+Then every $G_d^{W_0}$-orbit in $\Gamma_{d,S}^r$ meets $\mathcal C_{d,S}^r$ in exactly one $H_S$-orbit. In particular,
 \[
-\mathcal C_{d,S}^r / G_d^{W_0}
+\Gamma_{d,S}^r / G_d^{W_0}
 \cong
-\Gamma_{d,S}^r / G_d^{W_0}.
+\mathcal C_{d,S}^r / H_S.
 \]
 \end{conjecture}
 
@@ -127,6 +132,6 @@ In \texttt{paper\_v0.tex} and \texttt{paper\_v1.tex}, the passage from the cycli
 
 The hidden-layer gauge group $G_{\mathrm{hid}}$ cannot be the acting group in this conjecture, because it preserves $\mu(W)$ exactly. Hence it cannot move a general point of $\Gamma_{d,S}^r$ to a point with end-to-end map $P_SW^\ast$ unless that condition already holds.
 
-This is why the first conjecture should be stated using a group with nontrivial endpoint action, such as $G_d^{W_0}$.
+This is why the first conjecture should be stated using a group with nontrivial endpoint action, such as $G_d^{W_0}$, together with the residual stabilizer subgroup $H_S$ that fixes the distinguished critical product.
 
 \end{document}

@@ -30,29 +30,40 @@
 
 Write the final corrected form of Conjecture B after Task 0 has decided whether the current quotient notation is well-posed.
 
-\section{Candidate outcomes}
+\section{Final form after Task 0}
 
-\subsection*{Stable case}
-
-If $\mathcal C_{d,S}^r$ is stable under $G_d^{W_0}$, keep
-\[
-\mathcal C_{d,S}^r/G_d^{W_0}
-\cong
-\Gamma_{d,S}^r/G_d^{W_0}.
-\]
-
-\subsection*{Corrected case}
-
-If not, define
+Task 0 shows that for $r>0$ the critical locus is not stable under $G_d^{W_0}$, so the correct statement is obtained by introducing the stabilizer subgroup
 \[
 H_S:=\Stab_{G_d^{W_0}}(P_SW^\ast)
 \]
-and use
+and then formulating the orbit correspondence as follows.
+
+\begin{theorem}[Corrected form of Conjecture B]
+Assume $r>0$. Then:
+\begin{enumerate}
+\item every $G_d^{W_0}$-orbit in $\Gamma_{d,S}^r$ meets the critical locus $\mathcal C_{d,S}^r$;
+\item for every $W\in \mathcal C_{d,S}^r$,
+\[
+(G_d^{W_0}\cdot W)\cap \mathcal C_{d,S}^r
+=
+H_S\cdot W.
+\]
+\end{enumerate}
+Equivalently,
 \[
 \Gamma_{d,S}^r/G_d^{W_0}
 \cong
 \mathcal C_{d,S}^r/H_S.
 \]
+\end{theorem}
+
+\begin{remark}
+The only case in which the old quotient
+\[
+\mathcal C_{d,S}^r/G_d^{W_0}
+\]
+survives literally is the degenerate rank-zero case.
+\end{remark}
 
 \section{Deliverable}
 

@@ -10,6 +10,7 @@
 \newcommand{\GL}{\operatorname{GL}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Mat}{\mathrm{Mat}}
+\newcommand{\Stab}{\operatorname{Stab}}
 
 \theoremstyle{definition}
 \newtheorem{theorem}{Theorem}[section]
@@ -135,20 +136,25 @@ The first orbit spaces to consider are
 \[
 \Gamma_{d,S}^r / G_d^{W_0},
 \qquad
-\mathcal C_{d,S}^r / G_d^{W_0}.
+\mathcal C_{d,S}^r / H_S,
 \]
-These are the natural candidates for the first conjecture because $G_d^{W_0}$ can move the endpoint map while preserving the closing matrix $W_0$ that defines the cyclic equations.
+where
+\[
+H_S:=\Stab_{G_d^{W_0}}(P_SW^\ast).
+\]
+These are the natural orbit spaces for the corrected first conjecture because $G_d^{W_0}$ can move the endpoint map while preserving the closing matrix $W_0$ that defines the cyclic equations, whereas only the smaller subgroup $H_S$ preserves the distinguished critical value $P_SW^\ast$.
 
 \begin{remark}[A practical reformulation of the first conjecture]
 The desired orbit correspondence can be phrased as follows:
 \begin{quote}
-Every orbit of $G_d^{W_0}$ in $\Gamma_{d,S}^r$ contains at least one point whose end-to-end map is $P_SW^\ast$, and two such points lie in the same $G_d^{W_0}$-orbit inside $\Gamma_{d,S}^r$ if and only if they lie in the same $G_d^{W_0}$-orbit inside $\mathcal C_{d,S}^r$.
+Every orbit of $G_d^{W_0}$ in $\Gamma_{d,S}^r$ contains at least one point whose end-to-end map is $P_SW^\ast$, and the intersection of such an orbit with $\mathcal C_{d,S}^r$ is exactly one $H_S$-orbit.
 \end{quote}
-If this holds, then the inclusion
+If this holds, then one obtains a bijection
 \[
-\mathcal C_{d,S}^r \hookrightarrow \Gamma_{d,S}^r
+\Gamma_{d,S}^r / G_d^{W_0}
+\cong
+\mathcal C_{d,S}^r / H_S.
 \]
-induces a bijection on orbit spaces.
 \end{remark}
 
 \begin{remark}[Open point for later verification]
