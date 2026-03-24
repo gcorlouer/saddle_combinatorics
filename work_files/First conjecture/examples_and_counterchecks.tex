@@ -59,4 +59,99 @@ This file should be updated throughout the proof process to:
 \item track exactly where assumptions enter the argument.
 \end{itemize}
 
+\section{Checks after Task 1}
+
+\begin{example}[Low-depth check for the $G_d$-action, $L=2$]
+For
+\[
+W=(W_1,W_2),
+\qquad
+g=(g_0,g_1,g_2)\in G_d,
+\]
+one has
+\[
+g\cdot W=(g_1W_1g_0^{-1},\, g_2W_2g_1^{-1}),
+\]
+so
+\[
+\mu(g\cdot W)
+=(g_2W_2g_1^{-1})(g_1W_1g_0^{-1})
+=g_2W_2W_1g_0^{-1}
+=g_2\mu(W)g_0^{-1}.
+\]
+This is the smallest nontrivial instance of the product equivariance formula.
+\end{example}
+
+\begin{example}[Hidden gauge check, $L=3$]
+Let
+\[
+h=(h_1,h_2)\in G_{\mathrm{hid}},
+\]
+so
+\[
+h\cdot W=(h_1W_1,\; h_2W_2h_1^{-1},\; W_3h_2^{-1}).
+\]
+Then
+\[
+\mu(h\cdot W)
+=(W_3h_2^{-1})(h_2W_2h_1^{-1})(h_1W_1)
+=W_3W_2W_1
+=\mu(W).
+\]
+Thus the hidden-layer action only moves factorizations of a fixed end-to-end map.
+\end{example}
+
+\begin{example}[Cyclic equations under $G_d^{W_0}$, $L=2$]
+For $L=2$ the cyclic equations are
+\[
+E_1(W)=W_0W_2,
+\qquad
+E_2(W)=W_1W_0.
+\]
+If $g\in G_d^{W_0}$, then
+\[
+E_1(g\cdot W)=g_0E_1(W)g_1^{-1},
+\qquad
+E_2(g\cdot W)=g_1E_2(W)g_2^{-1}.
+\]
+Hence the vanishing of the cyclic equations is preserved exactly as predicted by Task~1.
+\end{example}
+
+\section{Edge cases already settled}
+
+\begin{remark}[The case $r=0$]
+Task~0 showed that the critical locus is stable under the full group $G_d^{W_0}$ only in rank zero. This is an edge case for the orbit statement, not for the equivariance lemmas themselves.
+\end{remark}
+
+\begin{remark}[The case $r=d_L$]
+If $r=d_L$, then $P_Q=0$, hence
+\[
+W_0=\Sigma_{XY}P_Q=0.
+\]
+Therefore the cyclic equations are automatic and
+\[
+\Gamma_{d,S}=\Omega.
+\]
+In this maximal-rank case, Task~1 reduces to ordinary stability of the determinantal locus under base change.
+\end{remark}
+
+\begin{remark}[Depth-one edge case]
+If $L=1$, then the hidden gauge group is trivial and the single cyclic equation is
+\[
+E_1(W)=W_0.
+\]
+So the group-action formulas remain correct, but the cyclic locus is nonempty only when $W_0=0$. This is a degenerate depth regime rather than the main one of interest.
+\end{remark}
+
+\section{Where assumptions enter so far}
+
+\begin{remark}
+Up to and including Task~1:
+\begin{itemize}
+\item the distinct singular values assumption is not used;
+\item the no-bottleneck assumption is not used;
+\item the only inputs are the algebraic definitions of $\mu$, $W_0$, the cyclic equations, and the group actions.
+\end{itemize}
+\end{remark}
+
 \end{document}

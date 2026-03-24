@@ -10,6 +10,7 @@
 \newcommand{\GL}{\operatorname{GL}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Mat}{\mathrm{Mat}}
+\newcommand{\Orb}{\operatorname{Orb}}
 
 \theoremstyle{definition}
 \newtheorem{theorem}{Theorem}[section]
@@ -40,16 +41,80 @@ G_{\mathrm{hid}}=\prod_{\ell=1}^{L-1}\GL(d_\ell,\R),
 G_d^{W_0}=\{g\in G_d : g_0W_0g_L^{-1}=W_0\}.
 \]
 
+The action of $G_d$ on the parameter space
+\[
+\Omega=\prod_{\ell=1}^L \Mat_{d_\ell\times d_{\ell-1}}(\R)
+\]
+is
+\[
+(g\cdot W)_\ell:=g_\ell W_\ell g_{\ell-1}^{-1}.
+\]
+We also use the standard partial products
+\[
+W_{>\ell}=W_L\cdots W_{\ell+1},
+\qquad
+W_{<\ell}=W_{\ell-1}\cdots W_1.
+\]
+
+\section{Basic formulas}
+
+\begin{lemma}[Transformation of partial products]\label{lem:partial-product-transform}
+For every $g\in G_d$ and every $1\le \ell\le L$,
+\[
+(g\cdot W)_{>\ell}=g_LW_{>\ell}g_\ell^{-1},
+\qquad
+(g\cdot W)_{<\ell}=g_{\ell-1}W_{<\ell}g_0^{-1}.
+\]
+\end{lemma}
+
+\begin{proof}
+Expand the definition and cancel the adjacent inverse factors:
+\begin{align*}
+(g\cdot W)_{>\ell}
+&=
+(g_LW_Lg_{L-1}^{-1})\cdots(g_{\ell+1}W_{\ell+1}g_\ell^{-1}) \\
+&=
+g_LW_L(g_{L-1}^{-1}g_{L-1})W_{L-1}\cdots(g_{\ell+1}^{-1}g_{\ell+1})W_{\ell+1}g_\ell^{-1} \\
+&=
+g_LW_{>\ell}g_\ell^{-1}.
+\end{align*}
+The formula for $(g\cdot W)_{<\ell}$ is proved in the same way:
+\begin{align*}
+(g\cdot W)_{<\ell}
+&=
+(g_{\ell-1}W_{\ell-1}g_{\ell-2}^{-1})\cdots(g_1W_1g_0^{-1}) \\
+&=
+g_{\ell-1}W_{\ell-1}(g_{\ell-2}^{-1}g_{\ell-2})W_{\ell-2}\cdots(g_1^{-1}g_1)W_1g_0^{-1} \\
+&=
+g_{\ell-1}W_{<\ell}g_0^{-1}.
+\end{align*}
+\end{proof}
+
 \section{Required lemmas}
 
-\begin{lemma}
+\begin{lemma}[Equivariance of the product map]\label{lem:mu-equivariant}
 The action of $G_d$ on $\Omega$ satisfies
 \[
 \mu(g\cdot W)=g_L\mu(W)g_0^{-1}.
 \]
 \end{lemma}
 
-\begin{lemma}
+\begin{proof}
+Since $\mu(W)=W_L\cdots W_1$, one has
+\begin{align*}
+\mu(g\cdot W)
+&=
+(g_LW_Lg_{L-1}^{-1})\cdots(g_1W_1g_0^{-1}) \\
+&=
+g_LW_L(g_{L-1}^{-1}g_{L-1})W_{L-1}\cdots(g_1^{-1}g_1)W_1g_0^{-1} \\
+&=
+g_LW_L\cdots W_1g_0^{-1} \\
+&=
+g_L\mu(W)g_0^{-1}.
+\end{align*}
+\end{proof}
+
+\begin{lemma}[Hidden gauge preserves the end-to-end map]\label{lem:hidden-gauge-preserves-mu}
 The hidden gauge group preserves the end-to-end map:
 \[
 \mu(g\cdot W)=\mu(W)
@@ -58,16 +123,146 @@ The hidden gauge group preserves the end-to-end map:
 \]
 \end{lemma}
 
-\begin{lemma}
+\begin{proof}
+If $g\in G_{\mathrm{hid}}$, then by definition $g_0=I_{d_0}$ and $g_L=I_{d_L}$. Lemma~\ref{lem:mu-equivariant} therefore gives
+\[
+\mu(g\cdot W)=g_L\mu(W)g_0^{-1}=\mu(W).
+\]
+\end{proof}
+
+\begin{lemma}[Stability of the cyclic locus]\label{lem:gamma-stable}
 The cyclic locus $\Gamma_{d,S}$ is stable under $G_d^{W_0}$.
 \end{lemma}
 
-\begin{lemma}
+\begin{proof}
+For fixed $\ell$, define the cyclic equation
+\[
+E_\ell(W):=W_{<\ell}W_0W_{>\ell}\in \Mat_{d_{\ell-1}\times d_\ell}(\R).
+\]
+Let $g\in G_d^{W_0}$. By Lemma~\ref{lem:partial-product-transform},
+\begin{align*}
+E_\ell(g\cdot W)
+&=
+(g\cdot W)_{<\ell}W_0(g\cdot W)_{>\ell} \\
+&=
+\bigl(g_{\ell-1}W_{<\ell}g_0^{-1}\bigr)W_0\bigl(g_LW_{>\ell}g_\ell^{-1}\bigr) \\
+&=
+g_{\ell-1}W_{<\ell}(g_0^{-1}W_0g_L)W_{>\ell}g_\ell^{-1}.
+\end{align*}
+Because $g\in G_d^{W_0}$, we have $g_0W_0g_L^{-1}=W_0$, equivalently
+\[
+g_0^{-1}W_0g_L=W_0.
+\]
+Hence
+\[
+E_\ell(g\cdot W)=g_{\ell-1}E_\ell(W)g_\ell^{-1}.
+\]
+Since left-right multiplication by invertible matrices preserves the zero matrix,
+\[
+E_\ell(W)=0
+\qquad\Longleftrightarrow\qquad
+E_\ell(g\cdot W)=0.
+\]
+This is true for every $\ell$, so $W\in \Gamma_{d,S}$ implies $g\cdot W\in \Gamma_{d,S}$.
+\end{proof}
+
+\begin{lemma}[Stability of the rank-$r$ cyclic locus]\label{lem:gamma-r-stable}
 The rank-$r$ cyclic locus $\Gamma_{d,S}^r$ is stable under $G_d^{W_0}$.
 \end{lemma}
 
+\begin{proof}
+Recall that
+\[
+\Gamma_{d,S}^r=\Gamma_{d,S}\cap \Sigma_d^r,
+\qquad
+\Sigma_d^r=\{W\in \Omega : \rk(\mu(W))=r\}.
+\]
+By Lemma~\ref{lem:gamma-stable}, the cyclic equations are preserved by $G_d^{W_0}$.
+By Lemma~\ref{lem:mu-equivariant},
+\[
+\mu(g\cdot W)=g_L\mu(W)g_0^{-1}.
+\]
+Since $g_0$ and $g_L$ are invertible, left-right multiplication does not change rank, so
+\[
+\rk(\mu(g\cdot W))=\rk(\mu(W)).
+\]
+Therefore $W\in \Sigma_d^r$ if and only if $g\cdot W\in \Sigma_d^r$. Combining the two statements gives the claim.
+\end{proof}
+
+\begin{corollary}[Why hidden gauge cannot prove Conjecture A]\label{cor:hidden-gauge-too-small}
+Let $W\in \Gamma_{d,S}^r$. If there exists $g\in G_{\mathrm{hid}}$ such that
+\[
+g\cdot W\in \mathcal C_{d,S}^r,
+\]
+then already
+\[
+\mu(W)=P_SW^\ast.
+\]
+In particular, the hidden gauge group cannot move a general point of $\Gamma_{d,S}^r$ into the critical locus.
+\end{corollary}
+
+\begin{proof}
+If $g\cdot W\in \mathcal C_{d,S}^r$, then by definition of the critical locus
+\[
+\mu(g\cdot W)=P_SW^\ast.
+\]
+But Lemma~\ref{lem:hidden-gauge-preserves-mu} gives $\mu(g\cdot W)=\mu(W)$, so
+\[
+\mu(W)=P_SW^\ast.
+\]
+Thus only points already lying over the distinguished critical product can be moved into $\mathcal C_{d,S}^r$ by hidden gauge.
+\end{proof}
+
+\section{Checks and small examples}
+
+\begin{remark}[The case $L=2$]
+For two weight matrices,
+\[
+\mu(W)=W_2W_1,
+\qquad
+E_1(W)=W_0W_2,
+\qquad
+E_2(W)=W_1W_0.
+\]
+If $g=(g_0,g_1,g_2)\in G_d^{W_0}$, then
+\[
+\mu(g\cdot W)=g_2W_2W_1g_0^{-1},
+\]
+and the cyclic equations transform as
+\[
+E_1(g\cdot W)=g_0E_1(W)g_1^{-1},
+\qquad
+E_2(g\cdot W)=g_1E_2(W)g_2^{-1}.
+\]
+So the abstract formulas reduce to the expected left-right conjugation pattern in the smallest nontrivial depth.
+\end{remark}
+
+\begin{remark}[Maximal rank edge case]
+If $r=d_L$, then $P_Q=0$ and therefore
+\[
+W_0=\Sigma_{XY}P_Q=0.
+\]
+In that case every cyclic equation is automatically satisfied, so
+\[
+\Gamma_{d,S}=\Omega,
+\qquad
+\Gamma_{d,S}^r=\Sigma_d^r.
+\]
+The stability statement of Lemma~\ref{lem:gamma-r-stable} reduces to the elementary fact that $\Sigma_d^r$ is stable under the full base-change action.
+\end{remark}
+
+\begin{remark}[Assumptions not used in Task 1]
+The proofs above are purely algebraic. They do not use:
+\begin{itemize}
+\item distinct singular values;
+\item the no-bottleneck assumption;
+\item any classification of critical points.
+\end{itemize}
+They only use the definitions of the group actions, the closing matrix $W_0$, and the rank condition.
+\end{remark}
+
 \section{Deliverables}
 
-This task is complete once the file contains full proofs of the four lemmas above and an explicit statement explaining why $G_{\mathrm{hid}}$ alone cannot prove Conjecture A.
+This task is complete: the equivariance formulas are proved, the stability of $\Gamma_{d,S}$ and $\Gamma_{d,S}^r$ under $G_d^{W_0}$ is established, and the hidden-layer gauge group is shown to be too small for the orbit-surjectivity statement of Conjecture~A.
 
 \end{document}
