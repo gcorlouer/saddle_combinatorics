@@ -10,6 +10,8 @@
 \newcommand{\GL}{\operatorname{GL}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Mat}{\mathrm{Mat}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\Ker}{\operatorname{Ker}}
 
 \theoremstyle{definition}
 \newtheorem{theorem}{Theorem}[section]
@@ -189,6 +191,76 @@ P_SW^\ast=0.
 
 \begin{remark}[Assumptions still unused]
 Task~2 is still purely representation-theoretic and uses no spectral genericity assumption and no no-bottleneck assumption. Those have not entered yet.
+\end{remark}
+
+\section{Checks after Task 3}
+
+\begin{example}[Visible product-level constraints]
+If $W\in \Gamma_{d,S}$ and $M=\mu(W)$, Task~3 proves
+\[
+W_0M=0
+\qquad\text{and}\qquad
+MW_0=0.
+\]
+Equivalently,
+\[
+\im(M)\subseteq \Ker(W_0)
+\qquad\text{and}\qquad
+\im(W_0)\subseteq \Ker(M).
+\]
+These are the constraints that genuinely descend to the end-to-end map.
+\end{example}
+
+\begin{example}[Positive-rank separation example]
+Take
+\[
+L=3,
+\qquad
+\Sigma_{XY}=I_2,
+\qquad
+W_0=
+\begin{pmatrix}
+0&0\\
+0&1
+\end{pmatrix},
+\qquad
+M=
+\begin{pmatrix}
+1&0\\
+0&0
+\end{pmatrix}.
+\]
+Then
+\[
+\rk(M)=1,
+\qquad
+W_0M=0,
+\qquad
+MW_0=0.
+\]
+However, the two factorizations
+\[
+W=(M,M,I_2)
+\qquad\text{and}\qquad
+\widetilde W=(I_2,I_2,M)
+\]
+have the same product
+\[
+\mu(W)=\mu(\widetilde W)=M,
+\]
+but only the first one is cyclic. So the full cyclic locus cannot be reconstructed from $M$ alone.
+\end{example}
+
+\begin{remark}[Where assumptions enter after Task 3]
+Task~3 uses the full-rank assumption on $\Sigma_{XY}$ only to sharpen
+\[
+\im(M)\subseteq \Ker(W_0)
+\]
+into
+\[
+\im(M)=\Ker(W_0)=\im(P_S)
+\]
+on the rank-$r$ sheet. The no-bottleneck assumption is still unused.
 \end{remark}
 
 \end{document}
