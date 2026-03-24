@@ -10,6 +10,7 @@
 \newcommand{\GL}{\operatorname{GL}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Mat}{\mathrm{Mat}}
+\newcommand{\Orb}{\operatorname{Orb}}
 
 \theoremstyle{definition}
 \newtheorem{theorem}{Theorem}[section]
@@ -36,27 +37,206 @@ Define
 K_S:=\{(g_0,g_L)\in \GL(d_0,\R)\times \GL(d_L,\R) : g_0W_0g_L^{-1}=W_0\}.
 \]
 
+\begin{definition}[Endpoint action on function space]
+The group $K_S$ acts on the function space
+\[
+\mathcal F:=\Mat_{d_L\times d_0}(\R)
+\]
+by
+\[
+(g_0,g_L)\cdot M:=g_LMg_0^{-1}.
+\]
+\end{definition}
+
 \begin{remark}
 The group $K_S$ is the endpoint shadow of the full stabilizer group $G_d^{W_0}$.
 \end{remark}
 
-\section{Target reduction}
+\section{Basic structure}
 
-The main lemma to prove in this file is:
-
-\begin{lemma}
-Conjecture A is equivalent to the following endpoint normalization statement:
-for every $W\in \Gamma_{d,S}^r$, the product $\mu(W)$ lies in the $K_S$-orbit of $P_SW^\ast$.
+\begin{lemma}[Projection to the endpoint group]\label{lem:endpoint-projection}
+The map
+\[
+\pi:G_d^{W_0}\to K_S,
+\qquad
+\pi(g_0,\dots,g_L):=(g_0,g_L),
+\]
+is a surjective group homomorphism.
 \end{lemma}
+
+\begin{proof}
+If $g=(g_0,\dots,g_L)\in G_d^{W_0}$, then by definition
+\[
+g_0W_0g_L^{-1}=W_0,
+\]
+so $(g_0,g_L)\in K_S$. Hence $\pi$ is well-defined.
+
+It is a group homomorphism because it is just projection onto the first and last coordinates.
+
+To prove surjectivity, let $(g_0,g_L)\in K_S$. Define
+\[
+\widetilde g:=(g_0,I_{d_1},\dots,I_{d_{L-1}},g_L)\in G_d.
+\]
+Since $(g_0,g_L)\in K_S$,
+\[
+g_0W_0g_L^{-1}=W_0,
+\]
+so $\widetilde g\in G_d^{W_0}$. By construction,
+\[
+\pi(\widetilde g)=(g_0,g_L).
+\]
+\end{proof}
+
+\begin{proposition}[Image of a $G_d^{W_0}$-orbit under $\mu$]\label{prop:image-of-orbit}
+For every $W\in \Omega$,
+\[
+\mu\bigl(G_d^{W_0}\cdot W\bigr)=K_S\cdot \mu(W).
+\]
+\end{proposition}
+
+\begin{proof}
+Let $g\in G_d^{W_0}$. By the equivariance formula from Task~1,
+\[
+\mu(g\cdot W)=g_L\mu(W)g_0^{-1}=\pi(g)\cdot \mu(W),
+\]
+so
+\[
+\mu\bigl(G_d^{W_0}\cdot W\bigr)\subseteq K_S\cdot \mu(W).
+\]
+
+Conversely, let $(g_0,g_L)\in K_S$. By Lemma~\ref{lem:endpoint-projection}, choose
+\[
+\widetilde g\in G_d^{W_0}
+\qquad\text{with}\qquad
+\pi(\widetilde g)=(g_0,g_L).
+\]
+Then again by equivariance,
+\[
+\mu(\widetilde g\cdot W)=g_L\mu(W)g_0^{-1}=(g_0,g_L)\cdot \mu(W).
+\]
+Thus every point of the $K_S$-orbit of $\mu(W)$ is realized as the product of a point in the $G_d^{W_0}$-orbit of $W$, proving the reverse inclusion.
+\end{proof}
+
+\section{Endpoint reduction}
+
+\begin{lemma}[Orbit intersection criterion]\label{lem:orbit-intersection-criterion}
+Let $W\in \Gamma_{d,S}^r$. Then the following are equivalent:
+\begin{enumerate}
+\item there exists $g\in G_d^{W_0}$ such that $g\cdot W\in \mathcal C_{d,S}^r$;
+\item there exists $(g_0,g_L)\in K_S$ such that
+\[
+g_L\mu(W)g_0^{-1}=P_SW^\ast;
+\]
+\item the product $\mu(W)$ lies in the $K_S$-orbit of $P_SW^\ast$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\textit{(1) implies (2).}
+Assume that there exists $g\in G_d^{W_0}$ such that
+\[
+g\cdot W\in \mathcal C_{d,S}^r.
+\]
+Then by definition of the critical locus,
+\[
+\mu(g\cdot W)=P_SW^\ast.
+\]
+Writing $\pi(g)=(g_0,g_L)$ and using Task~1,
+\[
+g_L\mu(W)g_0^{-1}=\mu(g\cdot W)=P_SW^\ast.
+\]
+
+\smallskip
+\textit{(2) implies (1).}
+Assume there exists $(g_0,g_L)\in K_S$ such that
+\[
+g_L\mu(W)g_0^{-1}=P_SW^\ast.
+\]
+By Lemma~\ref{lem:endpoint-projection}, choose $\widetilde g\in G_d^{W_0}$ with
+\[
+\pi(\widetilde g)=(g_0,g_L).
+\]
+Task~1 proves that $\Gamma_{d,S}^r$ is stable under $G_d^{W_0}$, so
+\[
+\widetilde g\cdot W\in \Gamma_{d,S}^r.
+\]
+Moreover,
+\[
+\mu(\widetilde g\cdot W)=g_L\mu(W)g_0^{-1}=P_SW^\ast.
+\]
+Hence $\widetilde g\cdot W\in \mathcal C_{d,S}^r$.
+
+\smallskip
+\textit{(2) implies (3).}
+If
+\[
+g_L\mu(W)g_0^{-1}=P_SW^\ast,
+\]
+then by definition of the $K_S$-action the point $P_SW^\ast$ lies in the $K_S$-orbit of $\mu(W)$. Since orbits are equivalence classes for a group action, this is equivalent to
+\[
+\mu(W)\in K_S\cdot (P_SW^\ast).
+\]
+
+\smallskip
+\textit{(3) implies (2).}
+If
+\[
+\mu(W)\in K_S\cdot (P_SW^\ast),
+\]
+then there exists $(h_0,h_L)\in K_S$ such that
+\[
+\mu(W)=h_L(P_SW^\ast)h_0^{-1}.
+\]
+Applying the inverse group element gives
+\[
+h_L^{-1}\mu(W)h_0=P_SW^\ast,
+\]
+which is exactly (2) with $(g_0,g_L)=(h_0^{-1},h_L^{-1})\in K_S$.
+\end{proof}
+
+\begin{corollary}[Endpoint reduction for Conjecture A]\label{cor:conjA-endpoint-reduction}
+Conjecture~A is equivalent to the following endpoint normalization statement:
+\begin{quote}
+For every $W\in \Gamma_{d,S}^r$, the product $\mu(W)$ lies in the $K_S$-orbit of $P_SW^\ast$.
+\end{quote}
+\end{corollary}
+
+\begin{proof}
+Conjecture~A says exactly that every $W\in \Gamma_{d,S}^r$ satisfies condition~(1) of Lemma~\ref{lem:orbit-intersection-criterion}. The endpoint normalization statement is exactly condition~(3) of the same lemma. Therefore the two statements are equivalent.
+\end{proof}
+
+\section{Checks and edge cases}
+
+\begin{remark}[Explicit lift when $L=2$]
+If
+\[
+(g_0,g_2)\in K_S,
+\]
+then the canonical lift
+\[
+\widetilde g=(g_0,I_{d_1},g_2)\in G_d^{W_0}
+\]
+satisfies
+\[
+\mu(\widetilde g\cdot W)=g_2\mu(W)g_0^{-1}.
+\]
+So in depth two, the reduction to endpoints is completely literal: the middle layer plays no role in the normalization of $\mu(W)$.
+\end{remark}
+
+\begin{remark}[Maximal-rank edge case]
+If $r=d_L$, then $P_Q=0$, hence
+\[
+W_0=\Sigma_{XY}P_Q=0.
+\]
+Therefore
+\[
+K_S=\GL(d_0,\R)\times \GL(d_L,\R),
+\]
+and the endpoint reduction becomes the usual left-right orbit problem for matrices of rank $d_L$.
+\end{remark}
 
 \section{Deliverables}
 
-This task is complete once the file contains:
-
-\begin{itemize}
-\item the definition of the endpoint group $K_S$;
-\item the precise reduction lemma;
-\item a proof that the full orbit-surjectivity problem is equivalent to the endpoint normalization problem.
-\end{itemize}
+This task is complete: the endpoint group is defined, the image of a $G_d^{W_0}$-orbit under $\mu$ is identified with a $K_S$-orbit, and Conjecture~A is reduced to the endpoint normalization problem for $\mu(W)$.
 
 \end{document}
