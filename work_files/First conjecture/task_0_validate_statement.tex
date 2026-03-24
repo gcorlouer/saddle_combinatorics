@@ -57,6 +57,133 @@ Since
 the critical locus can only be $G_d^{W_0}$-stable if the distinguished product $P_SW^\ast$ is itself fixed by all elements of $G_d^{W_0}$.
 \end{remark}
 
+\section{Decision}
+
+\begin{lemma}[How $G_d^{W_0}$ moves the critical locus]
+Let $g\in G_d^{W_0}$. Then
+\[
+g\cdot \mathcal C_{d,S}^r
+=
+\left\{
+W'\in \Gamma_{d,S}^r
+\;\middle|\;
+\mu(W')=g_L(P_SW^\ast)g_0^{-1}
+\right\}.
+\]
+\end{lemma}
+
+\begin{proof}
+By the equivariance of the product map,
+\[
+\mu(g\cdot W)=g_L\mu(W)g_0^{-1}.
+\]
+By the stability of $\Gamma_{d,S}^r$ under $G_d^{W_0}$, proved in the group-action note, one also has
+\[
+W\in \Gamma_{d,S}^r \Longrightarrow g\cdot W\in \Gamma_{d,S}^r.
+\]
+Therefore, if $W\in \mathcal C_{d,S}^r$, then $g\cdot W\in \Gamma_{d,S}^r$ and
+\[
+\mu(g\cdot W)=g_L(P_SW^\ast)g_0^{-1}.
+\]
+This proves the claimed description of the translated locus.
+\end{proof}
+
+\begin{proposition}[Non-stability for positive rank]\label{prop:nonstable-positive-rank}
+Assume $r>0$. Then $\mathcal C_{d,S}^r$ is \emph{not} stable under the action of $G_d^{W_0}$.
+\end{proposition}
+
+\begin{proof}
+Choose a scalar $\lambda\in \mathbb R^\times$ with $\lambda\neq 1$, and define
+\[
+g_0=I_{d_0},
+\qquad
+g_\ell=I_{d_\ell}\ \text{ for }1\le \ell\le L-1,
+\qquad
+g_L=\lambda P_S+P_Q.
+\]
+Since $P_S$ and $P_Q$ are complementary projectors, $g_L$ is invertible with
+\[
+g_L^{-1}=\lambda^{-1}P_S+P_Q.
+\]
+Moreover,
+\[
+P_Qg_L^{-1}=P_Q,
+\]
+so
+\[
+g_0W_0g_L^{-1}
+=
+\Sigma_{XY}P_Q(\lambda^{-1}P_S+P_Q)
+=
+\Sigma_{XY}P_Q
+=
+W_0.
+\]
+Thus $g\in G_d^{W_0}$.
+
+Now let $W\in \mathcal C_{d,S}^r$. Then
+\[
+\mu(g\cdot W)=g_L(P_SW^\ast)g_0^{-1}
+=
+(\lambda P_S+P_Q)P_SW^\ast
+=
+\lambda P_SW^\ast.
+\]
+Because $r>0$, the matrix $P_SW^\ast$ has rank $r$ and is therefore nonzero. Since $\lambda\neq 1$, we obtain
+\[
+\mu(g\cdot W)\neq P_SW^\ast.
+\]
+Hence $g\cdot W\notin \mathcal C_{d,S}^r$, proving that $\mathcal C_{d,S}^r$ is not $G_d^{W_0}$-stable.
+\end{proof}
+
+\begin{remark}[Edge case $r=0$]
+If $r=0$, then $P_S=0$ and $P_SW^\ast=0$. In that special case the condition
+\[
+\mu(W)=0
+\]
+is preserved by every endpoint action, so $\mathcal C_{d,S}^0$ is stable under $G_d^{W_0}$. Thus the failure of stability is a genuinely positive-rank phenomenon.
+\end{remark}
+
+\begin{definition}[Correct stabilizer subgroup]
+Define
+\[
+H_S
+:=
+\Stab_{G_d^{W_0}}(P_SW^\ast)
+=
+\left\{
+g\in G_d^{W_0}
+\;\middle|\;
+g_L(P_SW^\ast)g_0^{-1}=P_SW^\ast
+\right\}.
+\]
+\end{definition}
+
+\begin{corollary}[Task 0 conclusion]
+For $r>0$, the quotient
+\[
+\mathcal C_{d,S}^r/G_d^{W_0}
+\]
+is not well-defined as an orbit space, because $\mathcal C_{d,S}^r$ is not stable under the action of $G_d^{W_0}$.
+
+The correct replacement is to formulate Conjecture B in two parts:
+\begin{enumerate}
+\item every $G_d^{W_0}$-orbit in $\Gamma_{d,S}^r$ meets $\mathcal C_{d,S}^r$;
+\item for every $W\in \mathcal C_{d,S}^r$,
+\[
+(G_d^{W_0}\cdot W)\cap \mathcal C_{d,S}^r
+=
+H_S\cdot W.
+\]
+\end{enumerate}
+Equivalently, once the existence statement is proved, one obtains a bijection
+\[
+\Gamma_{d,S}^r/G_d^{W_0}
+\cong
+\mathcal C_{d,S}^r/H_S.
+\]
+\end{corollary}
+
 \section{Expected outcomes}
 
 \subsection*{Case 1: the critical locus is stable}
@@ -81,6 +208,11 @@ H_S:=\Stab_{G_d^{W_0}}(P_SW^\ast),
 \]
 or equivalently:
 each $G_d^{W_0}$-orbit in $\Gamma_{d,S}^r$ meets $\mathcal C_{d,S}^r$ in exactly one $H_S$-orbit.
+
+\begin{remark}
+Task 0 shows that, under the standing positive-rank setup of the conjecture, we are in Case 2.
+Case 1 survives only in the degenerate rank-zero situation.
+\end{remark}
 
 \section{Deliverables}
 
