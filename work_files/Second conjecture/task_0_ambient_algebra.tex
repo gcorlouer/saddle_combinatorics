@@ -1,0 +1,212 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Mat}{\mathrm{Mat}}
+\newcommand{\Hom}{\operatorname{Hom}}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Task 0: Ambient Algebra and Notation}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Goal}
+
+This file fixes the ambient algebra for the second-conjecture block.
+
+The main point is to translate the direct weight-space cyclic equations
+\[
+W_{<\ell}W_0W_{>\ell}=0,
+\qquad
+1\le \ell\le L,
+\]
+into quiver relations, while keeping the end-to-end path
+\[
+W_L\cdots W_1
+\]
+nonzero.
+
+\section{The cyclic quiver}
+
+\begin{definition}[The cyclic quiver $C_{L+1}$]
+Let $Q=C_{L+1}$ be the oriented cycle on vertices
+\[
+Q_0=\{0,1,\dots,L\}
+\]
+with arrows
+\[
+a_t:t-1\to t
+\qquad
+(1\le t\le L),
+\qquad
+a_0:L\to 0.
+\]
+\end{definition}
+
+\begin{definition}[Weight-space relation paths]
+For each $\ell\in\{1,\dots,L\}$, define the path
+\[
+p_\ell
+:=
+a_{\ell-1}\cdots a_1\,a_0\,a_L\cdots a_{\ell+1}.
+\]
+This is the unique oriented path of length $L$ in $Q$ that omits the arrow
+$a_\ell$.
+\end{definition}
+
+\begin{remark}
+Every path $p_\ell$ passes through the closing arrow $a_0$.
+
+The only oriented path of length $L$ that does \emph{not} pass through $a_0$ is
+\[
+p_0:=a_L\cdots a_1.
+\]
+This is the path that corresponds to the end-to-end map of the DLN, so it must
+survive in the direct weight-space setup.
+\end{remark}
+
+\begin{definition}[The weight-space cyclic algebra]
+Let $k$ be a field and let $kQ$ be the path algebra of $Q=C_{L+1}$.
+Define the two-sided ideal
+\[
+I_L^{\mathrm{wt}}
+:=
+\langle p_1,\dots,p_L\rangle
+\subset kQ,
+\]
+and set
+\[
+A_L^{\mathrm{wt}}
+:=
+kQ/I_L^{\mathrm{wt}}.
+\]
+\end{definition}
+
+\section{Dictionary with weight space}
+
+\begin{definition}[The associated quiver representation of a weight tuple]
+Fix vector spaces
+\[
+V_\ell\cong \R^{d_\ell},
+\qquad
+0\le \ell\le L,
+\]
+and a distinguished closing map
+\[
+W_0\in \Hom(V_L,V_0).
+\]
+Given a weight tuple
+\[
+W=(W_1,\dots,W_L),
+\qquad
+W_\ell\in \Hom(V_{\ell-1},V_\ell),
+\]
+define the quiver representation
+\[
+\phi(W):=(\phi_0,\phi_1,\dots,\phi_L)
+\]
+by
+\[
+\phi_0:=W_0,
+\qquad
+\phi_\ell:=W_\ell
+\quad
+(1\le \ell\le L).
+\]
+\end{definition}
+
+\begin{proposition}[The weight-space equations are the quiver relations]
+Let $W=(W_1,\dots,W_L)$ and let $\phi(W)$ be the associated quiver
+representation with fixed closing map $W_0$.
+Then, for each $\ell\in\{1,\dots,L\}$,
+\[
+p_\ell(\phi(W))=W_{<\ell}W_0W_{>\ell}.
+\]
+Hence
+\[
+W_{<\ell}W_0W_{>\ell}=0
+\quad\Longleftrightarrow\quad
+p_\ell(\phi(W))=0.
+\]
+\end{proposition}
+
+\begin{proof}
+By definition, $p_\ell$ is the composition of all arrows of the oriented cycle
+except $a_\ell$, in the order
+\[
+a_{\ell-1}\cdots a_1\,a_0\,a_L\cdots a_{\ell+1}.
+\]
+After substituting
+\[
+\phi_0=W_0,
+\qquad
+\phi_t=W_t \ \text{ for } 1\le t\le L,
+\]
+this becomes exactly
+\[
+W_{\ell-1}\cdots W_1\,W_0\,W_L\cdots W_{\ell+1}
+=
+W_{<\ell}W_0W_{>\ell}.
+\]
+\end{proof}
+
+\begin{remark}[Why the end-to-end path must survive]
+Under the same identification,
+\[
+p_0(\phi(W))
+=
+a_L\cdots a_1(\phi(W))
+=
+W_L\cdots W_1
+=
+\mu(W).
+\]
+Therefore imposing $p_0=0$ would force $\mu(W)=0$, which is incompatible with
+the direct weight-space rank-$r$ sheet for $r>0$.
+\end{remark}
+
+\section{Notation to keep fixed later}
+
+The rest of the second-conjecture block should use the following dictionary
+without further renaming:
+
+\begin{itemize}
+\item the quiver: $Q=C_{L+1}$;
+\item the weight-space ideal: $I_L^{\mathrm{wt}}=\langle p_1,\dots,p_L\rangle$;
+\item the algebra: $A_L^{\mathrm{wt}}=kQ/I_L^{\mathrm{wt}}$;
+\item the surviving length-$L$ path: $p_0=a_L\cdots a_1$;
+\item the specialization of the closing arrow:
+\[
+a_0 \rightsquigarrow W_0=\Sigma_{XY}P_Q.
+\]
+\end{itemize}
+
+\section{Deliverables}
+
+This task is complete once the file records:
+
+\begin{itemize}
+\item the exact quiver $C_{L+1}$;
+\item the exact relation ideal $I_L^{\mathrm{wt}}$;
+\item the reason why $p_0=a_L\cdots a_1$ survives;
+\item the precise translation from the weight-space equations
+  $W_{<\ell}W_0W_{>\ell}=0$ to the quiver relations $p_\ell=0$.
+\end{itemize}
+
+\end{document}

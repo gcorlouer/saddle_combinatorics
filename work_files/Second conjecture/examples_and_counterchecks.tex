@@ -1,0 +1,220 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Mat}{\mathrm{Mat}}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\title{Examples and Counterchecks for the Second Conjecture}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Purpose}
+
+This file records the low-dimensional checks that validate the setup of the
+second-conjecture block.
+
+The checks to keep visible are:
+
+\begin{itemize}
+\item the path $a_L\cdots a_1$ survives;
+\item the relations kill exactly the length-$L$ paths through the closing arrow;
+\item the Kupisch series is $(L+1,L,\dots,L)$;
+\item the admissible intervals split into a non-wrapping type-$A$ family and a
+  wrapped family.
+\end{itemize}
+
+\section{The case $L=2$}
+
+\begin{example}[The algebra $A_2^{\mathrm{wt}}$]
+The quiver is
+\[
+0 \xrightarrow{a_1} 1 \xrightarrow{a_2} 2 \xrightarrow{a_0} 0.
+\]
+The weight-space relations are
+\[
+p_1=a_0a_2=0,
+\qquad
+p_2=a_1a_0=0.
+\]
+The surviving length-$2$ path is
+\[
+p_0=a_2a_1,
+\]
+which is the quiver version of the end-to-end map.
+\end{example}
+
+\begin{proposition}[Projectives for $L=2$]
+The projective lengths are
+\[
+(c_0,c_1,c_2)=(3,2,2).
+\]
+\end{proposition}
+
+\begin{proof}
+Starting at $0$, the path $a_2a_1$ survives, so the maximal nonzero path length
+is $2$.
+Starting at $1$ or $2$, the unique length-$2$ path goes through the closing
+arrow and is one of the generators, so the maximal nonzero path length is $1$.
+\end{proof}
+
+\begin{remark}[Admissible intervals for $L=2$]
+The non-wrapping family is
+\[
+M(0,0),\ M(0,1),\ M(0,2),\ M(1,1),\ M(1,2),\ M(2,2).
+\]
+The wrapped family is the single module
+\[
+M(2,0).
+\]
+The forbidden wrapped interval is
+\[
+M(1,0),
+\]
+because it would have cyclic length $2$ through the closing arrow.
+\end{remark}
+
+\section{The case $L=3$}
+
+\begin{example}[The algebra $A_3^{\mathrm{wt}}$]
+The quiver is
+\[
+0 \xrightarrow{a_1} 1 \xrightarrow{a_2} 2 \xrightarrow{a_3} 3 \xrightarrow{a_0} 0.
+\]
+The relations are
+\[
+p_1=a_0a_3a_2=0,
+\qquad
+p_2=a_1a_0a_3=0,
+\qquad
+p_3=a_2a_1a_0=0.
+\]
+The surviving length-$3$ path is
+\[
+p_0=a_3a_2a_1.
+\]
+\end{example}
+
+\begin{remark}[Comparison with the gradient equations]
+Under the identification
+\[
+a_0\rightsquigarrow W_0,
+\qquad
+a_\ell\rightsquigarrow W_\ell,
+\]
+the above three relations become exactly
+\[
+W_0W_3W_2=0,
+\qquad
+W_1W_0W_3=0,
+\qquad
+W_2W_1W_0=0,
+\]
+which is the $L=3$ example from
+\texttt{gradient\_equations\_in\_weight\_space.tex}.
+
+The open-chain product
+\[
+W_3W_2W_1
+=
+\mu(W)
+\]
+is not killed.
+\end{remark}
+
+\begin{proposition}[Projectives for $L=3$]
+The Kupisch series is
+\[
+(c_0,c_1,c_2,c_3)=(4,3,3,3).
+\]
+\end{proposition}
+
+\begin{remark}[Admissible intervals for $L=3$]
+The non-wrapping family is
+\[
+M(i,j)
+\qquad
+(0\le i\le j\le 3).
+\]
+The wrapped family is
+\[
+M(2,0),\qquad M(3,0),\qquad M(3,1).
+\]
+The forbidden wrapped intervals are
+\[
+M(1,0),\qquad M(2,1),\qquad M(3,2).
+\]
+\end{remark}
+
+\section{Edge checks to keep in mind}
+
+\begin{remark}[Allowed versus forbidden length-$L$ intervals]
+The open-chain interval
+\[
+M(0,L)
+\]
+is allowed because it comes from the surviving path
+\[
+a_L\cdots a_1.
+\]
+
+By contrast, for each
+\[
+1\le i\le L,
+\]
+the wrapped interval
+\[
+M(i,i-1)
+\]
+is forbidden because it would require the vanishing path $p_i$.
+\end{remark}
+
+\begin{remark}[Why the module language matches the cyclic locus]
+After fixing the closing arrow to
+\[
+a_0=W_0=\Sigma_{XY}P_Q,
+\]
+the defining quiver relations become exactly the equations
+\[
+W_{<\ell}W_0W_{>\ell}=0.
+\]
+Since the path
+\[
+a_L\cdots a_1
+\]
+survives, this reformulation does not accidentally impose
+\[
+\mu(W)=0.
+\]
+\end{remark}
+
+\section{Deliverables}
+
+This file is complete once it records:
+
+\begin{itemize}
+\item the explicit `L=2` and `L=3` relations;
+\item the explicit projective lengths in those cases;
+\item the explicit admissible interval lists;
+\item the allowed open-chain length-$L$ interval and the forbidden wrapped
+  length-$L$ intervals.
+\end{itemize}
+
+\end{document}

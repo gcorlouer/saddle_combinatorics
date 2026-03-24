@@ -1,0 +1,189 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Mat}{\mathrm{Mat}}
+\newcommand{\Rep}{\operatorname{Rep}}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Task 4: Krull--Schmidt and Multiplicity Patterns}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Goal}
+
+This file passes from the indecomposable interval modules to arbitrary modules
+over
+\[
+A_L^{\mathrm{wt}}.
+\]
+
+The main deliverables are:
+
+\begin{itemize}
+\item the Krull--Schmidt decomposition in terms of the admissible interval
+  modules $M(i,j)$;
+\item the exact multiplicity-pattern set
+  $\mathcal M_d^+(A_L^{\mathrm{wt}})$;
+\item the orbit dictionary that will later label the cyclic locus.
+\end{itemize}
+
+\section{Krull--Schmidt}
+
+\begin{proposition}[Krull--Schmidt for $A_L^{\mathrm{wt}}$]
+Every finite-dimensional $A_L^{\mathrm{wt}}$-module decomposes as a finite
+direct sum of indecomposable modules, and this decomposition is unique up to
+reordering and isomorphism of the summands.
+\end{proposition}
+
+\begin{proof}
+The algebra $A_L^{\mathrm{wt}}$ is finite-dimensional, hence artinian.
+Therefore the category of finite-dimensional modules over
+$A_L^{\mathrm{wt}}$ is a Krull--Schmidt category.
+\end{proof}
+
+\begin{corollary}[Decomposition in interval modules]
+Every finite-dimensional $A_L^{\mathrm{wt}}$-module $M$ has a unique
+decomposition
+\[
+M
+\cong
+\bigoplus_{0\le i\le j\le L} M(i,j)^{\oplus m(i,j)}
+\oplus
+\bigoplus_{\substack{1\le i\le L\\0\le j\le i-2}}
+M(i,j)^{\oplus m(i,j)},
+\]
+for uniquely determined multiplicities
+\[
+m(i,j)\in \mathbb Z_{\ge 0}.
+\]
+\end{corollary}
+
+\begin{remark}
+The first sum is the non-wrapping type-$A$ contribution.
+The second sum is the genuinely cyclic contribution coming from the closing
+arrow.
+\end{remark}
+
+\section{Multiplicity patterns}
+
+\begin{definition}[Support indicator]
+For an admissible pair $(i,j)\in \mathcal I_L^{\mathrm{wt}}$ and a vertex
+$k\in\{0,\dots,L\}$, define
+\[
+\mathbf 1_{[i\to j]}(k)
+:=
+\begin{cases}
+1, & k\in [i\to j],\\
+0, & k\notin [i\to j].
+\end{cases}
+\]
+\end{definition}
+
+\begin{definition}[Multiplicity-pattern set]
+Fix a dimension vector
+\[
+d=(d_0,\dots,d_L).
+\]
+Define
+\[
+\mathcal M_d^+(A_L^{\mathrm{wt}})
+:=
+\left\{
+(m(i,j))_{(i,j)\in \mathcal I_L^{\mathrm{wt}}}
+\in
+\mathbb Z_{\ge 0}^{\mathcal I_L^{\mathrm{wt}}}
+\ \middle|\
+d_k=
+\sum_{(i,j)\in \mathcal I_L^{\mathrm{wt}}}
+m(i,j)\,\mathbf 1_{[i\to j]}(k)
+\text{ for all }k
+\right\}.
+\]
+\end{definition}
+
+\begin{proposition}[Exact reconstruction of the dimension vector]
+Let
+\[
+M
+\cong
+\bigoplus_{(i,j)\in \mathcal I_L^{\mathrm{wt}}}
+M(i,j)^{\oplus m(i,j)}.
+\]
+Then the dimension vector of $M$ is given by
+\[
+d_k=
+\sum_{(i,j)\in \mathcal I_L^{\mathrm{wt}}}
+m(i,j)\,\mathbf 1_{[i\to j]}(k),
+\qquad
+0\le k\le L.
+\]
+\end{proposition}
+
+\begin{proof}
+Each indecomposable interval module contributes a one-dimensional space at
+exactly the vertices in its support interval and contributes zero elsewhere.
+Summing these contributions over the direct-sum decomposition gives the stated
+formula.
+\end{proof}
+
+\section{Orbit dictionary}
+
+\begin{proposition}[Orbits and isomorphism classes]
+Fix the representation space
+\[
+\Rep_d(A_L^{\mathrm{wt}})
+\]
+and the base-change group
+\[
+G_d:=\prod_{\ell=0}^L \GL(d_\ell).
+\]
+Then the $G_d$-orbits in $\Rep_d(A_L^{\mathrm{wt}})$ are exactly the
+isomorphism classes of $A_L^{\mathrm{wt}}$-modules of dimension vector $d$.
+\end{proposition}
+
+\begin{corollary}[Multiplicity patterns parametrize the orbits]
+There is a canonical bijection
+\[
+G_d\backslash \Rep_d(A_L^{\mathrm{wt}})
+\cong
+\mathcal M_d^+(A_L^{\mathrm{wt}}),
+\]
+obtained by sending a module to the multiplicities of its indecomposable
+interval summands.
+\end{corollary}
+
+\begin{remark}
+This is the combinatorial data we will later transport from the cyclic locus
+to the critical locus by using the orbit correspondence of the first
+conjecture.
+\end{remark}
+
+\section{Deliverables}
+
+This task is complete once the file contains:
+
+\begin{itemize}
+\item the precise Krull--Schmidt decomposition in admissible interval modules;
+\item the exact definition of $\mathcal M_d^+(A_L^{\mathrm{wt}})$;
+\item the fact that multiplicity patterns parametrize the
+  $G_d$-orbits of $\Rep_d(A_L^{\mathrm{wt}})$.
+\end{itemize}
+
+\end{document}

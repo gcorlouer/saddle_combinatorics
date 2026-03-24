@@ -1,0 +1,234 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Mat}{\mathrm{Mat}}
+\newcommand{\rad}{\operatorname{rad}}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Task 3: Classification of the Indecomposables}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Goal}
+
+This file classifies the indecomposable modules of the weight-space algebra
+\[
+A_L^{\mathrm{wt}}.
+\]
+
+The expected answer is a hybrid one:
+
+\begin{itemize}
+\item the non-wrapping family is the usual type-$A$ interval family on the open
+  chain
+  \[
+  0\to 1\to \cdots \to L;
+  \]
+\item the wrapped family consists of the new indecomposables that pass through
+  the closing arrow and are determined by the non-uniform Kupisch series
+  \[
+  (L+1,L,\dots,L).
+  \]
+\end{itemize}
+
+\section{Interval notation}
+
+\begin{definition}[Oriented interval]
+For vertices $i,j\in\{0,\dots,L\}$, let
+\[
+[i\to j]
+\]
+denote the oriented interval obtained by starting at $i$, following the
+orientation of the cycle, and stopping at $j$, with no repeated vertices.
+
+We write
+\[
+\delta(i,j)
+\]
+for the oriented distance from $i$ to $j$ along this interval. Thus
+\[
+0\le \delta(i,j)\le L.
+\]
+\end{definition}
+
+\begin{definition}[Interval module]
+For a pair $(i,j)$ with $0\le \delta(i,j)\le L$, define the interval module
+$M(i,j)$ by
+\[
+M(i,j)_t
+=
+\begin{cases}
+k, & t\in [i\to j],\\
+0, & t\notin [i\to j],
+\end{cases}
+\]
+and by letting each arrow act as the identity when both its source and target
+belong to the support interval, and as zero otherwise.
+\end{definition}
+
+\begin{remark}
+The support interval $[i\to j]$ may or may not pass through the closing arrow.
+The wrapped/non-wrapped distinction is therefore built into the index pair
+$(i,j)$.
+\end{remark}
+
+\section{The admissible index set}
+
+\begin{definition}[Admissible interval indices]
+Let
+\[
+\mathcal I_L^{\mathrm{wt}}
+:=
+\{(i,j)\mid 0\le i\le j\le L\}
+\cup
+\{(i,j)\mid 1\le i\le L,\ 0\le j\le i-2\}.
+\]
+\end{definition}
+
+\begin{remark}[Equivalent distance formulation]
+Let
+\[
+(c_0,\dots,c_L)=(L+1,L,\dots,L)
+\]
+be the Kupisch series from Task 2.
+Then
+\[
+(i,j)\in \mathcal I_L^{\mathrm{wt}}
+\quad\Longleftrightarrow\quad
+\delta(i,j)\le c_i-1.
+\]
+
+Equivalently:
+
+\begin{itemize}
+\item if $i=0$, then all intervals $[0\to j]$ with $0\le j\le L$ are allowed;
+\item if $1\le i\le L$, then every interval starting at $i$ is allowed except
+  the forbidden full wrapped interval $[i\to i-1]$ of cyclic length $L$.
+\end{itemize}
+\end{remark}
+
+\section{The two families}
+
+\begin{proposition}[The non-wrapping family]
+If
+\[
+0\le i\le j\le L,
+\]
+then $M(i,j)$ is exactly the usual indecomposable interval module of the
+equioriented type-$A_{L+1}$ quiver
+\[
+0\to 1\to \cdots \to L.
+\]
+\end{proposition}
+
+\begin{remark}
+This is the part of the classification that should be described using the same
+language as Simon's type-$A$ decomposition.
+\end{remark}
+
+\begin{proposition}[The wrapped family]
+If
+\[
+1\le i\le L,
+\qquad
+0\le j\le i-2,
+\]
+then the interval $[i\to j]$ passes through the closing arrow, and
+\[
+M(i,j)\cong P(i)/\rad^{\delta(i,j)+1}P(i).
+\]
+\end{proposition}
+
+\begin{proof}
+The projective $P(i)$ has length $L$ for every $i\ge 1$.
+Its radical quotients are therefore exactly the uniserial intervals starting at
+$i$ with lengths
+\[
+1,\dots,L.
+\]
+The interval $[i\to j]$ has length $\delta(i,j)+1\le L$ precisely when
+\[
+0\le j\le i-2.
+\]
+Hence it is realized by the indicated projective quotient.
+\end{proof}
+
+\section{Classification theorem}
+
+\begin{theorem}[Indecomposables of the weight-space algebra]
+Every finite-dimensional indecomposable $A_L^{\mathrm{wt}}$-module is
+isomorphic to a unique interval module
+\[
+M(i,j)
+\qquad
+((i,j)\in \mathcal I_L^{\mathrm{wt}}).
+\]
+\end{theorem}
+
+\begin{proof}[Proof route]
+Since $A_L^{\mathrm{wt}}$ is Nakayama, every indecomposable module is uniserial
+and is a quotient of a unique indecomposable projective $P(i)$.
+
+For $i=0$, the projective length is $L+1$, so the admissible quotients are
+exactly
+\[
+M(0,0),M(0,1),\dots,M(0,L).
+\]
+
+For $1\le i\le L$, the projective length is $L$, so the admissible quotients
+are exactly the intervals starting at $i$ of oriented length at most $L-1$.
+These are precisely
+\[
+M(i,i),M(i,i+1),\dots,M(i,L),
+\]
+together with the wrapped intervals
+\[
+M(i,0),M(i,1),\dots,M(i,i-2).
+\]
+
+The only excluded endpoint is $j=i-1$, which would require the forbidden
+wrapped interval of cyclic length $L$.
+
+Uniqueness follows because the top simple determines the start vertex $i$ and
+the composition length determines the endpoint $j$.
+\end{proof}
+
+\begin{corollary}[Explicit decomposition of the indecomposable family]
+The indecomposables split as
+\[
+\{M(i,j)\mid 0\le i\le j\le L\}
+\sqcup
+\{M(i,j)\mid 1\le i\le L,\ 0\le j\le i-2\}.
+\]
+\end{corollary}
+
+\section{Deliverables}
+
+This task is complete once the file records:
+
+\begin{itemize}
+\item the exact admissible index set $\mathcal I_L^{\mathrm{wt}}$;
+\item the type-$A$ non-wrapping family;
+\item the wrapped family described as projective quotients;
+\item the theorem that every indecomposable is a unique admissible interval
+  module $M(i,j)$.
+\end{itemize}
+
+\end{document}

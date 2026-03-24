@@ -1,0 +1,200 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Mat}{\mathrm{Mat}}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\title{Task 5: Statement of the Second Conjecture}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Goal}
+
+This file states the second conjecture in its final form.
+
+The conjecture should be read as the module-theoretic companion to the first
+conjecture:
+
+\begin{itemize}
+\item the first conjecture identifies the correct orbit relation between the
+  weight-space cyclic locus and the critical locus;
+\item the second conjecture identifies the combinatorial labels that are carried
+  by those orbits.
+\end{itemize}
+
+\section{The module attached to a point of the cyclic locus}
+
+\begin{definition}[The $A_L^{\mathrm{wt}}$-module attached to $W$]
+Fix the closing map
+\[
+W_0=\Sigma_{XY}P_Q.
+\]
+For
+\[
+W=(W_1,\dots,W_L)\in \Gamma_{d,S},
+\]
+define the associated quiver representation
+\[
+\phi(W):=(W_0,W_1,\dots,W_L).
+\]
+By Tasks 0 and 1, this defines an $A_L^{\mathrm{wt}}$-module, which we denote by
+\[
+M(W).
+\]
+\end{definition}
+
+\begin{definition}[Multiplicity pattern of a cyclic point]
+Using the interval decomposition from Task 4, write
+\[
+M(W)
+\cong
+\bigoplus_{(i,j)\in \mathcal I_L^{\mathrm{wt}}}
+M(i,j)^{\oplus m_W(i,j)}.
+\]
+The collection
+\[
+m_W:=(m_W(i,j))_{(i,j)\in \mathcal I_L^{\mathrm{wt}}}
+\]
+is called the multiplicity pattern of $W$.
+\end{definition}
+
+\section{Second conjecture}
+
+\begin{conjecture}[Second conjecture: admissible-interval classification in weight space]
+Let
+\[
+A_L^{\mathrm{wt}}=kC_{L+1}/I_L^{\mathrm{wt}}
+\]
+be the weight-space cyclic algebra with
+\[
+I_L^{\mathrm{wt}}=\langle p_1,\dots,p_L\rangle.
+\]
+Then the combinatorics of the direct weight-space cyclic locus is controlled by
+the admissible interval modules
+\[
+\{M(i,j)\}_{(i,j)\in \mathcal I_L^{\mathrm{wt}}},
+\qquad
+\mathcal I_L^{\mathrm{wt}}
+=
+\{(i,j)\mid 0\le i\le j\le L\}
+\cup
+\{(i,j)\mid 1\le i\le L,\ 0\le j\le i-2\}.
+\]
+
+More precisely, the following two statements are equivalent formulations of the
+same conjectural picture.
+
+\medskip
+\noindent
+\textbf{Abstract-module form.}
+Every finite-dimensional $A_L^{\mathrm{wt}}$-module of dimension vector
+\[
+d=(d_0,\dots,d_L)
+\]
+admits a unique decomposition
+\[
+M
+\cong
+\bigoplus_{0\le i\le j\le L} M(i,j)^{\oplus m(i,j)}
+\oplus
+\bigoplus_{\substack{1\le i\le L\\0\le j\le i-2}}
+M(i,j)^{\oplus m(i,j)},
+\]
+with multiplicities
+\[
+(m(i,j))\in \mathcal M_d^+(A_L^{\mathrm{wt}}).
+\]
+
+\medskip
+\noindent
+\textbf{Weight-space form.}
+Every point
+\[
+W\in \Gamma_{d,S}
+\]
+with fixed closing map $W_0=\Sigma_{XY}P_Q$ determines a unique multiplicity
+pattern
+\[
+m_W\in \mathcal M_d^+(A_L^{\mathrm{wt}})
+\]
+through the decomposition of the associated module $M(W)$.
+These multiplicity patterns are the combinatorial labels of the cyclic locus and
+should be the labels transferred to the critical locus through the orbit
+correspondence of the first conjecture.
+\end{conjecture}
+
+\section{Expected stratification language}
+
+\begin{definition}[Cyclic multiplicity stratum]
+For
+\[
+m\in \mathcal M_d^+(A_L^{\mathrm{wt}}),
+\]
+define
+\[
+\Gamma_{d,S}[m]
+:=
+\left\{
+W\in \Gamma_{d,S}
+\;\middle|\;
+M(W)\cong
+\bigoplus_{(i,j)\in \mathcal I_L^{\mathrm{wt}}}
+M(i,j)^{\oplus m(i,j)}
+\right\}.
+\]
+\end{definition}
+
+\begin{remark}
+The conjectural role of the second conjecture is that the sets
+\[
+\Gamma_{d,S}[m]
+\]
+give the correct combinatorial partition of the cyclic locus. Once the
+first-conjecture orbit correspondence is available, the same labels should
+induce the corresponding partition of the critical locus.
+\end{remark}
+
+\begin{remark}[What is deliberately excluded here]
+This conjecture does \emph{not} yet include:
+
+\begin{itemize}
+\item Ext formulas;
+\item codimension formulas;
+\item orbit-closure relations;
+\item rank-selection rules inside the fixed-closing-arrow slice.
+\end{itemize}
+
+Those belong to later parts of the project.
+\end{remark}
+
+\section{Deliverables}
+
+This task is complete once the file contains:
+
+\begin{itemize}
+\item the module $M(W)$ attached to a point of $\Gamma_{d,S}$;
+\item the exact admissible summation ranges for the decomposition;
+\item the second conjecture in abstract-module form;
+\item the same conjecture in weight-space form;
+\item the definition of the multiplicity strata $\Gamma_{d,S}[m]$.
+\end{itemize}
+
+\end{document}
