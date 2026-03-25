@@ -10,6 +10,7 @@
 \newcommand{\GL}{\operatorname{GL}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Mat}{\mathrm{Mat}}
+\newcommand{\Stab}{\operatorname{Stab}}
 
 \theoremstyle{definition}
 \newtheorem{theorem}{Theorem}[section]
@@ -34,18 +35,144 @@ Deduce the final orbit-bijection theorem from:
 \item uniqueness of the representative up to the correct stabilizer subgroup.
 \end{itemize}
 
-\section{Proof template}
+\section{Final theorem}
 
-This file should ultimately combine:
-
+\begin{theorem}[Corrected Conjecture B]\label{thm:conjecture-B}
+Assume that $r>0$, that $\Sigma_{XY}$ has full rank $d_L$, and retain the
+standing setup input that $P_SW^\ast$ is the distinguished critical product
+attached to $S$. Define
+\[
+H_S:=\Stab_{G_d^{W_0}}(P_SW^\ast).
+\]
+Then:
 \begin{enumerate}
-\item the existence statement from Task 5;
-\item the final cleaned statement from Task 6;
-\item the uniqueness result from Task 7.
+\item every $G_d^{W_0}$-orbit in $\Gamma_{d,S}^r$ meets the critical locus
+$\mathcal C_{d,S}^r$;
+\item for every $W\in \mathcal C_{d,S}^r$,
+\[
+\bigl(G_d^{W_0}\cdot W\bigr)\cap \mathcal C_{d,S}^r
+=
+H_S\cdot W.
+\]
 \end{enumerate}
+Consequently, the inclusion
+\[
+\iota:\mathcal C_{d,S}^r\hookrightarrow \Gamma_{d,S}^r
+\]
+induces a bijection of orbit sets
+\[
+\bar\iota:\mathcal C_{d,S}^r/H_S\to \Gamma_{d,S}^r/G_d^{W_0},
+\qquad
+[W]_{H_S}\mapsto [W]_{G_d^{W_0}}.
+\]
+\end{theorem}
+
+\begin{proof}
+The existence statement is exactly the content of Task~5: by the corollary on
+critical representatives, every $G_d^{W_0}$-orbit in $\Gamma_{d,S}^r$ contains
+at least one point of $\mathcal C_{d,S}^r$. This proves (1).
+
+The uniqueness statement is exactly the content of Task~7: for every
+\[
+W\in \mathcal C_{d,S}^r,
+\]
+the intersection of its ambient orbit with the critical locus is
+\[
+\bigl(G_d^{W_0}\cdot W\bigr)\cap \mathcal C_{d,S}^r
+=
+H_S\cdot W.
+\]
+This proves (2).
+
+It remains to prove the induced bijection of orbit sets. Since
+\[
+H_S\subseteq G_d^{W_0},
+\]
+the formula
+\[
+[W]_{H_S}\mapsto [W]_{G_d^{W_0}}
+\]
+is well-defined.
+
+To prove surjectivity, let
+\[
+\mathcal O\in \Gamma_{d,S}^r/G_d^{W_0}
+\]
+be any ambient orbit. By (1), choose
+\[
+W\in \mathcal O\cap \mathcal C_{d,S}^r.
+\]
+Then
+\[
+\bar\iota([W]_{H_S})=\mathcal O.
+\]
+So $\bar\iota$ is surjective.
+
+To prove injectivity, suppose
+\[
+\bar\iota([W]_{H_S})=\bar\iota([W']_{H_S})
+\]
+for
+\[
+W,W'\in \mathcal C_{d,S}^r.
+\]
+Then $W$ and $W'$ lie in the same $G_d^{W_0}$-orbit in $\Gamma_{d,S}^r$. By
+(2),
+\[
+W'\in \bigl(G_d^{W_0}\cdot W\bigr)\cap \mathcal C_{d,S}^r
+=
+H_S\cdot W.
+\]
+Therefore
+\[
+[W']_{H_S}=[W]_{H_S},
+\]
+and $\bar\iota$ is injective.
+\end{proof}
+
+\begin{corollary}[Orbit correspondence reformulated]
+The $G_d^{W_0}$-orbits in $\Gamma_{d,S}^r$ are in bijection with the
+$H_S$-orbits in $\mathcal C_{d,S}^r$.
+\end{corollary}
+
+\begin{proof}
+This is just a restatement of Theorem~\ref{thm:conjecture-B}.
+\end{proof}
+
+\section{Checks and edge cases}
+
+\begin{remark}[Why the corrected quotient is the right one]
+Task~0 showed that for $r>0$ the critical locus is not stable under the full
+group $G_d^{W_0}$. The theorem above shows that this is not an obstacle:
+\[
+\Gamma_{d,S}^r/G_d^{W_0}
+\cong
+\mathcal C_{d,S}^r/H_S
+\]
+is exactly the orbit-space statement needed for transferring a stratification
+from the cyclic locus to the critical locus.
+\end{remark}
+
+\begin{remark}[Rank-zero edge case]
+When $r=0$, one has
+\[
+P_SW^\ast=0
+\qquad\text{and}\qquad
+H_S=G_d^{W_0},
+\]
+so the corrected quotient reduces to the old one. The separate restriction
+$r>0$ is only there because Task~0 showed that this is the first genuinely new
+regime.
+\end{remark}
+
+\begin{remark}[What Task 8 used]
+Task~8 adds no new mathematics beyond Tasks~5 and~7. It is the formal assembly
+step turning existence plus uniqueness into the final orbit-bijection theorem.
+\end{remark}
 
 \section{Deliverable}
 
-This file is complete once the final version of Conjecture B is fully proved in its correct quotient formulation.
+This task is complete: the final corrected version of Conjecture~B is now
+proved in its proper $H_S$-quotient formulation.
 
 \end{document}
