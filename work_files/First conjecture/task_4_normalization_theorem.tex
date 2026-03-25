@@ -10,6 +10,8 @@
 \newcommand{\GL}{\operatorname{GL}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Mat}{\mathrm{Mat}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\Ker}{\operatorname{Ker}}
 
 \theoremstyle{definition}
 \newtheorem{theorem}{Theorem}[section]
@@ -35,18 +37,346 @@ The target theorem is:
 If $W\in \Gamma_{d,S}^r$, then the product $\mu(W)$ lies in the endpoint orbit of $P_SW^\ast$ under the group $K_S$.
 \end{theorem}
 
-\section{Suggested route}
+\section{Standing notation}
 
-Possible ingredients:
+Set
+\[
+\sigma:=W_0=\Sigma_{XY}P_Q\in \Mat_{d_0\times d_L}(\R),
+\qquad
+T:=P_SW^\ast\in \Mat_{d_L\times d_0}(\R).
+\]
+We write
+\[
+U:=\Ker(\sigma)\subseteq \R^{d_L},
+\qquad
+I:=\im(\sigma)\subseteq \R^{d_0}.
+\]
+We also use the setup fact that the distinguished matrix
+\[
+T=P_SW^\ast
+\]
+occurs as the end-to-end map of a rank-$r$ critical point attached to the subset
+$S$.
 
+\section{The model product}
+
+\begin{lemma}[The distinguished product has the expected visible invariants]\label{lem:model-visible-invariants}
+Assume that $\Sigma_{XY}$ has full rank $d_L$. Then:
+\begin{enumerate}
+\item $\rk(T)=r$;
+\item $\Ker(\sigma)=\im(P_S)$ and $\rk(\sigma)=d_L-r$;
+\item $\im(T)=\Ker(\sigma)$;
+\item $\sigma T=0$ and $T\sigma=0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Since $W^\ast$ has rank $d_L$ and $P_S$ has rank $r$, the product
+\[
+T=P_SW^\ast
+\]
+has rank $r$, proving (1).
+
+Because $\Sigma_{XY}$ has full rank $d_L$, the map $\Sigma_{XY}:\R^{d_L}\to \R^{d_0}$ is injective. Hence
+\[
+\Ker(\sigma)=\Ker(\Sigma_{XY}P_Q)=\Ker(P_Q)=\im(P_S),
+\]
+and
+\[
+\rk(\sigma)=\rk(P_Q)=d_L-r.
+\]
+This proves (2).
+
+Since $W^\ast$ is surjective onto $\R^{d_L}$, one has
+\[
+\im(T)=\im(P_SW^\ast)=P_S(\im W^\ast)=P_S(\R^{d_L})=\im(P_S)=\Ker(\sigma),
+\]
+which is (3).
+
+For (4), the identity $\sigma T=0$ follows immediately from $P_QP_S=0$:
+\[
+\sigma T=\Sigma_{XY}P_QP_SW^\ast=0.
+\]
+The identity $T\sigma=0$ follows from the critical-point theorem used in the setup: there exists a rank-$r$ critical point with product $P_SW^\ast$, hence by Task~3 its end-to-end map satisfies the universal product-level constraint
+\[
+M\sigma=0.
+\]
+Applying that statement to $M=T$ gives
+\[
+T\sigma=0.
+\]
+\end{proof}
+
+\section{The $K_S$-action on the relevant quotient data}
+
+\begin{lemma}[The endpoint group preserves $U$ and $I$]\label{lem:preserves-U-I}
+Every element $(g_0,g_L)\in K_S$ preserves the subspaces
+\[
+U=\Ker(\sigma)\subseteq \R^{d_L},
+\qquad
+I=\im(\sigma)\subseteq \R^{d_0}.
+\]
+\end{lemma}
+
+\begin{proof}
+If $u\in U$, then $\sigma u=0$, so
+\[
+\sigma(g_Lu)=g_0\sigma u=0,
+\]
+using the relation $g_0\sigma=\sigma g_L$. Thus $g_Lu\in U$.
+
+If $x\in I$, then $x=\sigma v$ for some $v\in \R^{d_L}$. Hence
+\[
+g_0x=g_0\sigma v=\sigma g_Lv\in I.
+\]
+\end{proof}
+
+\begin{proposition}[Full endpoint freedom on $U$ and $\R^{d_0}/I$]\label{prop:full-endpoint-freedom}
+The group $K_S$ induces a surjective homomorphism
+\[
+\rho:K_S\to \GL(U)\times \GL(\R^{d_0}/I),
+\qquad
+\rho(g_0,g_L)=\bigl(g_L|_U,\overline{g_0}\bigr),
+\]
+where $\overline{g_0}$ is the map induced by $g_0$ on the quotient $\R^{d_0}/I$.
+\end{proposition}
+
+\begin{proof}
+Lemma~\ref{lem:preserves-U-I} shows that $\rho$ is well-defined.
+
+To prove surjectivity, choose a complement $Q$ of $U$ in $\R^{d_L}$ and a complement $J$ of $I$ in $\R^{d_0}$. Since
+\[
+U=\Ker(\sigma),
+\]
+the restriction
+\[
+\sigma|_Q:Q\to I
+\]
+is an isomorphism.
+
+Now let
+\[
+A\in \GL(U),
+\qquad
+C\in \GL(J).
+\]
+Define
+\[
+g_L:=A\oplus I_Q
+\qquad\text{on}\qquad
+\R^{d_L}=U\oplus Q,
+\]
+and
+\[
+g_0:=I_I\oplus C
+\qquad\text{on}\qquad
+\R^{d_0}=I\oplus J.
+\]
+Then for $u\in U$ one has
+\[
+g_0\sigma(u)=0=\sigma g_L(u),
+\]
+and for $q\in Q$ one has
+\[
+g_0\sigma(q)=\sigma(q)=\sigma g_L(q),
+\]
+because $g_0$ acts trivially on $I$ and $g_L$ acts trivially on $Q$. Hence
+\[
+g_0\sigma=\sigma g_L,
+\]
+so $(g_0,g_L)\in K_S$.
+
+By construction,
+\[
+g_L|_U=A,
+\qquad
+\overline{g_0}=\overline{C}.
+\]
+Since every element of $\GL(\R^{d_0}/I)$ is represented by some $C\in \GL(J)$, the map $\rho$ is surjective.
+\end{proof}
+
+\section{Reduced maps}
+
+\begin{definition}[Reduced map associated with $M$]\label{def:reduced-map}
+Let $M\in \Mat_{d_L\times d_0}(\R)$ satisfy
+\[
+\sigma M=0
+\qquad\text{and}\qquad
+M\sigma=0.
+\]
+Then $M$ takes values in $U=\Ker(\sigma)$ and vanishes on $I=\im(\sigma)$, so it induces a unique linear map
+\[
+\overline M:\R^{d_0}/I\to U
+\]
+such that
+\[
+M=\iota_U\circ \overline M\circ \pi_I,
+\]
+where $\pi_I:\R^{d_0}\to \R^{d_0}/I$ is the quotient map and $\iota_U:U\hookrightarrow \R^{d_L}$ is the inclusion.
+\end{definition}
+
+\begin{lemma}[How the reduced map transforms]\label{lem:reduced-map-transform}
+Let $(g_0,g_L)\in K_S$ and let
+\[
+M':=g_LMg_0^{-1}.
+\]
+Assume $\sigma M=M\sigma=0$. Then
+\[
+\overline{M'}=(g_L|_U)\circ \overline M\circ (\overline{g_0})^{-1}.
+\]
+\end{lemma}
+
+\begin{proof}
+Since $(g_0,g_L)\in K_S$, Proposition~\ref{prop:full-endpoint-freedom} and Task~3 imply that $M'$ again satisfies
+\[
+\sigma M'=0
+\qquad\text{and}\qquad
+M'\sigma=0.
+\]
+Therefore $\overline{M'}$ is defined.
+
+Now for $x\in \R^{d_0}$,
+\[
+M'x=g_LM(g_0^{-1}x).
+\]
+Passing to the quotient by $I$ and then restricting to $U$, this is exactly the formula
+\[
+\overline{M'}=(g_L|_U)\circ \overline M\circ (\overline{g_0})^{-1}.
+\]
+\end{proof}
+
+\begin{lemma}[Transitivity on surjective reduced maps]\label{lem:transitivity-surjective}
+Let $J$ and $U$ be finite-dimensional real vector spaces with $\dim U=r$. Then the action of
+\[
+\GL(U)\times \GL(J)
+\]
+on $\operatorname{Surj}(J,U)$ by
+\[
+(A,C)\cdot f:=A\circ f\circ C^{-1}
+\]
+is transitive.
+\end{lemma}
+
+\begin{proof}
+Choose bases of $J$ and $U$. Every surjective linear map $f:J\to U$ of rank $r$ is equivalent, under left-right multiplication by invertible matrices, to the standard matrix
+\[
+\begin{pmatrix} I_r & 0 \end{pmatrix}.
+\]
+Therefore any two surjective maps lie in the same orbit.
+\end{proof}
+
+\section{Orbit characterization}
+
+\begin{theorem}[Orbit characterization by visible invariants]\label{thm:orbit-characterization}
+Assume that $\Sigma_{XY}$ has full rank $d_L$, and keep the standing setup input
+that $T=P_SW^\ast$ is the distinguished critical product attached to $S$. For a matrix
+\[
+M\in \Mat_{d_L\times d_0}(\R),
+\]
+the following are equivalent:
+\begin{enumerate}
+\item $M$ lies in the $K_S$-orbit of $T=P_SW^\ast$;
+\item $\rk(M)=r$, $\sigma M=0$, and $M\sigma=0$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\textit{(1) implies (2).}
+By Lemma~\ref{lem:model-visible-invariants}, the model product $T$ has rank $r$ and satisfies
+\[
+\sigma T=0,
+\qquad
+T\sigma=0.
+\]
+Task~3 proves that rank and the two annihilation identities are $K_S$-invariant. Hence every point of the orbit $K_S\cdot T$ satisfies (2).
+
+\smallskip
+\textit{(2) implies (1).}
+Assume now that $M$ satisfies
+\[
+\rk(M)=r,
+\qquad
+\sigma M=0,
+\qquad
+M\sigma=0.
+\]
+By Definition~\ref{def:reduced-map}, $M$ induces a reduced map
+\[
+\overline M:\R^{d_0}/I\to U.
+\]
+Since $\rk(M)=r$ and $\dim U=r$, the reduced map $\overline M$ is surjective.
+
+By Lemma~\ref{lem:model-visible-invariants}, the model product $T$ also satisfies the same annihilation identities and has image $U$, so its reduced map
+\[
+\overline T:\R^{d_0}/I\to U
+\]
+is likewise surjective.
+
+By Lemma~\ref{lem:transitivity-surjective}, there exist
+\[
+A\in \GL(U),
+\qquad
+C\in \GL(\R^{d_0}/I)
+\]
+such that
+\[
+\overline M=A\circ \overline T\circ C^{-1}.
+\]
+By Proposition~\ref{prop:full-endpoint-freedom}, choose $(g_0,g_L)\in K_S$ with
+\[
+g_L|_U=A,
+\qquad
+\overline{g_0}=C.
+\]
+Then Lemma~\ref{lem:reduced-map-transform} gives
+\[
+\overline{\bigl((g_0,g_L)\cdot T\bigr)}
+=
+A\circ \overline T\circ C^{-1}
+=
+\overline M.
+\]
+Both $(g_0,g_L)\cdot T$ and $M$ vanish on $I$ and take values in $U$, and they induce the same reduced map on $\R^{d_0}/I$. Therefore they are equal as linear maps:
+\[
+(g_0,g_L)\cdot T=M.
+\]
+So $M\in K_S\cdot T$.
+\end{proof}
+
+\begin{corollary}[Normalization theorem for the end-to-end map]\label{cor:normalization-theorem}
+If $W\in \Gamma_{d,S}^r$, then
+\[
+\mu(W)\in K_S\cdot (P_SW^\ast).
+\]
+\end{corollary}
+
+\begin{proof}
+Set $M:=\mu(W)$. Task~3 shows that
+\[
+\rk(M)=r,
+\qquad
+\sigma M=0,
+\qquad
+M\sigma=0.
+\]
+Therefore Theorem~\ref{thm:orbit-characterization} applies and gives
+\[
+M\in K_S\cdot T=K_S\cdot (P_SW^\ast).
+\]
+\end{proof}
+
+\begin{remark}[What Task 4 used]
+The proof above uses:
 \begin{itemize}
-\item show that $P_SW^\ast$ satisfies the same invariants extracted in Task 3;
-\item prove that those invariants characterize the endpoint orbit of $P_SW^\ast$;
-\item if necessary, rewrite the problem using image and kernel flags adapted to the decomposition indexed by $S$ and $Q$.
+\item the full-rank assumption on $\Sigma_{XY}$, in order to identify $\Ker(\sigma)=\im(P_S)$;
+\item the visible invariants extracted in Task~3;
+\item the existence of the model critical product $P_SW^\ast$, via the critical-point theorem already used in the setup.
 \end{itemize}
+It does not use distinct singular values or the no-bottleneck assumption.
+\end{remark}
 
 \section{Deliverables}
 
-This task is complete once the normalization theorem is stated in final form and proved.
+This task is complete: the $K_S$-orbit of $P_SW^\ast$ is characterized by the visible invariants from Task~3, and the normalization theorem is proved.
 
 \end{document}

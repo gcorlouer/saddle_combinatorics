@@ -263,4 +263,70 @@ into
 on the rank-$r$ sheet. The no-bottleneck assumption is still unused.
 \end{remark}
 
+\section{Checks after Task 4}
+
+\begin{example}[A $2\times 2$ normal-form model]
+Take
+\[
+\Sigma_{XY}=I_2,
+\qquad
+P_Q=
+\begin{pmatrix}
+0&0\\
+0&1
+\end{pmatrix},
+\qquad
+W_0=
+\begin{pmatrix}
+0&0\\
+0&1
+\end{pmatrix}.
+\]
+If
+\[
+M=
+\begin{pmatrix}
+a&b\\
+c&d
+\end{pmatrix}
+\]
+satisfies
+\[
+W_0M=0
+\qquad\text{and}\qquad
+MW_0=0,
+\]
+then necessarily
+\[
+c=d=0
+\qquad\text{and}\qquad
+b=d=0,
+\]
+so
+\[
+M=
+\begin{pmatrix}
+a&0\\
+0&0
+\end{pmatrix}.
+\]
+Thus every rank-one such matrix lies in the same endpoint orbit as
+\[
+\begin{pmatrix}
+1&0\\
+0&0
+\end{pmatrix}=P_SW^\ast.
+\]
+This is the smallest concrete model of the Task~4 normalization theorem.
+\end{example}
+
+\begin{remark}[Where assumptions enter after Task 4]
+Task~4 still does not use distinct singular values. It uses:
+\begin{itemize}
+\item the full-rank assumption on $\Sigma_{XY}$;
+\item the existence of the model critical product $P_SW^\ast$;
+\item the visible invariants extracted in Task~3.
+\end{itemize}
+\end{remark}
+
 \end{document}

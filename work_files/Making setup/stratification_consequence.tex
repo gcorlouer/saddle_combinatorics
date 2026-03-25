@@ -10,6 +10,7 @@
 \newcommand{\GL}{\operatorname{GL}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Mat}{\mathrm{Mat}}
+\newcommand{\Stab}{\operatorname{Stab}}
 
 \theoremstyle{definition}
 \newtheorem{theorem}{Theorem}[section]
@@ -36,7 +37,10 @@ Let
 =
 \bigsqcup_{\alpha\in A}\mathcal O_\alpha
 \]
-be a decomposition into locally closed $G_d^{\sigma_S}$-stable strata. Assume that each stratum is a union of $G_d^{\sigma_S}$-orbits and that the indexing set $A$ is finite.
+be a decomposition into locally closed $G_d^{W_0}$-stable strata. Assume that each stratum is a union of $G_d^{W_0}$-orbits and that the indexing set $A$ is finite. Let
+\[
+H_S:=\Stab_{G_d^{W_0}}(P_SW^\ast).
+\]
 
 Then the critical locus admits the induced decomposition
 \[
@@ -46,13 +50,18 @@ Then the critical locus admits the induced decomposition
 \qquad
 \mathcal C_\alpha := \mathcal C_{d,S}^r \cap \mathcal O_\alpha,
 \]
-and this decomposition is a stratification by locally closed $G_d^{\sigma_S}$-stable pieces.
+and this decomposition is a stratification by locally closed $H_S$-stable pieces.
 \end{proposition}
 
 \begin{proof}[Formal argument]
-By the orbit-bijection conjecture, every $G_d^{\sigma_S}$-orbit in $\Gamma_{d,S}^r$ meets $\mathcal C_{d,S}^r$, and two points of $\mathcal C_{d,S}^r$ lie in the same orbit in $\Gamma_{d,S}^r$ if and only if they represent the same orbit on the critical locus.
+By the orbit-bijection conjecture, every $G_d^{W_0}$-orbit in $\Gamma_{d,S}^r$ meets $\mathcal C_{d,S}^r$, and its intersection with the critical locus is exactly one $H_S$-orbit.
 
-Therefore the orbit partition of $\Gamma_{d,S}^r$ restricts to an orbit partition of $\mathcal C_{d,S}^r$. Grouping the critical orbits according to the ambient strata $\mathcal O_\alpha$ gives the decomposition above.
+Therefore the $G_d^{W_0}$-orbit partition of $\Gamma_{d,S}^r$ induces an
+$H_S$-orbit partition of $\mathcal C_{d,S}^r$. Grouping the critical
+$H_S$-orbits according to the ambient strata $\mathcal O_\alpha$ gives the
+decomposition above. Since each $\mathcal O_\alpha$ is locally closed and
+$H_S\subseteq G_d^{W_0}$, each $\mathcal C_\alpha$ is locally closed and
+$H_S$-stable.
 \end{proof}
 
 \begin{corollary}[If the cyclic strata are indexed by combinatorial data]
@@ -79,7 +88,7 @@ This is the precise role of the first conjecture in the overall paper: it reduce
 \begin{remark}[What remains to be proved later]
 The proposition above is only formal once the orbit-bijection conjecture is granted. The real mathematical work is therefore pushed into two later steps:
 \begin{itemize}
-\item classify the $G_d^{\sigma_S}$-orbits in $\Gamma_{d,S}^r$;
+\item classify the $G_d^{W_0}$-orbits in $\Gamma_{d,S}^r$;
 \item prove that every such orbit contains exactly the right critical representative.
 \end{itemize}
 \end{remark}
