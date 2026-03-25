@@ -1,0 +1,734 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\Orb}{\operatorname{Orb}}
+\newcommand{\Stab}{\operatorname{Stab}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Mat}{\mathrm{Mat}}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\title{From the Weight-Space Cyclic Locus to the Critical Locus}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We revisit the geometry of rank-$r$ critical loci of deep linear networks from a
+direct weight-space viewpoint. In previous versions of the project, the passage
+from the cyclic variety to the critical locus was mediated by a residual
+parameter space together with a lifting map. Here we keep both objects directly
+inside the parameter space $\Omega$. We define the cyclic locus by the
+transpose-gradient equations
+\[
+W_{<\ell}W_0W_{>\ell}=0,
+\qquad
+W_0=\Sigma_{XY}P_Q,
+\]
+and study its rank-$r$ part $\Gamma_{d,S}^r$. The critical locus
+$\mathcal C_{d,S}^r$ is then the distinguished fiber cut out by the additional
+condition $\mu(W)=P_SW^\ast$. The main result of this draft is that the
+$G_d^{W_0}$-orbits in $\Gamma_{d,S}^r$ are in bijection with the $H_S$-orbits
+in $\mathcal C_{d,S}^r$. This gives the direct weight-space replacement for the
+old lifting statement and shows formally how a stratification of the cyclic
+locus transfers to the critical locus.
+\end{abstract}
+
+\section{Introduction}
+
+The motivation of this draft is to keep the geometry of critical points inside
+the original parameter space of a deep linear network. In the residual-space
+approach of the earlier versions, one first encoded the cyclic equations in a
+smaller residual variety and then lifted the corresponding data back to the
+critical locus by a block-normal-form construction. That point of view is
+effective, but it hides the geometric relation between the cyclic equations and
+the actual weight matrices.
+
+The present draft works directly in weight space. The cyclic equations are
+written as polynomial equations in the weights, the determinantal and critical
+loci are defined directly in $\Omega$, and the passage from the cyclic locus to
+the critical locus is expressed as an orbit correspondence rather than as a
+lifting construction. This shift in viewpoint is the main structural difference
+with \texttt{paper\_v1.tex}, and it is also the main motivation for the paper.
+
+\section{Setup and Background}
+
+\subsection{Notation}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{p{0.28\textwidth} p{0.66\textwidth}}
+\toprule
+\textbf{Notation} & \textbf{Meaning} \\
+\midrule
+$L$ & number of weight matrices in the deep linear network \\
+$d=(d_0,\dots,d_L)$ & dimension vector \\
+$\Omega$ & parameter space $\prod_{\ell=1}^L \Mat_{d_\ell\times d_{\ell-1}}(\R)$ \\
+$\mu$ & product map $\mu(W)=W_L\cdots W_1$ \\
+$W^\ast$ & teacher matrix $W^\ast=\Sigma_{YX}\Sigma_X^{-1}$ \\
+$r_{\max}$ & rank of $W^\ast$ \\
+$S\subset\{1,\dots,r_{\max}\}$ & subset of singular directions, with $|S|=r$ \\
+$P_S,P_Q$ & complementary orthogonal projectors on $\R^{d_L}$ \\
+$W_0=W_S$ & closing map $\Sigma_{XY}P_Q$ \\
+$\Sigma_d^r$ & rank-$r$ determinantal locus in weight space \\
+$\Gamma_{d,S}$ & weight-space cyclic locus \\
+$\Gamma_{d,S}^r$ & rank-$r$ cyclic locus \\
+$\mathcal C_{d,S}^r$ & rank-$r$ critical locus attached to $S$ \\
+$G_d$ & full base-change group $\prod_{\ell=0}^L \GL(d_\ell,\R)$ \\
+$G_{\mathrm{hid}}$ & hidden-layer gauge group $\prod_{\ell=1}^{L-1}\GL(d_\ell,\R)$ \\
+$G_d^{W_0}$ & stabilizer of the closing map $W_0$ in $G_d$ \\
+$H_S$ & stabilizer in $G_d^{W_0}$ of the distinguished product $P_SW^\ast$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Deep linear networks}
+
+\begin{definition}[Deep linear network and product map]
+Let
+\[
+\Omega:=\prod_{\ell=1}^L \Mat_{d_\ell\times d_{\ell-1}}(\R),
+\qquad
+W=(W_1,\dots,W_L)\in \Omega.
+\]
+The associated deep linear network is the map
+\[
+x\longmapsto W_L\cdots W_1x,
+\]
+and its end-to-end matrix is given by the product map
+\[
+\mu:\Omega\to \Mat_{d_L\times d_0}(\R),
+\qquad
+\mu(W):=W_L\cdots W_1.
+\]
+\end{definition}
+
+For each layer $\ell$ we use the partial-product notation
+\[
+W_{>\ell}:=W_L\cdots W_{\ell+1}\in \Mat_{d_L\times d_\ell}(\R),
+\qquad
+W_{<\ell}:=W_{\ell-1}\cdots W_1\in \Mat_{d_{\ell-1}\times d_0}(\R),
+\]
+with the conventions
+\[
+W_{>L}=I_{d_L},
+\qquad
+W_{<1}=I_{d_0}.
+\]
+Then
+\[
+\mu(W)=W_{>\ell}W_\ell W_{<\ell}
+\qquad
+\text{for every }1\leq \ell\leq L.
+\]
+
+\begin{definition}[Population loss and teacher matrix]
+The population quadratic loss is
+\[
+\mathcal L(W)
+:=
+\mathbb E\bigl[\|Y-\mu(W)X\|_2^2\bigr].
+\]
+Writing
+\[
+\Sigma_X=\mathbb E[XX^\top],
+\qquad
+\Sigma_{XY}=\mathbb E[XY^\top],
+\qquad
+\Sigma_{YX}=\Sigma_{XY}^\top,
+\]
+the corresponding teacher matrix is
+\[
+W^\ast:=\Sigma_{YX}\Sigma_X^{-1},
+\qquad
+r_{\max}:=\rk(W^\ast).
+\]
+\end{definition}
+
+\paragraph{Standing assumptions.}
+Throughout this draft we assume that $\Sigma_X$ is invertible, that
+$\Sigma_{XY}$ has full rank $d_L$, that $W^\ast$ has distinct nonzero singular
+values, and that the network has no bottleneck, i.e.
+\[
+d_\ell\geq d_L
+\qquad
+\text{for every }0\leq \ell\leq L.
+\]
+
+\subsection{Gradient equations in weight space}
+
+\begin{proposition}[Gradient formula]
+For each $\ell\in\{1,\dots,L\}$,
+\[
+\nabla_{W_\ell}\mathcal L(W)
+=
+2\,W_{>\ell}^{\top}\bigl(\mu(W)\Sigma_X-\Sigma_{YX}\bigr)W_{<\ell}^{\top}.
+\]
+Consequently,
+\[
+\bigl(\nabla_{W_\ell}\mathcal L(W)\bigr)^\top
+=
+2\,W_{<\ell}\bigl(\Sigma_X\mu(W)^\top-\Sigma_{XY}\bigr)W_{>\ell}.
+\]
+\end{proposition}
+
+\begin{proof}
+The differential of the product map in the direction $\dot W_\ell$ is
+\[
+D\mu(W)[\dot W_\ell]=W_{>\ell}\dot W_\ell W_{<\ell}.
+\]
+Since the gradient of the quadratic loss with respect to the end-to-end matrix
+$M$ is
+\[
+\nabla_M\mathcal L(M)=2(M\Sigma_X-\Sigma_{YX}),
+\]
+the chain rule gives the first identity. The second follows by transposition and
+the symmetry of $\Sigma_X$.
+\end{proof}
+
+The direct weight-space cyclic equations arise by evaluating the transpose
+gradient on the rank-$r$ critical sheet.
+
+\begin{proposition}[Weight-space cyclic equations]
+Let $W$ be a first-order critical point of rank $r$, and let
+$S\subset\{1,\dots,r_{\max}\}$ be the unique subset of cardinality $r$ such that
+\[
+\mu(W)=P_SW^\ast.
+\]
+Then the transpose-gradient equations are equivalent to
+\[
+W_{<\ell}W_0W_{>\ell}=0,
+\qquad
+1\leq \ell\leq L,
+\]
+where
+\[
+W_0=W_S:=\Sigma_{XY}P_Q.
+\]
+\end{proposition}
+
+\begin{proof}
+At a critical point associated with $S$, one has
+\[
+\mu(W)=P_SW^\ast=P_S\Sigma_{YX}\Sigma_X^{-1}.
+\]
+Hence
+\[
+\Sigma_X\mu(W)^\top-\Sigma_{XY}
+=
+\Sigma_X\Sigma_X^{-1}\Sigma_{XY}P_S-\Sigma_{XY}
+=
+\Sigma_{XY}(P_S-I)
+=
+-\Sigma_{XY}P_Q.
+\]
+Substituting this identity into the transpose-gradient formula yields the
+claimed equations.
+\end{proof}
+
+\begin{definition}[Determinantal, cyclic, and critical loci]
+Fix a rank $r$ and a subset $S\subset\{1,\dots,r_{\max}\}$ with $|S|=r$.
+Define:
+\[
+\Sigma_d^r:=\{W\in \Omega:\rk(\mu(W))=r\},
+\]
+\[
+\Gamma_{d,S}
+:=
+\left\{
+W\in \Omega
+\;\middle|\;
+W_{<\ell}W_0W_{>\ell}=0
+\text{ for every }1\leq \ell\leq L
+\right\},
+\]
+\[
+\Gamma_{d,S}^r:=\Sigma_d^r\cap \Gamma_{d,S},
+\]
+and
+\[
+\mathcal C_{d,S}^r
+:=
+\left\{
+W\in \Gamma_{d,S}^r
+\;\middle|\;
+\mu(W)=P_SW^\ast
+\right\}.
+\]
+\end{definition}
+
+\begin{remark}[Direct weight-space viewpoint]
+This is the main departure from the residual-space setup of
+\texttt{paper\_v1.tex}. The cyclic locus and the critical locus are both now
+defined directly in $\Omega$, and the problem is to relate them without passing
+through a separate residual parameter space.
+\end{remark}
+
+\section{From the Cyclic Variety to the Critical Locus}
+
+\subsection{Symmetry groups and the corrected orbit problem}
+
+\begin{definition}[Relevant symmetry groups]
+The full base-change group is
+\[
+G_d:=\prod_{\ell=0}^L \GL(d_\ell,\R),
+\]
+acting on $\Omega$ by
+\[
+(g\cdot W)_\ell:=g_\ell W_\ell g_{\ell-1}^{-1}.
+\]
+Its hidden subgroup is
+\[
+G_{\mathrm{hid}}:=\prod_{\ell=1}^{L-1}\GL(d_\ell,\R),
+\]
+viewed as the subgroup of $G_d$ with $g_0=I_{d_0}$ and $g_L=I_{d_L}$.
+Finally, the stabilizer of the closing map is
+\[
+G_d^{W_0}
+:=
+\{g\in G_d:g_0W_0g_L^{-1}=W_0\}.
+\]
+\end{definition}
+
+\begin{lemma}[Equivariance of the product map]\label{lem:paper-mu-equivariant}
+For every $g\in G_d$ and every $W\in\Omega$,
+\[
+\mu(g\cdot W)=g_L\mu(W)g_0^{-1}.
+\]
+In particular, $G_{\mathrm{hid}}$ preserves $\mu(W)$ exactly.
+\end{lemma}
+
+\begin{proof}
+Expanding the product and cancelling adjacent inverse factors gives
+\[
+\mu(g\cdot W)
+=(g_LW_Lg_{L-1}^{-1})\cdots(g_1W_1g_0^{-1})
+=g_LW_L\cdots W_1g_0^{-1}
+=g_L\mu(W)g_0^{-1}.
+\]
+If $g\in G_{\mathrm{hid}}$, then $g_0=I_{d_0}$ and $g_L=I_{d_L}$, hence
+\[
+\mu(g\cdot W)=\mu(W).
+\]
+\end{proof}
+
+\begin{proposition}[Stability of the cyclic locus]
+The loci $\Gamma_{d,S}$ and $\Gamma_{d,S}^r$ are stable under the action of
+$G_d^{W_0}$.
+\end{proposition}
+
+\begin{proof}
+For fixed $\ell$, set
+\[
+E_\ell(W):=W_{<\ell}W_0W_{>\ell}.
+\]
+If $g\in G_d^{W_0}$, then
+\[
+(g\cdot W)_{<\ell}=g_{\ell-1}W_{<\ell}g_0^{-1},
+\qquad
+(g\cdot W)_{>\ell}=g_LW_{>\ell}g_\ell^{-1},
+\]
+so
+\[
+E_\ell(g\cdot W)
+=
+g_{\ell-1}W_{<\ell}(g_0^{-1}W_0g_L)W_{>\ell}g_\ell^{-1}.
+\]
+Since $g_0^{-1}W_0g_L=W_0$, we obtain
+\[
+E_\ell(g\cdot W)=g_{\ell-1}E_\ell(W)g_\ell^{-1}.
+\]
+Thus the vanishing of all cyclic equations is preserved. Rank is also preserved
+because $\mu(g\cdot W)=g_L\mu(W)g_0^{-1}$.
+\end{proof}
+
+\begin{remark}[Why hidden gauge is too small]
+Because $G_{\mathrm{hid}}$ preserves $\mu(W)$ exactly, it cannot move a general
+point of $\Gamma_{d,S}^r$ into the critical locus unless the condition
+\[
+\mu(W)=P_SW^\ast
+\]
+already holds. This is why the orbit problem must be stated with a group that
+acts nontrivially on the endpoints.
+\end{remark}
+
+For positive rank, the critical locus is not stable under the full group
+$G_d^{W_0}$.
+
+\begin{proposition}[Non-stability of $\mathcal C_{d,S}^r$ for $r>0$]
+Assume $r>0$. Then $\mathcal C_{d,S}^r$ is not stable under the action of
+$G_d^{W_0}$.
+\end{proposition}
+
+\begin{proof}
+Choose $\lambda\in \R^\times$ with $\lambda\neq 1$, and define
+\[
+g_0=I_{d_0},
+\qquad
+g_L=\lambda P_S+P_Q,
+\qquad
+g_\ell=I_{d_\ell}\ \text{ for }1\leq \ell\leq L-1.
+\]
+Then $g_L$ is invertible with inverse $\lambda^{-1}P_S+P_Q$, and
+\[
+g_0W_0g_L^{-1}
+=
+\Sigma_{XY}P_Q(\lambda^{-1}P_S+P_Q)
+=
+\Sigma_{XY}P_Q
+=
+W_0.
+\]
+So $g\in G_d^{W_0}$. If $W\in \mathcal C_{d,S}^r$, then
+\[
+\mu(g\cdot W)=g_L(P_SW^\ast)=\lambda P_SW^\ast.
+\]
+Since $r>0$, the matrix $P_SW^\ast$ is nonzero, so
+\[
+\mu(g\cdot W)\neq P_SW^\ast.
+\]
+Hence $g\cdot W\notin \mathcal C_{d,S}^r$.
+\end{proof}
+
+\begin{definition}[Correct stabilizer on the critical locus]
+Define
+\[
+H_S:=\Stab_{G_d^{W_0}}(P_SW^\ast)
+=
+\left\{
+g\in G_d^{W_0}
+\;\middle|\;
+g_L(P_SW^\ast)g_0^{-1}=P_SW^\ast
+\right\}.
+\]
+\end{definition}
+
+\begin{remark}[Correct orbit spaces]
+For $r>0$, the relevant orbit spaces are
+\[
+\Gamma_{d,S}^r/G_d^{W_0}
+\qquad\text{and}\qquad
+\mathcal C_{d,S}^r/H_S.
+\]
+The first direct weight-space theorem is precisely the statement that these two
+orbit spaces are in bijection.
+\end{remark}
+
+\subsection{Endpoint reduction}
+
+\begin{definition}[Endpoint group]
+Define the endpoint group
+\[
+K_S:=\{(g_0,g_L)\in \GL(d_0,\R)\times \GL(d_L,\R):g_0W_0g_L^{-1}=W_0\}.
+\]
+It acts on the function space $\Mat_{d_L\times d_0}(\R)$ by
+\[
+(g_0,g_L)\cdot M:=g_LMg_0^{-1}.
+\]
+\end{definition}
+
+\begin{lemma}[Projection to the endpoint group]
+The map
+\[
+\pi:G_d^{W_0}\to K_S,
+\qquad
+\pi(g_0,\dots,g_L):=(g_0,g_L),
+\]
+is a surjective homomorphism, and for every $W\in\Omega$ one has
+\[
+\mu(G_d^{W_0}\cdot W)=K_S\cdot \mu(W).
+\]
+\end{lemma}
+
+\begin{proof}
+The projection is well-defined because $g_0W_0g_L^{-1}=W_0$ is exactly the
+defining relation of $K_S$. It is surjective because for every
+$(g_0,g_L)\in K_S$, the element
+\[
+\widetilde g=(g_0,I_{d_1},\dots,I_{d_{L-1}},g_L)
+\]
+lies in $G_d^{W_0}$ and projects to $(g_0,g_L)$. The orbit identity follows at
+once from equivariance of $\mu$.
+\end{proof}
+
+\begin{corollary}[Endpoint reduction]
+For $W\in \Gamma_{d,S}^r$, the following are equivalent:
+\begin{enumerate}
+\item there exists $g\in G_d^{W_0}$ such that $g\cdot W\in \mathcal C_{d,S}^r$;
+\item there exists $(g_0,g_L)\in K_S$ such that
+\[
+g_L\mu(W)g_0^{-1}=P_SW^\ast;
+\]
+\item the product $\mu(W)$ lies in the $K_S$-orbit of $P_SW^\ast$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+The implication (1)$\Rightarrow$(2) is just equivariance of $\mu$. The
+implication (2)$\Rightarrow$(1) follows by lifting $(g_0,g_L)$ to an element of
+$G_d^{W_0}$ and using stability of $\Gamma_{d,S}^r$. The equivalence between
+(2) and (3) is the statement that two points lie in the same orbit if and only
+if one is obtained from the other by the group action.
+\end{proof}
+
+\subsection{Visible invariants and normalization}
+
+\begin{proposition}[Visible product-level constraints]
+If $W\in \Gamma_{d,S}$ and $M=\mu(W)$, then
+\[
+W_0M=0
+\qquad\text{and}\qquad
+MW_0=0.
+\]
+Consequently,
+\[
+\im(M)\subseteq \Ker(W_0)
+\qquad\text{and}\qquad
+\im(W_0)\subseteq \Ker(M).
+\]
+\end{proposition}
+
+\begin{proof}
+For $\ell=1$, the cyclic equation reads
+\[
+W_0W_{>1}=0.
+\]
+Multiplying on the right by $W_1$ gives
+\[
+W_0M=0.
+\]
+For $\ell=L$, the cyclic equation reads
+\[
+W_{<L}W_0=0.
+\]
+Multiplying on the left by $W_L$ gives
+\[
+MW_0=0.
+\]
+The image-kernel statements are immediate.
+\end{proof}
+
+\begin{corollary}[Rank-$r$ sharpening]
+Assume that $\Sigma_{XY}$ has full rank $d_L$. If $W\in \Gamma_{d,S}^r$ and
+$M=\mu(W)$, then
+\[
+\Ker(W_0)=\im(P_S),
+\qquad
+\rk(W_0)=d_L-r,
+\qquad
+\im(M)=\im(P_S).
+\]
+\end{corollary}
+
+\begin{proof}
+Because $\Sigma_{XY}$ has full rank $d_L$, it is injective as a map from
+$\R^{d_L}$ to $\R^{d_0}$. Hence
+\[
+\Ker(W_0)=\Ker(\Sigma_{XY}P_Q)=\Ker(P_Q)=\im(P_S).
+\]
+Since $M$ has rank $r$ and $\im(M)\subseteq \Ker(W_0)$, the inclusion is an
+equality.
+\end{proof}
+
+\begin{theorem}[Normalization theorem for the end-to-end map]\label{thm:normalization}
+Assume that $\Sigma_{XY}$ has full rank $d_L$, and that the distinguished
+critical product $P_SW^\ast$ occurs for the subset $S$. Then for every
+\[
+W\in \Gamma_{d,S}^r,
+\]
+one has
+\[
+\mu(W)\in K_S\cdot (P_SW^\ast).
+\]
+\end{theorem}
+
+\begin{proof}
+Set
+\[
+\sigma:=W_0=\Sigma_{XY}P_Q,
+\qquad
+T:=P_SW^\ast,
+\qquad
+U:=\Ker(\sigma),
+\qquad
+I:=\im(\sigma).
+\]
+For any matrix $M$ satisfying
+\[
+\sigma M=0
+\qquad\text{and}\qquad
+M\sigma=0,
+\]
+the map $M$ factors through a reduced map
+\[
+\overline M:\R^{d_0}/I\to U.
+\]
+Moreover, the group $K_S$ acts on reduced maps through the natural left-right
+action of
+\[
+\GL(U)\times \GL(\R^{d_0}/I),
+\]
+and this action is surjective because one can choose complements of $U$ and $I$
+and build endpoint transformations blockwise.
+
+Now let $M=\mu(W)$ with $W\in \Gamma_{d,S}^r$. The previous proposition gives
+\[
+\sigma M=0
+\qquad\text{and}\qquad
+M\sigma=0,
+\]
+and the rank-$r$ sharpening shows that $\overline M$ is surjective. The model
+critical product $T=P_SW^\ast$ satisfies the same two annihilation relations,
+has rank $r$, and has image $U$. Therefore its reduced map
+\[
+\overline T:\R^{d_0}/I\to U
+\]
+is also surjective.
+
+Since any two surjective linear maps from $\R^{d_0}/I$ to $U$ are equivalent
+under left-right multiplication by invertible maps, there exists
+$(g_0,g_L)\in K_S$ with
+\[
+g_LTg_0^{-1}=M.
+\]
+Hence
+\[
+M\in K_S\cdot T=K_S\cdot (P_SW^\ast),
+\]
+as required.
+\end{proof}
+
+\subsection{Orbit correspondence}
+
+\begin{theorem}[First direct weight-space theorem: orbit-surjectivity]\label{thm:orbit-surjectivity}
+Assume that $\Sigma_{XY}$ has full rank $d_L$. Then every $G_d^{W_0}$-orbit in
+$\Gamma_{d,S}^r$ meets the critical locus $\mathcal C_{d,S}^r$.
+\end{theorem}
+
+\begin{proof}
+Let $W\in \Gamma_{d,S}^r$. By Theorem~\ref{thm:normalization},
+\[
+\mu(W)\in K_S\cdot (P_SW^\ast).
+\]
+By endpoint reduction, there exists $g\in G_d^{W_0}$ such that
+\[
+g\cdot W\in \mathcal C_{d,S}^r.
+\]
+\end{proof}
+
+\begin{theorem}[Second direct weight-space theorem: orbit-bijection]\label{thm:orbit-bijection}
+Assume that $r>0$ and that $\Sigma_{XY}$ has full rank $d_L$. Then every
+$G_d^{W_0}$-orbit in $\Gamma_{d,S}^r$ meets $\mathcal C_{d,S}^r$ in exactly one
+$H_S$-orbit. Equivalently, the inclusion induces a bijection
+\[
+\mathcal C_{d,S}^r/H_S
+\xrightarrow{\ \sim\ }
+\Gamma_{d,S}^r/G_d^{W_0}.
+\]
+\end{theorem}
+
+\begin{proof}
+Existence is Theorem~\ref{thm:orbit-surjectivity}. For uniqueness, let
+$W,W'\in \mathcal C_{d,S}^r$ lie in the same $G_d^{W_0}$-orbit. Then
+$W'=g\cdot W$ for some $g\in G_d^{W_0}$. Since both points lie in the critical
+locus,
+\[
+\mu(W)=P_SW^\ast
+\qquad\text{and}\qquad
+\mu(W')=P_SW^\ast.
+\]
+Equivariance gives
+\[
+P_SW^\ast
+=
+\mu(W')
+=
+g_L\mu(W)g_0^{-1}
+=
+g_L(P_SW^\ast)g_0^{-1}.
+\]
+Hence $g\in H_S$. This proves that
+\[
+\bigl(G_d^{W_0}\cdot W\bigr)\cap \mathcal C_{d,S}^r
+=
+H_S\cdot W.
+\]
+The bijection of orbit sets follows formally from existence and uniqueness.
+\end{proof}
+
+\begin{corollary}[Transfer of stratifications]
+Suppose that the rank-$r$ cyclic locus admits a decomposition into locally
+closed $G_d^{W_0}$-stable strata
+\[
+\Gamma_{d,S}^r=\bigsqcup_{\alpha\in A}\mathcal O_\alpha,
+\]
+where each stratum is a union of $G_d^{W_0}$-orbits. Then the critical locus
+inherits the decomposition
+\[
+\mathcal C_{d,S}^r=\bigsqcup_{\alpha\in A}\mathcal C_\alpha,
+\qquad
+\mathcal C_\alpha:=\mathcal C_{d,S}^r\cap \mathcal O_\alpha,
+\]
+and this is a stratification by locally closed $H_S$-stable pieces.
+\end{corollary}
+
+\begin{proof}
+By Theorem~\ref{thm:orbit-bijection}, every ambient $G_d^{W_0}$-orbit meets the
+critical locus in exactly one $H_S$-orbit. Therefore the orbit partition of the
+cyclic locus induces an $H_S$-orbit partition of the critical locus. Grouping
+those critical orbits according to the ambient strata $\mathcal O_\alpha$ gives
+the claimed decomposition.
+\end{proof}
+
+\begin{remark}[Role of the first theorem in the paper]
+The theorem above is the direct weight-space replacement of the old lifting
+statement. It does not identify the cyclic locus with the critical locus.
+Instead, it identifies their orbit spaces in the precise way needed to transfer
+combinatorial data, such as cyclic rank patterns, from $\Gamma_{d,S}^r$ to
+$\mathcal C_{d,S}^r$.
+\end{remark}
+
+\section{Stratification of Cyclic Quivers with Finite Relation}
+
+This section will explain how to stratify the cyclic locus
+$\Gamma_{d,S}^r$ itself by orbit-type data, and in particular by cyclic rank
+patterns or multiplicity data coming from the corresponding quiver
+representations.
+
+\section{Application: Stratification of the Critical Loci}
+
+Combining the orbit correspondence of Theorem~\ref{thm:orbit-bijection} with a
+classification of $G_d^{W_0}$-orbits in $\Gamma_{d,S}^r$ will produce the
+desired stratification of the critical locus $\mathcal C_{d,S}^r$.
+
+\section{Discussion and Future Work}
+
+The direct weight-space formalism developed here is intended to make the
+critical-locus geometry more visible from the original parameters of the deep
+linear network. The next steps are to classify the cyclic orbits themselves and
+to connect the resulting critical strata with the saddle-influence questions
+driving the larger project.
+
+\end{document}
