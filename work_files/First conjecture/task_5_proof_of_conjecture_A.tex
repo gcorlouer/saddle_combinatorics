@@ -42,18 +42,131 @@ such that
 Equivalently, every $G_d^{W_0}$-orbit in $\Gamma_{d,S}^r$ meets the critical locus $\mathcal C_{d,S}^r$.
 \end{conjecture}
 
-\section{Required proof structure}
+\section{Proof}
 
-\begin{enumerate}
-\item start from $W\in \Gamma_{d,S}^r$;
-\item apply the normalization theorem to $\mu(W)$;
-\item choose an element of $G_d^{W_0}$ realizing the endpoint normalization;
-\item prove that the transformed tuple remains in $\Gamma_{d,S}^r$;
-\item conclude that the transformed tuple lies in $\mathcal C_{d,S}^r$.
-\end{enumerate}
+\begin{theorem}[Conjecture A holds]\label{thm:conjecture-A}
+Assume that $\Sigma_{XY}$ has full rank $d_L$, and retain the standing setup
+input that $P_SW^\ast$ is the distinguished critical product attached to $S$.
+Then for every
+\[
+W\in \Gamma_{d,S}^r,
+\]
+there exists an element
+\[
+g\in G_d^{W_0}
+\]
+such that
+\[
+\mu(g\cdot W)=P_SW^\ast.
+\]
+Equivalently, every $G_d^{W_0}$-orbit in $\Gamma_{d,S}^r$ meets the critical
+locus $\mathcal C_{d,S}^r$.
+\end{theorem}
+
+\begin{proof}
+Let
+\[
+W\in \Gamma_{d,S}^r.
+\]
+By the normalization theorem proved in Task~4, the end-to-end map of $W$
+satisfies
+\[
+\mu(W)\in K_S\cdot (P_SW^\ast).
+\]
+Therefore there exists an endpoint pair
+\[
+(g_0,g_L)\in K_S
+\]
+such that
+\[
+g_L\mu(W)g_0^{-1}=P_SW^\ast.
+\]
+
+By Task~2, the endpoint projection
+\[
+\pi:G_d^{W_0}\to K_S
+\]
+is surjective. Hence we may choose
+\[
+g\in G_d^{W_0}
+\qquad\text{with}\qquad
+\pi(g)=(g_0,g_L).
+\]
+
+Task~1 proves that the rank-$r$ cyclic locus is stable under $G_d^{W_0}$, so
+\[
+g\cdot W\in \Gamma_{d,S}^r.
+\]
+Using the equivariance of the product map from Task~1, we then obtain
+\[
+\mu(g\cdot W)=g_L\mu(W)g_0^{-1}=P_SW^\ast.
+\]
+By the definition of the critical locus,
+\[
+\mathcal C_{d,S}^r
+=
+\{W'\in \Gamma_{d,S}^r:\mu(W')=P_SW^\ast\},
+\]
+this implies
+\[
+g\cdot W\in \mathcal C_{d,S}^r.
+\]
+Thus every point of $\Gamma_{d,S}^r$ can be moved into the critical locus by an
+element of $G_d^{W_0}$, which is exactly Conjecture~A.
+\end{proof}
+
+\begin{corollary}[Existence of critical representatives]\label{cor:existence-critical-representatives}
+Every $G_d^{W_0}$-orbit in $\Gamma_{d,S}^r$ contains at least one point of
+$\mathcal C_{d,S}^r$.
+\end{corollary}
+
+\begin{proof}
+Apply Theorem~\ref{thm:conjecture-A} to any representative of the orbit.
+\end{proof}
+
+\section{Checks and edge cases}
+
+\begin{remark}[Depth-two normalization is explicit]
+If $L=2$ and
+\[
+(g_0,g_2)\in K_S
+\]
+normalizes $\mu(W)$, then the canonical lift
+\[
+g=(g_0,I_{d_1},g_2)\in G_d^{W_0}
+\]
+already satisfies
+\[
+\mu(g\cdot W)=g_2\mu(W)g_0^{-1}.
+\]
+So in depth two the proof of Conjecture~A is literally the endpoint
+normalization from Task~4 plus the obvious lift.
+\end{remark}
+
+\begin{remark}[Rank-zero and maximal-rank edges]
+If $r=0$, then every point of $\Gamma_{d,S}^0$ already satisfies
+\[
+\mu(W)=0=P_SW^\ast,
+\]
+so Conjecture~A is immediate with $g=e$.
+
+If $r=d_L$, then $W_0=\Sigma_{XY}P_Q=0$, so
+\[
+\Gamma_{d,S}^{d_L}=\Sigma_d^{d_L},
+\]
+and the argument reduces to the usual left-right normalization of a full-rank
+matrix to the target product $W^\ast=P_SW^\ast$.
+\end{remark}
+
+\begin{remark}[What Task 5 used]
+Task~5 adds no new structural input beyond Tasks~1, 2, and~4. In particular,
+the distinct singular values assumption and the no-bottleneck assumption are
+still unused here.
+\end{remark}
 
 \section{Deliverable}
 
-This file is complete once Conjecture A is fully proved.
+This task is complete: Conjecture~A is now proved, and the existence part of the
+orbit correspondence is available for Task~7.
 
 \end{document}

@@ -329,4 +329,49 @@ Task~4 still does not use distinct singular values. It uses:
 \end{itemize}
 \end{remark}
 
+\section{Checks after Task 5}
+
+\begin{example}[Task~5 in depth two]
+Let
+\[
+L=2,
+\qquad
+W\in \Gamma_{d,S}^r.
+\]
+If Task~4 produces an endpoint pair
+\[
+(g_0,g_2)\in K_S
+\]
+with
+\[
+g_2\mu(W)g_0^{-1}=P_SW^\ast,
+\]
+then the lifted element
+\[
+g=(g_0,I_{d_1},g_2)\in G_d^{W_0}
+\]
+satisfies
+\[
+g\cdot W\in \Gamma_{d,S}^r
+\qquad\text{and}\qquad
+\mu(g\cdot W)=P_SW^\ast.
+\]
+This is the smallest concrete instance of the proof of Conjecture~A.
+\end{example}
+
+\begin{remark}[Rank-zero edge]
+If $r=0$, then every point of $\Gamma_{d,S}^0$ has end-to-end map
+\[
+\mu(W)=0=P_SW^\ast.
+\]
+So Task~5 is trivial in this edge case: the identity element already gives a
+critical representative.
+\end{remark}
+
+\begin{remark}[Where assumptions enter after Task 5]
+Task~5 introduces no new assumptions beyond Tasks~1, 2, and~4. In particular,
+the distinct singular values assumption and the no-bottleneck assumption remain
+unused.
+\end{remark}
+
 \end{document}
