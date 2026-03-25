@@ -32,15 +32,162 @@ Prove that the intersection of a $G_d^{W_0}$-orbit in $\Gamma_{d,S}^r$ with the 
 
 \section{Target statement}
 
-\begin{lemma}
-If $W,W'\in \mathcal C_{d,S}^r$ lie in the same $G_d^{W_0}$-orbit inside $\Gamma_{d,S}^r$, then the group element relating them preserves the distinguished product $P_SW^\ast$ and therefore belongs to
+\begin{lemma}[Critical points in the same ambient orbit differ by $H_S$]\label{lem:ambient-orbit-implies-HS}
+If $W,W'\in \mathcal C_{d,S}^r$ lie in the same $G_d^{W_0}$-orbit inside
+$\Gamma_{d,S}^r$, then every element
+\[
+g\in G_d^{W_0}
+\]
+with
+\[
+W'=g\cdot W
+\]
+preserves the distinguished product $P_SW^\ast$ and therefore belongs to
 \[
 H_S:=\Stab_{G_d^{W_0}}(P_SW^\ast).
 \]
 \end{lemma}
 
+\begin{proof}
+Assume that
+\[
+W,W'\in \mathcal C_{d,S}^r
+\qquad\text{and}\qquad
+W'=g\cdot W
+\]
+for some
+\[
+g=(g_0,\dots,g_L)\in G_d^{W_0}.
+\]
+Since both $W$ and $W'$ lie in the critical locus, their end-to-end maps satisfy
+\[
+\mu(W)=P_SW^\ast
+\qquad\text{and}\qquad
+\mu(W')=P_SW^\ast.
+\]
+By the equivariance formula from Task~1,
+\[
+\mu(W')=\mu(g\cdot W)=g_L\mu(W)g_0^{-1}.
+\]
+Substituting the critical value gives
+\[
+P_SW^\ast=g_L(P_SW^\ast)g_0^{-1}.
+\]
+This says exactly that $g$ stabilizes the distinguished product under the
+endpoint action. Therefore
+\[
+g\in \Stab_{G_d^{W_0}}(P_SW^\ast)=H_S.
+\]
+\end{proof}
+
+\begin{proposition}[Intersection of an ambient orbit with the critical locus]\label{prop:orbit-intersection}
+For every
+\[
+W\in \mathcal C_{d,S}^r,
+\]
+one has
+\[
+\bigl(G_d^{W_0}\cdot W\bigr)\cap \mathcal C_{d,S}^r
+=
+H_S\cdot W.
+\]
+\end{proposition}
+
+\begin{proof}
+We first show
+\[
+H_S\cdot W\subseteq \bigl(G_d^{W_0}\cdot W\bigr)\cap \mathcal C_{d,S}^r.
+\]
+If
+\[
+h\in H_S,
+\]
+then certainly
+\[
+h\cdot W\in G_d^{W_0}\cdot W.
+\]
+Moreover, Task~1 shows that $\Gamma_{d,S}^r$ is stable under $G_d^{W_0}$, so
+\[
+h\cdot W\in \Gamma_{d,S}^r.
+\]
+Since $h$ lies in the stabilizer of $P_SW^\ast$, equivariance gives
+\[
+\mu(h\cdot W)=h_L\mu(W)h_0^{-1}=h_L(P_SW^\ast)h_0^{-1}=P_SW^\ast.
+\]
+Hence
+\[
+h\cdot W\in \mathcal C_{d,S}^r.
+\]
+This proves the first inclusion.
+
+For the reverse inclusion, let
+\[
+W'\in \bigl(G_d^{W_0}\cdot W\bigr)\cap \mathcal C_{d,S}^r.
+\]
+Then there exists
+\[
+g\in G_d^{W_0}
+\]
+such that
+\[
+W'=g\cdot W.
+\]
+Because both $W$ and $W'$ lie in $\mathcal C_{d,S}^r$, Lemma~\ref{lem:ambient-orbit-implies-HS}
+implies that
+\[
+g\in H_S.
+\]
+Therefore
+\[
+W'=g\cdot W\in H_S\cdot W,
+\]
+which proves the reverse inclusion.
+\end{proof}
+
+\begin{corollary}[Uniqueness of the critical representative up to $H_S$]\label{cor:uniqueness}
+Inside any $G_d^{W_0}$-orbit of $\Gamma_{d,S}^r$, the critical representative is
+unique up to the action of $H_S$.
+\end{corollary}
+
+\begin{proof}
+This is exactly the content of Proposition~\ref{prop:orbit-intersection}.
+\end{proof}
+
+\section{Checks and edge cases}
+
+\begin{remark}[Why $H_S$ is the right subgroup]
+The proof above shows that $H_S$ is not introduced artificially: it is forced by
+equivariance. The only way an element of $G_d^{W_0}$ can carry one critical
+point to another is by preserving the distinguished end-to-end value
+$P_SW^\ast$.
+\end{remark}
+
+\begin{remark}[Rank-zero edge case]
+When $r=0$, one has
+\[
+P_SW^\ast=0,
+\]
+so every element of $G_d^{W_0}$ stabilizes the distinguished product. In that
+degenerate case,
+\[
+H_S=G_d^{W_0},
+\]
+which matches the fact that the old quotient statement survives literally.
+\end{remark}
+
+\begin{remark}[What Task 7 used]
+Task~7 uses only:
+\begin{itemize}
+\item the definition of the critical locus;
+\item stability of $\Gamma_{d,S}^r$ under $G_d^{W_0}$ from Task~1;
+\item equivariance of the product map from Task~1.
+\end{itemize}
+It does not use any additional rank-pattern or spectral input.
+\end{remark}
+
 \section{Deliverable}
 
-This file is complete once the uniqueness lemma is proved and rewritten in the final orbit language needed for Conjecture B.
+This task is complete: the uniqueness lemma is proved, and the orbit
+intersection is rewritten in the exact form needed for Conjecture~B.
 
 \end{document}
