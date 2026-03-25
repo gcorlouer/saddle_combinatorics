@@ -11,6 +11,7 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Mat}{\mathrm{Mat}}
 \newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Rep}{\operatorname{Rep}}
 
 \theoremstyle{definition}
 \newtheorem{theorem}{Theorem}[section]
@@ -121,6 +122,55 @@ kQ/I_L^{\mathrm{wt}}.
 
 \section{Dictionary with weight space}
 
+\begin{definition}[Ambient representation space of the cyclic quiver]
+Fix a dimension vector
+\[
+d=(d_0,\dots,d_L),
+\]
+and vector spaces
+\[
+V_\ell\cong \R^{d_\ell},
+\qquad
+0\le \ell\le L.
+\]
+The ambient representation space of the cyclic quiver $C_{L+1}$ is
+\[
+\Rep_d(C_{L+1})
+:=
+\prod_{\ell=1}^L \Hom(V_{\ell-1},V_\ell)\times \Hom(V_L,V_0).
+\]
+We write a point of $\Rep_d(C_{L+1})$ as
+\[
+\phi=(\phi_0,\phi_1,\dots,\phi_L),
+\]
+where
+\[
+\phi_\ell:V_{\ell-1}\to V_\ell
+\qquad
+(\ell\in \mathbb Z/(L+1)\mathbb Z),
+\]
+with indices read modulo $L+1$.
+\end{definition}
+
+\begin{definition}[Fixed-arrow representation slice]
+Fix vector spaces
+\[
+V_\ell\cong \R^{d_\ell},
+\qquad
+0\le \ell\le L,
+\]
+and a distinguished closing map
+\[
+W_0\in \Hom(V_L,V_0).
+\]
+Define the fixed-arrow slice
+\[
+\Rep_{d,W_0}(C_{L+1})
+:=
+\{\phi\in \Rep_d(C_{L+1})\mid \phi_0=W_0\}.
+\]
+\end{definition}
+
 \begin{definition}[The associated quiver representation of a weight tuple]
 Fix vector spaces
 \[
@@ -154,6 +204,7 @@ We extend this cyclically by the convention
 \[
 \phi_{\ell+L+1}:=\phi_\ell.
 \]
+Then $\phi(W)\in \Rep_{d,W_0}(C_{L+1})\subset \Rep_d(C_{L+1})$.
 \end{definition}
 
 \begin{proposition}[Quiver-path form of the cyclic equations]
@@ -257,6 +308,8 @@ without further renaming:
 
 \begin{itemize}
 \item the quiver: $Q=C_{L+1}$;
+\item the ambient representation space: $\Rep_d(C_{L+1})$;
+\item the fixed-arrow slice: $\Rep_{d,W_0}(C_{L+1})$;
 \item the weight-space ideal: $I_L^{\mathrm{wt}}=\langle p_1,\dots,p_L\rangle$;
 \item the algebra: $A_L^{\mathrm{wt}}=kQ/I_L^{\mathrm{wt}}$;
 \item the surviving length-$L$ path: $p_0=a_L\cdots a_1$;
@@ -269,7 +322,11 @@ a_0 \rightsquigarrow W_0=\Sigma_{XY}P_Q.
 \begin{remark}[Output of Task 0 for the next task]
 Task 0 isolates the ambient algebraic data and the exact quiver dictionary.
 Task 1 can therefore start from the statement that points of $\Gamma_{d,S}$ are
-precisely representations of $Q=C_{L+1}$ with fixed closing arrow
+precisely representations in the fixed-arrow slice
+\[
+\Rep_{d,W_0}(C_{L+1})\subset \Rep_d(C_{L+1})
+\]
+with closing arrow
 $a_0=W_0=\Sigma_{XY}P_Q$ annihilated by the relations
 $p_1,\dots,p_L$.
 \end{remark}
@@ -281,6 +338,9 @@ All Task 0 deliverables have been achieved in this file:
 \begin{itemize}
 \item achieved: the exact quiver $C_{L+1}$ is fixed, together with the
   modulo-$(L+1)$ indexing convention;
+\item achieved: the ambient cyclic-quiver representation space
+  $\Rep_d(C_{L+1})$ and the fixed-arrow slice
+  $\Rep_{d,W_0}(C_{L+1})$ are defined;
 \item achieved: the exact relation ideal $I_L^{\mathrm{wt}}$ is defined;
 \item achieved: the reason why the surviving path
   $p_0=a_{-1}\cdots a_{-L}=a_L\cdots a_1$ must remain nonzero is recorded;
