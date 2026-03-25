@@ -59,8 +59,28 @@ a_0:L\to 0.
 \]
 \end{definition}
 
+\begin{remark}[Cyclic indexing convention]
+From this point on, subscripts on vertices, arrows, and representation maps are
+understood modulo $L+1$. Thus
+\[
+a_{\ell+L+1}=a_\ell,
+\qquad
+\phi_{\ell+L+1}=\phi_\ell,
+\]
+so in particular
+\[
+\phi_{L+1}=\phi_0.
+\]
+\end{remark}
+
 \begin{definition}[Weight-space relation paths]
 For each $\ell\in\{1,\dots,L\}$, define the path
+\[
+p_\ell
+:=
+a_{\ell-1}a_{\ell-2}\cdots a_{\ell-L},
+\]
+where all subscripts are read modulo $L+1$. Equivalently,
 \[
 p_\ell
 :=
@@ -70,15 +90,16 @@ This is the unique oriented path of length $L$ in $Q$ that omits the arrow
 $a_\ell$.
 \end{definition}
 
-\begin{remark}
+\begin{remark}[The surviving open-chain path]
 Every path $p_\ell$ passes through the closing arrow $a_0$.
 
 The only oriented path of length $L$ that does \emph{not} pass through $a_0$ is
 \[
-p_0:=a_L\cdots a_1.
+p_0:=a_{-1}a_{-2}\cdots a_{-L}=a_L\cdots a_1.
 \]
 This is the path that corresponds to the end-to-end map of the DLN, so it must
-survive in the direct weight-space setup.
+survive in the direct weight-space setup. In particular, unlike the older
+residual-space presentation, we do \emph{not} impose the relation $p_0=0$.
 \end{remark}
 
 \begin{definition}[The weight-space cyclic algebra]
@@ -129,26 +150,44 @@ by
 \quad
 (1\le \ell\le L).
 \]
+We extend this cyclically by the convention
+\[
+\phi_{\ell+L+1}:=\phi_\ell.
+\]
 \end{definition}
 
-\begin{proposition}[The weight-space equations are the quiver relations]
+\begin{proposition}[Quiver-path form of the cyclic equations]
 Let $W=(W_1,\dots,W_L)$ and let $\phi(W)$ be the associated quiver
 representation with fixed closing map $W_0$.
 Then, for each $\ell\in\{1,\dots,L\}$,
 \[
-p_\ell(\phi(W))=W_{<\ell}W_0W_{>\ell}.
+p_\ell(\phi(W))
+=
+\phi_{\ell-1}\phi_{\ell-2}\cdots \phi_{\ell-L}
+=
+W_{<\ell}W_0W_{>\ell},
 \]
-Hence
+where the subscripts on $\phi$ are read modulo $L+1$. Hence
 \[
 W_{<\ell}W_0W_{>\ell}=0
 \quad\Longleftrightarrow\quad
 p_\ell(\phi(W))=0.
 \]
+\[
+p_{\bar\ell}(\phi(W))=0
+\qquad
+(\bar\ell\in \mathbb Z/(L+1)\mathbb Z,\ \bar\ell\neq \bar 0)
+\]
+is exactly the cyclic family of vanishing conditions.
 \end{proposition}
 
 \begin{proof}
 By definition, $p_\ell$ is the composition of all arrows of the oriented cycle
-except $a_\ell$, in the order
+except $a_\ell$, so with cyclic indexing it can be written as
+\[
+a_{\ell-1}a_{\ell-2}\cdots a_{\ell-L}.
+\]
+Equivalently, in the linear display of the cycle this is the order
 \[
 a_{\ell-1}\cdots a_1\,a_0\,a_L\cdots a_{\ell+1}.
 \]
@@ -164,6 +203,36 @@ W_{\ell-1}\cdots W_1\,W_0\,W_L\cdots W_{\ell+1}
 =
 W_{<\ell}W_0W_{>\ell}.
 \]
+\end{proof}
+
+\begin{corollary}[Fixed-arrow description of the cyclic locus]
+For a weight tuple $W\in\Omega$, one has
+\[
+W\in \Gamma_{d,S}
+\quad\Longleftrightarrow\quad
+p_\ell(\phi(W))=0
+\text{ for every }1\le \ell\le L.
+\]
+Equivalently, the vanishing conditions can be written cyclically as
+\[
+p_{\bar\ell}(\phi(W))=0
+\qquad
+(\bar\ell\in \mathbb Z/(L+1)\mathbb Z,\ \bar\ell\neq \bar 0).
+\]
+Equivalently, after specializing the closing arrow by
+\[
+a_0 \rightsquigarrow W_0=\Sigma_{XY}P_Q,
+\]
+the direct weight-space cyclic locus is exactly the fixed-arrow slice cut out by
+the ideal
+\[
+I_L^{\mathrm{wt}}=\langle p_1,\dots,p_L\rangle.
+\]
+\end{corollary}
+
+\begin{proof}
+This is just the definition of $\Gamma_{d,S}$ together with the proposition
+above.
 \end{proof}
 
 \begin{remark}[Why the end-to-end path must survive]
@@ -197,16 +266,32 @@ a_0 \rightsquigarrow W_0=\Sigma_{XY}P_Q.
 \]
 \end{itemize}
 
+\begin{remark}[Output of Task 0 for the next task]
+Task 0 isolates the ambient algebraic data and the exact quiver dictionary.
+Task 1 can therefore start from the statement that points of $\Gamma_{d,S}$ are
+precisely representations of $Q=C_{L+1}$ with fixed closing arrow
+$a_0=W_0=\Sigma_{XY}P_Q$ annihilated by the relations
+$p_1,\dots,p_L$.
+\end{remark}
+
 \section{Deliverables}
 
-This task is complete once the file records:
+All Task 0 deliverables have been achieved in this file:
 
 \begin{itemize}
-\item the exact quiver $C_{L+1}$;
-\item the exact relation ideal $I_L^{\mathrm{wt}}$;
-\item the reason why $p_0=a_L\cdots a_1$ survives;
-\item the precise translation from the weight-space equations
-  $W_{<\ell}W_0W_{>\ell}=0$ to the quiver relations $p_\ell=0$.
+\item achieved: the exact quiver $C_{L+1}$ is fixed, together with the
+  modulo-$(L+1)$ indexing convention;
+\item achieved: the exact relation ideal $I_L^{\mathrm{wt}}$ is defined;
+\item achieved: the reason why the surviving path
+  $p_0=a_{-1}\cdots a_{-L}=a_L\cdots a_1$ must remain nonzero is recorded;
+\item achieved: the precise translation from the cyclic equations
+  $W_{<\ell}W_0W_{>\ell}=0$ to the quiver relations $p_\ell(\phi(W))=0$ is
+  proved, both in linear notation and in cyclic modulo-$(L+1)$ notation;
+\item achieved: the fixed-arrow interpretation of $\Gamma_{d,S}$ as the locus
+  cut out by $I_L^{\mathrm{wt}}$ after specializing $a_0$ to $W_0$ is stated
+  explicitly.
 \end{itemize}
+
+Therefore Task 0 is complete and the file is ready to feed into Task 1.
 
 \end{document}
