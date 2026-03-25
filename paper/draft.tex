@@ -19,6 +19,10 @@
 \newcommand{\Stab}{\operatorname{Stab}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Mat}{\mathrm{Mat}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Rep}{\operatorname{Rep}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\rad}{\operatorname{rad}}
 
 \theoremstyle{definition}
 \newtheorem{theorem}{Theorem}[section]
@@ -709,26 +713,1115 @@ Instead, it identifies their orbit spaces in the precise way needed to transfer
 combinatorial data, such as cyclic rank patterns, from $\Gamma_{d,S}^r$ to
 $\mathcal C_{d,S}^r$.
 \end{remark}
+\paragraph{Correction to the weight-space orbit correspondence.}
+The weight-space orbit correspondence is valid in the following form.
 
+\begin{proposition}[Corrected normalization lemma]
+Fix \(S\subseteq \{1,\dots,r_{\max}\}\) with \(|S|=r\), and set
+\[
+W_0:=\Sigma_{XY}P_Q,\qquad T:=P_S W^\ast .
+\]
+Assume \(\Sigma_{XY}\) has full rank \(d_L\), and let \(W\in \Gamma_{d,S}^r\). Write
+\[
+M:=\mu(W),\qquad U:=\ker(W_0)\subseteq \mathbb R^{d_L},\qquad I:=\operatorname{im}(W_0)\subseteq \mathbb R^{d_0}.
+\]
+Then:
+\begin{enumerate}
+\item[(i)] \(W_0M=0\) and \(MW_0=0\).
+\item[(ii)] \(\operatorname{im}(M)=U\) and \(I\subseteq \ker(M)\).
+\item[(iii)] Hence \(M\) induces a surjective linear map
+\[
+\bar M:\mathbb R^{d_0}/I \longrightarrow U .
+\]
+\item[(iv)] The model critical product \(T=P_S W^\ast\) satisfies the same annihilation relations
+\(W_0T=0\) and \(TW_0=0\), has image \(U\), and therefore induces a surjective map
+\[
+\bar T:\mathbb R^{d_0}/I \longrightarrow U .
+\]
+\item[(v)] If
+\[
+K_S:=\{(g_0,g_L)\in GL(d_0,\mathbb R)\times GL(d_L,\mathbb R)\mid g_0W_0g_L^{-1}=W_0\},
+\]
+then the induced action of \(K_S\) on reduced maps is the natural left-right action of
+\(GL(U)\times GL(\mathbb R^{d_0}/I)\). In particular, since \(\bar M\) and \(\bar T\) are both
+surjective, there exists \((g_0,g_L)\in K_S\) such that
+\[
+g_L\,T\,g_0^{-1}=M .
+\]
+Equivalently,
+\[
+\mu(W)\in K_S\cdot (P_S W^\ast).
+\]
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Parts (i) and (ii) are the content of Proposition~3.11 and Corollary~3.12 in the draft. The only
+correction needed in the original proof of Theorem~3.13 is that one must not say ``\(M\) is
+surjective'': what is surjective is the induced quotient map \(\bar M:\mathbb R^{d_0}/I\to U\), because
+\(\operatorname{im}(M)=U\). The same applies to \(T=P_SW^\ast\). Since any two surjective linear
+maps from \(\mathbb R^{d_0}/I\) onto \(U\) are equivalent under the left-right action of
+\(GL(U)\times GL(\mathbb R^{d_0}/I)\), the conclusion follows.
+\end{proof}
+
+\begin{theorem}[Weight-space orbit correspondence]
+For every \(0\le r\le d_L\), define
+\[
+G_d^{W_0}:=\{g=(g_0,\dots,g_L)\in G_d\mid g_0W_0g_L^{-1}=W_0\},
+\]
+and
+\[
+H_S:=\operatorname{Stab}_{G_d^{W_0}}(P_SW^\ast)
+=\{g\in G_d^{W_0}\mid g_L(P_SW^\ast)g_0^{-1}=P_SW^\ast\}.
+\]
+Then every \(G_d^{W_0}\)-orbit in \(\Gamma_{d,S}^r\) meets \(C_{d,S}^r\) in exactly one \(H_S\)-orbit.
+Equivalently, the inclusion \(C_{d,S}^r\hookrightarrow \Gamma_{d,S}^r\) induces a bijection of orbit sets
+\[
+C_{d,S}^r/H_S \;\xrightarrow{\;\sim\;}\; \Gamma_{d,S}^r/G_d^{W_0}.
+\]
+\end{theorem}
+
+\begin{proof}
+Let \(W\in \Gamma_{d,S}^r\). By the proposition above, \(\mu(W)\in K_S\cdot(P_SW^\ast)\). By
+surjectivity of the endpoint projection \(G_d^{W_0}\to K_S\), there exists \(g\in G_d^{W_0}\) such that
+\[
+\mu(g\cdot W)=P_SW^\ast.
+\]
+Since \(\Gamma_{d,S}^r\) is \(G_d^{W_0}\)-stable, this shows that \(g\cdot W\in C_{d,S}^r\). Hence every
+\(G_d^{W_0}\)-orbit meets \(C_{d,S}^r\).
+
+For uniqueness, let \(W,W'\in C_{d,S}^r\) and suppose \(W'=g\cdot W\) for some \(g\in G_d^{W_0}\).
+Then
+\[
+P_SW^\ast=\mu(W')=g_L\mu(W)g_0^{-1}=g_L(P_SW^\ast)g_0^{-1},
+\]
+so \(g\in H_S\). Therefore
+\[
+(G_d^{W_0}\cdot W)\cap C_{d,S}^r=H_S\cdot W,
+\]
+which is the claimed uniqueness.
+\end{proof}
+
+\begin{corollary}[What actually transfers to the critical locus]
+Suppose
+\[
+\Gamma_{d,S}^r=\bigsqcup_{\alpha\in A} O_\alpha
+\]
+is a decomposition into locally closed \(G_d^{W_0}\)-stable subsets, each \(O_\alpha\) being a union
+of \(G_d^{W_0}\)-orbits. Then, after discarding empty pieces,
+\[
+C_{d,S}^r=\bigsqcup_{\alpha\,:\,C_\alpha\neq\varnothing} C_\alpha,
+\qquad
+C_\alpha:=C_{d,S}^r\cap O_\alpha,
+\]
+is a decomposition into locally closed \(H_S\)-stable subsets.
+\end{corollary}
+
+\begin{remark}[Scope of the transfer]
+The theorem transfers \emph{only} decompositions of \(\Gamma_{d,S}^r\) by
+\(G_d^{W_0}\)-stable unions of \(G_d^{W_0}\)-orbits. It does \emph{not} by itself transfer a finer
+stratification coming from a smaller fixed-closing-map slice or from a hidden-gauge slice. In
+particular, if later sections classify a different orbit problem (for example \(G_\sigma\)-orbits in a
+fixed-arrow cyclic slice), an additional argument is required to deduce a stratification of
+\(C_{d,S}^r\) by those finer labels.
+\end{remark}
+
+\begin{remark}[Full-rank case \(r=d_L\)]
+If \(r=d_L\), then \(P_Q=0\), hence \(W_0=0\), so
+\[
+G_d^{W_0}=G_d,\qquad \Gamma_{d,S}=\Omega,\qquad \Gamma_{d,S}^{d_L}=\Sigma_d^{d_L}.
+\]
+The theorem becomes
+\[
+C_{d,S}^{d_L}/H_S \;\xrightarrow{\;\sim\;}\; \Sigma_d^{d_L}/G_d.
+\]
+Thus the result is compatible with the explicit normal form of all global minimizers, but it is
+strictly coarser than a stratification of the fixed fiber \(\mu^{-1}(P_SW^\ast)\): it identifies orbit
+quotients, not the finer geometry of the fiber itself.
+\end{remark}
+
+\begin{remark}[Depth \(L=3\)]
+For \(L=3\), the proof is unchanged. The only cyclic relations used in the normalization argument are
+the endpoint relations implying
+\[
+W_0\mu(W)=0,\qquad \mu(W)W_0=0,
+\]
+and the rest is linear algebra on the end-to-end product. Hence no extra degeneracy appears at
+depth \(3\).
+\end{remark}
+\begin{remark}[Full-rank case and relation with Simon's orbit correspondence]
+The orbit-bijection theorem is compatible with the full-rank case \(r=d_L\).
+Indeed, if \(r=d_L\), then \(P_Q=0\), hence
+\[
+W_0=\Sigma_{XY}P_Q=0,
+\qquad
+G_d^{W_0}=G_d,
+\qquad
+\Gamma_{d,S}^{d_L}=\Sigma_d^{d_L}.
+\]
+Therefore Theorem~3.15 specializes to
+\[
+C_{d,S}^{d_L}/H_S \;\xrightarrow{\sim}\; \Sigma_d^{d_L}/G_d.
+\]
+Equivalently, every \(G_d\)-orbit in the rank-\(d_L\) locus \(\Sigma_d^{d_L}\) meets the fixed-product
+fiber \(C_{d,S}^{d_L}\) in exactly one \(H_S\)-orbit.
+
+Thus, in the full-rank case, the theorem recovers the same orbit-correspondence principle as in
+Simon's work on the fiber of the multiplication map. In particular, if one chooses the decomposition
+of \(\Sigma_d^{d_L}\) by individual \(G_d\)-orbits,
+\[
+\Sigma_d^{d_L}=\bigsqcup_{\lambda} O_\lambda,
+\]
+then the induced decomposition
+\[
+C_{d,S}^{d_L}=\bigsqcup_{\lambda:\, O_\lambda\cap C_{d,S}^{d_L}\neq\varnothing}
+\bigl(O_\lambda\cap C_{d,S}^{d_L}\bigr)
+\]
+is exactly the corresponding orbit decomposition of the fiber.
+
+The only sense in which a transferred decomposition may be coarser is the following:
+Corollary~3.16 transfers whatever \(G_d^{W_0}\)-stable decomposition of \(\Gamma_{d,S}^r\) one starts
+with. If one uses a decomposition by unions of \(G_d^{W_0}\)-orbits rather than by individual orbits,
+then the induced decomposition of \(C_{d,S}^r\) is correspondingly coarser. This is a feature of the
+chosen stratification, not a defect of Theorem~3.15 itself.
+\end{remark}
 \section{Stratification of Cyclic Quivers with Finite Relation}
 
-This section will explain how to stratify the cyclic locus
-$\Gamma_{d,S}^r$ itself by orbit-type data, and in particular by cyclic rank
-patterns or multiplicity data coming from the corresponding quiver
-representations.
+This section has two layers. First, we work in the ambient bound-quiver setting
+and classify all representations of the algebra
+\[
+A_L^{\mathrm{wt}}=kQ/I_L^{\mathrm{wt}}
+\]
+for a free closing arrow $a_0$. This is the intrinsic representation-theoretic
+classification. Second, we specialize to the deep linear network by freezing the
+closing arrow to
+\[
+W_0=\Sigma_{XY}P_Q,
+\]
+thereby passing to the fixed-arrow slice that defines $\Gamma_{d,S}$. The
+second conjecture belongs to this second, fixed-arrow level.
+
+Throughout this section we assume
+\[
+L\geq 2,
+\]
+which is the first genuinely cyclic case. For the purely algebraic statements
+we work over a field $k$; when we return to the deep linear network we
+specialize to $k=\R$ and to the distinguished closing map
+\[
+W_0=\Sigma_{XY}P_Q.
+\]
+
+\subsection{The cyclic quiver and the fixed-arrow slice}
+
+\begin{definition}[The cyclic quiver and the weight-space ideal]
+Let
+\[
+Q=C_{L+1}
+\]
+be the oriented cycle on vertices
+\[
+Q_0=\{0,1,\dots,L\}
+\]
+with arrows
+\[
+a_t:t-1\to t
+\qquad
+(1\leq t\leq L),
+\qquad
+a_0:L\to 0.
+\]
+All arrow indices are read modulo $L+1$.
+
+For each $\ell\in\{1,\dots,L\}$, define the length-$L$ path
+\[
+p_\ell:=a_{\ell-1}a_{\ell-2}\cdots a_{\ell-L}
+=
+a_{\ell-1}\cdots a_1\,a_0\,a_L\cdots a_{\ell+1}.
+\]
+This is the unique oriented path of length $L$ that omits the arrow $a_\ell$.
+Let
+\[
+p_0:=a_L\cdots a_1,
+\qquad
+I_L^{\mathrm{wt}}:=\langle p_1,\dots,p_L\rangle\subseteq kQ,
+\qquad
+A_L^{\mathrm{wt}}:=kQ/I_L^{\mathrm{wt}}.
+\]
+\end{definition}
+
+\begin{remark}[The surviving open-chain path]
+Every generator $p_\ell$, $1\leq \ell\leq L$, passes through the closing arrow
+$a_0$. The only oriented path of length $L$ that does not pass through $a_0$ is
+\[
+p_0=a_L\cdots a_1.
+\]
+Under the weight-space dictionary this path acts as the end-to-end product
+$\mu(W)=W_L\cdots W_1$, so it must survive in the direct weight-space
+formalism.
+\end{remark}
+
+\begin{definition}[Representation varieties]
+Fix a dimension vector
+\[
+d=(d_0,\dots,d_L)
+\]
+and vector spaces
+\[
+V_\ell\cong k^{d_\ell},
+\qquad
+0\leq \ell\leq L.
+\]
+Set
+\[
+\Rep_d(Q)
+:=
+\prod_{\ell=1}^L \Hom(V_{\ell-1},V_\ell)\times \Hom(V_L,V_0),
+\]
+and let
+\[
+\Rep_d(Q,I_L^{\mathrm{wt}})
+:=
+\{\phi\in \Rep_d(Q)\mid p_\ell(\phi)=0 \text{ for all }1\leq \ell\leq L\}.
+\]
+We also write
+\[
+\Rep_d(A_L^{\mathrm{wt}})
+:=
+\Rep_d(Q,I_L^{\mathrm{wt}})
+\]
+for the affine representation variety of the bound-quiver algebra
+$A_L^{\mathrm{wt}}$ with dimension vector $d$.
+For a fixed map
+\[
+W_0\in \Hom(V_L,V_0),
+\]
+define the fixed-arrow slice
+\[
+\Rep_{d,W_0}(Q,I_L^{\mathrm{wt}})
+:=
+\{\phi\in \Rep_d(Q,I_L^{\mathrm{wt}})\mid \phi_0=W_0\}.
+\]
+\end{definition}
+
+\begin{proposition}[Bound-quiver interpretation]
+\label{prop:bound-quiver-interpretation}
+Let
+\[
+A_L^{\mathrm{wt}}:=kQ/I_L^{\mathrm{wt}}.
+\]
+The standard functor
+\[
+\Rep_k(Q,I_L^{\mathrm{wt}})
+\longrightarrow
+A_L^{\mathrm{wt}}\text{-}\mathrm{mod},
+\qquad
+(V_i,\phi_a)\longmapsto \bigoplus_{i=0}^L V_i,
+\]
+where each primitive idempotent $e_i$ acts as the projector onto $V_i$ and each
+arrow $a$ acts as $\phi_a$, is an equivalence of categories. For fixed spaces
+$V_i\cong k^{d_i}$ and a fixed map
+\[
+W_0\in \Hom(V_L,V_0),
+\]
+the affine variety
+\[
+\Rep_{d,W_0}(Q,I_L^{\mathrm{wt}})
+\]
+is exactly the variety of those objects of $\Rep_k(Q,I_L^{\mathrm{wt}})$ having
+dimension vector $d$ and whose $a_0$-map is $W_0$. Thus the fixed-arrow slice
+is a representation variety inside $\Rep_k(Q,I_L^{\mathrm{wt}})$, not a
+separate module category.
+\end{proposition}
+
+\begin{proof}
+The first statement is the standard equivalence between finite-dimensional
+representations of a bound quiver and finite-dimensional modules over its
+bound-quiver algebra. The second statement is simply the definition of the
+fiber cut out by the affine linear equation
+\[
+\phi_0=W_0
+\]
+inside the representation variety $\Rep_d(Q,I_L^{\mathrm{wt}})$.
+\end{proof}
+
+\begin{proposition}[The cyclic equations are the quiver relations]
+\label{prop:cyclic-equations-as-relations}
+Specialize to $k=\R$ and fix the closing map
+\[
+W_0=\Sigma_{XY}P_Q.
+\]
+For a weight tuple
+\[
+W=(W_1,\dots,W_L)\in \Omega,
+\]
+define
+\[
+\phi(W):=(W_0,W_1,\dots,W_L)\in \Rep_d(Q).
+\]
+Then for every $1\leq \ell\leq L$,
+\[
+p_\ell(\phi(W))
+=
+\phi_{\ell-1}\phi_{\ell-2}\cdots \phi_{\ell-L}
+=
+W_{<\ell}W_0W_{>\ell}.
+\]
+Consequently,
+\[
+W\in \Gamma_{d,S}
+\quad\Longleftrightarrow\quad
+\phi(W)\in \Rep_{d,W_0}(Q,I_L^{\mathrm{wt}}).
+\]
+\end{proposition}
+
+\begin{proof}
+By definition,
+\[
+p_\ell=a_{\ell-1}a_{\ell-2}\cdots a_{\ell-L}
+=
+a_{\ell-1}\cdots a_1\,a_0\,a_L\cdots a_{\ell+1}.
+\]
+Substituting
+\[
+\phi_0=W_0,
+\qquad
+\phi_t=W_t
+\quad
+(1\leq t\leq L),
+\]
+gives
+\[
+p_\ell(\phi(W))
+=
+W_{\ell-1}\cdots W_1\,W_0\,W_L\cdots W_{\ell+1}
+=
+W_{<\ell}W_0W_{>\ell}.
+\]
+The final equivalence is therefore exactly the definition of the cyclic locus.
+\end{proof}
+
+\begin{corollary}[The cyclic locus as a fixed-arrow representation variety]
+\label{cor:gamma-fixed-arrow-slice}
+The map
+\[
+W\longmapsto \phi(W)
+\]
+identifies the weight-space cyclic locus $\Gamma_{d,S}$ with the fixed-arrow
+slice $\Rep_{d,W_0}(Q,I_L^{\mathrm{wt}})$.
+\end{corollary}
+
+\subsection{The weight-space cyclic algebra}
+
+\begin{lemma}[Surviving and vanishing paths]
+\label{lem:surviving-and-vanishing-paths}
+In the quotient algebra $A_L^{\mathrm{wt}}$:
+\begin{enumerate}
+\item the path
+  \[
+  p_0=a_L\cdots a_1
+  \]
+  survives;
+\item every other oriented path of length $L$ is zero;
+\item every oriented path of length greater than $L$ is zero.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The generators of $I_L^{\mathrm{wt}}$ are exactly the length-$L$ paths
+\[
+p_1,\dots,p_L,
+\]
+namely the oriented length-$L$ paths that pass through the closing arrow $a_0$.
+The remaining length-$L$ path is
+\[
+p_0=a_L\cdots a_1,
+\]
+which does not pass through $a_0$, so its class is not killed by this monomial
+ideal.
+
+Any oriented path of length $L+1$ goes once around the entire cycle, hence
+contains a length-$L$ subpath passing through $a_0$, and therefore contains one
+of the generators $p_1,\dots,p_L$. It follows that every path of length $L+1$
+lies in $I_L^{\mathrm{wt}}$. Since $I_L^{\mathrm{wt}}$ is a two-sided ideal, the
+same is true for every path of length greater than $L+1$.
+\end{proof}
+
+\begin{corollary}[Projective lengths]
+\label{cor:projective-lengths}
+Let
+\[
+P(i):=A_L^{\mathrm{wt}}e_i
+\]
+be the indecomposable projective at vertex $i$. Then
+\[
+\ell(P(0))=L+1,
+\qquad
+\ell(P(i))=L
+\quad
+(1\leq i\leq L).
+\]
+Equivalently, the Kupisch series of $A_L^{\mathrm{wt}}$ is
+\[
+(L+1,L,\dots,L).
+\]
+\end{corollary}
+
+\begin{proof}
+Starting at vertex $0$, the maximal nonzero oriented path has length $L$,
+namely $p_0$, so $P(0)$ has composition length $L+1$.
+
+If $1\leq i\leq L$, then the unique length-$L$ path starting at $i$ is $p_i$,
+which vanishes in the quotient. Every shorter path survives, so the maximal
+nonzero path starting at $i$ has length $L-1$. Hence $P(i)$ has composition
+length $L$.
+\end{proof}
+
+\begin{theorem}[The weight-space algebra is Nakayama]
+\label{thm:weight-space-nakayama}
+The algebra
+\[
+A_L^{\mathrm{wt}}=kQ/I_L^{\mathrm{wt}}
+\]
+is a cyclic monomial Nakayama algebra with Kupisch series
+\[
+(L+1,L,\dots,L).
+\]
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:surviving-and-vanishing-paths}, all paths of length greater
+than $L$ vanish, so $A_L^{\mathrm{wt}}$ is finite-dimensional. The ideal
+$I_L^{\mathrm{wt}}$ is generated by paths, hence the algebra is monomial.
+
+The quiver $Q=C_{L+1}$ is connected and each vertex has exactly one incoming
+arrow and one outgoing arrow. Since
+\[
+(kQ)_{\geq L+1}\subseteq I_L^{\mathrm{wt}}\subseteq (kQ)_{\geq 2},
+\]
+the ideal is admissible, and the standard bound-quiver criterion shows that the
+quotient is a cyclic Nakayama algebra. The Kupisch series was computed in
+Corollary~\ref{cor:projective-lengths}.
+\end{proof}
+
+\subsection{Indecomposable interval modules}
+
+\begin{definition}[Oriented intervals and admissible indices]
+For vertices $i,j\in\{0,\dots,L\}$, let
+\[
+[i\to j]_0
+\]
+denote the oriented interval obtained by starting at $i$, following the
+orientation of the cycle, and stopping at $j$, with no repeated vertices. Let
+\[
+[i\to j]_1
+\]
+be the set of arrows occurring in this path, and let
+\[
+\delta(i,j):=\#[i\to j]_1
+\]
+be its oriented length. The admissible index set is
+\[
+\mathcal I_L^{\mathrm{wt}}
+:=
+\{(i,j)\mid 0\leq i\leq j\leq L\}
+\cup
+\{(i,j)\mid 1\leq i\leq L,\ 0\leq j\leq i-2\}.
+\]
+\end{definition}
+
+\begin{definition}[Interval modules]
+For a pair $(i,j)$ with $0\leq \delta(i,j)\leq L$, define the interval
+representation $M(i,j)$ by
+\[
+M(i,j)_t
+=
+\begin{cases}
+k, & t\in [i\to j]_0,\\
+0, & t\notin [i\to j]_0,
+\end{cases}
+\]
+and for each arrow $a_s:s-1\to s$,
+\[
+M(i,j)_{a_s}
+=
+\begin{cases}
+\mathrm{id}_k, & a_s\in [i\to j]_1,\\
+0, & a_s\notin [i\to j]_1.
+\end{cases}
+\]
+\end{definition}
+
+\begin{proposition}[Admissibility criterion]
+\label{prop:interval-admissibility}
+The interval representation $M(i,j)$ factors through the quotient algebra
+$A_L^{\mathrm{wt}}$ if and only if
+\[
+(i,j)\in \mathcal I_L^{\mathrm{wt}}.
+\]
+\end{proposition}
+
+\begin{proof}
+If
+\[
+0\leq i\leq j\leq L,
+\]
+then the support interval lies on the open chain
+\[
+0\to 1\to \cdots \to L,
+\]
+so the closing arrow $a_0$ acts by zero. Every relation path $p_\ell$ passes
+through $a_0$, hence acts by zero as well.
+
+If
+\[
+1\leq i\leq L,
+\qquad
+0\leq j\leq i-2,
+\]
+then $[i\to j]$ is a wrapped interval whose length is
+\[
+\delta(i,j)=L+j-i+1\leq L-1.
+\]
+No relation path $p_\ell$ of length $L$ can be contained in its arrow support,
+so again every $p_\ell$ acts by zero.
+
+Finally, if $1\leq i\leq L$, the forbidden full wrapped interval $[i\to i-1]$
+has arrow support exactly equal to the relation path $p_i$. Hence $p_i$ acts as
+the identity on the one-dimensional space at vertex $i$, so $M(i,i-1)$ does
+not factor through $A_L^{\mathrm{wt}}$.
+\end{proof}
+
+\begin{proposition}[Projective-quotient realization]
+\label{prop:projective-quotient-intervals}
+For every admissible pair
+\[
+(i,j)\in \mathcal I_L^{\mathrm{wt}},
+\]
+there is an isomorphism
+\[
+M(i,j)\cong P(i)/\rad^{\delta(i,j)+1}P(i).
+\]
+\end{proposition}
+
+\begin{proof}
+By Theorem~\ref{thm:weight-space-nakayama}, each indecomposable projective
+$P(i)$ is uniserial, with composition length
+\[
+c_i=
+\begin{cases}
+L+1, & i=0,\\
+L, & 1\leq i\leq L.
+\end{cases}
+\]
+The admissibility condition is equivalent to
+\[
+\delta(i,j)\leq c_i-1,
+\]
+so there is a unique indecomposable quotient of $P(i)$ of length
+$\delta(i,j)+1$. Its support is precisely the first $\delta(i,j)+1$ simples
+encountered along the oriented cycle starting at $i$, which is exactly the
+interval module $M(i,j)$.
+\end{proof}
+
+\begin{theorem}[Indecomposables of the cyclic Nakayama algebra]
+\label{thm:indecomposable-intervals}
+The finite-dimensional indecomposable $A_L^{\mathrm{wt}}$-modules are precisely
+the interval modules
+\[
+M(i,j)
+\qquad
+((i,j)\in \mathcal I_L^{\mathrm{wt}}),
+\]
+and each indecomposable occurs uniquely in this form.
+\end{theorem}
+
+\begin{proof}
+Since $A_L^{\mathrm{wt}}$ is Nakayama, every indecomposable module is uniserial
+and is a quotient of a unique indecomposable projective $P(i)$. The admissible
+quotients of $P(i)$ are exactly the modules
+\[
+P(i)/\rad^mP(i)
+\qquad
+1\leq m\leq \ell(P(i)),
+\]
+and by Proposition~\ref{prop:projective-quotient-intervals} these are exactly
+the interval modules $M(i,j)$ with
+\[
+(i,j)\in \mathcal I_L^{\mathrm{wt}}.
+\]
+Uniqueness follows because the top simple determines the start vertex $i$, and
+the composition length determines the endpoint $j$ along the oriented interval
+starting at $i$.
+\end{proof}
+
+\subsection{Free-arrow and fixed-arrow orbit classification}
+
+\begin{definition}[Multiplicity-pattern set]
+For an admissible pair $(i,j)\in \mathcal I_L^{\mathrm{wt}}$ and a vertex
+$k\in\{0,\dots,L\}$, define
+\[
+\mathbf 1_{[i\to j]}(k)
+:=
+\begin{cases}
+1, & k\in [i\to j]_0,\\
+0, & k\notin [i\to j]_0.
+\end{cases}
+\]
+Then set
+\[
+\mathcal M_d^+(A_L^{\mathrm{wt}})
+:=
+\left\{
+(m(i,j))_{(i,j)\in \mathcal I_L^{\mathrm{wt}}}
+\in
+\mathbb Z_{\geq 0}^{\mathcal I_L^{\mathrm{wt}}}
+\;\middle|\;
+d_k=
+\sum_{(i,j)\in \mathcal I_L^{\mathrm{wt}}}
+m(i,j)\,\mathbf 1_{[i\to j]}(k)
+\text{ for all }k
+\right\}.
+\]
+\end{definition}
+
+\begin{proposition}[Krull--Schmidt decomposition]
+\label{prop:krull-schmidt-patterns}
+Every finite-dimensional $A_L^{\mathrm{wt}}$-module of dimension vector $d$
+decomposes uniquely as
+\[
+M
+\cong
+\bigoplus_{(i,j)\in \mathcal I_L^{\mathrm{wt}}}
+M(i,j)^{\oplus m(i,j)}
+\]
+for a unique multiplicity pattern
+\[
+m=(m(i,j))\in \mathcal M_d^+(A_L^{\mathrm{wt}}).
+\]
+\end{proposition}
+
+\begin{proof}
+The algebra $A_L^{\mathrm{wt}}$ is finite-dimensional, hence artinian, so its
+module category is Krull--Schmidt. By
+Theorem~\ref{thm:indecomposable-intervals}, the indecomposable summands are
+exactly the admissible interval modules $M(i,j)$. The condition that the direct
+sum have dimension vector $d$ is precisely the displayed formula defining
+$\mathcal M_d^+(A_L^{\mathrm{wt}})$.
+\end{proof}
+
+\begin{proposition}[Ambient free-arrow orbit classification]
+\label{prop:ambient-free-arrow-orbits}
+Let
+\[
+G_d:=\prod_{\ell=0}^L \GL(d_\ell,k)
+\]
+act on $\Rep_d(Q)$ by base change,
+\[
+(g\cdot \phi)_\ell:=g_\ell\,\phi_\ell\,g_{\ell-1}^{-1}
+\qquad
+(0\leq \ell\leq L).
+\]
+Then the assignment sending a representation to the multiplicities of its
+indecomposable interval summands induces a canonical bijection
+\[
+G_d\backslash \Rep_d(A_L^{\mathrm{wt}})
+\xrightarrow{\ \sim\ }
+\mathcal M_d^+(A_L^{\mathrm{wt}}).
+\]
+\end{proposition}
+
+\begin{proof}
+Two points of $\Rep_d(A_L^{\mathrm{wt}})$ lie in the same $G_d$-orbit if and
+only if they are isomorphic as quiver representations, equivalently as
+$A_L^{\mathrm{wt}}$-modules. By Proposition~\ref{prop:krull-schmidt-patterns},
+isomorphism classes of modules of dimension vector $d$ are uniquely determined
+by their multiplicity patterns in
+$\mathcal M_d^+(A_L^{\mathrm{wt}})$.
+\end{proof}
+
+\begin{remark}[Free arrow versus fixed arrow]
+The indecomposable $A_L^{\mathrm{wt}}$-modules do not change when the closing
+arrow is specialized. The ambient free-arrow problem and the fixed-arrow DLN
+slice use the same indecomposable interval modules from
+Theorem~\ref{thm:indecomposable-intervals}. Fixing
+\[
+a_0=W_0
+\]
+does not create a new indecomposable classification; it only restricts which
+multiplicity patterns occur in the slice. That specialization is detected by
+the scalar functional $\nu_0$ introduced below.
+\end{remark}
+
+\begin{definition}[The module attached to a cyclic point]
+For
+\[
+W\in \Gamma_{d,S},
+\]
+let
+\[
+M(W)
+\]
+denote the $A_L^{\mathrm{wt}}$-module corresponding to $\phi(W)$ under
+Corollary~\ref{cor:gamma-fixed-arrow-slice}. Write its Krull--Schmidt
+decomposition as
+\[
+M(W)
+\cong
+\bigoplus_{(i,j)\in \mathcal I_L^{\mathrm{wt}}}
+M(i,j)^{\oplus m_W(i,j)}.
+\]
+\end{definition}
+
+\begin{proposition}[Orbit classification in the fixed-arrow slice]
+\label{prop:slice-orbits-iso}
+For
+\[
+W,W'\in \Gamma_{d,S},
+\]
+one has
+\[
+W'\in G_d^{W_0}\cdot W
+\quad\Longleftrightarrow\quad
+M(W')\cong M(W)
+\]
+as $A_L^{\mathrm{wt}}$-modules. Consequently, the $G_d^{W_0}$-orbits in
+$\Gamma_{d,S}$ are exactly the isomorphism classes of $A_L^{\mathrm{wt}}$-modules
+that admit a representative of dimension vector $d$ with $a_0=W_0$.
+\end{proposition}
+
+\begin{proof}
+If $W'\in G_d^{W_0}\cdot W$, then
+\[
+\phi(W')=g\cdot \phi(W)
+\]
+for some $g=(g_0,\dots,g_L)\in G_d^{W_0}$, so $g$ is an isomorphism of quiver
+representations and hence of the corresponding $A_L^{\mathrm{wt}}$-modules.
+
+Conversely, assume
+\[
+M(W')\cong M(W).
+\]
+Then the corresponding quiver representations are isomorphic, so there exists
+\[
+g=(g_0,\dots,g_L)\in G_d
+\]
+with
+\[
+\phi(W')_\ell=g_\ell\,\phi(W)_\ell\,g_{\ell-1}^{-1}
+\qquad
+(0\leq \ell\leq L).
+\]
+At $\ell=0$ both representations have closing arrow $W_0$, hence
+\[
+W_0=\phi(W')_0=g_0\phi(W)_0g_L^{-1}=g_0W_0g_L^{-1}.
+\]
+Thus $g\in G_d^{W_0}$ and $W'\in G_d^{W_0}\cdot W$.
+\end{proof}
+
+\begin{definition}[Closing-arrow rank functional]
+For a multiplicity pattern
+\[
+m=(m(i,j))_{(i,j)\in \mathcal I_L^{\mathrm{wt}}}\in \mathcal M_d^+(A_L^{\mathrm{wt}}),
+\]
+we denote the specialization rank functional by $\nu_0(m)$, to avoid a clash
+with the DLN rank parameter $r$, and define
+\[
+\nu_0(m)
+:=
+\sum_{\substack{(i,j)\in \mathcal I_L^{\mathrm{wt}}\\ a_0\in [i\to j]_1}} m(i,j)
+=
+\sum_{\substack{1\leq i\leq L\\0\leq j\leq i-2}} m(i,j).
+\]
+\end{definition}
+
+\begin{remark}
+The scalar $\nu_0(m)$ is the analogue, for the present weight-space setup, of
+the specialization functional that detects when an ambient free-arrow orbit
+meets the fixed-arrow slice.
+\end{remark}
+
+\begin{definition}[Realized multiplicity patterns and strata]
+Define
+\[
+\mathcal M_{d,S}^{\mathrm{real}}(A_L^{\mathrm{wt}})
+:=
+\{m_W\mid W\in \Gamma_{d,S}\}
+\subseteq
+\mathcal M_d^+(A_L^{\mathrm{wt}}).
+\]
+For
+\[
+m\in \mathcal M_d^+(A_L^{\mathrm{wt}}),
+\]
+define
+\[
+\Gamma_{d,S}[m]
+:=
+\{W\in \Gamma_{d,S}\mid m_W=m\},
+\qquad
+\Gamma_{d,S}^r[m]
+:=
+\Gamma_{d,S}[m]\cap \Gamma_{d,S}^r.
+\]
+\end{definition}
+
+\begin{proposition}[Explicit characterization of realized multiplicity patterns]
+\label{prop:realized-patterns-explicit}
+For a multiplicity pattern
+\[
+m=(m(i,j))_{(i,j)\in \mathcal I_L^{\mathrm{wt}}}\in \mathcal M_d^+(A_L^{\mathrm{wt}}),
+\]
+the scalar $\nu_0(m)$ is the rank of the closing-arrow map on the corresponding
+ambient orbit. Consequently,
+\[
+\mathcal M_{d,S}^{\mathrm{real}}(A_L^{\mathrm{wt}})
+=
+\{m\in \mathcal M_d^+(A_L^{\mathrm{wt}})\mid \nu_0(m)=\rk(W_0)\}.
+\]
+Equivalently, in the DLN setting,
+\[
+\mathcal M_{d,S}^{\mathrm{real}}(A_L^{\mathrm{wt}})
+=
+\{m\in \mathcal M_d^+(A_L^{\mathrm{wt}})\mid \nu_0(m)=d_L-r\}.
+\]
+\end{proposition}
+
+\begin{proof}
+On an indecomposable interval module $M(i,j)$, the arrow $a_0:L\to 0$ acts with
+rank $1$ if and only if the interval $[i\to j]$ contains the arrow $a_0$,
+equivalently if and only if
+\[
+1\leq i\leq L,
+\qquad
+0\leq j\leq i-2.
+\]
+Otherwise $a_0$ acts by $0$. Hence on the direct sum determined by $m$, the
+total rank of the $a_0$-map is exactly $\nu_0(m)$.
+
+If $m=m_W$ is realized by a point $W\in \Gamma_{d,S}$, then the $a_0$-map is
+exactly $W_0$, so necessarily
+\[
+\nu_0(m)=\rk(W_0).
+\]
+
+Conversely, let
+\[
+m\in \mathcal M_d^+(A_L^{\mathrm{wt}})
+\]
+satisfy
+\[
+\nu_0(m)=\rk(W_0),
+\]
+and let
+\[
+M_m:=\bigoplus_{(i,j)\in \mathcal I_L^{\mathrm{wt}}} M(i,j)^{\oplus m(i,j)}.
+\]
+The action of $a_0$ on $M_m$ is a linear map $V_L\to V_0$ of rank $\nu_0(m)$.
+Since two matrices are equivalent under $\GL(V_0)\times \GL(V_L)$ if and only
+if they have the same rank, there exist endpoint changes of basis sending the
+$a_0$-map of $M_m$ to the prescribed matrix $W_0$. After transporting the
+remaining arrow maps by the same base changes, one obtains a representation in
+\[
+\Rep_{d,W_0}(Q,I_L^{\mathrm{wt}}),
+\]
+hence a point of $\Gamma_{d,S}$ with multiplicity pattern $m$.
+
+The last displayed description follows from
+\[
+\rk(W_0)=\rk(\Sigma_{XY}P_Q)=d_L-r
+\]
+under the standing assumption that $\Sigma_{XY}$ has full rank $d_L$.
+\end{proof}
+
+\begin{theorem}[Second conjecture: multiplicity-pattern stratification of the fixed-arrow cyclic locus]
+\label{thm:second-conjecture}
+The assignment
+\[
+W\longmapsto m_W
+\]
+induces a bijection
+\[
+G_d^{W_0}\backslash \Gamma_{d,S}
+\xrightarrow{\ \sim\ }
+\{m\in \mathcal M_d^+(A_L^{\mathrm{wt}})\mid \nu_0(m)=\rk(W_0)\}.
+\]
+Equivalently,
+\[
+\Gamma_{d,S}
+=
+\bigsqcup_{\substack{m\in \mathcal M_d^+(A_L^{\mathrm{wt}})\\ \nu_0(m)=\rk(W_0)}}
+\Gamma_{d,S}[m],
+\]
+and each nonempty stratum $\Gamma_{d,S}[m]$ is a single $G_d^{W_0}$-orbit. Over
+an algebraically closed field these orbits are Zariski locally closed; over
+$k=\R$, they are semialgebraic and locally closed in the Euclidean topology.
+\end{theorem}
+
+\begin{proof}
+By Proposition~\ref{prop:slice-orbits-iso}, two points of $\Gamma_{d,S}$ lie in
+the same $G_d^{W_0}$-orbit if and only if they define isomorphic
+$A_L^{\mathrm{wt}}$-modules. By Krull--Schmidt, this happens if and only if they
+have the same multiplicity pattern. Proposition~\ref{prop:realized-patterns-explicit}
+identifies exactly which multiplicity patterns occur in the fixed-arrow slice,
+namely those satisfying
+\[
+\nu_0(m)=\rk(W_0).
+\]
+This proves the bijection and the orbit decomposition.
+\end{proof}
+
+\begin{remark}[Full-rank case $r=d_L$]
+If
+\[
+r=d_L,
+\]
+then
+\[
+W_0=\Sigma_{XY}P_Q=0,
+\]
+so
+\[
+\nu_0(m)=0.
+\]
+Hence no wrapped interval can occur in a realized multiplicity pattern. The only
+realized indecomposables are therefore
+\[
+M(i,j)
+\qquad
+(0\leq i\leq j\leq L),
+\]
+namely the ordinary interval modules of the equioriented chain
+\[
+0\longrightarrow 1\longrightarrow \cdots \longrightarrow L.
+\]
+Equivalently,
+\[
+\Rep_{d,0}(Q,I_L^{\mathrm{wt}})
+\cong
+\Rep_d(0\to 1\to \cdots \to L),
+\]
+because every relation in $I_L^{\mathrm{wt}}$ contains the arrow $a_0$.
+\end{remark}
+
+\begin{example}[Depth $L=3$]
+For
+\[
+L=3,
+\]
+the admissible index set is
+\[
+\mathcal I_3^{\mathrm{wt}}
+=
+\{(0,0),(0,1),(0,2),(0,3),(1,1),(1,2),(1,3),(2,2),(2,3),(2,0),(3,3),(3,0),(3,1)\}.
+\]
+Hence the indecomposable $A_3^{\mathrm{wt}}$-modules are precisely
+\[
+\begin{aligned}
+&M(0,0),\ M(0,1),\ M(0,2),\ M(0,3),\\
+&M(1,1),\ M(1,2),\ M(1,3),\\
+&M(2,2),\ M(2,3),\ M(2,0),\\
+&M(3,3),\ M(3,0),\ M(3,1).
+\end{aligned}
+\]
+Explicitly, their supports are
+\[
+\begin{aligned}
+&M(0,0)=S_0,\quad M(0,1):0\to 1,\quad M(0,2):0\to 1\to 2,\quad M(0,3):0\to 1\to 2\to 3,\\
+&M(1,1)=S_1,\quad M(1,2):1\to 2,\quad M(1,3):1\to 2\to 3,\\
+&M(2,2)=S_2,\quad M(2,3):2\to 3,\quad M(2,0):2\to 3\to 0,\\
+&M(3,3)=S_3,\quad M(3,0):3\to 0,\quad M(3,1):3\to 0\to 1.
+\end{aligned}
+\]
+The forbidden full wrapped intervals
+\[
+M(1,0),\qquad M(2,1),\qquad M(3,2)
+\]
+do not factor through $A_3^{\mathrm{wt}}$, because they realize the relation
+paths $p_1,p_2,p_3$, respectively.
+The indecomposables containing the closing arrow $a_0$ are exactly
+\[
+M(2,0),\qquad M(3,0),\qquad M(3,1),
+\]
+so for a multiplicity pattern $m$ one has
+\[
+\nu_0(m)=m(2,0)+m(3,0)+m(3,1).
+\]
+Therefore, in the DLN fixed-arrow slice,
+\[
+m\in \mathcal M_{d,S}^{\mathrm{real}}(A_3^{\mathrm{wt}})
+\quad\Longleftrightarrow\quad
+m(2,0)+m(3,0)+m(3,1)=\rk(W_0)=d_3-r.
+\]
+In particular, if
+\[
+r=d_3,
+\]
+then only the ten chain intervals
+\[
+M(0,0),M(0,1),M(0,2),M(0,3),M(1,1),M(1,2),M(1,3),M(2,2),M(2,3),M(3,3)
+\]
+are realized.
+\end{example}
 
 \section{Application: Stratification of the Critical Loci}
 
-Combining the orbit correspondence of Theorem~\ref{thm:orbit-bijection} with a
-classification of $G_d^{W_0}$-orbits in $\Gamma_{d,S}^r$ will produce the
-desired stratification of the critical locus $\mathcal C_{d,S}^r$.
+\begin{corollary}[Rank-$r$ strata and transfer to the critical locus]
+\label{cor:critical-locus-multiplicity-strata}
+Define
+\[
+\mathcal M_{d,S}^{\mathrm{real},r}(A_L^{\mathrm{wt}})
+:=
+\{m\in \mathcal M_d^+(A_L^{\mathrm{wt}})\mid \nu_0(m)=d_L-r,\ \Gamma_{d,S}^r[m]\neq\varnothing\}.
+\]
+Then
+\[
+\Gamma_{d,S}^r
+=
+\bigsqcup_{m\in \mathcal M_{d,S}^{\mathrm{real},r}(A_L^{\mathrm{wt}})}
+\Gamma_{d,S}^r[m]
+\]
+is a decomposition into $G_d^{W_0}$-orbits. By
+Theorem~\ref{thm:orbit-bijection}, this transfers to
+\[
+\mathcal C_{d,S}^r
+=
+\bigsqcup_{m\in \mathcal M_{d,S}^{\mathrm{real},r}(A_L^{\mathrm{wt}})}
+\mathcal C_{d,S}^r[m],
+\qquad
+\mathcal C_{d,S}^r[m]:=\mathcal C_{d,S}^r\cap \Gamma_{d,S}^r[m],
+\]
+and each nonempty $\mathcal C_{d,S}^r[m]$ is a single $H_S$-orbit.
+\end{corollary}
+
+\begin{proof}
+Theorem~\ref{thm:second-conjecture} shows that each nonempty
+\[
+\Gamma_{d,S}[m]
+\]
+is a single $G_d^{W_0}$-orbit. Intersecting with the rank-$r$ locus simply
+discards the patterns that do not occur there, which yields the displayed
+decomposition of $\Gamma_{d,S}^r$.
+
+Theorem~\ref{thm:orbit-bijection} identifies each $G_d^{W_0}$-orbit in
+$\Gamma_{d,S}^r$ with a unique $H_S$-orbit in the critical locus. Applying this
+orbit correspondence to the decomposition above yields the claimed
+stratification of $\mathcal C_{d,S}^r$.
+\end{proof}
 
 \section{Discussion and Future Work}
 
-The direct weight-space formalism developed here is intended to make the
-critical-locus geometry more visible from the original parameters of the deep
-linear network. The next steps are to classify the cyclic orbits themselves and
-to connect the resulting critical strata with the saddle-influence questions
-driving the larger project.
+The first direct weight-space theorem identifies the orbit spaces of the cyclic
+locus and the critical locus. The second conjecture, proved above, identifies
+the orbit labels on the cyclic side: they are the realized multiplicity
+patterns of the admissible interval modules for the cyclic Nakayama algebra
+$A_L^{\mathrm{wt}}$.
+
+What remains is the finer geometry inside this stratification: closure order,
+codimension, Ext-groups, and intrinsic criteria describing which multiplicity
+patterns survive additional rank conditions in the fixed-arrow slice. These are
+the natural next steps for understanding how the critical strata sit inside the
+ambient weight space and how they should interact with the saddle-combinatorics
+questions motivating the project.
 
 \end{document}

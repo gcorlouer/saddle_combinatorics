@@ -45,6 +45,11 @@ The main deliverable is the correspondence:
   locus $\Gamma_{d,S}$.
 \end{itemize}
 
+Throughout the representation-theoretic part of this file we work over a
+general field $k$. In the final section, when we return to the deep linear
+network, we specialize to $k=\R$ and to the data-dependent closing arrow
+$W_0=\Sigma_{XY}P_Q$.
+
 \section{Representation spaces}
 
 \begin{definition}[Representation of the cyclic quiver]
@@ -68,6 +73,8 @@ We write a point as
 \[
 \phi=(\phi_0,\phi_1,\dots,\phi_L).
 \]
+\noindent
+This is the ambient representation space $\Rep_d(C_{L+1})$ fixed in Task~0.
 \end{definition}
 
 \begin{definition}[Representations with weight-space relations]
@@ -153,10 +160,26 @@ The maps $F$ and $G$ are mutually inverse bijections:
 \]
 \end{corollary}
 
+\begin{proof}
+Starting from $\phi\in \Rep_d(Q,I_L^{\mathrm{wt}})$, the module $F(\phi)$ is by
+construction the unique $A_L^{\mathrm{wt}}$-module with arrow actions
+$\phi_0,\dots,\phi_L$. Applying $G$ therefore recovers the same quiver
+representation:
+\[
+G(F(\phi))=\phi.
+\]
+Conversely, if $M\in \Rep_d(A_L^{\mathrm{wt}})$, then $G(M)$ records the actions
+of the arrow classes in $A_L^{\mathrm{wt}}$, and $F$ reconstructs the unique
+module structure with exactly those arrow actions. Hence
+\[
+F(G(M))=M.
+\]
+\end{proof}
+
 \section{Specializing the closing arrow}
 
 \begin{definition}[Fixed-arrow representation slice]
-Fix the data-dependent closing map
+Now specialize to $k=\R$ and fix the data-dependent closing map
 \[
 W_0=\Sigma_{XY}P_Q\in \Hom(V_L,V_0).
 \]
@@ -168,9 +191,15 @@ Define
 \]
 and
 \[
+\Rep_{d,W_0}(Q,I_L^{\mathrm{wt}})
+:=
+\Rep_{d,W_0}(Q)\cap \Rep_d(Q,I_L^{\mathrm{wt}}),
+\]
+and
+\[
 \Gamma_{d,S}^{\mathrm{quiv}}
 :=
-\Rep_{d,W_0}(Q)\cap \Rep_d(Q,I_L^{\mathrm{wt}}).
+\Rep_{d,W_0}(Q,I_L^{\mathrm{wt}}).
 \]
 \end{definition}
 
@@ -219,14 +248,18 @@ $A_L^{\mathrm{wt}}$ inside a fixed-arrow slice.
 
 \section{Deliverables}
 
-This task is complete once the file contains:
+All Task 1 deliverables have been achieved in this file:
 
 \begin{itemize}
-\item the bijection
+\item achieved: the bijection
   $\Rep_d(Q,I_L^{\mathrm{wt}})\cong \Rep_d(A_L^{\mathrm{wt}})$;
-\item the fixed-closing-arrow slice $\Gamma_{d,S}^{\mathrm{quiv}}$;
-\item the identification
+\item achieved: the fixed-closing-arrow slice
+  $\Rep_{d,W_0}(Q,I_L^{\mathrm{wt}})=\Gamma_{d,S}^{\mathrm{quiv}}$ is defined;
+\item achieved: the identification
   $\Gamma_{d,S}^{\mathrm{quiv}}\cong \Gamma_{d,S}$.
 \end{itemize}
+
+Therefore Task 1 is complete and the module-theoretic dictionary needed for the
+Nakayama analysis is now in place.
 
 \end{document}

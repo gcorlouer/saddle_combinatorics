@@ -1,0 +1,315 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\R}{\mathbb{R}}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Example Checks for the Indecomposables}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Goal}
+
+This file checks the lowest nontrivial cyclic example used in the second
+conjecture block:
+
+\begin{itemize}
+\item depth $L=3$, so the quiver is the oriented $4$-cycle;
+\item the ambient free-arrow algebra $A_3^{\mathrm{wt}}$;
+\item the fixed-arrow specialization relevant for a full-rank DLN, i.e.
+  $r=d_L$ and therefore $W_0=0$.
+\end{itemize}
+
+The point of the check is to verify concretely that:
+
+\begin{itemize}
+\item the free-arrow indecomposables are exactly the admissible interval modules
+  predicted by the general theory;
+\item the fixed-arrow constraint is exactly the scalar condition
+  $\rk(m)=\rk(W_0)$;
+\item in the full-rank case $W_0=0$, the wrapped indecomposables disappear and
+  one recovers the open-chain type-$A$ family.
+\end{itemize}
+
+\section{The depth-$3$ weight-space algebra}
+
+For $L=3$, the cyclic quiver is
+\[
+0 \xrightarrow{a_1} 1 \xrightarrow{a_2} 2 \xrightarrow{a_3} 3 \xrightarrow{a_0} 0.
+\]
+The weight-space ideal is
+\[
+I_3^{\mathrm{wt}}
+=
+\langle p_1,p_2,p_3\rangle,
+\]
+with
+\[
+p_1=a_0a_3a_2,
+\qquad
+p_2=a_1a_0a_3,
+\qquad
+p_3=a_2a_1a_0.
+\]
+The surviving open-chain path is
+\[
+p_0=a_3a_2a_1.
+\]
+Thus
+\[
+A_3^{\mathrm{wt}}=kC_4/I_3^{\mathrm{wt}}.
+\]
+
+\section{Free-arrow indecomposables}
+
+\begin{proposition}[Admissible pairs for $L=3$]
+For $L=3$, the admissible index set is
+\[
+\mathcal I_3^{\mathrm{wt}}
+=
+\{(i,j)\mid 0\le i\le j\le 3\}
+\cup
+\{(i,j)\mid 1\le i\le 3,\ 0\le j\le i-2\}.
+\]
+Explicitly, this is the set of $13$ pairs
+\[
+\begin{aligned}
+&(0,0),(0,1),(0,2),(0,3),\\
+&(1,1),(1,2),(1,3),\\
+&(2,2),(2,3),(2,0),\\
+&(3,3),(3,0),(3,1).
+\end{aligned}
+\]
+The forbidden wrapped endpoints are
+\[
+(1,0),\qquad (2,1),\qquad (3,2).
+\]
+\end{proposition}
+
+\begin{proof}
+The general formula gives the non-wrapping family
+\[
+0\le i\le j\le 3,
+\]
+which contributes $10$ pairs, and the wrapped family
+\[
+1\le i\le 3,\qquad 0\le j\le i-2,
+\]
+which contributes the three additional pairs
+\[
+(2,0),\qquad (3,0),\qquad (3,1).
+\]
+The forbidden pairs are exactly the excluded full wrapped intervals
+\[
+(i,i-1),
+\qquad
+1\le i\le 3.
+\]
+\end{proof}
+
+\begin{corollary}[Free-arrow indecomposable list]
+The indecomposable $A_3^{\mathrm{wt}}$-modules are exactly the interval modules
+\[
+M(i,j)
+\qquad
+((i,j)\in \mathcal I_3^{\mathrm{wt}}),
+\]
+namely:
+
+\begin{itemize}
+\item the $10$ non-wrapping modules
+  \[
+  M(0,0),M(0,1),M(0,2),M(0,3),
+  \]
+  \[
+  M(1,1),M(1,2),M(1,3),
+  \]
+  \[
+  M(2,2),M(2,3),
+  \]
+  \[
+  M(3,3);
+  \]
+\item the $3$ wrapped modules
+  \[
+  M(2,0),\qquad M(3,0),\qquad M(3,1).
+  \]
+\end{itemize}
+\end{corollary}
+
+\section{The closing-arrow rank formula for $L=3$}
+
+\begin{definition}[Closing-arrow activity for $L=3$]
+Define
+\[
+\epsilon(i,j)=1
+\]
+if the closing arrow $a_0:3\to 0$ acts nontrivially on $M(i,j)$, and
+\[
+\epsilon(i,j)=0
+\]
+otherwise.
+\end{definition}
+
+\begin{proposition}[Explicit activity table]
+For $L=3$, one has
+\[
+\epsilon(i,j)=1
+\quad\Longleftrightarrow\quad
+(i,j)\in \{(2,0),(3,0),(3,1)\}.
+\]
+Equivalently, the only closing-arrow-active indecomposables are the three
+wrapped modules
+\[
+M(2,0),\qquad M(3,0),\qquad M(3,1).
+\]
+\end{proposition}
+
+\begin{proof}
+The arrow $a_0:3\to 0$ appears exactly in the wrapped intervals that pass
+through the edge $3\to 0$. For $L=3$, these are precisely
+\[
+[2\to 0],\qquad [3\to 0],\qquad [3\to 1].
+\]
+No non-wrapping interval uses the closing arrow.
+\end{proof}
+
+\begin{corollary}[Rank formula for multiplicity patterns when $L=3$]
+If
+\[
+m=(m(i,j))\in \mathcal M_d^+(A_3^{\mathrm{wt}}),
+\]
+then
+\[
+\rk(m)=m(2,0)+m(3,0)+m(3,1).
+\]
+\end{corollary}
+
+\begin{proof}
+This is the general formula
+\[
+\rk(m)=\sum \epsilon(i,j)\,m(i,j)
+\]
+with the explicit activity table above.
+\end{proof}
+
+\section{Full-rank DLN case: fixed arrow $W_0=0$}
+
+\begin{proposition}[Full-rank specialization]
+Assume $r=d_L$. Then
+\[
+P_Q=0,
+\qquad
+W_0=\Sigma_{XY}P_Q=0.
+\]
+Hence the fixed-arrow admissibility condition becomes
+\[
+\rk(m)=0.
+\]
+\end{proposition}
+
+\begin{proof}
+If $r=d_L$, then the complementary projector $P_Q$ is zero, so the closing map
+vanishes. The fixed-arrow classification therefore requires
+\[
+\rk(m)=\rk(W_0)=0.
+\]
+\end{proof}
+
+\begin{corollary}[Fixed-arrow indecomposables for $L=3$ and $r=d_L$]
+In the full-rank DLN case, the only indecomposables that occur in the fixed-arrow
+slice are the $10$ non-wrapping modules
+\[
+M(0,0),M(0,1),M(0,2),M(0,3),
+\]
+\[
+M(1,1),M(1,2),M(1,3),
+\]
+\[
+M(2,2),M(2,3),
+\]
+\[
+M(3,3).
+\]
+The three wrapped modules
+\[
+M(2,0),\qquad M(3,0),\qquad M(3,1)
+\]
+do not appear in the fixed-arrow slice.
+\end{corollary}
+
+\begin{proof}
+By the rank formula,
+\[
+\rk(m)=m(2,0)+m(3,0)+m(3,1).
+\]
+The condition $\rk(m)=0$ therefore forces
+\[
+m(2,0)=m(3,0)=m(3,1)=0.
+\]
+Hence every fixed-arrow module is a direct sum of the non-wrapping
+indecomposables only.
+\end{proof}
+
+\begin{remark}[Consistency with the DLN picture]
+When $r=d_L$, the cyclic equations become
+\[
+W_{<\ell}W_0W_{>\ell}=0
+\]
+with
+\[
+W_0=0,
+\]
+so they are automatic and
+\[
+\Gamma_{d,S}=\Omega.
+\]
+On the representation-theoretic side, setting the closing arrow to zero removes
+all indecomposables on which $a_0$ acts nontrivially. The remaining
+indecomposables are exactly the interval modules of the open chain
+\[
+0\to 1\to 2\to 3.
+\]
+Thus the fixed-arrow classification agrees with the expected full-rank limit.
+\end{remark}
+
+\section{Deliverables}
+
+All intended checks pass in this example:
+
+\begin{itemize}
+\item checked: for $L=3$, the free-arrow algebra has exactly $13$ indecomposable
+  interval modules;
+\item checked: the closing-arrow-active family is exactly
+  \[
+  \{M(2,0),M(3,0),M(3,1)\};
+  \]
+\item checked: for $L=3$, the scalar rank formula is
+  \[
+  \rk(m)=m(2,0)+m(3,0)+m(3,1);
+  \]
+\item checked: in the full-rank DLN case $r=d_L$, the fixed-arrow condition
+  $\rk(m)=0$ removes all wrapped indecomposables and leaves exactly the
+  type-$A_4$ family.
+\end{itemize}
+
+Therefore the depth-$3$ sanity check agrees with the general formulas used in
+the second-conjecture block.
+
+\end{document}

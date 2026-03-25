@@ -53,16 +53,26 @@ The expected answer is a hybrid one:
 \begin{definition}[Oriented interval]
 For vertices $i,j\in\{0,\dots,L\}$, let
 \[
-[i\to j]
+[i\to j]_0
 \]
 denote the oriented interval obtained by starting at $i$, following the
 orientation of the cycle, and stopping at $j$, with no repeated vertices.
+
+Let
+\[
+[i\to j]_1
+\]
+denote the set of arrows appearing in this oriented path.
 
 We write
 \[
 \delta(i,j)
 \]
-for the oriented distance from $i$ to $j$ along this interval. Thus
+for the oriented distance from $i$ to $j$ along this interval, i.e.
+\[
+\delta(i,j):=\# [i\to j]_1.
+\]
+Thus
 \[
 0\le \delta(i,j)\le L.
 \]
@@ -75,12 +85,19 @@ $M(i,j)$ by
 M(i,j)_t
 =
 \begin{cases}
-k, & t\in [i\to j],\\
-0, & t\notin [i\to j],
+k, & t\in [i\to j]_0,\\
+0, & t\notin [i\to j]_0,
 \end{cases}
 \]
-and by letting each arrow act as the identity when both its source and target
-belong to the support interval, and as zero otherwise.
+and for each arrow $a_s:s-1\to s$ define
+\[
+M(i,j)_{a_s}
+=
+\begin{cases}
+\mathrm{id}_k, & a_s\in [i\to j]_1,\\
+0, & a_s\notin [i\to j]_1.
+\end{cases}
+\]
 \end{definition}
 
 \begin{remark}
@@ -124,6 +141,66 @@ Equivalently:
 \end{itemize}
 \end{remark}
 
+\begin{proposition}[Admissibility criterion for interval modules]
+The interval representation $M(i,j)$ factors through the algebra
+\[
+A_L^{\mathrm{wt}}=kC_{L+1}/I_L^{\mathrm{wt}}
+\]
+if and only if
+\[
+(i,j)\in \mathcal I_L^{\mathrm{wt}}.
+\]
+\end{proposition}
+
+\begin{proof}
+Assume first that
+\[
+0\le i\le j\le L.
+\]
+Then $[i\to j]_1$ is contained in the open chain
+\[
+\{a_{i+1},a_{i+2},\dots,a_j\}\subseteq \{a_1,\dots,a_L\},
+\]
+so the closing arrow $a_0$ acts by zero on $M(i,j)$. Every relation path
+$p_\ell$ with $1\le \ell\le L$ passes through $a_0$, hence each $p_\ell$ acts
+by zero. Therefore $M(i,j)$ is an $A_L^{\mathrm{wt}}$-module.
+
+Now assume that
+\[
+1\le i\le L,
+\qquad
+0\le j\le i-2.
+\]
+Then $[i\to j]_1$ is the wrapped path
+\[
+\{a_{i+1},\dots,a_L,a_0,a_1,\dots,a_j\},
+\]
+whose length is
+\[
+\delta(i,j)=L+j-i+1\le L-1.
+\]
+Any nonzero path acting on $M(i,j)$ must be entirely supported on the arrow set
+$[i\to j]_1$. Since every relation path $p_\ell$ has length $L$, no $p_\ell$
+can be contained in $[i\to j]_1$, so all of them act by zero. Hence
+$M(i,j)$ again factors through $A_L^{\mathrm{wt}}$.
+
+Finally, let
+\[
+1\le i\le L
+\]
+and consider the forbidden full wrapped interval
+\[
+[i\to i-1].
+\]
+Its arrow set is exactly the relation path $p_i$, so on the one-dimensional
+vertex space at $i$ the composition
+\[
+p_i:M(i,i-1)_i\to M(i,i-1)_{i-1}
+\]
+is the identity. Thus $p_i$ acts nontrivially, and $M(i,i-1)$ does not define
+an $A_L^{\mathrm{wt}}$-module.
+\end{proof}
+
 \section{The two families}
 
 \begin{proposition}[The non-wrapping family]
@@ -143,32 +220,54 @@ This is the part of the classification that should be described using the same
 language as Simon's type-$A$ decomposition.
 \end{remark}
 
-\begin{proposition}[The wrapped family]
-If
+\begin{proposition}[Projective-quotient realization of admissible intervals]
+For every admissible pair
 \[
-1\le i\le L,
-\qquad
-0\le j\le i-2,
+(i,j)\in \mathcal I_L^{\mathrm{wt}},
 \]
-then the interval $[i\to j]$ passes through the closing arrow, and
+there is an isomorphism
 \[
 M(i,j)\cong P(i)/\rad^{\delta(i,j)+1}P(i).
 \]
 \end{proposition}
 
 \begin{proof}
-The projective $P(i)$ has length $L$ for every $i\ge 1$.
-Its radical quotients are therefore exactly the uniserial intervals starting at
-$i$ with lengths
+By Task 2, the indecomposable projective $P(i)$ is uniserial of length
 \[
-1,\dots,L.
+c_i=
+\begin{cases}
+L+1, & i=0,\\
+L, & 1\le i\le L.
+\end{cases}
 \]
-The interval $[i\to j]$ has length $\delta(i,j)+1\le L$ precisely when
+Thus for every admissible pair, equivalently for every pair satisfying
 \[
-0\le j\le i-2.
+\delta(i,j)\le c_i-1,
 \]
-Hence it is realized by the indicated projective quotient.
+there is a unique indecomposable quotient of $P(i)$ of length
+\[
+\delta(i,j)+1.
+\]
+
+Under the quiver description, this quotient keeps precisely the first
+$\delta(i,j)+1$ simples encountered along the oriented cycle starting at $i$.
+Therefore it has one-dimensional vertex spaces exactly on the vertices of
+$[i\to j]_0$, and the arrows in $[i\to j]_1$ act as identities while all other
+arrows act by zero. This is exactly the interval module $M(i,j)$.
 \end{proof}
+
+\begin{remark}[The wrapped family]
+If
+\[
+1\le i\le L,
+\qquad
+0\le j\le i-2,
+\]
+then the interval $[i\to j]$ passes through the closing arrow. These are the
+genuinely cyclic indecomposables. By the proposition above, they are precisely
+the nontrivial quotients of the projectives $P(i)$, $i\ge 1$, that wrap once
+through the arrow $a_0$ but stop before the forbidden full wrapped interval.
+\end{remark}
 
 \section{Classification theorem}
 
@@ -186,28 +285,38 @@ M(i,j)
 Since $A_L^{\mathrm{wt}}$ is Nakayama, every indecomposable module is uniserial
 and is a quotient of a unique indecomposable projective $P(i)$.
 
-For $i=0$, the projective length is $L+1$, so the admissible quotients are
-exactly
+If the top simple is at vertex $i$, then the indecomposable must be a quotient
+of $P(i)$, and its composition length can be any integer between $1$ and the
+projective length $c_i$. By the previous proposition, these quotients are
+exactly the interval modules
 \[
-M(0,0),M(0,1),\dots,M(0,L).
+M(i,j)
+\qquad
+((i,j)\in \mathcal I_L^{\mathrm{wt}}).
 \]
 
-For $1\le i\le L$, the projective length is $L$, so the admissible quotients
-are exactly the intervals starting at $i$ of oriented length at most $L-1$.
-These are precisely
-\[
-M(i,i),M(i,i+1),\dots,M(i,L),
-\]
-together with the wrapped intervals
-\[
-M(i,0),M(i,1),\dots,M(i,i-2).
-\]
+More concretely:
+\begin{itemize}
+\item for $i=0$, the admissible quotients are
+  \[
+  M(0,0),M(0,1),\dots,M(0,L);
+  \]
+\item for $1\le i\le L$, the admissible quotients are the non-wrapping modules
+  \[
+  M(i,i),M(i,i+1),\dots,M(i,L),
+  \]
+  together with the wrapped modules
+  \[
+  M(i,0),M(i,1),\dots,M(i,i-2).
+  \]
+\end{itemize}
 
-The only excluded endpoint is $j=i-1$, which would require the forbidden
-wrapped interval of cyclic length $L$.
+The only excluded endpoint is $j=i-1$, which would require the forbidden full
+wrapped interval.
 
-Uniqueness follows because the top simple determines the start vertex $i$ and
-the composition length determines the endpoint $j$.
+Uniqueness follows because the top simple determines the start vertex $i$, and
+the composition length determines the unique endpoint $j$ along the oriented
+interval starting at $i$.
 \end{proof}
 
 \begin{corollary}[Explicit decomposition of the indecomposable family]
@@ -221,14 +330,19 @@ The indecomposables split as
 
 \section{Deliverables}
 
-This task is complete once the file records:
+All Task 3 deliverables have been achieved in this file:
 
 \begin{itemize}
-\item the exact admissible index set $\mathcal I_L^{\mathrm{wt}}$;
-\item the type-$A$ non-wrapping family;
-\item the wrapped family described as projective quotients;
-\item the theorem that every indecomposable is a unique admissible interval
+\item achieved: the exact admissible index set
+  $\mathcal I_L^{\mathrm{wt}}$ is defined;
+\item achieved: the type-$A$ non-wrapping family is isolated explicitly;
+\item achieved: the wrapped family is identified and described as projective
+  quotients;
+\item achieved: every indecomposable is proved to be a unique admissible interval
   module $M(i,j)$.
 \end{itemize}
+
+Therefore Task 3 is complete and the indecomposable family needed for the
+Krull--Schmidt decomposition is now fixed.
 
 \end{document}

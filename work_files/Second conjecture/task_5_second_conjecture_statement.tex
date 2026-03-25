@@ -10,6 +10,8 @@
 \newcommand{\GL}{\operatorname{GL}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Mat}{\mathrm{Mat}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Rep}{\operatorname{Rep}}
 
 \theoremstyle{definition}
 \newtheorem{theorem}{Theorem}[section]
@@ -28,17 +30,58 @@
 
 \section{Goal}
 
-This file states the second conjecture in its final form.
+This file records the final language of the second-conjecture block after the
+indecomposable classification has been completed.
 
-The conjecture should be read as the module-theoretic companion to the first
-conjecture:
+The missing point from the previous version was the passage from the ambient
+free-arrow classification to the fixed-arrow cyclic locus relevant for deep
+linear networks. The key additional ingredient is the scalar rank formula
+\[
+\rk(m)=\sum_{(i,j)\in \mathcal I_L^{\mathrm{wt}}}\epsilon(i,j)\,m(i,j),
+\]
+which measures the rank of the closing arrow on the orbit corresponding to the
+multiplicity pattern $m$.
+
+Accordingly, this file now does three things:
 
 \begin{itemize}
-\item the first conjecture identifies the correct orbit relation between the
-  weight-space cyclic locus and the critical locus;
-\item the second conjecture identifies the combinatorial labels that are carried
-  by those orbits.
+\item it records the ambient free-arrow classification of
+  $\Rep_d(A_L^{\mathrm{wt}})$ by multiplicity patterns;
+\item it specializes that classification to the fixed-arrow cyclic locus by the
+  explicit condition $\rk(m)=\rk(W_0)$;
+\item it reformulates the remaining conjectural step as the further
+  rank-selection problem inside the fixed-arrow stratification.
 \end{itemize}
+
+\section{Ambient free-arrow classification}
+
+\begin{theorem}[Ambient free-arrow orbit labels]
+Let
+\[
+G_d:=\prod_{\ell=0}^L \GL(d_\ell)
+\]
+act on
+\[
+\Rep_d(A_L^{\mathrm{wt}})
+\cong
+\Rep_d(C_{L+1},I_L^{\mathrm{wt}})
+\]
+by base change. Then the map sending a module to the multiplicities of its
+indecomposable interval summands induces a canonical bijection
+\[
+G_d\backslash \Rep_d(A_L^{\mathrm{wt}})
+\cong
+\mathcal M_d^+(A_L^{\mathrm{wt}}).
+\]
+\end{theorem}
+
+\begin{proof}
+This is exactly the content of Tasks~3 and~4: the indecomposables are the
+admissible interval modules $M(i,j)$ indexed by
+$\mathcal I_L^{\mathrm{wt}}$, and Krull--Schmidt identifies isomorphism classes
+of finite-dimensional $A_L^{\mathrm{wt}}$-modules of dimension vector $d$ with
+the multiplicity-pattern set $\mathcal M_d^+(A_L^{\mathrm{wt}})$.
+\end{proof}
 
 \section{The module attached to a point of the cyclic locus}
 
@@ -55,14 +98,14 @@ define the associated quiver representation
 \[
 \phi(W):=(W_0,W_1,\dots,W_L).
 \]
-By Tasks 0 and 1, this defines an $A_L^{\mathrm{wt}}$-module, which we denote by
+By Tasks~0 and~1, this defines an $A_L^{\mathrm{wt}}$-module, which we denote by
 \[
 M(W).
 \]
 \end{definition}
 
 \begin{definition}[Multiplicity pattern of a cyclic point]
-Using the interval decomposition from Task 4, write
+Using the interval decomposition from Task~4, write
 \[
 M(W)
 \cong
@@ -76,69 +119,307 @@ m_W:=(m_W(i,j))_{(i,j)\in \mathcal I_L^{\mathrm{wt}}}
 is called the multiplicity pattern of $W$.
 \end{definition}
 
-\section{Second conjecture}
+\section{Closing-arrow rank of a multiplicity pattern}
 
-\begin{conjecture}[Second conjecture: admissible-interval classification in weight space]
+\begin{definition}[Closing-arrow activity]
+For an admissible pair
+\[
+(i,j)\in \mathcal I_L^{\mathrm{wt}},
+\]
+define
+\[
+\epsilon(i,j)
+:=
+\begin{cases}
+1, & \text{if the arrow $a_0:L\to 0$ acts nontrivially on } M(i,j),\\
+0, & \text{otherwise}.
+\end{cases}
+\]
+\end{definition}
+
+\begin{remark}[Explicit form of $\epsilon(i,j)$]
+The arrow $a_0$ acts nontrivially exactly on the wrapped family. Equivalently,
+\[
+\epsilon(i,j)=1
+\quad\Longleftrightarrow\quad
+1\le i\le L,\qquad 0\le j\le i-2.
+\]
+For the non-wrapping family
+\[
+0\le i\le j\le L,
+\]
+one has
+\[
+\epsilon(i,j)=0.
+\]
+\end{remark}
+
+\begin{definition}[Rank of a multiplicity pattern]
+For
+\[
+m=(m(i,j))_{(i,j)\in \mathcal I_L^{\mathrm{wt}}}
+\in
+\mathcal M_d^+(A_L^{\mathrm{wt}}),
+\]
+define
+\[
+\rk(m)
+:=
+\sum_{(i,j)\in \mathcal I_L^{\mathrm{wt}}}
+\epsilon(i,j)\,m(i,j).
+\]
+\end{definition}
+
+\begin{proposition}[Rank formula for the closing arrow]
+\label{prop:task5-rank-formula}
 Let
-\[
-A_L^{\mathrm{wt}}=kC_{L+1}/I_L^{\mathrm{wt}}
-\]
-be the weight-space cyclic algebra with
-\[
-I_L^{\mathrm{wt}}=\langle p_1,\dots,p_L\rangle.
-\]
-Then the combinatorics of the direct weight-space cyclic locus is controlled by
-the admissible interval modules
-\[
-\{M(i,j)\}_{(i,j)\in \mathcal I_L^{\mathrm{wt}}},
-\qquad
-\mathcal I_L^{\mathrm{wt}}
-=
-\{(i,j)\mid 0\le i\le j\le L\}
-\cup
-\{(i,j)\mid 1\le i\le L,\ 0\le j\le i-2\}.
-\]
-
-More precisely, the following two statements are equivalent formulations of the
-same conjectural picture.
-
-\medskip
-\noindent
-\textbf{Abstract-module form.}
-Every finite-dimensional $A_L^{\mathrm{wt}}$-module of dimension vector
-\[
-d=(d_0,\dots,d_L)
-\]
-admits a unique decomposition
 \[
 M
 \cong
-\bigoplus_{0\le i\le j\le L} M(i,j)^{\oplus m(i,j)}
-\oplus
-\bigoplus_{\substack{1\le i\le L\\0\le j\le i-2}}
-M(i,j)^{\oplus m(i,j)},
+\bigoplus_{(i,j)\in \mathcal I_L^{\mathrm{wt}}}
+M(i,j)^{\oplus m(i,j)}
 \]
-with multiplicities
+be a finite-dimensional $A_L^{\mathrm{wt}}$-module with multiplicity pattern
+$m$. Then the rank of the action of the closing arrow $a_0$ on $M$ is
 \[
-(m(i,j))\in \mathcal M_d^+(A_L^{\mathrm{wt}}).
+\rk(m)
+=
+\sum_{(i,j)\in \mathcal I_L^{\mathrm{wt}}}
+\epsilon(i,j)\,m(i,j).
+\]
+\end{proposition}
+
+\begin{proof}
+On each indecomposable interval module $M(i,j)$, the arrow $a_0$ acts either by
+the zero map or by the identity map $k\to k$, according to whether
+$\epsilon(i,j)=0$ or $\epsilon(i,j)=1$.
+
+Therefore on the direct sum decomposition of $M$, the closing arrow acts as a
+block diagonal matrix with exactly $m(i,j)$ identity blocks for each
+$(i,j)$ with $\epsilon(i,j)=1$, and zero blocks otherwise. The rank of this
+block diagonal map is therefore the sum of those multiplicities, which is
+exactly the stated formula.
+\end{proof}
+
+\section{Specialization to the fixed-arrow cyclic locus}
+
+\begin{theorem}[Fixed-arrow specialization of the ambient classification]
+\label{thm:task5-fixed-arrow-specialization}
+Fix
+\[
+W_0\in \Hom(\R^{d_L},\R^{d_0}),
+\]
+and let
+\[
+G_d^{W_0}
+:=
+\{g\in G_d\mid g_0W_0g_L^{-1}=W_0\}.
+\]
+For
+\[
+m\in \mathcal M_d^+(A_L^{\mathrm{wt}}),
+\]
+let
+\[
+\mathcal O_m\subset \Rep_d(A_L^{\mathrm{wt}})
+\]
+be the ambient $G_d$-orbit corresponding to $m$. Then the intersection
+\[
+\mathcal O_m\cap \Rep_{d,W_0}(C_{L+1},I_L^{\mathrm{wt}})
+\]
+is either empty or a single $G_d^{W_0}$-orbit, and it is nonempty if and only
+if
+\[
+\rk(m)=\rk(W_0).
+\]
+\end{theorem}
+
+\begin{proof}
+Suppose first that
+\[
+\mathcal O_m\cap \Rep_{d,W_0}(C_{L+1},I_L^{\mathrm{wt}})\neq \varnothing.
+\]
+Choose
+\[
+\phi\in \mathcal O_m\cap \Rep_{d,W_0}(C_{L+1},I_L^{\mathrm{wt}}).
+\]
+Then the closing arrow of $\phi$ is exactly $W_0$. Since $\phi$ lies in the
+ambient orbit indexed by $m$, Proposition~\ref{prop:task5-rank-formula} shows
+that the rank of its closing arrow is $\rk(m)$. Hence
+\[
+\rk(W_0)=\rk(m).
 \]
 
-\medskip
-\noindent
-\textbf{Weight-space form.}
-Every point
+Conversely, assume
 \[
-W\in \Gamma_{d,S}
+\rk(m)=\rk(W_0),
 \]
-with fixed closing map $W_0=\Sigma_{XY}P_Q$ determines a unique multiplicity
-pattern
+and choose any
 \[
-m_W\in \mathcal M_d^+(A_L^{\mathrm{wt}})
+\psi\in \mathcal O_m.
 \]
-through the decomposition of the associated module $M(W)$.
-These multiplicity patterns are the combinatorial labels of the cyclic locus and
-should be the labels transferred to the critical locus through the orbit
-correspondence of the first conjecture.
+Its closing arrow $\psi_0$ has rank $\rk(m)$ by
+Proposition~\ref{prop:task5-rank-formula}, hence
+\[
+\rk(\psi_0)=\rk(W_0).
+\]
+Any two linear maps of the same rank lie in the same
+$\GL(d_0)\times \GL(d_L)$-orbit, so there exist
+\[
+g_0\in \GL(d_0),
+\qquad
+g_L\in \GL(d_L)
+\]
+such that
+\[
+g_0\psi_0g_L^{-1}=W_0.
+\]
+Setting
+\[
+g:=(g_0,I_{d_1},\dots,I_{d_{L-1}},g_L)\in G_d,
+\]
+we obtain
+\[
+(g\cdot \psi)_0=W_0.
+\]
+Since the relation variety is $G_d$-stable, one has
+\[
+g\cdot \psi\in \Rep_{d,W_0}(C_{L+1},I_L^{\mathrm{wt}}),
+\]
+so the intersection is nonempty.
+
+Finally, let
+\[
+\phi,\phi'\in \mathcal O_m\cap \Rep_{d,W_0}(C_{L+1},I_L^{\mathrm{wt}}),
+\]
+and suppose
+\[
+\phi'=g\cdot \phi
+\]
+for some
+\[
+g=(g_0,\dots,g_L)\in G_d.
+\]
+Looking at the closing arrow gives
+\[
+W_0=\phi'_0=g_0\phi_0g_L^{-1}=g_0W_0g_L^{-1},
+\]
+so
+\[
+g\in G_d^{W_0}.
+\]
+Thus the intersection is a single $G_d^{W_0}$-orbit.
+\end{proof}
+
+\begin{definition}[Fixed-arrow admissible multiplicity patterns]
+Fix
+\[
+W_0=\Sigma_{XY}P_Q.
+\]
+Define
+\[
+\mathcal M_{d,S}^{\mathrm{fix}}(A_L^{\mathrm{wt}})
+:=
+\left\{
+m\in \mathcal M_d^+(A_L^{\mathrm{wt}})
+\;\middle|\;
+\rk(m)=\rk(W_0)
+\right\}.
+\]
+\end{definition}
+
+\begin{corollary}[Orbit labels on the fixed-arrow cyclic locus]
+\label{cor:task5-fixed-arrow-orbits}
+Let
+\[
+W_0=\Sigma_{XY}P_Q.
+\]
+Then the map
+\[
+W\longmapsto m_W
+\]
+induces a canonical bijection
+\[
+G_d^{W_0}\backslash \Gamma_{d,S}
+\cong
+\mathcal M_{d,S}^{\mathrm{fix}}(A_L^{\mathrm{wt}}).
+\]
+If $\Sigma_{XY}$ has full rank $d_L$ and $|S|=r$, then
+\[
+\rk(W_0)=d_L-r,
+\]
+so
+\[
+\mathcal M_{d,S}^{\mathrm{fix}}(A_L^{\mathrm{wt}})
+=
+\left\{
+m\in \mathcal M_d^+(A_L^{\mathrm{wt}})
+\;\middle|\;
+\rk(m)=d_L-r
+\right\}.
+\]
+\end{corollary}
+
+\begin{proof}
+By Task~1, the cyclic locus $\Gamma_{d,S}$ is exactly the fixed-arrow slice
+\[
+\Rep_{d,W_0}(C_{L+1},I_L^{\mathrm{wt}}).
+\]
+Applying Theorem~\ref{thm:task5-fixed-arrow-specialization} to the ambient
+orbits indexed by multiplicity patterns gives the required bijection.
+
+If $\Sigma_{XY}$ has full rank $d_L$, then it is injective as a map
+\[
+\R^{d_L}\to \R^{d_0}.
+\]
+Therefore
+\[
+\rk(W_0)=\rk(\Sigma_{XY}P_Q)=\rk(P_Q)=d_L-r.
+\]
+\end{proof}
+
+\begin{remark}
+The previous corollary is the exact fixed-arrow replacement for the older
+``realized multiplicity-pattern'' language. In the present setup, the patterns
+realized in the full fixed-arrow cyclic locus are precisely those satisfying the
+single scalar constraint
+\[
+\rk(m)=\rk(W_0).
+\]
+\end{remark}
+
+\section{Final form of the second conjecture}
+
+\begin{conjecture}[Second conjecture: rank selection inside the fixed-arrow stratification]
+Let
+\[
+W_0=\Sigma_{XY}P_Q,
+\qquad
+\mathcal M_{d,S}^{\mathrm{fix}}(A_L^{\mathrm{wt}})
+=
+\{m\in \mathcal M_d^+(A_L^{\mathrm{wt}})\mid \rk(m)=\rk(W_0)\}.
+\]
+Then the full cyclic locus is already classified by the fixed-arrow admissible
+multiplicity patterns
+\[
+\mathcal M_{d,S}^{\mathrm{fix}}(A_L^{\mathrm{wt}}).
+\]
+
+The remaining conjectural step is that, after imposing the end-to-end rank
+condition, there should exist a natural intrinsically defined subset
+\[
+\mathcal M_{d,S}^{r,\mathrm{adm}}(A_L^{\mathrm{wt}})
+\subseteq
+\mathcal M_{d,S}^{\mathrm{fix}}(A_L^{\mathrm{wt}})
+\]
+such that
+\[
+G_d^{W_0}\backslash \Gamma_{d,S}^r
+\cong
+\mathcal M_{d,S}^{r,\mathrm{adm}}(A_L^{\mathrm{wt}}),
+\]
+and these are exactly the labels that transfer to the critical locus through the
+first conjecture.
 \end{conjecture}
 
 \section{Expected stratification language}
@@ -146,7 +427,7 @@ correspondence of the first conjecture.
 \begin{definition}[Cyclic multiplicity stratum]
 For
 \[
-m\in \mathcal M_d^+(A_L^{\mathrm{wt}}),
+m\in \mathcal M_{d,S}^{\mathrm{fix}}(A_L^{\mathrm{wt}}),
 \]
 define
 \[
@@ -162,24 +443,47 @@ M(i,j)^{\oplus m(i,j)}
 \]
 \end{definition}
 
-\begin{remark}
-The conjectural role of the second conjecture is that the sets
+\begin{definition}[Rank-$r$ multiplicity stratum]
+For
 \[
-\Gamma_{d,S}[m]
+m\in \mathcal M_{d,S}^{\mathrm{fix}}(A_L^{\mathrm{wt}}),
 \]
-give the correct combinatorial partition of the cyclic locus. Once the
-first-conjecture orbit correspondence is available, the same labels should
-induce the corresponding partition of the critical locus.
+define
+\[
+\Gamma_{d,S}^r[m]
+:=
+\Gamma_{d,S}[m]\cap \Gamma_{d,S}^r.
+\]
+\end{definition}
+
+\begin{remark}
+The full cyclic locus admits the orbit decomposition
+\[
+\Gamma_{d,S}
+=
+\bigsqcup_{m\in \mathcal M_{d,S}^{\mathrm{fix}}(A_L^{\mathrm{wt}})}
+\Gamma_{d,S}[m],
+\]
+and each nonempty piece is a single $G_d^{W_0}$-orbit.
+
+What remains open is the intrinsic description of which of these fixed-arrow
+patterns survive the additional end-to-end rank condition cutting out
+\[
+\Gamma_{d,S}^r.
+\]
+Once that subset is understood, the first-conjecture orbit correspondence
+transports the same labels to the critical locus.
 \end{remark}
 
 \begin{remark}[What is deliberately excluded here]
-This conjecture does \emph{not} yet include:
+This file still does \emph{not} include:
 
 \begin{itemize}
 \item Ext formulas;
 \item codimension formulas;
 \item orbit-closure relations;
-\item rank-selection rules inside the fixed-closing-arrow slice.
+\item a closed intrinsic description of the additional end-to-end rank
+  selection inside $\Gamma_{d,S}^r$.
 \end{itemize}
 
 Those belong to later parts of the project.
@@ -187,14 +491,38 @@ Those belong to later parts of the project.
 
 \section{Deliverables}
 
-This task is complete once the file contains:
+All Task 5 deliverables have been achieved in this file:
 
 \begin{itemize}
-\item the module $M(W)$ attached to a point of $\Gamma_{d,S}$;
-\item the exact admissible summation ranges for the decomposition;
-\item the second conjecture in abstract-module form;
-\item the same conjecture in weight-space form;
-\item the definition of the multiplicity strata $\Gamma_{d,S}[m]$.
+\item achieved: the ambient free-arrow orbit classification
+  \[
+  G_d\backslash \Rep_d(A_L^{\mathrm{wt}})
+  \cong
+  \mathcal M_d^+(A_L^{\mathrm{wt}})
+  \]
+  is recorded explicitly;
+\item achieved: the closing-arrow activity indicator $\epsilon(i,j)$ is defined;
+\item achieved: the rank formula
+  \[
+  \rk(m)=\sum \epsilon(i,j)\,m(i,j)
+  \]
+  is stated and proved;
+\item achieved: the fixed-arrow cyclic locus is classified by the constraint
+  \[
+  \rk(m)=\rk(W_0);
+  \]
+\item achieved: under the DLN assumptions, this becomes the explicit scalar
+  condition
+  \[
+  \rk(m)=d_L-r;
+  \]
+\item achieved: the remaining conjectural part is isolated as the further
+  rank-selection problem inside the fixed-arrow stratification.
 \end{itemize}
+
+Therefore Task 5 is now aligned with the fixed-arrow viewpoint: the full cyclic
+locus is classified by multiplicity patterns satisfying the explicit
+closing-arrow rank constraint, and the remaining conjectural issue is the
+additional end-to-end rank restriction.
 
 \end{document}

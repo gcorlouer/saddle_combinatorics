@@ -44,6 +44,13 @@ The three outputs needed later are:
   \]
 \end{itemize}
 
+From this point on, we assume
+\[
+L\ge 2,
+\]
+which is the first genuinely cyclic regime relevant for the saddle
+combinatorics problem.
+
 \section{Surviving and vanishing paths}
 
 \begin{lemma}[Length-$L$ paths]
@@ -151,8 +158,12 @@ Equivalently, the Kupisch series is
 
 \begin{remark}
 This is the precise difference from the fully truncated cycle algebra used in
-\texttt{paper\_v0.tex}, where all length-$L$ paths were killed and the Kupisch series
-was uniform.
+the previous version of the project: there all length-$L$ paths were killed, so
+the Kupisch series was uniform. Here the open-chain path $p_0$ survives, and
+that is exactly what produces the non-uniform series
+\[
+(L+1,L,\dots,L).
+\]
 \end{remark}
 
 \section{Nakayama structure}
@@ -195,18 +206,23 @@ The Kupisch series was computed above.
 
 \section{Deliverables}
 
-This task is complete once the file records:
+All Task 2 deliverables have been achieved in this file:
 
 \begin{itemize}
-\item the unique surviving length-$L$ path $p_0=a_L\cdots a_1$;
-\item the vanishing of all paths of length $>L$;
-\item finite-dimensionality of $A_L^{\mathrm{wt}}$;
-\item the projective lengths
+\item achieved: the unique surviving length-$L$ path
+  $p_0=a_L\cdots a_1$ is identified;
+\item achieved: all paths of length $>L$ are shown to vanish;
+\item achieved: finite-dimensionality of $A_L^{\mathrm{wt}}$ is proved;
+\item achieved: the projective lengths
   \[
   (L+1,L,\dots,L);
   \]
-\item the conclusion that $A_L^{\mathrm{wt}}$ is a cyclic monomial Nakayama
+\item achieved: the conclusion that $A_L^{\mathrm{wt}}$ is a cyclic monomial
+  Nakayama
   algebra.
 \end{itemize}
+
+Therefore Task 2 is complete and the algebraic input for the indecomposable
+classification is available.
 
 \end{document}

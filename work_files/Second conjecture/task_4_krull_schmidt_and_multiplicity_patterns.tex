@@ -90,8 +90,8 @@ $k\in\{0,\dots,L\}$, define
 \mathbf 1_{[i\to j]}(k)
 :=
 \begin{cases}
-1, & k\in [i\to j],\\
-0, & k\notin [i\to j].
+1, & k\in [i\to j]_0,\\
+0, & k\notin [i\to j]_0.
 \end{cases}
 \]
 \end{definition}
@@ -145,20 +145,71 @@ formula.
 
 \section{Orbit dictionary}
 
-\begin{proposition}[Orbits and isomorphism classes]
+\begin{definition}[Base-change action on the representation space]
 Fix the representation space
 \[
 \Rep_d(A_L^{\mathrm{wt}})
+\cong
+\Rep_d(C_{L+1},I_L^{\mathrm{wt}}),
 \]
 and the base-change group
 \[
 G_d:=\prod_{\ell=0}^L \GL(d_\ell).
 \]
+Under the quiver realization, the action is given by
+\[
+(g\cdot \phi)_\ell:=g_\ell\,\phi_\ell\,g_{\ell-1}^{-1},
+\qquad
+0\le \ell\le L.
+\]
+\end{definition}
+
+\begin{proposition}[Ambient orbits and isomorphism classes]
+Fix the representation space
+\[
+\Rep_d(A_L^{\mathrm{wt}})
+\]
 Then the $G_d$-orbits in $\Rep_d(A_L^{\mathrm{wt}})$ are exactly the
 isomorphism classes of $A_L^{\mathrm{wt}}$-modules of dimension vector $d$.
 \end{proposition}
 
-\begin{corollary}[Multiplicity patterns parametrize the orbits]
+\begin{proof}
+If $\phi,\psi\in \Rep_d(A_L^{\mathrm{wt}})$ lie in the same $G_d$-orbit, then
+there exists
+\[
+g=(g_0,\dots,g_L)\in G_d
+\]
+such that
+\[
+\psi_\ell=g_\ell\,\phi_\ell\,g_{\ell-1}^{-1}
+\qquad
+(0\le \ell\le L).
+\]
+Thus $g$ is an isomorphism of quiver representations, hence an isomorphism of
+the corresponding $A_L^{\mathrm{wt}}$-modules.
+
+Conversely, let
+\[
+f:M\to N
+\]
+be an isomorphism of $A_L^{\mathrm{wt}}$-modules of dimension vector $d$.
+Because the primitive idempotents act as the projections onto the vertex
+summands, $f$ preserves the decomposition by vertices:
+\[
+f=\bigoplus_{\ell=0}^L g_\ell
+\]
+for uniquely determined invertible maps
+\[
+g_\ell:V_\ell\to V_\ell.
+\]
+Compatibility with the arrow actions is exactly the relation
+\[
+\psi_\ell=g_\ell\,\phi_\ell\,g_{\ell-1}^{-1}.
+\]
+Hence $\phi$ and $\psi$ lie in the same $G_d$-orbit.
+\end{proof}
+
+\begin{corollary}[Ambient multiplicity patterns parametrize the orbits]
 There is a canonical bijection
 \[
 G_d\backslash \Rep_d(A_L^{\mathrm{wt}})
@@ -169,6 +220,125 @@ obtained by sending a module to the multiplicities of its indecomposable
 interval summands.
 \end{corollary}
 
+\section{Fixed-arrow slice and realized multiplicity patterns}
+
+\begin{definition}[The fixed-arrow cyclic slice]
+Now specialize to $k=\R$ and fix the data-dependent closing map
+\[
+W_0=\Sigma_{XY}P_Q.
+\]
+Define
+\[
+\Gamma_{d,S}^{\mathrm{quiv}}
+:=
+\Rep_{d,W_0}(Q,I_L^{\mathrm{wt}})
+\]
+with
+\[
+Q=C_{L+1},
+\]
+as in Task 1, and let
+\[
+G_d^{W_0}
+:=
+\{g\in G_d\mid g_0W_0g_L^{-1}=W_0\}
+\]
+be the subgroup preserving this slice.
+\end{definition}
+
+\begin{definition}[Multiplicity strata in the fixed-arrow slice]
+For
+\[
+m\in \mathcal M_d^+(A_L^{\mathrm{wt}}),
+\]
+define
+\[
+\Gamma_{d,S}^{\mathrm{quiv}}[m]
+:=
+\left\{
+\phi\in \Gamma_{d,S}^{\mathrm{quiv}}
+\;\middle|\;
+\phi \text{ corresponds to }
+\bigoplus_{(i,j)\in \mathcal I_L^{\mathrm{wt}}}
+M(i,j)^{\oplus m(i,j)}
+\right\}.
+\]
+\end{definition}
+
+\begin{definition}[Realized multiplicity-pattern set]
+Define
+\[
+\mathcal M_{d,S}^{\mathrm{real}}(A_L^{\mathrm{wt}})
+:=
+\left\{
+m\in \mathcal M_d^+(A_L^{\mathrm{wt}})
+\;\middle|\;
+\Gamma_{d,S}^{\mathrm{quiv}}[m]\neq \emptyset
+\right\}.
+\]
+\end{definition}
+
+\begin{proposition}[Slice orbits and isomorphism classes]
+The $G_d^{W_0}$-orbits in $\Gamma_{d,S}^{\mathrm{quiv}}$ are exactly the
+isomorphism classes of the corresponding $A_L^{\mathrm{wt}}$-modules inside the
+fixed-arrow slice.
+\end{proposition}
+
+\begin{proof}
+If two points lie in the same $G_d^{W_0}$-orbit, then they are certainly
+isomorphic as quiver representations and hence as $A_L^{\mathrm{wt}}$-modules.
+
+Conversely, let
+\[
+\phi,\psi\in \Gamma_{d,S}^{\mathrm{quiv}}
+\]
+and assume that they are isomorphic as representations. By the ambient orbit
+proposition, there exists
+\[
+g=(g_0,\dots,g_L)\in G_d
+\]
+such that
+\[
+\psi_\ell=g_\ell\,\phi_\ell\,g_{\ell-1}^{-1}
+\qquad
+(0\le \ell\le L).
+\]
+Since both points lie in the fixed-arrow slice, one has
+\[
+\phi_0=\psi_0=W_0.
+\]
+Looking at the closing arrow gives
+\[
+W_0=\psi_0=g_0\,\phi_0\,g_L^{-1}=g_0W_0g_L^{-1},
+\]
+so
+\[
+g\in G_d^{W_0}.
+\]
+Hence $\phi$ and $\psi$ lie in the same $G_d^{W_0}$-orbit.
+\end{proof}
+
+\begin{corollary}[Realized multiplicity patterns parametrize slice orbits]
+There is a canonical bijection
+\[
+G_d^{W_0}\backslash \Gamma_{d,S}^{\mathrm{quiv}}
+\cong
+\mathcal M_{d,S}^{\mathrm{real}}(A_L^{\mathrm{wt}}),
+\]
+obtained by sending a point of the fixed-arrow cyclic slice to the
+multiplicities of its indecomposable interval summands.
+\end{corollary}
+
+\begin{proof}
+By Task 1, every point of $\Gamma_{d,S}^{\mathrm{quiv}}$ defines an
+$A_L^{\mathrm{wt}}$-module. By Tasks 3 and 4, this module has a unique
+multiplicity pattern in $\mathcal M_d^+(A_L^{\mathrm{wt}})$. The previous
+proposition identifies $G_d^{W_0}$-orbits in the slice with isomorphism
+classes, and ambient Krull--Schmidt identifies isomorphism classes with
+multiplicity patterns. Restricting to the patterns that are actually realized in
+the fixed-arrow slice gives the claimed bijection.
+\end{proof}
+
 \begin{remark}
 This is the combinatorial data we will later transport from the cyclic locus
 to the critical locus by using the orbit correspondence of the first
@@ -177,13 +347,21 @@ conjecture.
 
 \section{Deliverables}
 
-This task is complete once the file contains:
+All Task 4 deliverables have been achieved in this file:
 
 \begin{itemize}
-\item the precise Krull--Schmidt decomposition in admissible interval modules;
-\item the exact definition of $\mathcal M_d^+(A_L^{\mathrm{wt}})$;
-\item the fact that multiplicity patterns parametrize the
-  $G_d$-orbits of $\Rep_d(A_L^{\mathrm{wt}})$.
+\item achieved: the precise Krull--Schmidt decomposition in admissible interval
+  modules is recorded;
+\item achieved: the exact definition of $\mathcal M_d^+(A_L^{\mathrm{wt}})$ is
+  given;
+\item achieved: multiplicity patterns parametrize the ambient $G_d$-orbits of
+  $\Rep_d(A_L^{\mathrm{wt}})$;
+\item achieved: realized multiplicity patterns are shown to parametrize the
+  $G_d^{W_0}$-orbits in the fixed-arrow cyclic slice
+  $\Gamma_{d,S}^{\mathrm{quiv}}$.
 \end{itemize}
+
+Therefore Task 4 is complete and the orbit-level combinatorial labels of the
+weight-space cyclic locus are now explicit.
 
 \end{document}

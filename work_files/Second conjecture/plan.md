@@ -38,10 +38,12 @@ The target of this block is the correct statement of the second conjecture, not 
   patterns.
 
 - `task_5_second_conjecture_statement.tex`
-  State the second conjecture in abstract-module and weight-space form.
+  State the second conjecture in abstract-module and weight-space form, including
+  the fixed-arrow rank constraint on multiplicity patterns.
 
-- `examples_and_counterchecks.tex`
-  Record the low-dimensional sanity checks that validate the setup.
+- `example_checs_indecomposable.tex`
+  Record the depth-3 sanity checks comparing the free-arrow and fixed-arrow
+  indecomposable families.
 
 ## Locked definitions
 
@@ -141,5 +143,7 @@ This block is complete when:
   set;
 - the multiplicity-pattern set `\mathcal M_d^+(A_L^{\mathrm{wt}})` is written
   down explicitly;
+- the fixed-arrow rank formula
+  `\rk(m)=\sum \epsilon(i,j)m(i,j)` is written down explicitly;
 - the second conjecture is stated in both abstract-module and weight-space form;
 - the `L=2` and `L=3` examples agree with the general formulas.
