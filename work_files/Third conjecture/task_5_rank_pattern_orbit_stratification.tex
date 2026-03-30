@@ -1,0 +1,75 @@
+\section*{Task 5: Rank-pattern orbit stratification}
+
+\paragraph{Goal.}
+Rewrite the fixed-arrow orbit classification of the cyclic locus using the
+lifted rank-pattern labels.
+
+\paragraph{Rank-pattern strata.}
+For
+\[
+\rho\in \widetilde{\mathcal R}_d^{\mathrm{wt}},
+\]
+define
+\[
+\Gamma_{d,S}[\rho]
+:=
+\{W\in \Gamma_{d,S}\mid \rho(W)=\rho\},
+\qquad
+\Gamma_{d,S}^r[\rho]
+:=
+\Gamma_{d,S}[\rho]\cap \Gamma_{d,S}^r.
+\]
+
+\paragraph{Orbit classification in rank-pattern coordinates.}
+The assignment
+\[
+W\longmapsto \rho(W)
+\]
+induces a bijection
+\[
+G_d^{W_0}\backslash \Gamma_{d,S}
+\xrightarrow{\sim}
+\{\rho\in \widetilde{\mathcal R}_d^{\mathrm{wt}}\mid \rho_{L,L+1}=d_L-r\}.
+\]
+Equivalently,
+\[
+\Gamma_{d,S}
+=
+\bigsqcup_{\rho_{L,L+1}=d_L-r}\Gamma_{d,S}[\rho],
+\]
+and every nonempty piece \(\Gamma_{d,S}[\rho]\) is a single
+\(G_d^{W_0}\)-orbit.
+
+Restricting to the rank-\(r\) slice gives
+\[
+G_d^{W_0}\backslash \Gamma_{d,S}^r
+\xrightarrow{\sim}
+\{\rho\in \widetilde{\mathcal R}_d^{\mathrm{wt}}\mid \rho_{L,L+1}=d_L-r,\ \rho_{0L}=r\},
+\]
+equivalently
+\[
+\Gamma_{d,S}^r
+=
+\bigsqcup_{\substack{\rho\in \widetilde{\mathcal R}_d^{\mathrm{wt}}\\
+\rho_{L,L+1}=d_L-r,\ \rho_{0L}=r}}
+\Gamma_{d,S}^r[\rho],
+\]
+with each nonempty stratum a single \(G_d^{W_0}\)-orbit.
+
+\paragraph{Proof.}
+The second-conjecture theorem in the current draft classifies
+\(G_d^{W_0}\)-orbits by realized multiplicity patterns. Task 3 identifies
+multiplicity patterns with lifted rank patterns, and Task 4 identifies the
+realized and rank-\(r\) realized subsets by the scalar constraints on
+\(\rho_{L,L+1}\) and \(\rho_{0L}\). Composing these bijections yields the
+result.
+
+\paragraph{What this accomplishes.}
+This is the direct weight-space version of the old residual-space orbit
+stratification by cyclic rank patterns. The labels are now attached directly to
+the fixed-arrow cyclic locus inside parameter space, without passing through the
+residual formalism.
+
+\paragraph{Status.}
+Completed. Conjecture 3 is now proved at the cyclic-locus level in lifted
+rank-pattern coordinates.

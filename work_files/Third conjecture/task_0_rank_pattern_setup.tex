@@ -1,0 +1,102 @@
+\section*{Task 0: Rank-pattern setup}
+
+\paragraph{Goal.}
+Define the cyclic rank-pattern coordinates in the direct weight-space algebra and
+remove the indexing ambiguity coming from the cycle.
+
+\paragraph{Lifted admissible intervals.}
+For the weight-space algebra
+\[
+A_L^{\mathrm{wt}}=kQ/I_L^{\mathrm{wt}},
+\]
+it is convenient to work on the universal cover of the oriented cycle. Define
+the lifted admissible index set
+\[
+\widetilde{\mathcal I}_L^{\mathrm{wt}}
+:=
+\{(a,b)\in \mathbb Z^2 \mid 0\le a\le L,\ a\le b\le a+L\}
+\setminus
+\{(a,a+L)\mid 1\le a\le L\}.
+\]
+Equivalently, an admissible lifted interval starts at a vertex
+\[
+a\in\{0,\dots,L\},
+\]
+has length at most \(L\), and the maximal length \(L\) is allowed only when
+\[
+a=0.
+\]
+
+\paragraph{Dictionary with the cyclic notation.}
+Every admissible pair in the current draft can be rewritten uniquely in lifted
+coordinates:
+\[
+(i,j)\in \mathcal I_L^{\mathrm{wt}}
+\quad\longleftrightarrow\quad
+\begin{cases}
+(i,j), & 0\le i\le j\le L,\\
+(i,j+L+1), & 1\le i\le L,\ 0\le j\le i-2.
+\end{cases}
+\]
+Thus the lifted interval \([a,b]\) records the unique oriented segment on the
+cycle going from \(a\) to \(b \bmod (L+1)\) without repeating vertices.
+
+\paragraph{Lifted path coordinates.}
+For \((a,b)\in \widetilde{\mathcal I}_L^{\mathrm{wt}}\), let
+\[
+q_{ab}
+\]
+denote the unique nonzero oriented path of \(A_L^{\mathrm{wt}}\) represented by
+the interval \([a,b]\) on the universal cover.
+
+Two special cases will be used repeatedly:
+\[
+q_{0L}=a_L\cdots a_1,
+\qquad
+q_{L,L+1}=a_0.
+\]
+The first is the open-chain path corresponding to the end-to-end product
+\(\mu(W)\); the second is the closing arrow.
+
+\paragraph{Why this indexing is correct.}
+The only oriented paths of length \(L\) in the cycle are
+\[
+[0,L],\ [1,L+1],\ \dots,\ [L,2L].
+\]
+The relation ideal \(I_L^{\mathrm{wt}}\) kills every length-\(L\) path passing
+through \(a_0\), i.e. every interval \([a,a+L]\) with \(1\le a\le L\), and it
+leaves the open-chain path \([0,L]\) untouched. Therefore the nonzero oriented
+paths of \(A_L^{\mathrm{wt}}\) are indexed exactly by
+\(\widetilde{\mathcal I}_L^{\mathrm{wt}}\).
+
+\paragraph{Lifted rank pattern.}
+Let \(M\) be a representation of \(A_L^{\mathrm{wt}}\) with dimension vector
+\[
+d=(d_0,\dots,d_L).
+\]
+For each \((a,b)\in \widetilde{\mathcal I}_L^{\mathrm{wt}}\), define
+\[
+\rho_{ab}(M):=\operatorname{rank}\bigl(q_{ab}(M)\bigr).
+\]
+The collection
+\[
+\rho(M):=(\rho_{ab}(M))_{(a,b)\in \widetilde{\mathcal I}_L^{\mathrm{wt}}}
+\]
+is the lifted cyclic rank pattern of \(M\).
+
+\paragraph{Interpretation in DLN language.}
+If \(W\in \Gamma_{d,S}\) and \(\phi(W)\) is the corresponding fixed-arrow
+representation, then
+\[
+\rho_{0L}(W)=\operatorname{rank}(W_L\cdots W_1)=\operatorname{rank}(\mu(W)),
+\]
+and
+\[
+\rho_{L,L+1}(W)=\operatorname{rank}(W_0).
+\]
+These are the two scalar coordinates that encode the end-to-end rank and the
+fixed closing-arrow rank.
+
+\paragraph{Status.}
+Completed. The lifted indexing resolves the cyclic bookkeeping cleanly and will
+be used in every subsequent task of Conjecture 3.

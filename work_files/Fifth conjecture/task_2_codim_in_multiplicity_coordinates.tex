@@ -1,0 +1,177 @@
+\section*{Task 2: Codimension in multiplicity coordinates}
+
+\paragraph{Goal.}
+Compute the codimensions of the cyclic and critical strata directly from orbit
+dimensions and rewrite the result in multiplicity coordinates.
+
+\paragraph{Endomorphism count.}
+Let
+\[
+M\cong \bigoplus_{(a,b)\in \widetilde{\mathcal I}_L^{\mathrm{wt}}}
+M(a,b)^{\oplus m_{ab}}.
+\]
+By additivity of \(\Hom\) and the interval-containment criterion from Task 0,
+\[
+\dim_k \End_A(M)
+=
+\sum_{(a,b)}\sum_{(c,d)}
+m_{ab}m_{cd}\,\mathbf 1_{[a,b]\subseteq [c,d]}.
+\]
+Define the quadratic functional
+\[
+\mathsf E(m)
+:=
+\sum_{(a,b)}\sum_{(c,d)}
+m_{ab}m_{cd}\,\mathbf 1_{[a,b]\subseteq [c,d]}.
+\]
+Then
+\[
+\dim_k \End_A(M)=\mathsf E(m).
+\]
+
+\paragraph{Dimension of the cyclic acting group.}
+Let
+\[
+s:=\operatorname{rank}(W_0)=d_L-r.
+\]
+The stabilizer of a rank-\(s\) matrix under the left-right action of
+\(\GL(d_0)\times \GL(d_L)\) has dimension
+\[
+d_0^2+d_L^2-s(d_0+d_L-s).
+\]
+Therefore
+\[
+\dim G_d^{W_0}
+=
+\sum_{\ell=1}^{L-1} d_\ell^2
++
+d_0^2+d_L^2-s(d_0+d_L-s)
+=
+\sum_{\ell=0}^{L} d_\ell^2-s(d_0+d_L-s).
+\]
+
+\paragraph{Dimension of the critical acting group.}
+The endpoint quotient associated with \(W_0\) is
+\[
+\R^{d_0}/\operatorname{im}(W_0),
+\]
+whose dimension is
+\[
+d_0-s=d_0-d_L+r.
+\]
+The reduced distinguished product \(P_SW^\ast\) is a surjective map from this
+quotient onto the \(r\)-dimensional space \(\ker(W_0)\). Its orbit under
+\[
+\GL(\ker W_0)\times \GL(\R^{d_0}/\operatorname{im}(W_0))
+\]
+therefore has dimension
+\[
+\kappa_r:=r(d_0-d_L+r).
+\]
+Hence
+\[
+\dim H_S
+=
+\dim G_d^{W_0}-\kappa_r
+=
+\sum_{\ell=0}^{L} d_\ell^2-d_0d_L.
+\]
+In particular, the dimension of \(H_S\) is independent of \(r\).
+
+\paragraph{Orbit-dimension formulas.}
+If \(W\in \Gamma_{d,S}^r\) has multiplicity pattern \(m\), then the stabilizer
+of \(W\) in either \(G_d^{W_0}\) or \(H_S\) is the automorphism group of the
+associated \(A_L^{\mathrm{wt}}\)-module, so its dimension is \(\mathsf E(m)\).
+Therefore
+\[
+\dim(G_d^{W_0}\cdot W)=\dim G_d^{W_0}-\mathsf E(m),
+\]
+and
+\[
+\dim(H_S\cdot W)=\dim H_S-\mathsf E(m).
+\]
+
+\paragraph{Codimension of a cyclic stratum.}
+Let
+\[
+\Omega=\prod_{\ell=1}^L \Mat_{d_\ell\times d_{\ell-1}}(\R),
+\qquad
+\dim \Omega=\sum_{\ell=1}^L d_\ell d_{\ell-1}.
+\]
+Then the cyclic rank-\(r\) stratum labelled by \(m\) has codimension
+\[
+\operatorname{codim}_{\Omega}\Gamma_{d,S}^r[m]
+=
+\dim \Omega-\dim G_d^{W_0}+\mathsf E(m)
+=
+\Bigl(
+\sum_{\ell=1}^L d_\ell d_{\ell-1}
+-\sum_{\ell=0}^L d_\ell^2
++(d_L-r)(d_0+r)
+\Bigr)
+\mathsf E(m).
+\]
+
+\paragraph{Codimension of a critical stratum.}
+The corresponding critical stratum has codimension
+\[
+\operatorname{codim}_{\Omega}\mathcal C_{d,S}^r[m]
+=
+\dim \Omega-\dim H_S+\mathsf E(m)
+=
+\Bigl(
+\sum_{\ell=1}^L d_\ell d_{\ell-1}
+-\sum_{\ell=0}^L d_\ell^2
++d_0d_L
+\Bigr)
+\mathsf E(m).
+\]
+
+\paragraph{Difference between the two formulas.}
+Subtracting the two expressions gives
+\[
+\operatorname{codim}_{\Omega}\mathcal C_{d,S}^r[m]
+-\operatorname{codim}_{\Omega}\Gamma_{d,S}^r[m]
+=
+r(d_0-d_L+r).
+\]
+This is exactly the dimension of the reduced endpoint orbit of the distinguished
+rank-\(r\) product.
+
+\paragraph{Whole-locus codimension formula.}
+Taking the minimum over all admissible multiplicity patterns gives
+\[
+\operatorname{codim}_{\Omega}\Gamma_{d,S}^r
+=
+\Bigl(
+\sum_{\ell=1}^L d_\ell d_{\ell-1}
+-\sum_{\ell=0}^L d_\ell^2
++(d_L-r)(d_0+r)
+\Bigr)
++
+\min_{m\in \mathcal M_{d,S}^{\mathrm{real},r}}\mathsf E(m),
+\]
+and
+\[
+\operatorname{codim}_{\Omega}\mathcal C_{d,S}^r
+=
+\Bigl(
+\sum_{\ell=1}^L d_\ell d_{\ell-1}
+-\sum_{\ell=0}^L d_\ell^2
++d_0d_L
+\Bigr)
++
+\min_{m\in \mathcal M_{d,S}^{\mathrm{real},r}}\mathsf E(m).
+\]
+Hence
+\[
+\operatorname{codim}_{\Omega}\mathcal C_{d,S}^r
+=
+\operatorname{codim}_{\Omega}\Gamma_{d,S}^r
++
+r(d_0-d_L+r).
+\]
+
+\paragraph{Status.}
+Completed. This gives an exact codimension formula without any transversality
+assumption.

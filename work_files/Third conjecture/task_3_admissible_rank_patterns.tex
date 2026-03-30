@@ -1,0 +1,92 @@
+\section*{Task 3: Admissible rank patterns}
+
+\paragraph{Goal.}
+Define the admissible lifted rank-pattern set and prove it is in bijection with
+the multiplicity-pattern set.
+
+\paragraph{Admissible rank-pattern set.}
+Define
+\[
+\widetilde{\mathcal R}_d^{\mathrm{wt}}
+:=
+\left\{
+\rho=(\rho_{ab})_{(a,b)\in \widetilde{\mathcal I}_L^{\mathrm{wt}}}
+\in
+\mathbb Z_{\ge 0}^{\widetilde{\mathcal I}_L^{\mathrm{wt}}}
+\ \middle|\
+\rho_{aa}=d_a\ \text{for all }0\le a\le L,\
+\mu_{ab}(\rho)\ge 0\ \text{for all }(a,b)\in \widetilde{\mathcal I}_L^{\mathrm{wt}}
+\right\},
+\]
+where
+\[
+\mu_{ab}(\rho)=\rho_{ab}-\rho_{a-1,b}-\rho_{a,b+1}+\rho_{a-1,b+1}
+\]
+with the boundary convention from Task 2.
+
+\paragraph{Forward and inverse maps.}
+Let
+\[
+F:\mathcal M_d^+(A_L^{\mathrm{wt}})\longrightarrow \widetilde{\mathcal R}_d^{\mathrm{wt}}
+\]
+be the forward map sending a multiplicity pattern to its lifted rank pattern,
+and let
+\[
+G:\widetilde{\mathcal R}_d^{\mathrm{wt}}\longrightarrow \mathbb Z_{\ge 0}^{\widetilde{\mathcal I}_L^{\mathrm{wt}}}
+\]
+be defined by
+\[
+G(\rho)_{ab}:=\mu_{ab}(\rho).
+\]
+
+\paragraph{Why \(G(\rho)\) has the correct dimension vector.}
+For each vertex \(k\in\{0,\dots,L\}\),
+\[
+\rho_{kk}
+=
+\sum_{\substack{(u,v)\in \widetilde{\mathcal I}_L^{\mathrm{wt}}\\ u\le k\le v}}
+G(\rho)_{uv},
+\]
+because substituting the finite-difference definition into the right-hand side
+produces a double telescoping sum whose only surviving term is \(\rho_{kk}\).
+Since \(\rho_{kk}=d_k\) by definition of \(\widetilde{\mathcal R}_d^{\mathrm{wt}}\),
+the array \(G(\rho)\) satisfies the required dimension constraints and is
+therefore a multiplicity pattern.
+
+\paragraph{Mutual inverses.}
+The identities
+\[
+G(F(m))=m
+\qquad\text{and}\qquad
+F(G(\rho))=\rho
+\]
+hold for every \(m\in \mathcal M_d^+(A_L^{\mathrm{wt}})\) and every
+\(\rho\in \widetilde{\mathcal R}_d^{\mathrm{wt}}\).
+
+The first identity is exactly the inversion formula of Task 2. For the second,
+fix \((a,b)\in \widetilde{\mathcal I}_L^{\mathrm{wt}}\) and compute
+\[
+F(G(\rho))_{ab}
+=
+\sum_{u\le a\le b\le v}
+\bigl(
+\rho_{uv}-\rho_{u-1,v}-\rho_{u,v+1}+\rho_{u-1,v+1}
+\bigr).
+\]
+Because all arrays are extended by zero outside
+\(\widetilde{\mathcal I}_L^{\mathrm{wt}}\), the sum telescopes in both
+variables and leaves only \(\rho_{ab}\).
+
+\paragraph{Conclusion.}
+The maps \(F\) and \(G\) are mutually inverse bijections:
+\[
+\mathcal M_d^+(A_L^{\mathrm{wt}})
+\xrightarrow{\sim}
+\widetilde{\mathcal R}_d^{\mathrm{wt}}.
+\]
+Thus the multiplicity data and the lifted cyclic rank-pattern data are
+equivalent orbit labels for the weight-space cyclic algebra.
+
+\paragraph{Status.}
+Completed. The direct weight-space version of the multiplicity/rank bijection is
+now established.
