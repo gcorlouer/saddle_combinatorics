@@ -1,0 +1,100 @@
+\section*{Task 3: Codimension in rank-pattern coordinates}
+
+\paragraph{Goal.}
+Rewrite the multiplicity formula from Task 2 in lifted rank-pattern
+coordinates.
+
+\paragraph{Finite-difference multiplicities.}
+For a lifted cyclic rank pattern
+\[
+\rho\in \widetilde{\mathcal R}_{d,S}^{\,r},
+\]
+set
+\[
+\mu_{ab}(\rho):=
+\rho_{ab}-\rho_{a-1,b}-\rho_{a,b+1}+\rho_{a-1,b+1}.
+\]
+This is the multiplicity of the indecomposable interval \(M(a,b)\).
+
+\paragraph{Quadratic functional in rank coordinates.}
+Define
+\[
+\mathsf E(\rho)
+:=
+\sum_{(a,b)}\sum_{(c,d)}
+\mu_{ab}(\rho)\,\mu_{cd}(\rho)\,
+\mathbf 1_{[a,b]\subseteq [c,d]}.
+\]
+Then
+\[
+\mathsf E(\rho)=\mathsf E(m(\rho))=\dim \End_A(M_\rho).
+\]
+
+\paragraph{Stratum codimension formula.}
+For every admissible rank pattern \(\rho\in \widetilde{\mathcal R}_{d,S}^{\,r}\),
+\[
+\operatorname{codim}_{\Omega}\Gamma_{d,S}^r[\rho]
+=
+\Bigl(
+\sum_{\ell=1}^L d_\ell d_{\ell-1}
+-\sum_{\ell=0}^L d_\ell^2
++(d_L-r)(d_0+r)
+\Bigr)
+\mathsf E(\rho),
+\]
+and
+\[
+\operatorname{codim}_{\Omega}\mathcal C_{d,S}^r[\rho]
+=
+\Bigl(
+\sum_{\ell=1}^L d_\ell d_{\ell-1}
+-\sum_{\ell=0}^L d_\ell^2
++d_0d_L
+\Bigr)
+\mathsf E(\rho).
+\]
+
+\paragraph{Whole-locus formula.}
+Taking the minimum over
+\(\widetilde{\mathcal R}_{d,S}^{\,r}\) yields
+\[
+\operatorname{codim}_{\Omega}\Gamma_{d,S}^r
+=
+\Bigl(
+\sum_{\ell=1}^L d_\ell d_{\ell-1}
+-\sum_{\ell=0}^L d_\ell^2
++(d_L-r)(d_0+r)
+\Bigr)
++
+\min_{\rho\in \widetilde{\mathcal R}_{d,S}^{\,r}} \mathsf E(\rho),
+\]
+and
+\[
+\operatorname{codim}_{\Omega}\mathcal C_{d,S}^r
+=
+\Bigl(
+\sum_{\ell=1}^L d_\ell d_{\ell-1}
+-\sum_{\ell=0}^L d_\ell^2
++d_0d_L
+\Bigr)
++
+\min_{\rho\in \widetilde{\mathcal R}_{d,S}^{\,r}} \mathsf E(\rho).
+\]
+Equivalently,
+\[
+\operatorname{codim}_{\Omega}\mathcal C_{d,S}^r
+=
+\operatorname{codim}_{\Omega}\Gamma_{d,S}^r
++
+r(d_0-d_L+r).
+\]
+
+\paragraph{Interpretation.}
+The codimension is controlled by a finite optimization problem over the
+admissible cyclic rank patterns. This is the codimension analogue of the orbit
+parametrization theorem: once the discrete rank-pattern label is known, both the
+stratum itself and its codimension are explicit.
+
+\paragraph{Status.}
+Completed. The codimension formula is now expressed entirely in rank-pattern
+coordinates.

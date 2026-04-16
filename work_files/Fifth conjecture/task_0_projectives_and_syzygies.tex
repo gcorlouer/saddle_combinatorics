@@ -1,0 +1,77 @@
+\section*{Task 0: Projectives and syzygies}
+
+\paragraph{Goal.}
+Compute projective covers, syzygies, and the basic \(\Ext^1\)-criterion for the
+weight-space cyclic Nakayama algebra.
+
+\paragraph{Projective indecomposables in lifted coordinates.}
+In the lifted indexing of Conjecture 3, the indecomposable projectives are
+\[
+P(0)=M(0,L),
+\qquad
+P(a)=M(a,a+L-1)\quad (1\le a\le L).
+\]
+Equivalently, the maximal admissible endpoint for the start vertex \(a\) is
+\[
+\beta(a):=
+\begin{cases}
+L, & a=0,\\
+a+L-1, & 1\le a\le L.
+\end{cases}
+\]
+
+\paragraph{Projective cover and first syzygy.}
+For any nonprojective indecomposable \(M(a,b)\), the projective cover is
+\[
+P(a)\twoheadrightarrow M(a,b),
+\]
+and its kernel is the interval module
+\[
+\Omega M(a,b)\cong M(b+1,\beta(a)).
+\]
+Thus there is a short exact sequence
+\[
+0\longrightarrow M(b+1,\beta(a))
+\longrightarrow P(a)
+\longrightarrow M(a,b)
+\longrightarrow 0.
+\]
+This is immediate from the uniserial structure of the projective \(P(a)\): the
+quotient by the first \(b-a+1\) composition factors is exactly \(M(a,b)\), so
+the remaining tail is \(M(b+1,\beta(a))\).
+
+\paragraph{Hom criterion for interval modules.}
+For admissible lifted intervals \((a,b)\) and \((c,d)\),
+\[
+\dim_k \Hom_A(M(a,b),M(c,d))
+=
+\begin{cases}
+1, & [a,b]\subseteq [c,d],\\
+0, & \text{otherwise}.
+\end{cases}
+\]
+Indeed, every indecomposable interval module has pairwise distinct composition
+factors, so any nonzero morphism is determined up to scalar and exists exactly
+when the source interval embeds into the target interval.
+
+\paragraph{Ext criterion.}
+Combining the previous two facts yields
+\[
+\Ext_A^1(M(a,b),M(c,d))
+\cong
+\Hom_A(M(b+1,\beta(a)),M(c,d))
+\]
+for every nonprojective \(M(a,b)\). Therefore
+\[
+\dim_k \Ext_A^1(M(a,b),M(c,d))
+=
+\begin{cases}
+1, & [b+1,\beta(a)]\subseteq [c,d],\\
+0, & \text{otherwise},
+\end{cases}
+\]
+and the dimension is \(0\) when \(M(a,b)\) is projective.
+
+\paragraph{Status.}
+Completed. The homological structure is explicit and can be used either for
+\(\Ext^1\)-based deformation arguments or for comparison with the older draft.

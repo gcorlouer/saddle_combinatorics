@@ -461,6 +461,234 @@ but not, in general, to all of $\mathcal C_r$ without further refinement.
 If only hidden-layer changes of basis are allowed, replace $G$ by $G_h := \prod_{\ell=1}^{L-1} \mathrm{GL}(d_\ell, \mathbb{R})$ (i.e.\ fix $g_0, g_L$), and replace $H_r$ by $H_{r,h} := H_r \cap G_h$. All statements and the proof remain valid verbatim with this replacement, with $\mathcal{Z}^{\circ}$ redefined using $\operatorname{Stab}_{G_h}$ in place of $\operatorname{Stab}_G$.
 \end{remark}
 \end{comment}
+% ============================================================
+% Transfer of the cyclic-rank stratification from \Gamma_{d_r,XY}
+% to the critical locus C_r
+% ============================================================
+
+\paragraph{Transfer of the cyclic-rank stratification to the critical locus.}
+The statements below are conditional on the exact normal-form parametrization of
+Proposition~2.12, namely
+\[
+C_r = G_{d_{\mathrm{hid}}}\cdot \iota(\Gamma_{d_r,XY}),
+\qquad
+X_r:=\iota(\Gamma_{d_r,XY})\subset \Omega .
+\]
+Let
+\[
+H_r:=\{h\in G_{d_{\mathrm{hid}}}\mid h\cdot X_r=X_r\}
+\]
+be the setwise stabilizer of the gauge-fixed slice.
+
+\begin{proposition}[Presentation quotient of the critical locus]
+The map
+\[
+\Phi:G_{d_{\mathrm{hid}}}\times \Gamma_{d_r,XY}\longrightarrow C_r,
+\qquad
+\Phi(g,Z):=g\cdot \iota(Z),
+\]
+is surjective and is invariant under the right action of \(H_r\) given by
+\[
+(g,Z)\cdot h := (gh,h^{-1}\!\cdot Z).
+\]
+Hence \(\Phi\) descends to a surjective map
+\[
+\bar\Phi:G_{d_{\mathrm{hid}}}\times_{H_r}\Gamma_{d_r,XY}\longrightarrow C_r.
+\]
+\end{proposition}
+
+\begin{definition}[Principal slice locus]
+Define
+\[
+\Gamma_{d_r,XY}^{\circ}
+:=
+\left\{
+Z\in \Gamma_{d_r,XY}\ \middle|\
+\text{Trans}_{G_{d_{\mathrm{hid}}}}(\iota(Z),X_r)=H_r
+\right\},
+\]
+and
+\[
+C_r^{\circ}:=
+\bar\Phi\!\left(G_{d_{\mathrm{hid}}}\times_{H_r}\Gamma_{d_r,XY}^{\circ}\right).
+\]
+\end{definition}
+
+\begin{theorem}[Faithful transfer on the principal slice locus]
+The restriction
+\[
+\bar\Phi^{\circ}:
+G_{d_{\mathrm{hid}}}\times_{H_r}\Gamma_{d_r,XY}^{\circ}
+\longrightarrow
+C_r^{\circ}
+\]
+is bijective. In particular, if
+\[
+\Gamma_{d_r,XY}=\bigsqcup_{\rho\in A_r} O_{\rho,\sigma}
+\]
+is the orbit decomposition of Theorem~5.21, then
+\[
+\Gamma_{d_r,XY}^{\circ}
+=
+\bigsqcup_{\rho\in A_r}
+\left(O_{\rho,\sigma}\cap \Gamma_{d_r,XY}^{\circ}\right)
+\]
+induces a genuine disjoint stratification
+\[
+C_r^{\circ}
+=
+\bigsqcup_{\rho\in A_r}
+C_{r,\circ}^{(\rho)},
+\qquad
+C_{r,\circ}^{(\rho)}
+:=
+\bar\Phi^{\circ}\!\left(
+G_{d_{\mathrm{hid}}}\times_{H_r}
+\bigl(O_{\rho,\sigma}\cap \Gamma_{d_r,XY}^{\circ}\bigr)
+\right).
+\]
+Thus, on the principal slice locus, points of \(C_r\) are labelled by a unique cyclic
+rank pattern.
+\end{theorem}
+
+\begin{remark}[Why the transfer does \emph{not} give a global rank-pattern stratification]
+In general, \(\bar\Phi\) need not be injective on all of
+\(G_{d_{\mathrm{hid}}}\times_{H_r}\Gamma_{d_r,XY}\). Therefore distinct
+\(G_{\sigma}\)-orbits \(O_{\rho,\sigma}\) and \(O_{\rho',\sigma}\) in
+\(\Gamma_{d_r,XY}\) may map to the same point of \(C_r\). Equivalently, the sets
+\[
+G_{d_{\mathrm{hid}}}\cdot \iota(O_{\rho,\sigma})
+\quad\text{and}\quad
+G_{d_{\mathrm{hid}}}\cdot \iota(O_{\rho',\sigma})
+\]
+may intersect even when \(\rho\neq \rho'\). Hence a single cyclic rank pattern does
+\emph{not} globally stratify \(C_r\).
+\end{remark}
+
+\begin{definition}[Global rank-pattern cover]
+For each \(\rho\in A_r\), define
+\[
+C_r^{(\rho)}
+:=
+\bar\Phi\!\left(G_{d_{\mathrm{hid}}}\times_{H_r}O_{\rho,\sigma}\right)
+=
+G_{d_{\mathrm{hid}}}\cdot \iota(O_{\rho,\sigma})
+\subseteq C_r.
+\]
+Then
+\[
+C_r=\bigcup_{\rho\in A_r} C_r^{(\rho)}.
+\]
+This family is in general a finite cover, not a partition.
+\end{definition}
+
+\begin{definition}[Rank-support of a critical point]
+For \(W\in C_r\), define its rank-support by
+\[
+\Supp_{\mathrm{rk}}(W)
+:=
+\{\rho\in A_r\mid W\in C_r^{(\rho)}\}.
+\]
+Equivalently,
+\[
+\rho\in \Supp_{\mathrm{rk}}(W)
+\iff
+\exists\, g\in G_{d_{\mathrm{hid}}},\ \exists\, Z\in O_{\rho,\sigma}
+\text{ such that } W=g\cdot \iota(Z).
+\]
+\end{definition}
+
+\begin{proposition}[Global support stratification of \(C_r\)]
+For every subset \(\mathsf S\subseteq A_r\), define
+\[
+C_r^{\mathsf S}
+:=
+\{W\in C_r\mid \Supp_{\mathrm{rk}}(W)=\mathsf S\}.
+\]
+Then
+\[
+C_r=\bigsqcup_{\mathsf S\subseteq A_r} C_r^{\mathsf S}.
+\]
+Moreover, each \(C_r^{\mathsf S}\) is constructible, since
+\[
+C_r^{\mathsf S}
+=
+\left(\bigcap_{\rho\in \mathsf S} C_r^{(\rho)}\right)
+\setminus
+\left(\bigcup_{\rho\notin \mathsf S} C_r^{(\rho)}\right),
+\]
+and each \(C_r^{(\rho)}\) is constructible as the image of the constructible set
+\(G_{d_{\mathrm{hid}}}\times O_{\rho,\sigma}\) under the regular map
+\((g,Z)\mapsto g\cdot \iota(Z)\).
+Thus the canonical global transfer of the cyclic-rank decomposition of
+\(\Gamma_{d_r,XY}\) to \(C_r\) is the support stratification
+\[
+C_r=\bigsqcup_{\mathsf S\subseteq A_r} C_r^{\mathsf S},
+\]
+not a stratification by single rank patterns.
+\end{proposition}
+
+\begin{remark}[Compatibility with the principal locus]
+If \(W\in C_r^{\circ}\), then \(\Supp_{\mathrm{rk}}(W)\) is a singleton. More precisely,
+\[
+C_r^{\{\rho\}}\cap C_r^{\circ}=C_{r,\circ}^{(\rho)}.
+\]
+Hence the support stratification restricts on \(C_r^{\circ}\) to the ordinary
+rank-pattern stratification by single labels.
+\end{remark}
+
+\begin{remark}[Alternative formalism: stratify the presentation stack instead of \(C_r\)]
+A fully faithful alternative is to keep the disjoint decomposition on the presentation side:
+\[
+\mathfrak X_r
+:=
+\left[G_{d_{\mathrm{hid}}}\times \Gamma_{d_r,XY}\,/\,H_r\right],
+\qquad
+\mathfrak X_{r,\rho}
+:=
+\left[G_{d_{\mathrm{hid}}}\times O_{\rho,\sigma}\,/\,H_r\right].
+\]
+Then
+\[
+\mathfrak X_r=\bigsqcup_{\rho\in A_r}\mathfrak X_{r,\rho}.
+\]
+For \(W\in C_r\), the fiber groupoid of presentations
+\[
+\mathfrak X_{r,W}:=\bar\Phi^{-1}(W)
+\]
+decomposes canonically as
+\[
+\mathfrak X_{r,W}
+=
+\bigsqcup_{\rho\in A_r}\mathfrak X_{r,W,\rho},
+\qquad
+\mathfrak X_{r,W,\rho}:=\mathfrak X_{r,W}\cap \mathfrak X_{r,\rho}.
+\]
+Thus cyclic rank patterns always distinguish \emph{presentations} of a critical point,
+even when they do not distinguish the point itself in \(C_r\).
+\end{remark}
+
+\begin{remark}[Edge case \(r=d_L\)]
+When \(r=d_L\), one has \(U_Q=0\) and therefore \(\sigma=0\). The residual dimension vector is
+\[
+d_r=(d_0,d_1-d_L,\dots,d_{L-1}-d_L,0),
+\]
+so the cyclic residual variety collapses to the equioriented type-\(A\) zero-product variety.
+Accordingly, the whole discussion above remains valid, but the indexing set \(A_r\) is now the
+finite set of affine-quiver rank strata appearing in the global-minimum fiber.
+\end{remark}
+
+\begin{remark}[Depth \(L=3\)]
+All statements above remain valid for depth \(L=3\). However, the present appendix argument for a
+generic density statement of the principal slice locus should not be used as written: the step
+``propagate inward for \(\ell=2,\dots,L-2\)'' is empty when \(L=3\), and the preceding endpoint
+computation only yields that the relevant hidden change of basis is block upper triangular, not yet
+block diagonal. Therefore any later formula that uses the hypothesis
+\[
+\operatorname{codim}_{\Omega}(C_r^{\circ})=\operatorname{codim}_{\Omega}(C_r)
+\]
+should keep this as an explicit hypothesis unless a separate proof is supplied.
+\end{remark}
 \section{Cyclic quiver representations}
 \subsection{Critical loci as cyclic quivers}
 A cyclic quiver is a quiver with at least one oriented cycle. In this paper, we will be interested in a quiver which is exactly one cycle here noted $C_n$.
@@ -1976,6 +2204,226 @@ In particular, \(\Gamma_{d,\sigma}\) is stratified by \(G_\sigma\)-orbits indexe
 \end{theorem}
 \noindent
 We prove this theorem in the appendix \ref{proof:GammaXY_orbit_stratification}
+% =======================
+% Corrigendum for Section 5
+% =======================
+
+\paragraph{Corrigendum for Section~5.}
+The stratification of the fixed-closing-map slice is correct after the following
+clarifications/corrections.
+
+\begin{enumerate}
+\item[(1)] The ambient variety is \(\Gamma_{d,L+1}\), while the fixed-arrow slice is
+\[
+\Gamma_{d,\sigma}:=\{\phi\in \Gamma_{d,L+1}\mid \phi_0=\sigma\}.
+\]
+Thus one should stratify \(\Gamma_{d,L+1}\) by \(G_d\)-orbits first, and only then intersect
+with the fiber \(\Gamma_{d,\sigma}\).
+
+\item[(2)] In every formula involving \(i-1\) or \(j+1\) (notably Proposition~5.11,
+Definition~5.13, Definition~5.16, Lemma~5.17, Proposition~5.18, and Proposition~5.20),
+the indices must be interpreted on the \emph{universal cover} of the cycle.
+More precisely: if \(\delta(i,j)\le L-1\), choose the unique lift
+\(\tilde i\le \tilde j\le \tilde i+L-1\) of the cyclic interval \([i\rightsquigarrow j]\).
+Then the symbols
+\[
+r_{i-1,j},\qquad r_{i,j+1},\qquad r_{i-1,j+1}
+\]
+mean
+\[
+r_{\tilde i-1,\tilde j},\qquad r_{\tilde i,\tilde j+1},\qquad r_{\tilde i-1,\tilde j+1},
+\]
+and are declared to be \(0\) whenever the lifted interval has length \(\ge L\).
+Equivalently, all length-\(L\) path ranks are zero on \(\Gamma_{d,L+1}\), and any formal
+interval of length \(>L\) is set equal to \(0\) by convention.
+
+\item[(3)] In the proof of Proposition~\ref{prop:rank_formula_eps}, every occurrence of
+\(\phi_{L+1}\) must be replaced by \(\phi_0\).
+\end{enumerate}
+
+\begin{proposition}[Corrected form of Proposition~5.2]
+Fix \(\sigma\in \Hom(V_L,V_0)\) and consider the representation space with \(\phi_0=\sigma\).
+For \(\phi=(\sigma,\phi_1,\ldots,\phi_L)\) and \(l=0,\ldots,L\), define
+\[
+d\mu_{l,\sigma}(\phi)
+:=
+\phi_{l-1}\cdots \phi_1\,\sigma\,\phi_L\cdots \phi_{l+1}
+\in \Hom(V_l,V_{l-1}),
+\]
+where indices are read modulo \(L+1\) and the empty product is the identity.
+Then, for every \(g=(g_0,\ldots,g_L)\in G_\sigma\),
+\[
+d\mu_{l,\sigma}(g\cdot \phi)
+=
+g_{l-1}\, d\mu_{l,\sigma}(\phi)\, g_l^{-1},
+\qquad l=0,\ldots,L.
+\]
+In particular, \(\Gamma_{d,\sigma}\) is \(G_\sigma\)-stable.
+\end{proposition}
+
+\begin{proof}
+Expand \(d\mu_{l,\sigma}(g\cdot \phi)\) as the product of the transformed arrow maps.
+All intermediate base-change factors cancel, leaving exactly \(g_{l-1}\) on the left
+and \(g_l^{-1}\) on the right. The factor corresponding to the fixed arrow is
+\[
+(g\cdot \phi)_0=g_0\,\sigma\, g_L^{-1}=\sigma
+\]
+because \(g\in G_\sigma\). Hence the displayed formula follows, and the zero-fiber
+\(\Gamma_{d,\sigma}\) is \(G_\sigma\)-stable.
+\end{proof}
+
+\begin{proposition}[Corrected form of Proposition~5.4]
+Let
+\[
+p_0:\Gamma_{d,L+1}\longrightarrow \Hom(V_L,V_0),
+\qquad
+p_0(\phi):=\phi_0 .
+\]
+Then \(p_0\) is \(G_d\)-equivariant in the sense that
+\[
+p_0(g\cdot \phi)=g_0\,p_0(\phi)\,g_L^{-1}
+\qquad
+(g\in G_d,\ \phi\in\Gamma_{d,L+1}).
+\]
+Let
+\[
+\Gamma_{d,L+1}=\bigsqcup_{\lambda\in\Lambda}\mathcal O_\lambda
+\]
+be the \(G_d\)-orbit decomposition. For each \(\lambda\in\Lambda\), define
+\[
+r(\lambda):=\rank(p_0(x))
+\qquad \text{for any }x\in \mathcal O_\lambda .
+\]
+Then:
+\begin{enumerate}
+\item[(i)] \(r(\lambda)\) is well-defined.
+\item[(ii)] For every fixed \(\sigma\in \Hom(V_L,V_0)\),
+\[
+\mathcal O_\lambda\cap \Gamma_{d,\sigma}\neq \varnothing
+\qquad\Longleftrightarrow\qquad
+r(\lambda)=\rank(\sigma).
+\]
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Part (i) follows from the equivariance of \(p_0\): if \(y=g\cdot x\) with
+\(g\in G_d\), then
+\[
+p_0(y)=g_0\,p_0(x)\,g_L^{-1},
+\]
+hence \(\rank(p_0(y))=\rank(p_0(x))\).
+
+For (ii), if \(x\in \mathcal O_\lambda\cap \Gamma_{d,\sigma}\), then \(p_0(x)=\sigma\), so
+\(\rank(\sigma)=r(\lambda)\). Conversely, if \(r(\lambda)=\rank(\sigma)\), choose
+\(x_0\in \mathcal O_\lambda\). Since two real matrices are in the same
+\(GL(V_0)\times GL(V_L)\)-orbit if and only if they have the same rank, there exist
+\(A\in GL(V_0)\) and \(B\in GL(V_L)\) such that
+\[
+\sigma=A\,p_0(x_0)\,B^{-1}.
+\]
+Let \(g=(A,\mathrm{Id},\ldots,\mathrm{Id},B)\in G_d\). Then
+\[
+p_0(g\cdot x_0)=A\,p_0(x_0)\,B^{-1}=\sigma,
+\]
+so \(g\cdot x_0\in \mathcal O_\lambda\cap \Gamma_{d,\sigma}\).
+\end{proof}
+
+\begin{remark}[Corrected rank-pattern convention]
+Define \(R_d^{\mathrm{orb}}\) to be the set of arrays
+\(\mathbf r=(r_{ij})_{0\le i,j\le L}\) such that
+\[
+r_{ii}=d_i,\qquad r_{ij}=0 \text{ whenever } \delta(i,j)=L,
+\]
+and such that
+\[
+m_{ij}(\mathbf r):=
+r_{ij}-r_{i-1,j}-r_{i,j+1}+r_{i-1,j+1}\ge 0
+\]
+for every pair \((i,j)\) with \(\delta(i,j)\le L-1\), where the shifted terms are
+interpreted using the lifted-interval convention above.
+With this convention, the inversion formula of Proposition~5.11, the construction of
+\(G(\mathbf r)\), and the proof that \(F\) and \(G\) are mutually inverse are rigorous.
+\end{remark}
+
+\begin{remark}[The fixed-arrow rank is already one of the cyclic ranks]
+For every multiplicity pattern \(\mathbf m\in M_d^+\), the forward formula applied to the
+segment \([L\rightsquigarrow 0]\) gives
+\[
+r_{L0}(F(\mathbf m))
+=
+\sum_{\substack{i,j\\ [L\rightsquigarrow 0]\subseteq [i\rightsquigarrow j]}} m_{ij}
+=
+\sum_{i,j}\epsilon(i,j)\,m_{ij}.
+\]
+Hence the scalar rank label used in Proposition~5.7 is simply the \((L,0)\)-entry of the
+cyclic rank pattern:
+\[
+\rank(\mathbf m)=r_{L0}(F(\mathbf m)).
+\]
+Equivalently, for \(\mathbf r\in R_d^{\mathrm{orb}}\),
+\[
+\rank(\mathbf r)=r_{L0}.
+\]
+Therefore Proposition~5.20 and Theorem~5.21 can be stated more simply as follows:
+\[
+O_{\mathbf r,\sigma}:=O_{\mathbf r}\cap \Gamma_{d,\sigma}
+\]
+is either empty or a single \(G_\sigma\)-orbit, and
+\[
+O_{\mathbf r,\sigma}\neq \varnothing
+\qquad\Longleftrightarrow\qquad
+r_{L0}=\rank(\sigma).
+\]
+Consequently,
+\[
+\Gamma_{d,\sigma}
+=
+\bigsqcup_{\substack{\mathbf r\in R_d^{\mathrm{orb}}\\ r_{L0}=\rank(\sigma)}}
+O_{\mathbf r,\sigma}.
+\]
+This is equivalent to the current statement of Theorem~5.21, but is slightly cleaner.
+\end{remark}
+
+\begin{remark}[Edge case \(r=d_L\)]
+In the DLN application, when the network rank equals \(d_L\), one has \(U_Q=0\) and
+hence \(\sigma=0\). For the residual dimension vector
+\[
+d_r=(d_0,d_1-r,\ldots,d_{L-1}-r,0),
+\]
+the last vertex has dimension \(0\), so the fixed arrow \(V_L\to V_0\) is identically zero and
+\[
+\Gamma_{d_r,0}
+=
+\{(\phi_1,\ldots,\phi_L)\mid \phi_L\cdots \phi_1=0\}.
+\]
+Thus the cyclic picture collapses to the equioriented type-\(A\) zero-product variety.
+Equivalently, every indecomposable crossing the arrow \(L\to 0\) has multiplicity \(0\), so
+the fixed-arrow rank constraint is automatic. Hence the Section~5 stratification is fully
+compatible with the \(r=d_L\) case and reduces to the affine-quiver stratification used for
+the global-minimum fiber.
+\end{remark}
+
+\begin{remark}[Sanity check for \(L=3\)]
+When \(L=3\), the admissible indecomposables have lengths \(0,1,2\). The only
+\((L\to 0)\)-active indecomposables are
+\[
+M(3,0),\qquad M(3,1),\qquad M(2,0).
+\]
+Hence
+\[
+\rank(\mathbf m)=m_{30}+m_{31}+m_{20}.
+\]
+With the lifted-interval convention, this is exactly the same as the cyclic rank entry
+\(r_{30}\), i.e. the rank of the closing arrow itself. No exceptional phenomenon occurs for
+\(L=3\); the fixed-arrow stratification still reads
+\[
+\Gamma_{d,\sigma}
+=
+\bigsqcup_{\substack{\mathbf r\in R_d^{\mathrm{orb}}\\ r_{30}=\rank(\sigma)}}
+O_{\mathbf r,\sigma}.
+\]
+\end{remark}
 \section{Stratification of the Critical loci}
 \begin{definition}[Lifted rank-pattern loci and rank-support]
 For each cyclic admissible rank pattern $\rho$, define the corresponding lifted locus in the critical set by

@@ -1,0 +1,56 @@
+\section*{Task 1: Fixed-arrow tangent sequence}
+
+\paragraph{Goal.}
+Record the deformation-theoretic exact sequence for the fixed-arrow slice and
+clarify how it compares with the final codimension argument.
+
+\paragraph{Deformation-theoretic picture.}
+Let
+\[
+\Rep_d(A_L^{\mathrm{wt}})
+\]
+be the ambient free-arrow representation variety and
+\[
+\pi:\Rep_d(A_L^{\mathrm{wt}})\to \Hom(V_L,V_0),
+\qquad
+\phi\mapsto \phi_0,
+\]
+the projection to the closing-arrow component. The fixed-arrow slice is the
+fiber
+\[
+\Rep_{d,W_0}(Q,I_L^{\mathrm{wt}})=\pi^{-1}(W_0),
+\]
+which is identified with the cyclic locus \(\Gamma_{d,S}\).
+
+At a point \(M\) with closing arrow \(W_0\), the usual Voigt-type argument gives
+an exact sequence
+\[
+0\to T_M\Gamma_{d,S}/T_M(G_d^{W_0}\cdot M)
+\to \Ext_A^1(M,M)
+\xrightarrow{\delta_{W_0}}
+\Hom(V_L,V_0)\big/
+T_{W_0}\bigl((\GL(V_0)\times \GL(V_L))\cdot W_0\bigr).
+\]
+If the boundary map \(\delta_{W_0}\) is surjective and the slice is smooth at
+\(M\), this yields
+\[
+\operatorname{codim}_{\Gamma_{d,S}}(G_d^{W_0}\cdot M)
+=
+\dim \Ext_A^1(M,M)-(d_0-s)(d_L-s),
+\]
+where
+\[
+s=\operatorname{rank}(W_0)=d_L-r.
+\]
+
+\paragraph{Why the final theorem will not rely on this.}
+The orbit decomposition proved earlier is already exact: every relevant stratum
+is a single group orbit. Therefore the codimension of each stratum can be
+computed directly from the dimension of the acting group and the dimension of
+the stabilizer. This removes the need for smoothness or transversality
+hypotheses. The tangent-sequence viewpoint is still useful as a consistency
+check, but it is no longer the main engine of the codimension formula.
+
+\paragraph{Status.}
+Completed. The deformation-theoretic viewpoint is recorded, but the final proof
+will use exact orbit-dimension formulas instead.

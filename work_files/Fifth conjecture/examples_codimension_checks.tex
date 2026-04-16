@@ -1,0 +1,48 @@
+\section*{Codimension checks}
+
+\paragraph{Goal.}
+Validate the codimension formulas against the main special cases.
+
+\paragraph{Check 1: full-rank case.}
+If \(r=d_L\), then
+\[
+W_0=0,
+\qquad
+\Gamma_{d,S}^{d_L}=\Sigma_d^{d_L}.
+\]
+The general relation gives
+\[
+\operatorname{codim}_{\Omega}\mathcal C_{d,S}^{d_L}
+=
+\operatorname{codim}_{\Omega}\Sigma_d^{d_L}+d_0d_L.
+\]
+Since the full-rank determinantal locus is open in \(\Omega\) under the
+no-bottleneck assumption, one obtains
+\[
+\operatorname{codim}_{\Omega}\mathcal C_{d,S}^{d_L}=d_0d_L,
+\]
+which is exactly the expected codimension of the fiber
+\(\mu^{-1}(P_SW^\ast)\).
+
+\paragraph{Check 2: relation with the cyclic slice.}
+For every \(r\),
+\[
+\operatorname{codim}_{\Omega}\mathcal C_{d,S}^r
+-\operatorname{codim}_{\Omega}\Gamma_{d,S}^r
+=
+r(d_0-d_L+r).
+\]
+The right-hand side depends only on the reduced endpoint problem, not on the
+internal orbit label. This matches the geometric picture from the orbit
+correspondence: every cyclic orbit loses the same endpoint-orbit dimension when
+it is intersected with the critical fiber.
+
+\paragraph{Check 3: depth three.}
+For \(L=3\), the codimension functional is evaluated on the same thirteen lifted
+interval labels listed in the third- and fourth-conjecture checks. In the
+full-rank case the three wrapped intervals disappear, and the formula reduces to
+the standard chain-type computation.
+
+\paragraph{Status.}
+Completed. The codimension formulas pass the main sanity checks, including the
+global-minimum benchmark.

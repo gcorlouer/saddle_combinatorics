@@ -1,0 +1,65 @@
+\section*{Task 1: Forward formula}
+
+\paragraph{Goal.}
+Express the lifted rank pattern in terms of the indecomposable multiplicities.
+
+\paragraph{Lifted multiplicity coordinates.}
+Write a multiplicity pattern in lifted coordinates as
+\[
+m=(m_{uv})_{(u,v)\in \widetilde{\mathcal I}_L^{\mathrm{wt}}},
+\]
+where \(m_{uv}\) is the multiplicity of the indecomposable interval module
+\[
+M(u,v).
+\]
+
+\paragraph{Containment criterion on indecomposables.}
+On a lifted interval module \(M(u,v)\), the path \(q_{ab}\) acts with rank
+\[
+1
+\]
+if and only if the path interval \([a,b]\) is contained in the support interval
+\([u,v]\), and otherwise the rank is \(0\).
+
+Indeed, \(M(u,v)\) is one-dimensional on every vertex of \([u,v]\), every arrow
+inside \([u,v]\) acts as the identity, and every arrow outside \([u,v]\) acts
+as \(0\). Therefore the composition along \(q_{ab}\) is the identity exactly in
+the containment case.
+
+\paragraph{Forward formula.}
+For the module
+\[
+M\cong \bigoplus_{(u,v)\in \widetilde{\mathcal I}_L^{\mathrm{wt}}}
+M(u,v)^{\oplus m_{uv}},
+\]
+one has, for every \((a,b)\in \widetilde{\mathcal I}_L^{\mathrm{wt}}\),
+\[
+\rho_{ab}(M)
+=
+\sum_{\substack{(u,v)\in \widetilde{\mathcal I}_L^{\mathrm{wt}}\\
+u\le a\le b\le v}}
+m_{uv}.
+\]
+This is just additivity of rank over direct sums together with the containment
+criterion above.
+
+\paragraph{Two important specializations.}
+The open-chain path \([0,L]\) is contained only in the unique maximal interval
+\([0,L]\). Hence
+\[
+\rho_{0L}(M)=m_{0L}.
+\]
+The closing arrow \([L,L+1]\) is contained exactly in the wrapped intervals, so
+\[
+\rho_{L,L+1}(M)
+=
+\sum_{\substack{(u,v)\in \widetilde{\mathcal I}_L^{\mathrm{wt}}\\
+u\le L<L+1\le v}}
+m_{uv}.
+\]
+This is the lifted form of the closing-arrow rank functional from the current
+draft.
+
+\paragraph{Status.}
+Completed. The forward map from multiplicities to rank data is now explicit and
+already singles out the two scalar coordinates relevant for the DLN slice.

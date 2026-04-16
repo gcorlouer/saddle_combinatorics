@@ -1,0 +1,82 @@
+\section*{Task 4: Fixed-arrow compatibility}
+
+\paragraph{Goal.}
+Rewrite the fixed-arrow and rank-\(r\) conditions in lifted rank-pattern
+coordinates.
+
+\paragraph{Closing-arrow compatibility.}
+Let \(W\in \Gamma_{d,S}\). By definition of the fixed-arrow slice,
+\[
+q_{L,L+1}(W)=W_0=\Sigma_{XY}P_Q.
+\]
+Hence
+\[
+\rho_{L,L+1}(W)=\operatorname{rank}(W_0).
+\]
+Under the standing assumption that \(\Sigma_{XY}\) has full rank \(d_L\) and
+\(|S|=r\), this equals
+\[
+\operatorname{rank}(W_0)=d_L-r.
+\]
+
+\paragraph{Open-chain rank compatibility.}
+If \(W\in \Gamma_{d,S}^r\), then
+\[
+q_{0L}(W)=W_L\cdots W_1=\mu(W),
+\]
+so
+\[
+\rho_{0L}(W)=\operatorname{rank}(\mu(W))=r.
+\]
+
+\paragraph{Rank-pattern formulation of the slice constraints.}
+Define
+\[
+\widetilde{\mathcal R}_{d,S}^{\mathrm{real}}
+:=
+\{\rho(W)\mid W\in \Gamma_{d,S}\}
+\subseteq
+\widetilde{\mathcal R}_d^{\mathrm{wt}},
+\]
+and
+\[
+\widetilde{\mathcal R}_{d,S}^{\mathrm{real},r}
+:=
+\{\rho(W)\mid W\in \Gamma_{d,S}^r\}.
+\]
+Then the multiplicity classification from the second-conjecture block and the
+bijection of Task 3 give
+\[
+\widetilde{\mathcal R}_{d,S}^{\mathrm{real}}
+=
+\{\rho\in \widetilde{\mathcal R}_d^{\mathrm{wt}}\mid \rho_{L,L+1}=d_L-r\},
+\]
+and
+\[
+\widetilde{\mathcal R}_{d,S}^{\mathrm{real},r}
+=
+\{\rho\in \widetilde{\mathcal R}_d^{\mathrm{wt}}\mid \rho_{L,L+1}=d_L-r,\ \rho_{0L}=r\}.
+\]
+
+\paragraph{Reason.}
+The current draft already proves that realized multiplicity patterns are exactly
+those for which the wrapped-interval count equals \(\operatorname{rank}(W_0)\).
+By Task 1, that wrapped-interval count is precisely the lifted coordinate
+\(\rho_{L,L+1}\). By the special case \(m_{0L}=\rho_{0L}\) from Task 2, the
+rank-\(r\) condition is exactly the scalar constraint \(\rho_{0L}=r\).
+
+\paragraph{Full-rank case.}
+If \(r=d_L\), then
+\[
+\rho_{L,L+1}=0.
+\]
+Hence no wrapped interval is allowed, so the realized rank patterns reduce to
+the ordinary type-\(A\) patterns on the chain
+\[
+0\to 1\to \cdots \to L.
+\]
+This is the direct weight-space recovery of the global-minimum regime.
+
+\paragraph{Status.}
+Completed. The fixed closing arrow and the end-to-end rank are now encoded by
+the two scalar coordinates \(\rho_{L,L+1}\) and \(\rho_{0L}\).

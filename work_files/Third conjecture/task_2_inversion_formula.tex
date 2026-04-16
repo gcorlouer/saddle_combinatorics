@@ -1,0 +1,68 @@
+\section*{Task 2: Inversion formula}
+
+\paragraph{Goal.}
+Recover the multiplicity coordinates from the lifted rank pattern.
+
+\paragraph{Boundary convention.}
+If \((u,v)\notin \widetilde{\mathcal I}_L^{\mathrm{wt}}\), define
+\[
+\rho_{uv}:=0.
+\]
+With this convention, every finite-difference formula may be written without
+separate boundary cases.
+
+\paragraph{Inverse formula.}
+For every admissible lifted interval \((a,b)\in \widetilde{\mathcal I}_L^{\mathrm{wt}}\),
+define
+\[
+\mu_{ab}(\rho)
+:=
+\rho_{ab}-\rho_{a-1,b}-\rho_{a,b+1}+\rho_{a-1,b+1}.
+\]
+Then for the rank pattern coming from a multiplicity pattern \(m\), one has
+\[
+m_{ab}=\mu_{ab}(\rho).
+\]
+
+\paragraph{Proof sketch.}
+Insert the forward formula into the right-hand side:
+\[
+\mu_{ab}(\rho)
+=
+\sum_{u\le a\le b\le v} m_{uv}
+-
+\sum_{u\le a-1\le b\le v} m_{uv}
+-
+\sum_{u\le a\le b+1\le v} m_{uv}
++
+\sum_{u\le a-1\le b+1\le v} m_{uv}.
+\]
+For a fixed interval \((u,v)\), the coefficient of \(m_{uv}\) is
+\[
+\mathbf 1_{u\le a\le b\le v}
+-
+\mathbf 1_{u\le a-1\le b\le v}
+-
+\mathbf 1_{u\le a\le b+1\le v}
++
+\mathbf 1_{u\le a-1\le b+1\le v}.
+\]
+This coefficient is \(1\) exactly when
+\[
+u=a,\qquad v=b,
+\]
+and it is \(0\) otherwise. Therefore only \(m_{ab}\) survives.
+
+\paragraph{Special cases.}
+For the unique maximal interval \((0,L)\), the boundary convention gives
+\[
+m_{0L}=\rho_{0L},
+\]
+because all three correction terms vanish. This is the clean lifted expression
+of the fact that the end-to-end rank equals the multiplicity of the unique
+length-\(L\) indecomposable.
+
+\paragraph{Status.}
+Completed. The lifted finite-difference formula recovers all multiplicities and
+fixes the main combinatorial defect of the cyclic indexing used in the older
+draft.

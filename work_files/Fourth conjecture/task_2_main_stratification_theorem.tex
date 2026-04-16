@@ -1,0 +1,54 @@
+\section*{Task 2: Main stratification theorem}
+
+\paragraph{Goal.}
+State the main result of the paper in the final weight-space language.
+
+\paragraph{Main theorem.}
+For the fixed singular subset \(S\subseteq \{1,\dots,r_{\max}\}\) with
+\(|S|=r\), the rank-\(r\) critical locus admits the disjoint decomposition
+\[
+\mathcal C_{d,S}^r
+=
+\bigsqcup_{\rho\in \widetilde{\mathcal R}_{d,S}^{\,r}}
+\mathcal C_{d,S}^r[\rho],
+\qquad
+\mathcal C_{d,S}^r[\rho]
+:=
+\mathcal C_{d,S}^r\cap \Gamma_{d,S}^r[\rho].
+\]
+Each nonempty piece \(\mathcal C_{d,S}^r[\rho]\) is a single \(H_S\)-orbit.
+Equivalently,
+\[
+H_S\backslash \mathcal C_{d,S}^r
+\xrightarrow{\sim}
+\widetilde{\mathcal R}_{d,S}^{\,r}.
+\]
+
+\paragraph{Interpretation.}
+This theorem gives the discrete combinatorial label of a saddle stratum:
+every critical point of rank \(r\) has a unique admissible cyclic rank pattern,
+and two critical points lie in the same \(H_S\)-orbit if and only if they have
+the same lifted cyclic rank pattern.
+
+\paragraph{Proof.}
+The cyclic locus decomposition from Conjecture 3 gives
+\[
+\Gamma_{d,S}^r
+=
+\bigsqcup_{\rho\in \widetilde{\mathcal R}_{d,S}^{\,r}}
+\Gamma_{d,S}^r[\rho],
+\]
+with each nonempty piece a single \(G_d^{W_0}\)-orbit. The first-conjecture
+orbit correspondence identifies each such ambient orbit with exactly one
+\(H_S\)-orbit in the critical locus. Intersecting the ambient decomposition with
+\(\mathcal C_{d,S}^r\) yields the stated partition.
+
+\paragraph{Why this is the main theorem.}
+The theorem turns the degenerate critical geometry of deep linear networks into
+a finite combinatorial classification problem. The role of the cyclic rank
+pattern is exactly to provide the discrete identity of a saddle stratum inside a
+non-isolated critical locus.
+
+\paragraph{Status.}
+Completed. This is the main critical-locus parametrization theorem needed for
+the paper.

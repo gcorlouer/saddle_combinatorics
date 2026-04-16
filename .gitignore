@@ -1,11 +1,19 @@
-# Ignore everything in Making setup except TeX sources and PDFs
-work_files/Making setup/*
-!work_files/Making setup/*.tex
-!work_files/Making setup/*.pdf
-!work_files/Making setup/*.md
+# Under work_files, only keep actual content files tracked.
+# This applies recursively, so new folders will also ignore LaTeX build junk.
+work_files/**
+!work_files/**/
+!work_files/**/*.md
+!work_files/**/*.tex
+!work_files/**/*.pdf
 
-# Ignore everything in First conjecture except plan/source files and PDFs
-work_files/First conjecture/*
-!work_files/First conjecture/*.tex
-!work_files/First conjecture/*.pdf
-!work_files/First conjecture/*.md
+# Ignore LaTeX build artifacts across the repo.
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+
+# Ignore Lean build artifacts.
+**/.lake/

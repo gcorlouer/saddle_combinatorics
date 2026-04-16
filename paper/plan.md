@@ -1,0 +1,16 @@
+# Plan for the paper:
+- Edit the background and setup section
+  - Make sure that there is no mistakes
+  - Check for readability
+  - Write a section on cyclic quivers and nakayama algebras which will go in the appendix. Use paperv0 and v1 for inspiration
+- Edit from cyclic to critical
+  - Verify correctness
+  - Improve the flow of the writing: make it easier to read
+  - Explain what we are doing etc
+- Edit multiplicity patterns and indecomposables
+- Edit rank to multiplicity correspondance
+- Check stratification of critical loci holds up
+- Edit codimension formula
+- Write Introduction
+- Write related work
+- Write discussion section
