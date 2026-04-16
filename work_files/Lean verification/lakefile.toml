@@ -1,0 +1,10 @@
+name = "SaddleLean"
+version = "0.1.0"
+defaultTargets = ["saddlelean"]
+
+[[lean_lib]]
+name = "SaddleLean"
+
+[[lean_exe]]
+name = "saddlelean"
+root = "Main"
