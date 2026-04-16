@@ -50,213 +50,76 @@
 
 \tableofcontents
 
-\section{Introduction}
+\section{Introduction: Informal statement of the main theorem}
+Flow of the paper:
+The main theorem will be the stratification of the critical loci via the stratification of the cyclic variety and its intersection wit the specialization. We introduce notation, we state the main theorem (without any quiver representation theory simply in terms of the rank patterns). 
 
-\section{Deep Linear Networks}
+\section{Related works}
 
-Deep Linear Networks (DLNs) are a class of neural networks function which are linear in function space and multi-linear in parameter space. 
-
-\begin{definition} Let $\Omega$ be the space of parameters of a DLN defined by:
-  \begin{equation*}
-    \Omega := \prod_{\ell=1}^L \Mat_{d_\ell\times d_{\ell-1}}(\R),
-    \qquad \theta=(W_1,\dots,W_L)\in \Omega
-  \end{equation*}
-\end{definition}
-\noindent
-The associated deep linear network parameter function map is:
-\begin{align*}
-  f & : \Omega \times \mathbb{R}^{d_0} \to \mathbb{R}^ {d_L} \\
-  & (\theta, x) \longmapsto W(\theta)x = W_L...W_1x
-\end{align*}
-We will often implicity write $W$ instead of $W(\theta)$ to refer to the end-to-end product map. We will also denote the product map whose image is on the function space $\mathcal{F}$ by the function:
-\begin{align*}
-  \mu: & \ \Omega\to \mathcal{F}:=\Mat_{d_L\times d_0}(\R) \\
-  & \theta \longmapsto Wx
-\end{align*}
-\noindent
-For each \(1\leq \ell\leq L\), we use the partial-product notation
-\[
-W_{>\ell}:=W_L\cdots W_{\ell+1}\in \Mat_{d_L\times d_\ell}(\R),
-\qquad
-W_{<\ell}:=W_{\ell-1}\cdots W_1\in \Mat_{d_{\ell-1}\times d_0}(\R),
-\]
-\begin{definition}[Population loss and teacher matrix]
-Let $X\in\mathbb{R}^{d_0}$ be sampled from some data distribution $P$ and $Y\in\mathbb{R}^{d_L}$ such that $Y=MX$ for some teacher matrix $M$. We consider the following quadratic population loss: 
-\[
-\mathcal L(\theta):=\mathbb E\bigl[\|Y-\mu(\theta)X\|_2^2\bigr] = \mathbb E\bigl[\|Y-WX\|_2^2\bigr]
-\]
-Define:
-\[
-\Sigma_X=\mathbb E[XX^\top],
-\qquad
-\Sigma_{XY}=\mathbb E[XY^\top],
-\qquad
-\Sigma_{YX}=\Sigma_{XY}^\top.
-\]
-Assuming that $\Sigma_X$ is invertible and that $d_l\geq d_L$ for all $0\leq l \leq L$ the global minima of the quadratic loss is unique and coincides with the ordinary least square solution:
-\[
-W^\ast:=\Sigma_{YX}\Sigma_X^{-1}=M,
-\qquad
-r_{\max}:=\rk(W^\ast)=\rk(M).
-\]
-\end{definition}
-\paragraph{Standing assumptions.}
-Throughout the paper we assume that \(\Sigma_X\) is invertible, that
-\(\Sigma_{XY}\) has full rank \(d_L\), that \(W^\ast\) has distinct nonzero
-singular values, and that the network has no bottleneck:
-\[
-d_\ell\geq d_L
-\qquad
-\text{for every }0\leq \ell\leq L.
-\]
-\subsection{Gradient equations in weight space}
-We can write the equations of the gradient flow equations in DLNs. This is particularly useful and can enable an analytic treatment of the training dynamics of deep linear networks. Here we will be interested in the critical points of the loss landscape of a DLN i.e. points at which the gradient vanishes.
-\begin{proposition}[Gradient formula]
-For each \(1\leq \ell\leq L\),
-\[
-\nabla_{W_\ell}\mathcal L(\theta)
-=
-2\,W_{>\ell}^{\top}\bigl(\mu(\theta)\Sigma_X-\Sigma_{YX}\bigr)W_{<\ell}^{\top}.
-\]
-Consequently,
-\[
-\bigl(\nabla_{W_\ell}\mathcal L(\theta)\bigr)^\top
-=
-2\,W_{<\ell}\bigl(\Sigma_X\mu(\theta)^\top-\Sigma_{XY}\bigr)W_{>\ell}.
-\]
-\end{proposition}
-
-\begin{proof}
-The differential of the product map in the direction \(d W_\ell\) is
-\[
-D\mu(\theta)[d W_\ell]=W_{>\ell}dW_\ell W_{<\ell}.
-\]
-The gradient of the quadratic loss with respect to the end-to-end matrix \(M\)
-is
-\[
-\nabla_W\mathcal L(W)=2(W\Sigma_X-\Sigma_{YX}),
-\]
-so the chain rule gives the first identity. The second follows by taking the
-transpose.
-\end{proof}
-Fix a singular subset \(S\subseteq \{1,\dots,r_{\max}\}\) of cardinality
-\(|S|=r\), and let
-\[
-P_S,\ P_Q
-\]
-be the corresponding complementary orthogonal projectors on \(\R^{d_L}\) such that:
-\begin{align*}
-  M & = U\text{diag}(s_1,...,s_{r_{\max}})V^{\top} \\
-  U & = [U_S U_Q] \quad U_iU_j = \delta_{i,j} I; \quad i,j\in\{S,Q\} \\ 
-  P_S & = U_SU_S^{\top} \quad P_Q = U_QU_Q^{\top}
-\end{align*}
-Define
-\[
-W_{0,S}:=\Sigma_{XY}P_Q.
-\]
-An important observation is to realize that the gradient flow equations look like a set of cyclic conditions in the weights. A critical point is therefore a solution of a set of cyclic vanishing conditions.
-\begin{proposition}[Weight-space cyclic equations]
-Let $\theta$ be a critical point of rank \(r\) corresponding to the subset \(S\) of singular values of $M$. From \cite{achour2024loss} proposition 1 we know that
-\[
-\mu(\theta)=P_SW^\ast.
-\]
-Then the critical-point equations are equivalent to
-\[
-d\mu_{l,S}(\theta):=W_{<\ell}W_{0,S}W_{>\ell}=0
-\qquad
-\text{for every }1\leq \ell\leq L.
-\]
-\end{proposition}
-
-\begin{proof}
-At a critical point $\theta$ associated with the subset \(S\) of singular vectors:
-\[
-\mu(\theta)=P_SW^\ast=P_S\Sigma_{YX}\Sigma_X^{-1}.
-\]
-Hence
-\[
-\Sigma_X\mu(\theta)^\top-\Sigma_{XY}
-=
-\Sigma_X\Sigma_X^{-1}\Sigma_{XY}P_S-\Sigma_{XY}
-=
-\Sigma_{XY}(P_S-I)
-=
--\Sigma_{XY}P_Q
-=
--W_{0,S}.
-\]
-Substituting this identity into the transpose-gradient formula yields the
-claimed equations.
-\end{proof}
-Two important algebraic varieties in this paper are the cyclic variety of rank $r$ matrices defined as the intersection of weight satisfying the cyclic vanishing conditions and the determinantal variety of rank $r$ student DLNs and the critical loci $\mathcal{C}^r_{d,S}$ which is the set of point in the cyclic variety variety of rank $r$ students that are critical points i.e. that maps to $P_SW^{\star}$. 
+\section{Setup and formal statement}
+The critical loci of rank $r$ critical points in the loss landscape of a deep linear network admits a stratification parametrized by the rank of the critical points, rank patterns and a subset $S$ of singular vectors of the teacher matrix $M$.
 \begin{definition}[Determinantal, cyclic, and critical loci]
 Define
 \[
-\Sigma_d^r:=\{\theta\in \Omega:\rk(\mu(\theta))=r\},
-\]
+\Sigma_d^r:=\{\theta\in \Omega:\rk(\mu(\theta))=r\} \quad \text{\textit{Determinantal variety}},
+\] 
 \[
-\Gamma_{d,S}
+\Gamma_{d}
 :=
 \left\{
+(\theta,W_0)\in \Omega \times \text{Mat}_{d_0 \times d_L}
+\ \middle|\
+W_{<\ell}W_{0}W_{>\ell}=0
+\text{ for all }1\leq \ell\leq L
+\right\}, \quad \text{\textit{Cyclic variety}}
+\]
+Let $\pi:\Omega \times \text{Mat}_{d_0 \times d_L} \longrightarrow \text{Mat}_{d_0 \times d_L}$ be the natural projection. Define:
+\[
+\Gamma_{d}^r:=\Gamma_{d}\cap \Sigma_d^r, \qquad \Gamma_{d,S}^{r}:=\Gamma_{d}^r\cap\pi^{-1}(\Sigma_{XY}P_Q) = \left\{
 \theta\in \Omega
 \ \middle|\
-d\mu_{l,S}(\theta):=W_{<\ell}W_{0,S}W_{>\ell}=0
+W_{<\ell}\Sigma_{XY}P_QW_{>\ell}=0
 \text{ for all }1\leq \ell\leq L
-\right\} = d\mu_S^{-1}(0),
+\right\}
 \]
-With $d\mu_S:= (d\mu_{l,S})_{1\leq l \leq L}$. Define:
+Let $S$ be a subset of left-singular vectors of $M$, define the $S$-critical loci:
 \[
-\Gamma_{d,S}^r:=\Gamma_{d,S}\cap \Sigma_d^r,
+\mathcal C^S_{d} = \{\theta\in\Omega | \ \nabla_{\theta} L(\theta)=0; \mu(\theta)= P_SW^{\star}\}
 \]
-and
+\end{definition}
+\begin{definition}\label{def:cyclic-rank-pattern}
+For $\phi = (\theta,W_0)\in\Gamma_{d}$ we define its \emph{cyclic rank pattern} to be the array
 \[
-\mathcal C_{d,S}^r
-:=
+r(\phi)=(r_{ij}(\phi))_{0\le i,j\le L}
+\quad\text{where}\quad
+r_{ij}(\phi):=\mathrm{rank}\bigl(W_{j}...W_i\bigr) \quad \text{for} \quad \text{and} \quad r_{ii}(\phi) = d_i \text{and} \quad r_{i+1i}(\phi) = \mathrm{rank}\bigl(W_i\bigr)
+\]
+\end{definition}
+\begin{theorem}
+Define the strata $\mathcal O^S_{\rho} := \mathcal O_{\rho} \cap \Gamma^r_{d,S}$ where  $\mathcal{O}_{\rho}$ is a $G_d$-orbit of the cyclic variety $\Gamma^r_{d}$.
+Assuming that the data is non degenerate and the input covariance matrix is invertible then the loci of critical points of rank $r<r_\text{max}$ admits the following stratification parameterized by subset $S$ of singular vectors of the teacher with $r$ elements and admissible rank patterns $\rho\in R_d^{\mathrm{orb}}$:
+\begin{align*}
+  \mathcal{C}^r_d & = \bigsqcup_{|S|=r}\mathcal{C}^S_d = \bigsqcup_{|S|=r}\bigsqcup_{\substack{\rho\in R_d^{\mathrm{orb}}\\ \operatorname{rank}(\rho)=\operatorname{rank}(\Sigma_{XY}P_Q)}} \mathcal{O}^S_{\rho} \\
+\end{align*}
+\end{theorem}
+\section{Stratification of the cyclic variety with multiplicity patterns}
+Goal: Stratify the cyclic variety with cyclic rank patterns. 
+
+
+\section{From multiplicity patterns to rank patterns}
+\begin{proposition}
+Assume whitened input i.e. $\Sigma_X = I_{d_L}$ then the $S$ critical loci satisfies:
+\[
+\mathcal C_{d}^S=
 \left\{
 \theta\in \Gamma_{d,S}^r
 \ \middle|\
-\mu(\theta)=P_SW^\ast
-\right\}.
+\mu(W)=P_SW^\ast
+\right\}
 \]
-\end{definition}
-\begin{definition}[Relevant symmetry groups]
-The full base-change group is
-\[
-G_d:=\prod_{\ell=0}^L \GL(d_\ell,\R),
-\]
-acting on \(\Omega\) by
-\[
-(g\cdot \theta)_\ell:=g_\ell W_\ell g_{\ell-1}^{-1}.
-\]
-For $W_0\in \text{Mat}_{d_0,d_L}$, the stabilizer of the closing map is
-\[
-G_d^{S}
-:=
-\{g=(g_0,\dots,g_L)\in G_d\mid g_0W_{0,S}g_L^{-1}=W_{0,S}\}.
-\]
-Finally, define the stabilizer of the critical product $\mu(\theta)$ by:
-\[
-H_S
-:=
-\Stab_{G_d^{S}}(P_SW^\ast)
-=
-\{g\in G_d^{S}\mid g_L(P_SW^\ast)g_0^{-1}=P_SW^\ast\}.
-\]
-\end{definition}
-\begin{lemma}[Equivariance of the product map]
-For every \(g\in G_d\) and every \(W\in \Omega\),
-\[
-\mu(g\cdot W)=g_L\mu(\theta)g_0^{-1}.
-\]
-\end{lemma}
+\end{proposition}
+\section{Stratification of the critical loci}
 
-\begin{proof}
-Expand the product and cancel adjacent inverse factors:
-\[
-\mu(g\cdot \theta)
-=(g_LW_Lg_{L-1}^{-1})\cdots (g_1W_1g_0^{-1})
-=g_LW_L\cdots W_1g_0^{-1}
-=g_L\mu(\theta)g_0^{-1}.
-\]
-\end{proof}
+\section{Discussion}
+
 \end{document}

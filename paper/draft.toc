@@ -1,4 +1,7 @@
-\contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
-\contentsline {section}{\numberline {2}Deep Linear Networks}{1}{section.2}%
-\contentsline {paragraph}{Standing assumptions.}{2}{section*.2}%
-\contentsline {subsection}{\numberline {2.1}Gradient equations in weight space}{2}{subsection.2.1}%
+\contentsline {section}{\numberline {1}Introduction: Informal statement of the main theorem}{1}{section.1}%
+\contentsline {section}{\numberline {2}Related works}{1}{section.2}%
+\contentsline {section}{\numberline {3}Setup and formal statement}{1}{section.3}%
+\contentsline {section}{\numberline {4}Stratification of the cyclic variety with multiplicity patterns}{2}{section.4}%
+\contentsline {section}{\numberline {5}From multiplicity patterns to rank patterns}{2}{section.5}%
+\contentsline {section}{\numberline {6}Stratification of the critical loci}{2}{section.6}%
+\contentsline {section}{\numberline {7}Discussion}{2}{section.7}%
