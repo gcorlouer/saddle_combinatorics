@@ -102,22 +102,64 @@ Assuming that the data is non degenerate and the input covariance matrix is inve
   \mathcal{C}^r_d & = \bigsqcup_{|S|=r}\mathcal{C}^S_d = \bigsqcup_{|S|=r}\bigsqcup_{\substack{\rho\in R_d^{\mathrm{orb}}\\ \operatorname{rank}(\rho)=\operatorname{rank}(\Sigma_{XY}P_Q)}} \mathcal{O}^S_{\rho} \\
 \end{align*}
 \end{theorem}
-\section{Stratification of the cyclic variety with multiplicity patterns}
-Goal: Stratify the cyclic variety with cyclic rank patterns. 
-
-
-\section{From multiplicity patterns to rank patterns}
+\section{Geometry: Rank pattern stratification}
+The $S$-critical loci is the intersection of the $S$-cyclic variety with the fiber of the parameter function map over the critical student $P_SW^\ast$.
 \begin{proposition}
-Assume whitened input i.e. $\Sigma_X = I_{d_L}$ then the $S$ critical loci satisfies:
+The $S$-critical loci satisfies:
 \[
 \mathcal C_{d}^S=
 \left\{
 \theta\in \Gamma_{d,S}^r
 \ \middle|\
-\mu(W)=P_SW^\ast
-\right\}
+\mu(\theta)=P_SW^\ast
+\right\} = \Gamma_{d,S}^r \cap \mu^{-1}(P_SW^\ast)
 \]
 \end{proposition}
+\begin{proof}
+  We already know from proposition 1 in \cite{achour2024loss} that for a critical point $\theta$ associated with $S$ we have $\mu(\theta) = P_SW^{\star}$. In the other direction, assume that $\mu(\theta)=P_SW^{\star}$. Then recall the gradient equations 
+  \[
+\bigl(\nabla_{W_\ell}\mathcal L(\theta)\bigr)^\top
+=
+2\,W_{<\ell}\bigl(\Sigma_X\Sigma_X^{-1}\Sigma_{XY}P_S-\Sigma_{XY}\bigr)W_{>\ell} = 2\,W_{<\ell}\Sigma_{XY}P_QW_{>\ell} = 0
+\]
+In other words, $\theta$ is a critical point. 
+\end{proof}
+Now assume that we have a stratification of the cyclic variety $\Gamma^r_{d}$ i.e.:
+\[
+\Gamma^r_{d} = \bigsqcup_{\rho} O^r_{\rho}
+\]   
+Where $\rho$ runs over some finite set of rank patterns. Furthermore, assume that we have the following closure condition:
+\[
+\bar{O}_{\rho} = \bigcup_{\rho'\leq \rho} O_{\rho'}  
+\] 
+Coming from the following frontier condition:
+\[
+\bar{O}_{\rho}\cap O_{\rho’} \neq \emptyset \implies  O_{\rho’} \subset \bar{O}_{\rho}
+\]
+where $\rho' \leq \rho$ means that $\rho'_{ij} \leq \rho_{ij}$ for all $i,j$. This stratification induces a stratification over $\Gamma^r_{d,S}$ and therefore on the $S$-critical loci $\mathcal C_{d}^S$. 
+\begin{proposition}
+  Consider the stratification of $\Gamma^r_{d}$ by the strata $O^r_{\rho}$ satisfying a closure condition. The critical loci admits the following stratification
+  \[
+  \mathcal{C}^{r}_{d,S} = \bigsqcup_{\rho} \mathcal{C}^S_\rho := \bigsqcup_{\rho}  O^r_{\rho} \cap \mu^{-1}(P_SW^{\ast}) \cap \pi^{-1}(\Sigma_{XY}P_Q)    
+  \]
+  Furthermore, the strata $\mathcal{C}^S_\rho$ are locally close and satisfy a closure condition:
+  \[
+  \bar{\mathcal{C}}_{\rho} = \bigcup_{\rho'\leq \rho} \mathcal{C}_{\rho'}  
+  \] 
+\end{proposition}
+In other words the critical loci admits a combinatorial description by admissible cyclic rank patterns. This combinatorial description goes beyond providing a labelling of the critical points since the closure condition constrain the transitions that are allowed between rank patterns as lower rank patterns lie at the boundary of larger rank patterns. 
+\begin{proof}[Proof Sketch] The stratification is induced by the intersection of the strata with the fibers of the product map $\mu$ and projection $\pi$. Each strata is locally closed as an interesection of locally close sets with closed sets. The closure condition is inherited from the closure condition of the $O^{r}_{\rho}$.
+\end{proof}
+A more detailed proof can be found in the appendix.
+\section{Stratification of the cyclic variety with multiplicity patterns}
+Goal: Stratify the cyclic variety with cyclic rank patterns.
+\subsection{Essentials of Quiver representation theory}
+A quiver is a graph $(I,E)$ with vertices $I$, edges $E$ and an orientation. A quiver representation assigns a vector space to $V_i \cong \mathbb{R}^{d_i}$ and a linear map $\phi: V_i \to V_{i+1}$ with vector dimension $d_i$. 
+\subsection{Cyclic variety}
+
+\subsection{Specialization to fixed closing arrow}
+
+\section{From multiplicity patterns to rank patterns}
 \section{Stratification of the critical loci}
 
 \section{Discussion}

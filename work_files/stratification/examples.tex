@@ -1,0 +1,74 @@
+% !TEX program = latexmk
+\documentclass[11pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}
+
+\newcommand{\GL}{\operatorname{GL}}
+
+\begin{document}
+
+\section{Examples of stratifications}
+
+We want to find examples of stratifications of the critical loci.
+
+Consider a deep linear network of depth \(2\) learning the identity. Consider
+the \(S\)-cyclic variety given by the system
+\begin{align*}
+W_1\Sigma_{XY}P_Q
+&=
+\begin{pmatrix}
+    A^1_r & 0 \\
+    0 & D^1_{s-r}
+\end{pmatrix}
+\begin{pmatrix}
+    0 & 0 \\
+    0 & I_{s-r}
+\end{pmatrix}
+= 0, \\
+\Sigma_{XY}P_QW_2
+&=
+\begin{pmatrix}
+    0 & 0 \\
+    0 & I_{s-r}
+\end{pmatrix}
+\begin{pmatrix}
+    A^2_r & 0 \\
+    0 & D^2_{s-r}
+\end{pmatrix}
+= 0.
+\end{align*}
+
+For example, we have symmetries for all \(g \in \GL_d\) such that
+\[
+g_1W_1g_0^{-1}\, g_0\Sigma_{XY}P_Qg_2^{-1}
+=
+\begin{pmatrix}
+    g_1A^1_rg_0^{-1} & 0 \\
+    0 & D^1_{s-r}
+\end{pmatrix}
+\begin{pmatrix}
+    0 & 0 \\
+    0 & I_{s-r}
+\end{pmatrix}
+= 0.
+\]
+
+In the case of critical loci defined by the intersection of the \(S\)-cyclic
+variety with the product map
+\[
+\mu(\theta)=
+\begin{pmatrix}
+    I_r & 0 \\
+    0 & 0
+\end{pmatrix},
+\]
+these symmetries still hold.
+
+This will not be the case in general, for example when the elements of the
+symmetry group do not leave the product map invariant. Although the product map
+itself is equivariant under the symmetry group, it can still be stratified into
+orbits.
+
+\end{document}
