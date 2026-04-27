@@ -6,7 +6,7 @@
 \usepackage{booktabs}
 \usepackage{geometry}
 \usepackage{hyperref}
-
+\usepackage{comment}
 \geometry{margin=1in}
 
 \newcommand{\diag}{\operatorname{diag}}
@@ -73,14 +73,9 @@ W_{<\ell}W_{0}W_{>\ell}=0
 \text{ for all }1\leq \ell\leq L
 \right\}, \quad \text{\textit{Cyclic variety}}
 \]
-Let $\pi:\Omega \times \text{Mat}_{d_0 \times d_L} \longrightarrow \text{Mat}_{d_0 \times d_L}$ be the natural projection. Define:
+Let $\iota_S:\Omega \longrightarrow \Omega \times \text{Mat}_{d_0 \times d_L}$ be an inclusion map such that $\iota_S(\theta):=(\theta, \Sigma_{XY}P_Q)$ and define:
 \[
-\Gamma_{d}^r:=\Gamma_{d}\cap \Sigma_d^r, \qquad \Gamma_{d,S}^{r}:=\Gamma_{d}^r\cap\pi^{-1}(\Sigma_{XY}P_Q) = \left\{
-\theta\in \Omega
-\ \middle|\
-W_{<\ell}\Sigma_{XY}P_QW_{>\ell}=0
-\text{ for all }1\leq \ell\leq L
-\right\}
+\Gamma_{d}^r:=\Gamma_{d}\cap (\Sigma_d^r \times \text{Mat}_{d_0 \times d_L}) , \qquad \Gamma_{d}^{S}:=\iota_S^{-1}(\Gamma_{d}^r)
 \]
 Let $S$ be a subset of left-singular vectors of $M$, define the $S$-critical loci:
 \[
@@ -97,38 +92,580 @@ r_{ij}(\phi):=\mathrm{rank}\bigl(W_{j}...W_i\bigr) \quad \text{for} \quad \text{
 \end{definition}
 \begin{theorem}
 Define the strata $\mathcal O^S_{\rho} := \mathcal O_{\rho} \cap \Gamma^r_{d,S}$ where  $\mathcal{O}_{\rho}$ is a $G_d$-orbit of the cyclic variety $\Gamma^r_{d}$.
-Assuming that the data is non degenerate and the input covariance matrix is invertible then the loci of critical points of rank $r<r_\text{max}$ admits the following stratification parameterized by subset $S$ of singular vectors of the teacher with $r$ elements and admissible rank patterns $\rho\in R_d^{\mathrm{orb}}$:
+Assuming that the data is non degenerate and the input covariance matrix is invertible then the loci of critical points of rank $r<r_\text{max}$ admits the following stratification parameterized by subset $S$ of singular vectors of the teacher with $r$ elements and admissible cyclic rank patterns $\rho\in R_d^{\mathrm{orb}}$:
 \begin{align*}
   \mathcal{C}^r_d & = \bigsqcup_{|S|=r}\mathcal{C}^S_d = \bigsqcup_{|S|=r}\bigsqcup_{\substack{\rho\in R_d^{\mathrm{orb}}\\ \operatorname{rank}(\rho)=\operatorname{rank}(\Sigma_{XY}P_Q)}} \mathcal{O}^S_{\rho} \\
 \end{align*}
 \end{theorem}
 \section{Geometry: Rank pattern stratification}
-The $S$-critical loci is the intersection of the $S$-cyclic variety with the fiber of the parameter function map over the critical student $P_SW^\ast$.
+
+The purpose of this section is to relate the \(S\)-critical locus to the
+specialization of the cyclic variety obtained by fixing the closing arrow to be
+\(\Sigma_{XY}P_Q\). Recall that
+\[
+\Gamma_d^S=\iota_S^{-1}(\Gamma_d^r),
+\qquad
+\iota_S(\theta)=(\theta,\Sigma_{XY}P_Q).
+\]
+Thus \(\theta\in\Gamma_d^S\) precisely when
+\[
+(\theta,\Sigma_{XY}P_Q)\in\Gamma_d^r.
+\]
+
+\begin{proposition}[The \(S\)-critical locus as a product fiber]
+\label{prop:S-critical-fiber}
+Assume that \(\Sigma_X\) is invertible, that
+\[
+W^\ast=\Sigma_{YX}\Sigma_X^{-1},
+\]
+and that \(\operatorname{rank}(P_SW^\ast)=r\). Then, as subsets of \(\Omega\),
+\[
+\mathcal C_d^S
+=
+\left\{
+\theta\in\Gamma_d^S
+\ \middle|\
+\mu(\theta)=P_SW^\ast
+\right\}.
+\]
+Equivalently,
+\[
+\mathcal C_d^S
+=
+\Gamma_d^S\cap\mu^{-1}(P_SW^\ast)
+=
+\iota_S^{-1}(\Gamma_d^r)\cap\mu^{-1}(P_SW^\ast).
+\]
+\end{proposition}
+
+\begin{proof}
+The point is that the gradient equations with
+\(\mu(\theta)=P_SW^\ast\) are exactly the cyclic equations with closing arrow
+\(\Sigma_{XY}P_Q\). Indeed,
+\[
+\Sigma_X(P_SW^\ast)^\top-\Sigma_{XY}
+=
+-\Sigma_{XY}P_Q.
+\]
+Therefore
+\[
+\bigl(\nabla_{W_\ell}\mathcal L(\theta)\bigr)^\top
+=
+-2W_{<\ell}\Sigma_{XY}P_QW_{>\ell}.
+\]
+Thus the partial gradients vanish for all \(\ell\) if and only if
+\[
+W_{<\ell}\Sigma_{XY}P_QW_{>\ell}=0
+\qquad
+\text{for all }1\leq \ell\leq L.
+\]
+Together with \(\mu(\theta)=P_SW^\ast\) and
+\(\operatorname{rank}(P_SW^\ast)=r\), this is exactly the condition that
+\(\theta\in\Gamma_d^S\cap\mu^{-1}(P_SW^\ast)\). See
+Appendix~\ref{app:proof-S-critical-fiber} for the full verification.
+\end{proof}
+
+Now assume that the rank \(r\) cyclic variety admits a finite cyclic
+rank-pattern decomposition
+\[
+\Gamma_d^r=\bigsqcup_{\rho\in R}O_\rho^r,
+\]
+where each \(O_\rho^r\) is locally closed in \(\Gamma_d^r\). We assume that the
+rank-pattern pieces satisfy the frontier inclusion
+\[
+\overline{O_\rho^r}^{\,\Gamma_d^r}
+\subseteq
+\bigcup_{\rho'\leq \rho}O_{\rho'}^r,
+\]
+where \(\rho'\leq\rho\) means that
+\[
+\rho'_{ij}\leq \rho_{ij}
+\qquad
+\text{for all }i,j.
+\]
+This assumption is implied, for example, by the stronger equality
+\[
+\overline{O_\rho^r}^{\,\Gamma_d^r}
+=
+\bigcup_{\rho'\leq\rho}O_{\rho'}^r.
+\]
+
+The decomposition of \(\Gamma_d^r\) induces a decomposition of the \(S\)-critical
+locus by pulling back along \(\iota_S\) and then imposing the product constraint.
+
+\begin{proposition}[Induced cyclic rank-pattern decomposition of the critical locus]
+\label{prop:critical-rank-pattern-decomposition}
+Define
+\[
+\mathcal C_\rho^S
+:=
+\iota_S^{-1}(O_\rho^r)\cap\mu^{-1}(P_SW^\ast).
+\]
+Then, after discarding empty pieces,
+\[
+\mathcal C_d^S
+=
+\bigsqcup_{\rho\in R}\mathcal C_\rho^S.
+\]
+Each \(\mathcal C_\rho^S\) is locally closed in \(\mathcal C_d^S\). Moreover, the
+relative closures satisfy
+\[
+\overline{\mathcal C_\rho^S}^{\,\mathcal C_d^S}
+\subseteq
+\bigcup_{\rho'\leq\rho}\mathcal C_{\rho'}^S.
+\]
+\end{proposition}
+
+\begin{proof}
+By Proposition~\ref{prop:S-critical-fiber},
+\[
+\mathcal C_d^S
+=
+\iota_S^{-1}(\Gamma_d^r)\cap\mu^{-1}(P_SW^\ast).
+\]
+Since the \(O_\rho^r\) form a disjoint decomposition of \(\Gamma_d^r\), their
+pullbacks along \(\iota_S\), intersected with \(\mu^{-1}(P_SW^\ast)\), form a
+disjoint decomposition of \(\mathcal C_d^S\). Local closedness follows because
+preimages of locally closed sets under continuous maps are locally closed, and
+\(\mu^{-1}(P_SW^\ast)\) is closed.
+
+For the frontier statement, use the elementary topological inclusion
+\[
+\overline{f^{-1}(A)}\subseteq f^{-1}(\overline A)
+\]
+for continuous \(f\), applied to the restriction of \(\iota_S\) to
+\(\mathcal C_d^S\). Together with the frontier inclusion for \(O_\rho^r\), this
+gives
+\[
+\overline{\mathcal C_\rho^S}^{\,\mathcal C_d^S}
+\subseteq
+\bigcup_{\rho'\leq\rho}\mathcal C_{\rho'}^S.
+\]
+The full argument is written in
+Appendix~\ref{app:proof-critical-rank-pattern-decomposition}.
+\end{proof}
+
+Thus the \(S\)-critical locus inherits a coarse decomposition by cyclic
+rank patterns. The closure statement is deliberately one-sided: along
+degenerations inside \(\mathcal C_d^S\), cyclic ranks can only decrease. We do
+not claim that every lower cyclic rank pattern appearing in \(\mathcal C_d^S\) is
+reached as a degeneration inside the fixed-\(S\) critical locus. We see that we can stratify the critical locus by stratifying the cyclic variety. In the following sections we will show how to obtain such stratification using quiver representation theory. 
+\section{Stratification of the cyclic variety with multiplicity patterns}
+Goal: Stratify the cyclic variety with cyclic rank patterns.
+\subsection{Essentials of Quiver representation theory}
+A quiver is a graph $(I,E)$ with vertices $I$, edges $E$ and an orientation. A quiver representation assigns a vector space to $V_i \cong \mathbb{R}^{d_i}$ and a linear map $\phi: V_i \to V_{i+1}$ with vector dimension $d_i$. 
+\subsection{Quiver representation of the cyclic variety}
+The cyclic variety is equivalent to a representation of a cyclic quiver with finite relation.
+\begin{definition}
+  Define the cyclic quiver $Q=C_{L+1}$ with vertices $l\in\{0,...,L\}$ and edges $a_l: l-1\longrightarrow l \ \text{mod} L + 1$ with $a_0:L \longrightarrow 0$ Define the paths of length $L$ for $l\in\{1,...,L\}$: $$p_l:= a_{l-1}...a_1a_0a_L...a_{l+1} \ \text{mod} L+1$$. 
+\end{definition}
+Define the bounded path algebra with relations by quotienting the path algebra $kQ$ by imposing that all paths of length $L$ going through the closing arrow $a_0$ vanish.
+\begin{definition}
+Consider the path algebra $kQ$, consider the ideal:
+\[
+I = \langle p_0,...,p_L \rangle
+\]
+\end{definition}
+\subsection{Specialization to fixed closing arrow}
+
+\section{From multiplicity patterns to rank patterns}
+\section{Stratification of the critical loci}
+
+\section{Discussion}
+
+\section{Appendix}
+\subsection{Detailed proof of Proposition~\ref{prop:S-critical-fiber}}
+\label{app:proof-S-critical-fiber}
+
+We prove the equality
+\[
+\mathcal C_d^S
+=
+\Gamma_d^S\cap\mu^{-1}(P_SW^\ast)
+=
+\iota_S^{-1}(\Gamma_d^r)\cap\mu^{-1}(P_SW^\ast)
+\]
+as an equality of subsets of \(\Omega\).
+
+Recall that
+\[
+\iota_S(\theta)=(\theta,\Sigma_{XY}P_Q),
+\]
+and therefore
+\[
+\Gamma_d^S=\iota_S^{-1}(\Gamma_d^r).
+\]
+Thus \(\theta\in\Gamma_d^S\) means that
+\[
+(\theta,\Sigma_{XY}P_Q)\in\Gamma_d^r.
+\]
+Equivalently,
+\[
+\operatorname{rank}(\mu(\theta))=r
+\]
+and
+\[
+W_{<\ell}\Sigma_{XY}P_QW_{>\ell}=0
+\qquad
+\text{for all }1\leq \ell\leq L.
+\]
+
+We first prove
+\[
+\mathcal C_d^S
+\subseteq
+\Gamma_d^S\cap\mu^{-1}(P_SW^\ast).
+\]
+Let \(\theta\in\mathcal C_d^S\). By definition of the \(S\)-critical locus,
+\[
+\nabla_\theta\mathcal L(\theta)=0
+\qquad
+\text{and}
+\qquad
+\mu(\theta)=P_SW^\ast.
+\]
+Since \(\operatorname{rank}(P_SW^\ast)=r\), it follows that
+\[
+\operatorname{rank}(\mu(\theta))=r.
+\]
+It remains to show the cyclic equations with closing arrow \(\Sigma_{XY}P_Q\).
+
+For each layer \(\ell\), the transpose-gradient formula is
+\[
+\bigl(\nabla_{W_\ell}\mathcal L(\theta)\bigr)^\top
+=
+2W_{<\ell}
+\bigl(\Sigma_X\mu(\theta)^\top-\Sigma_{XY}\bigr)
+W_{>\ell}.
+\]
+Using \(\mu(\theta)=P_SW^\ast\), we get
+\[
+\Sigma_X\mu(\theta)^\top-\Sigma_{XY}
+=
+\Sigma_X(P_SW^\ast)^\top-\Sigma_{XY}.
+\]
+Since \(P_S\) is an orthogonal projector, \(P_S^\top=P_S\), and therefore
+\[
+(P_SW^\ast)^\top=(W^\ast)^\top P_S.
+\]
+Moreover, by the definition
+\[
+W^\ast=\Sigma_{YX}\Sigma_X^{-1},
+\]
+and by symmetry of \(\Sigma_X\), we have
+\[
+\Sigma_X(W^\ast)^\top
+=
+\Sigma_X(\Sigma_X^{-1})^\top\Sigma_{YX}^\top
+=
+\Sigma_X\Sigma_X^{-1}\Sigma_{XY}
+=
+\Sigma_{XY}.
+\]
+Hence
+\[
+\Sigma_X(P_SW^\ast)^\top-\Sigma_{XY}
+=
+\Sigma_X(W^\ast)^\top P_S-\Sigma_{XY}
+=
+\Sigma_{XY}P_S-\Sigma_{XY}.
+\]
+Since \(P_Q=I-P_S\), this becomes
+\[
+\Sigma_X(P_SW^\ast)^\top-\Sigma_{XY}
+=
+-\Sigma_{XY}P_Q.
+\]
+Substituting into the gradient formula gives
+\[
+\bigl(\nabla_{W_\ell}\mathcal L(\theta)\bigr)^\top
+=
+-2W_{<\ell}\Sigma_{XY}P_QW_{>\ell}.
+\]
+Because \(\theta\in\mathcal C_d^S\), every partial gradient vanishes. Therefore
+\[
+W_{<\ell}\Sigma_{XY}P_QW_{>\ell}=0
+\qquad
+\text{for all }1\leq\ell\leq L.
+\]
+Thus
+\[
+(\theta,\Sigma_{XY}P_Q)\in\Gamma_d^r,
+\]
+or equivalently,
+\[
+\theta\in\Gamma_d^S.
+\]
+Since also \(\mu(\theta)=P_SW^\ast\), we have
+\[
+\theta\in\Gamma_d^S\cap\mu^{-1}(P_SW^\ast).
+\]
+
+Conversely, suppose that
+\[
+\theta\in\Gamma_d^S\cap\mu^{-1}(P_SW^\ast).
+\]
+Then
+\[
+\mu(\theta)=P_SW^\ast
+\]
+and, because \(\theta\in\Gamma_d^S\),
+\[
+W_{<\ell}\Sigma_{XY}P_QW_{>\ell}=0
+\qquad
+\text{for all }1\leq\ell\leq L.
+\]
+As above,
+\[
+\Sigma_X\mu(\theta)^\top-\Sigma_{XY}
+=
+-\Sigma_{XY}P_Q.
+\]
+Therefore, for every \(\ell\),
+\[
+\bigl(\nabla_{W_\ell}\mathcal L(\theta)\bigr)^\top
+=
+-2W_{<\ell}\Sigma_{XY}P_QW_{>\ell}
+=
+0.
+\]
+Hence
+\[
+\nabla_{W_\ell}\mathcal L(\theta)=0
+\qquad
+\text{for every }1\leq\ell\leq L.
+\]
+So
+\[
+\nabla_\theta\mathcal L(\theta)=0.
+\]
+Together with \(\mu(\theta)=P_SW^\ast\), this gives
+\[
+\theta\in\mathcal C_d^S.
+\]
+This proves the reverse inclusion and therefore the proposition.
+
+\subsection{Detailed proof of Proposition~\ref{prop:critical-rank-pattern-decomposition}}
+\label{app:proof-critical-rank-pattern-decomposition}
+
+Assume that
+\[
+\Gamma_d^r=\bigsqcup_{\rho\in R}O_\rho^r
+\]
+is a finite decomposition into locally closed subsets of \(\Gamma_d^r\), and that
+the pieces satisfy
+\[
+\overline{O_\rho^r}^{\,\Gamma_d^r}
+\subseteq
+\bigcup_{\rho'\leq\rho}O_{\rho'}^r.
+\]
+For each \(\rho\in R\), define
+\[
+\mathcal C_\rho^S
+:=
+\iota_S^{-1}(O_\rho^r)\cap\mu^{-1}(P_SW^\ast).
+\]
+
+We first prove that the pieces \(\mathcal C_\rho^S\) give a disjoint
+decomposition of \(\mathcal C_d^S\). By Proposition~\ref{prop:S-critical-fiber},
+\[
+\mathcal C_d^S
+=
+\iota_S^{-1}(\Gamma_d^r)\cap\mu^{-1}(P_SW^\ast).
+\]
+Since
+\[
+\Gamma_d^r=\bigsqcup_{\rho\in R}O_\rho^r,
+\]
+we have
+\[
+\iota_S^{-1}(\Gamma_d^r)
+=
+\iota_S^{-1}\left(\bigsqcup_{\rho\in R}O_\rho^r\right).
+\]
+Preimages commute with arbitrary unions, and preimages of disjoint sets are
+disjoint. Hence
+\[
+\iota_S^{-1}(\Gamma_d^r)
+=
+\bigsqcup_{\rho\in R}\iota_S^{-1}(O_\rho^r).
+\]
+Intersecting both sides with \(\mu^{-1}(P_SW^\ast)\) gives
+\[
+\mathcal C_d^S
+=
+\left(
+\bigsqcup_{\rho\in R}\iota_S^{-1}(O_\rho^r)
+\right)
+\cap
+\mu^{-1}(P_SW^\ast).
+\]
+Therefore
+\[
+\mathcal C_d^S
+=
+\bigsqcup_{\rho\in R}
+\left(
+\iota_S^{-1}(O_\rho^r)\cap\mu^{-1}(P_SW^\ast)
+\right)
+=
+\bigsqcup_{\rho\in R}\mathcal C_\rho^S.
+\]
+After discarding the empty terms, this is the claimed decomposition.
+
+Next we prove local closedness. Each \(O_\rho^r\) is locally closed in
+\(\Gamma_d^r\). Since \(\Gamma_d^r\) is a locally closed subset of
+\(\Omega\times \operatorname{Mat}_{d_0\times d_L}\), each \(O_\rho^r\) is locally
+closed in \(\Omega\times \operatorname{Mat}_{d_0\times d_L}\). The map
+\[
+\iota_S:\Omega\longrightarrow \Omega\times \operatorname{Mat}_{d_0\times d_L}
+\]
+is continuous, so
+\[
+\iota_S^{-1}(O_\rho^r)
+\]
+is locally closed in \(\Omega\). The map \(\mu:\Omega\to
+\operatorname{Mat}_{d_L\times d_0}\) is regular, hence continuous, and the point
+\(\{P_SW^\ast\}\) is closed. Therefore
+\[
+\mu^{-1}(P_SW^\ast)
+\]
+is closed in \(\Omega\). Consequently
+\[
+\mathcal C_\rho^S
+=
+\iota_S^{-1}(O_\rho^r)\cap\mu^{-1}(P_SW^\ast)
+\]
+is locally closed in \(\Omega\). Since
+\[
+\mathcal C_\rho^S\subseteq \mathcal C_d^S,
+\]
+it is also locally closed in \(\mathcal C_d^S\) with the subspace topology.
+
+It remains to prove the frontier inclusion
+\[
+\overline{\mathcal C_\rho^S}^{\,\mathcal C_d^S}
+\subseteq
+\bigcup_{\rho'\leq\rho}\mathcal C_{\rho'}^S.
+\]
+We use the following elementary fact. If \(f:X\to Y\) is continuous and
+\(A\subseteq Y\), then
+\[
+\overline{f^{-1}(A)}^{\,X}
+\subseteq
+f^{-1}\left(\overline A^{\,Y}\right).
+\]
+Indeed, \(f^{-1}(\overline A^{\,Y})\) is closed in \(X\) and contains
+\(f^{-1}(A)\), so it contains the closure of \(f^{-1}(A)\).
+
+Apply this fact to the continuous map
+\[
+\iota_S|_{\mathcal C_d^S}:\mathcal C_d^S\longrightarrow \Gamma_d^r.
+\]
+This restriction is well-defined because, by Proposition~\ref{prop:S-critical-fiber},
+\[
+\mathcal C_d^S\subseteq\Gamma_d^S=\iota_S^{-1}(\Gamma_d^r),
+\]
+so \(\iota_S(\theta)\in\Gamma_d^r\) for every \(\theta\in\mathcal C_d^S\).
+
+Now observe that
+\[
+\mathcal C_\rho^S
+=
+(\iota_S|_{\mathcal C_d^S})^{-1}(O_\rho^r).
+\]
+Therefore
+\[
+\overline{\mathcal C_\rho^S}^{\,\mathcal C_d^S}
+=
+\overline{(\iota_S|_{\mathcal C_d^S})^{-1}(O_\rho^r)}^{\,\mathcal C_d^S}
+\subseteq
+(\iota_S|_{\mathcal C_d^S})^{-1}
+\left(
+\overline{O_\rho^r}^{\,\Gamma_d^r}
+\right).
+\]
+Using the assumed frontier inclusion,
+\[
+\overline{O_\rho^r}^{\,\Gamma_d^r}
+\subseteq
+\bigcup_{\rho'\leq\rho}O_{\rho'}^r,
+\]
+we obtain
+\[
+\overline{\mathcal C_\rho^S}^{\,\mathcal C_d^S}
+\subseteq
+(\iota_S|_{\mathcal C_d^S})^{-1}
+\left(
+\bigcup_{\rho'\leq\rho}O_{\rho'}^r
+\right).
+\]
+Preimages commute with unions, so
+\[
+(\iota_S|_{\mathcal C_d^S})^{-1}
+\left(
+\bigcup_{\rho'\leq\rho}O_{\rho'}^r
+\right)
+=
+\bigcup_{\rho'\leq\rho}
+(\iota_S|_{\mathcal C_d^S})^{-1}(O_{\rho'}^r).
+\]
+But
+\[
+(\iota_S|_{\mathcal C_d^S})^{-1}(O_{\rho'}^r)
+=
+\mathcal C_{\rho'}^S.
+\]
+Hence
+\[
+\overline{\mathcal C_\rho^S}^{\,\mathcal C_d^S}
+\subseteq
+\bigcup_{\rho'\leq\rho}\mathcal C_{\rho'}^S.
+\]
+This proves the proposition.
+
+The argument gives an inclusion rather than an equality. The possible failure of
+equality comes from the strictness of
+\[
+\overline{f^{-1}(A)}^{\,X}
+\subseteq
+f^{-1}\left(\overline A^{\,Y}\right)
+\]
+for a general continuous map \(f\). In the present setting, a point in
+\(\iota_S^{-1}(\overline{O_\rho^r}^{\,\Gamma_d^r})\) may be reachable as a
+degeneration of \(O_\rho^r\) in the full cyclic variety while not being reachable
+by a degeneration that remains inside the fixed specialization determined by
+\(\iota_S\). Therefore the natural statement for the \(S\)-critical locus is the
+one-sided frontier condition above.
+\section{Deprecated}
+\begin{comment}
+\section{Geometry: Rank pattern stratification}
+ The $S$-critical loci is the intersection of the $S$-cyclic variety with the fiber of the parameter function map over the critical student $P_SW^\ast$.
 \begin{proposition}
 The $S$-critical loci satisfies:
 \[
 \mathcal C_{d}^S=
 \left\{
-\theta\in \Gamma_{d,S}^r
+\theta\in \Gamma_{d}^S 
 \ \middle|\
 \mu(\theta)=P_SW^\ast
-\right\} = \Gamma_{d,S}^r \cap \mu^{-1}(P_SW^\ast)
+\right\} = \Gamma_{d}^S \cap \mu^{-1}(P_SW^\ast) = \iota_S^{-1}(\Gamma_d^r) \cap \mu^{-1}(P_SW^\ast) 
 \]
 \end{proposition}
 \begin{proof}
-  We already know from proposition 1 in \cite{achour2024loss} that for a critical point $\theta$ associated with $S$ we have $\mu(\theta) = P_SW^{\star}$. In the other direction, assume that $\mu(\theta)=P_SW^{\star}$. Then recall the gradient equations 
+  We already know from proposition 1 in \cite{achour2024loss} that for a critical point $\theta$ associated with $S$ we have $\mu(\theta) = P_SW^{\star}$ which is rank $r$. In the other direction, assume that $\mu(\theta)=P_SW^{\star}$. Then recall the gradient equations 
   \[
 \bigl(\nabla_{W_\ell}\mathcal L(\theta)\bigr)^\top
 =
 2\,W_{<\ell}\bigl(\Sigma_X\Sigma_X^{-1}\Sigma_{XY}P_S-\Sigma_{XY}\bigr)W_{>\ell} = 2\,W_{<\ell}\Sigma_{XY}P_QW_{>\ell} = 0
 \]
-In other words, $\theta$ is a critical point. 
+In other words, $\theta$ is a critical point of rank $r$.  
 \end{proof}
 Now assume that we have a stratification of the cyclic variety $\Gamma^r_{d}$ i.e.:
 \[
 \Gamma^r_{d} = \bigsqcup_{\rho} O^r_{\rho}
 \]   
-Where $\rho$ runs over some finite set of rank patterns. Furthermore, assume that we have the following closure condition:
+Where $\rho$ runs over some finite subset of all the cyclic rank patterns. Furthermore, assume that we have the following closure condition:
 \[
 \bar{O}_{\rho} = \bigcup_{\rho'\leq \rho} O_{\rho'}  
 \] 
@@ -140,28 +677,25 @@ where $\rho' \leq \rho$ means that $\rho'_{ij} \leq \rho_{ij}$ for all $i,j$. Th
 \begin{proposition}
   Consider the stratification of $\Gamma^r_{d}$ by the strata $O^r_{\rho}$ satisfying a closure condition. The critical loci admits the following stratification
   \[
-  \mathcal{C}^{r}_{d,S} = \bigsqcup_{\rho} \mathcal{C}^S_\rho := \bigsqcup_{\rho}  O^r_{\rho} \cap \mu^{-1}(P_SW^{\ast}) \cap \pi^{-1}(\Sigma_{XY}P_Q)    
+  \mathcal{C}^{S}_{d} = \bigsqcup_{\rho} \mathcal{C}^S_\rho
   \]
-  Furthermore, the strata $\mathcal{C}^S_\rho$ are locally close and satisfy a closure condition:
+  Where we define:
   \[
-  \bar{\mathcal{C}}_{\rho} = \bigcup_{\rho'\leq \rho} \mathcal{C}_{\rho'}  
+  \mathcal{C}^S_\rho :=  \iota_S^{-1}(O^r_{\rho}) \cap \mu^{-1}(P_SW^{\ast})   
+  \]
+  Furthermore, the strata $\mathcal{C}^S_\rho$ are locally closed and satisfy the following condition:
+  \[
+  \bar{\mathcal{C}}_{\rho} \subset \bigcup_{\rho'\leq \rho} \mathcal{C}_{\rho'}  
   \] 
 \end{proposition}
-In other words the critical loci admits a combinatorial description by admissible cyclic rank patterns. This combinatorial description goes beyond providing a labelling of the critical points since the closure condition constrain the transitions that are allowed between rank patterns as lower rank patterns lie at the boundary of larger rank patterns. 
-\begin{proof}[Proof Sketch] The stratification is induced by the intersection of the strata with the fibers of the product map $\mu$ and projection $\pi$. Each strata is locally closed as an interesection of locally close sets with closed sets. The closure condition is inherited from the closure condition of the $O^{r}_{\rho}$.
+In other words the critical loci admits a combinatorial description by admissible cyclic rank patterns. This combinatorial description goes beyond providing a labelling of the critical points since the inclusion condition above constrains the transitions that are allowed between rank patterns. 
+\begin{proof}[Proof Sketch] The stratification is induced by the intersection of the strata $\iota^{-1}(O^r_{\rho})$ with the fibers of the product map $\mu$. Each strata is locally closed as an intersection of a locally close sets with a closed set (the fiber of the multiplication map and the fiber of the inclusion map over a locally closed strata). The closure inclusion is inherited from the closure condition of the $O^{r}_{\rho}$. Indeed we have:
+\[
+\overline{\iota_S(O^{r}_{\rho})} \subset \iota_S^{-1}(\overline{O^r_{\rho}}) = \iota_S^{-1}(\bigcup_{\rho'\leq \rho} O^r_{\rho'}) = \bigcup_{\rho'\leq \rho} \iota_S^{-1}(O^r_{\rho'})
+\]
+And the inclusion follows from intersecting the latter inclusion with the fiber of the multiplication map over $P_SW^{\star}$.
+
 \end{proof}
 A more detailed proof can be found in the appendix.
-\section{Stratification of the cyclic variety with multiplicity patterns}
-Goal: Stratify the cyclic variety with cyclic rank patterns.
-\subsection{Essentials of Quiver representation theory}
-A quiver is a graph $(I,E)$ with vertices $I$, edges $E$ and an orientation. A quiver representation assigns a vector space to $V_i \cong \mathbb{R}^{d_i}$ and a linear map $\phi: V_i \to V_{i+1}$ with vector dimension $d_i$. 
-\subsection{Cyclic variety}
-
-\subsection{Specialization to fixed closing arrow}
-
-\section{From multiplicity patterns to rank patterns}
-\section{Stratification of the critical loci}
-
-\section{Discussion}
-
+\end{comment}
 \end{document}

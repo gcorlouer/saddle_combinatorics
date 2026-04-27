@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.6.4)  24 APR 2026 15:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.6.4)  27 APR 2026 15:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -282,7 +282,9 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
 \Hy@SectionHShift=\skip61
-)
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/comment/comment.sty
+\CommentStream=\write3
+ Excluding comment 'comment')
 \c@theorem=\count305
  (/usr/local/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
@@ -379,8 +381,8 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 
 Package hyperref Info: Link coloring OFF on input line 44.
 (./draft.out) (./draft.out)
-\@outlinefile=\write3
-\openout3 = `draft.out'.
+\@outlinefile=\write4
+\openout4 = `draft.out'.
 
 LaTeX Font Info:    Trying to load font information for U+msa on input line 46.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -390,56 +392,55 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 46.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (./draft.toc)
-\tf@toc=\write4
-\openout4 = `draft.toc'.
+\tf@toc=\write5
+\openout5 = `draft.toc'.
 
 
 
 [1
 
 {/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (37.20685pt too wide) detected at line 96
+Overfull \hbox (37.20685pt too wide) detected at line 91
 \OML/cmm/m/it/10.95 r\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^^\OT1/cmr/m/n/10.95 ) = (\OML/cmm/m/it/10.95 r[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^^\OT1/cmr/m/n/10.95 ))[] [] \OML/cmm/m/it/10.95 r[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^^\OT1/cmr/m/n/10.95 ) := [][]\OML/cmm/m/it/10.95 W[]:::W[][] [] [] r[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^^\OT1/cmr/m/n/10.95 ) = \OML/cmm/m/it/10.95 d[][] r[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^^\OT1/cmr/m/n/10.95 ) = [][]\OML/cmm/m/it/10.95 W[][]
  []
-
-
-LaTeX Warning: Citation `achour2024loss' on page 2 undefined on input line 119.
-
-
-LaTeX Warning: Command \textquoteright invalid in math mode on input line 137.
-
-
-LaTeX Warning: Command \textquoteright invalid in math mode on input line 137.
 
 
 
 [2]
 
-[3] (./draft.aux)
+[3]
+
+[4]
+
+[5]
+
+[6]
+
+[7]
+
+[8] Excluding 'comment' comment.
+
+[9] (./draft.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
 Package rerunfilecheck Info: File `draft.out' has not changed.
-(rerunfilecheck)             Checksum: FC9B15D034455EA37B4E939876F12696;2491.
+(rerunfilecheck)             Checksum: 2ABDE1B67DDD4C5EE05ACA37EEC80784;3297.
  ) 
 Here is how much of TeX's memory you used:
- 11031 strings out of 473190
- 169487 string characters out of 5715801
- 582004 words of memory out of 5000000
- 34129 multiletter control sequences out of 15000+600000
+ 11104 strings out of 473190
+ 170829 string characters out of 5715801
+ 582303 words of memory out of 5000000
+ 34186 multiletter control sequences out of 15000+600000
  567904 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,15n,79p,612b,604s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,15n,79p,612b,542s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on draft.pdf (3 pages, 195936 bytes).
+Output written on draft.pdf (9 pages, 216729 bytes).
 PDF statistics:
- 168 PDF objects out of 1000 (max. 8388607)
- 129 compressed objects within 2 object streams
- 21 named destinations out of 1000 (max. 500000)
- 89 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 227 PDF objects out of 1000 (max. 8388607)
+ 182 compressed objects within 2 object streams
+ 33 named destinations out of 1000 (max. 500000)
+ 121 words of extra memory for PDF output out of 10000 (max. 10000000)
 

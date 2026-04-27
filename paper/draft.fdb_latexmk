@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1777042525.21362 "/Users/guime/projects/deep_linear_networks/saddle_combinatorics/paper/draft.tex" "draft.pdf" "draft" 1777042525.70731 0
-  "/Users/guime/projects/deep_linear_networks/saddle_combinatorics/paper/draft.tex" 1777042524.11749 7746 c3d2fd50b51208d97c35b65c860a0371 ""
+["pdflatex"] 1777301786.59084 "/Users/guime/projects/deep_linear_networks/saddle_combinatorics/paper/draft.tex" "draft.pdf" "draft" 1777301787.1043 0
+  "/Users/guime/projects/deep_linear_networks/saddle_combinatorics/paper/draft.tex" 1777301785.96824 21411 0e4205e2300a0e76c87810cf3898a6a6 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -73,6 +73,7 @@
   "/usr/local/texlive/2025/texmf-dist/tex/latex/base/atveryend-ltx.sty" 1738182759 2378 14b657ee5031da98cf91648f19642694 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/base/size11.clo" 1738182759 8464 e73911cdcc738e82d6adccd28e654bb1 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/booktabs/booktabs.sty" 1579038678 6078 f1cb470c9199e7110a27851508ed7a5c ""
+  "/usr/local/texlive/2025/texmf-dist/tex/latex/comment/comment.sty" 1472166125 10197 204f75d5d8d88aa345a8c402e879e63b ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty" 1579991033 13886 d1306dcf79a944f6988e688c1785f9ce ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbox.sty" 1739306980 46850 d87daedc2abdc653769a6f1067849fe0 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty" 1578002852 41601 9cf6c5257b1bc7af01a58859749dd37a ""
@@ -102,10 +103,10 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1749050915 5467155 19efa205003f9ecad95fbbaa6ff24da1 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1749050869 3345728 6e9d6b4ca934c854c1520d15fef27576 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "draft.aux" 1777042525.65256 1719 3a337e5a5d2ca031e8ab20fe09ab8573 "pdflatex"
-  "draft.out" 1777042525.65322 2491 fc9b15d034455ea37b4e939876f12696 "pdflatex"
-  "draft.tex" 1777042524.11749 7746 c3d2fd50b51208d97c35b65c860a0371 ""
-  "draft.toc" 1777042525.65343 1018 aaea530c607902c74d28c6ed04f054b5 "pdflatex"
+  "draft.aux" 1777301787.04908 2820 4ed81bbbddf06323aad3afb0858f336f "pdflatex"
+  "draft.out" 1777301787.0498 3297 2abde1b67ddd4c5ee05aca37eec80784 "pdflatex"
+  "draft.tex" 1777301785.96824 21411 0e4205e2300a0e76c87810cf3898a6a6 ""
+  "draft.toc" 1777301787.05002 1446 4d681463e924315b6d2377657f77ae0c "pdflatex"
   (generated)
   "draft.aux"
   "draft.log"
