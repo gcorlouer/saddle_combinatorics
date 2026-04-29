@@ -1,15 +1,16 @@
 \contentsline {section}{\numberline {1}Introduction: Informal statement of the main theorem}{1}{section.1}%
 \contentsline {section}{\numberline {2}Related works}{2}{section.2}%
 \contentsline {section}{\numberline {3}Setup and formal statement}{2}{section.3}%
-\contentsline {section}{\numberline {4}Geometry: Rank pattern stratification}{2}{section.4}%
+\contentsline {section}{\numberline {4}Geometry: Rank pattern stratification}{3}{section.4}%
 \contentsline {section}{\numberline {5}Stratification of the cyclic variety with multiplicity patterns}{4}{section.5}%
 \contentsline {subsection}{\numberline {5.1}Essentials of Quiver representation theory}{4}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}The cyclic Nakayama algebra}{4}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Specialization to fixed closing arrow}{9}{subsection.5.3}%
-\contentsline {section}{\numberline {6}From multiplicity patterns to rank patterns}{9}{section.6}%
-\contentsline {section}{\numberline {7}Stratification of the critical loci}{9}{section.7}%
-\contentsline {section}{\numberline {8}Discussion}{9}{section.8}%
-\contentsline {section}{\numberline {9}Appendix}{9}{section.9}%
-\contentsline {subsection}{\numberline {9.1}Detailed proof of Proposition~\ref {prop:S-critical-fiber}}{9}{subsection.9.1}%
-\contentsline {subsection}{\numberline {9.2}Detailed proof of Proposition~\ref {prop:critical-rank-pattern-decomposition}}{11}{subsection.9.2}%
-\contentsline {section}{\numberline {10}Deprecated}{13}{section.10}%
+\contentsline {subsection}{\numberline {5.2}The cyclic Nakayama algebra}{5}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Stratification with multiplicity patterns}{9}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}From multiplicity patterns to rank patterns}{10}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Specialization to fixed closing arrow}{10}{subsection.5.5}%
+\contentsline {section}{\numberline {6}Stratification of the critical loci}{10}{section.6}%
+\contentsline {section}{\numberline {7}Discussion}{10}{section.7}%
+\contentsline {section}{\numberline {8}Appendix}{10}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Detailed proof of Proposition~\ref {prop:S-critical-fiber}}{10}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Detailed proof of Proposition~\ref {prop:critical-rank-pattern-decomposition}}{12}{subsection.8.2}%
+\contentsline {section}{\numberline {9}Deprecated}{14}{section.9}%

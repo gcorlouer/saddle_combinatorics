@@ -82,12 +82,23 @@ Let $S$ be a subset of left-singular vectors of $M$, define the $S$-critical loc
 \mathcal C^S_{d} = \{\theta\in\Omega | \ \nabla_{\theta} L(\theta)=0; \mu(\theta)= P_SW^{\star}\}
 \]
 \end{definition}
+\begin{definition}[Symmetry group]
+For dimension vector $d=(d_0,...,d_L)$ define the symmetry group:
+\[
+G_d = \prod_{i=0}^{L} GL_{d_i}
+\]
+Consider the action of $G_d$:
+\[
+g.(\theta, W_0) = (g_L W_L g_{L-1}^{-1}, \dots, g_1 W_1 g_0^{-1}, g_0W_0g_L^{-1})
+\]
+and note that we have a well defined action of $G_d$ over the cyclic variety from $G_d$-invariance of the equations defining the cyclic variety. The variety $\Gamma_d^r$ also inherits an action of $G_d$ from the action of $G_d$ over $\Sigma_d^r \times \text{Mat}_{d_0 \times d_L}$, since the rank is invariant under action of $GL_d$. A consequence of the action is that we can stratify the variety $\Gamma^r_d$ into orbits (strata) $O_{\rho}$. In this paper we will show that the relevant geometric invariant $\rho$ parametrizing the orbits are the cyclic rank patterns.
+\end{definition}
 \begin{definition}\label{def:cyclic-rank-pattern}
 For $\phi = (\theta,W_0)\in\Gamma_{d}$ we define its \emph{cyclic rank pattern} to be the array
 \[
-r(\phi)=(r_{ij}(\phi))_{0\le i,j\le L}
+\rho(\phi)=(r_{ij}(\phi))_{0\le i,j\le L}
 \quad\text{where}\quad
-r_{ij}(\phi):=\mathrm{rank}\bigl(W_{j}...W_i\bigr) \quad \text{for} \quad \text{and} \quad r_{ii}(\phi) = d_i \text{and} \quad r_{i+1i}(\phi) = \mathrm{rank}\bigl(W_i\bigr)
+\rho_{ij}(\phi):=\mathrm{rank}\bigl(W_{j}...W_i\bigr) \quad \text{for} \quad \text{and} \quad \rho_{ii}(\phi) = d_i \text{and} \quad \rho_{i+1i}(\phi) = \mathrm{rank}\bigl(W_i\bigr)
 \]
 \end{definition}
 \begin{theorem}
@@ -361,9 +372,9 @@ at \(i\). Let
 \[
 q_{i,0}:=e_i,
 \qquad
-q_{i,r}:=a_{i+r}\cdots a_{i+1}
+q_{i,\ell}:=a_{i+\ell}\cdots a_{i+1}
 \]
-be the unique path of length \(r\) starting at \(i\). The path \(q_{i,r}\)
+be the unique path of length \(\ell\) starting at \(i\). The path \(q_{i,\ell}\)
 is nonzero precisely for
 \[
 0\leq r<c_i,
@@ -404,10 +415,10 @@ Hence this chain is a composition series.
 It remains to check that it is the unique composition series. Let
 \(N\subset P_i\) be a nonzero submodule. Since the idempotents \(e_v\)
 act as projections and each space \(e_vP_i\) is at most one-dimensional,
-\(N\) is spanned by some subset of the basis elements \(q_{i,r}\). If
+\(N\) is spanned by some subset of the basis elements \(q_{i,\ell}\). If
 \(q_{i,r}\in N\), then stability under the action of the arrows implies
 \[
-q_{i,r+1},q_{i,r+2},\ldots,q_{i,c_i-1}\in N.
+q_{i,\ell+1},q_{i,\ell+2},\ldots,q_{i,c_i-1}\in N.
 \]
 Therefore
 \[
@@ -457,8 +468,8 @@ define the interval module \(M(i,j)\) by
 \[
 M(i,j)_v=
 \begin{cases}
-k, & \text{if } v\equiv i+r \pmod {L+1}
-      \text{ for all }0\leq r\leq \delta(i,j),\\
+k, & \text{if } v\equiv i+\ell \pmod {L+1}
+      \text{ for all }0\leq \ell\leq \delta(i,j),\\
 0, & \text{otherwise,}
 \end{cases}
 \]
@@ -467,8 +478,8 @@ and
 M(i,j)_{a_m}=
 \begin{cases}
 \operatorname{id}_k,
-& \text{if } m\equiv i+r \pmod {L+1}
-  \text{ for all }1\leq r\leq \delta(i,j),\\
+& \text{if } m\equiv i+\ell \pmod {L+1}
+  \text{ for all }1\leq \ell\leq \delta(i,j),\\
 0, & \text{otherwise.}
 \end{cases}
 \]
@@ -483,9 +494,9 @@ isomorphic to a unique interval module \(M(i,j)\) with
 \]
 Equivalently, the indecomposable \(A\)-modules are given by:
 \[
-M(i,i+r-1),
+M(i,i+\ell-1),
 \qquad
-0\leq i\leq L,\quad 1\leq r\leq c_i,
+0\leq i\leq L,\quad 1\leq \ell\leq c_i,
 \]
 where indices are taken modulo \(L+1\).
 \end{theorem}
@@ -515,34 +526,34 @@ Since \(P_i\) is uniserial, its submodules are precisely
 P_i,\ JP_i,\ J^2P_i,\ldots,\ J^{c_i}P_i=0.
 \]
 Because \(M\neq 0\), the kernel is not all of \(P_i\). Thus there is a
-unique integer \(r\) with \(1\leq r\leq c_i\) such that
+unique integer \(\ell\) with \(1\leq \ell\leq c_i\) such that
 \[
-K=J^rP_i.
+K=J^{\ell}P_i.
 \]
 Therefore
 \[
-M\cong P_i/J^rP_i.
+M\cong P_i/J^{\ell}P_i.
 \]
 
-As a representation of the quiver, \(P_i/J^rP_i\) has one-dimensional
+As a representation of the quiver, \(P_i/J^lP_i\) has one-dimensional
 vector spaces at the vertices
 \[
-i,\ i+1,\ \ldots,\ i+r-1
+i,\ i+1,\ \ldots,\ i+\ell-1
 \]
 and zero vector spaces elsewhere. The arrow maps along this interval are
 \(\operatorname{id}_k\), and all other arrow maps are zero. Hence
 \[
-P_i/J^rP_i\cong M(i,i+r-1).
+P_i/J^{\ell}P_i\cong M(i,i+\ell-1).
 \]
 
 Conversely, for every \(i\) and every \(1\leq r\leq c_i\), the interval
-module \(M(i,i+r-1)\) is isomorphic to \(P_i/J^rP_i\). Since it is a
+module \(M(i,i+\ell-1)\) is isomorphic to \(P_i/J^{\ell}P_i\). Since it is a
 nonzero quotient of a uniserial module, it is uniserial, hence
 indecomposable.
 
-Finally, uniqueness follows because the top of \(M(i,i+r-1)\) is
-\(S_i\), which determines \(i\), and its composition length is \(r\),
-which determines the endpoint \(i+r-1\). This proves the classification.
+Finally, uniqueness follows because the top of \(M(i,i+\ell-1)\) is
+\(S_i\), which determines \(i\), and its composition length is \(\ell\),
+which determines the endpoint \(i+\ell-1\). This proves the classification.
 \end{proof}
 
 \begin{definition}
@@ -556,19 +567,19 @@ Define the set of admissible intervals by
 \[
 \mathcal I
 :=
-\{(i,r)\mid i\in \{0,\ldots,L\},\ 1\leq r\leq c_i\}.
+\{(i,\ell)\mid i\in \{0,\ldots,L\},\ 1\leq \ell\leq c_i\}.
 \]
-For \((i,r)\in \mathcal I\), write
+For \((i,\ell)\in \mathcal I\), write
 \[
-j(i,r):=i+r-1 \pmod {L+1}.
+j(i,\ell):=i+\ell-1 \pmod {L+1}.
 \]
 The corresponding interval module is
 \[
-M_r(i):=M(i,j(i,r)).
+M_{\ell}(i):=M(i,j(i,\ell)).
 \]
-Equivalently, \(M_r(i)\) is supported on the nonzero path
+Equivalently, \(M_{\ell}(i)\) is supported on the nonzero path
 \[
-i\to i+1\to \cdots \to i+r-1,
+i\to i+1\to \cdots \to i+\ell-1,
 \]
 with one-dimensional vector spaces along this path and identity maps
 along the arrows of the path.
@@ -590,13 +601,13 @@ Every finite-dimensional \(A\)-module \(M\) admits a decomposition
 \[
 M
 \cong
-\bigoplus_{(i,r)\in \mathcal I}
-M_r(i)^{\oplus m_{i,r}},
+\bigoplus_{(i,\ell)\in \mathcal I}
+M_{\ell}(i)^{\oplus m_{i,\ell}},
 \]
-where \(m_{i,r}\in \mathbb Z_{\geq 0}\), and only finitely many
+where \(m_{i,\ell}\in \mathbb Z_{\geq 0}\), and only finitely many
 multiplicities are nonzero.
 
-Moreover, the multiplicities \(m_{i,r}\) are uniquely determined by
+Moreover, the multiplicities \(m_{i,\ell}\) are uniquely determined by
 \(M\). Equivalently, the decomposition is unique up to permutation and
 isomorphism of the indecomposable summands.
 \end{corollary}
@@ -611,26 +622,64 @@ isomorphism of the indecomposable summands.
 By the classification theorem, every nonzero indecomposable
 \(A\)-module is isomorphic to an interval module
 \[
-M_r(i)\cong P_i/J^rP_i
+M_{\ell}(i)\cong P_i/J^{\ell}P_i
 \]
 for a unique pair
 \[
-(i,r)\in \mathcal I.
+(i,\ell)\in \mathcal I.
 \]
 Therefore every finite-dimensional \(A\)-module has a decomposition of
 the form
 \[
 M
 \cong
-\bigoplus_{(i,r)\in \mathcal I}
-M_r(i)^{\oplus m_{i,r}}.
+\bigoplus_{(i,\ell)\in \mathcal I}
+M_{\ell}(i)^{\oplus m_{i,\ell}}.
 \]
 The uniqueness statement in Krull--Schmidt implies that the
-multiplicities \(m_{i,r}\) are uniquely determined.
+multiplicities \(m_{i,\ell}\) are uniquely determined.
 \end{proof}
+\subsection{Stratification with multiplicity patterns}
+\begin{definition}[Multiplicity Patterns]
+    Consider a $A$-module $M$ of vector dimension $d$ and its Krull-Schmidt decomposition into $M_{\ell}(i)$ for $(i,\ell)\in \mathcal I$. For each vertex $k$ the dimension $d_k$ of the representation $M$ at vertex $k$ satisfies the dimension constraint:
+\[d_k \;=\;
+\sum_{(i,\ell)\in \mathcal I}
+m_{i,\ell}\,\mathbf{1}\!\left\{
+k \in \{i,i+1,\dots,i+\ell\} \ (\mathrm{mod}\ L+1)
+\right\}\quad k=0,\dots,L\]
+Define the set of \emph{multiplicity patterns} as
+\[\mathcal M_d^+ := \left\{(m_{i,\ell})\in \mathbb{Z}_{\ge 0}^{\mathcal I}\middle|\ d_k \;=\;
+\sum_{(i,\ell)\in \mathcal I}
+m_{i,\ell}\,\mathbf{1}\!\left\{
+k \in \{i,i+1,\dots,i+\ell\} \ (\mathrm{mod}\ L+1)
+\right\}\quad k=0,\dots,L\right\}.\]
+\end{definition}
+We have a functorial equivalence between the isomorphism classes of $A$-modules and the $G_d$ orbits of $\Gamma_d$. Given that all $A$-modules have a unique Krull-Schmidt decomposition indexed by the $m(i,j)$ then all $G_d$-orbits are indexed by the multiplicity patterns. In other words we have the following stratification: 
+\begin{proposition}[Orbit stratification of $\Gamma_{d,L+1}$ by indecomposable Nakayama modules]
+\label{prop:Gamma_orbit_stratification}
+
+Fix $L \ge 1$ and let $Q = C_{L+1}$ be the oriented cyclic quiver on vertices
+$\{0,\dots,L\}$.  
+Let $A := kQ/I$ be the Nakayama quiver algebra, where $I$ is the ideal generated by the length-$L$.
+The variety $\Gamma_{d}$ decomposes as a disjoint union of these orbits:
+\[
+\Gamma_{d}
+\;=\;
+\bigsqcup_{m \in \mathcal M_d^+} \mathcal{O}_m
+\;=\;
+\bigsqcup_{m \in \mathcal M_d^+} G_d \cdot \phi_m,
+\]
+where $\phi_m$ is any representative whose associated $A$-module has multiplicity pattern $m$.
+\noindent
+In particular, the $G_d$-orbits in $\Gamma_{d}$ are parameterized by the
+multiplicity data of indecomposable $A$-modules, i.e.\ by the set
+$\mathcal M_d^+$.
+\end{proposition}  
+\subsection{From multiplicity patterns to rank patterns}
+
+
 \subsection{Specialization to fixed closing arrow}
 
-\section{From multiplicity patterns to rank patterns}
 \section{Stratification of the critical loci}
 
 \section{Discussion}
