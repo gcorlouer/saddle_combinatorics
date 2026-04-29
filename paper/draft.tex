@@ -101,7 +101,7 @@ For $\phi = (\theta,W_0)\in\Gamma_{d}$ we define its \emph{cyclic rank pattern} 
 \rho_{ij}(\phi):=\mathrm{rank}\bigl(W_{j}...W_i\bigr) \quad \text{for} \quad \text{and} \quad \rho_{ii}(\phi) = d_i \text{and} \quad \rho_{i+1i}(\phi) = \mathrm{rank}\bigl(W_i\bigr)
 \]
 \end{definition}
-\begin{theorem}
+\begin{theorem}\label{main-result}
 Define the strata $\mathcal O^S_{\rho} := \mathcal O_{\rho} \cap \Gamma^r_{d,S}$ where  $\mathcal{O}_{\rho}$ is a $G_d$-orbit of the cyclic variety $\Gamma^r_{d}$.
 Assuming that the data is non degenerate and the input covariance matrix is invertible then the loci of critical points of rank $r<r_\text{max}$ admits the following stratification parameterized by subset $S$ of singular vectors of the teacher with $r$ elements and admissible cyclic rank patterns $\rho\in R_d^{\mathrm{orb}}$:
 \begin{align*}
@@ -439,7 +439,7 @@ indecomposable finite-dimensional \(B\)-module is uniserial.
 \end{lemma}
 
 \begin{proof}
-This is the standard Artinian characterization of Nakayama algebras:
+This comes from the Artinian characterization of Nakayama algebras:
 for a finite-dimensional algebra \(B\), the following are equivalent:
 \begin{enumerate}
   \item \(B\) is Nakayama;
@@ -584,7 +584,7 @@ i\to i+1\to \cdots \to i+\ell-1,
 with one-dimensional vector spaces along this path and identity maps
 along the arrows of the path.
 
-The number of admissible intervals is
+The number of indecomposables is
 \[
 |\mathcal I|
 =
@@ -655,8 +655,8 @@ k \in \{i,i+1,\dots,i+\ell\} \ (\mathrm{mod}\ L+1)
 \right\}\quad k=0,\dots,L\right\}.\]
 \end{definition}
 We have a functorial equivalence between the isomorphism classes of $A$-modules and the $G_d$ orbits of $\Gamma_d$. Given that all $A$-modules have a unique Krull-Schmidt decomposition indexed by the $m(i,j)$ then all $G_d$-orbits are indexed by the multiplicity patterns. In other words we have the following stratification: 
-\begin{proposition}[Orbit stratification of $\Gamma_{d,L+1}$ by indecomposable Nakayama modules]
-\label{prop:Gamma_orbit_stratification}
+\begin{theorem}[Orbit stratification of $\Gamma_{d,L+1}$ by indecomposable Nakayama modules]
+\label{prop:Gamma_mult_orbit_stratification}
 
 Fix $L \ge 1$ and let $Q = C_{L+1}$ be the oriented cyclic quiver on vertices
 $\{0,\dots,L\}$.  
@@ -674,14 +674,153 @@ where $\phi_m$ is any representative whose associated $A$-module has multiplicit
 In particular, the $G_d$-orbits in $\Gamma_{d}$ are parameterized by the
 multiplicity data of indecomposable $A$-modules, i.e.\ by the set
 $\mathcal M_d^+$.
-\end{proposition}  
+\end{theorem}  
 \subsection{From multiplicity patterns to rank patterns}
+We want to stratify the critical loci in terms of the rank patterns as they are more intuitive and native to the DLN representation. In this section we show that there is a bijection between the multiplicity patterns and a set of cyclic rank patterns satisfying some positivity constraint. 
+\begin{definition}
+For \((a,b)\in \mathcal I\), let
+\[
+q_{ab}
+\]
+denote the unique nonzero oriented path of \(A\) over the interval \([a,b]\) from vertex $a$ to vertex $b$. 
+\end{definition}
 
+\begin{definition}[Cyclic rank pattern]
+Let \(M\) be an \(A\)-module of dimension vector \(d\). Its
+lifted cyclic rank pattern is the array
+\[
+\rho(M)=(\rho_{ab}(M))_{(a,b)\in \mathcal I},
+\qquad
+\rho_{ab}(M):=\rk\bigl(q_{ab}(M)\bigr).
+\]
+\end{definition}
 
-\subsection{Specialization to fixed closing arrow}
+Two coordinates play a distinguished role:
+\[
+\rho_{0L}(M)=\rk(q_{0L}(M)),
+\qquad
+\rho_{L,0}(M)=\rk(q_{L,0}(M)).
+\]
+In the DLN representation these are exactly the end-to-end rank and the rank of the
+closing arrow.
 
+\begin{proposition}[Forward formula]
+\label{prop:forward}
+Let \(M\) have multiplicity pattern
+\[
+m=(m_{uv})_{(u,v)\in \mathcal I}.
+\]
+Then for every \((a,b)\in \mathcal I_L^{\mathrm{wt}}\),
+\[
+\rho_{ab}(M)
+=
+\sum_{\substack{(u,v)\in \mathcal I\\ u\leq a\leq b\leq v}}
+m_{uv}.
+\]
+\end{proposition}
+
+\begin{proof}
+On an indecomposable interval module \(M(u,v)\), the path \(q_{ab}\) acts with
+rank \(1\) exactly when the path interval \([a,b]\) is contained in \([u,v]\),
+and otherwise with rank \(0\). The claim follows by additivity of rank on
+direct sums.
+\end{proof}
+
+\begin{proposition}[Inversion formula]
+\label{prop:inversion}
+Extend every rank pattern by the convention
+\[
+\rho_{uv}=0
+\qquad
+\text{for }(u,v)\notin \mathcal I.
+\]
+Then for every admissible interval \((a,b)\in \mathcal I\),
+\[
+m_{ab}
+=
+\rho_{ab}-\rho_{a-1,b}-\rho_{a,b+1}+\rho_{a-1,b+1}.
+\]
+\end{proposition}
+
+\begin{proof}
+Insert the forward formula into the right-hand side and note that, for every
+fixed interval \((u,v)\), the coefficient of \(m_{uv}\) is
+\[
+\mathbf 1_{u\leq a\leq b\leq v}
+-\mathbf 1_{u\leq a-1\leq b\leq v}
+-\mathbf 1_{u\leq a\leq b+1\leq v}
++\mathbf 1_{u\leq a-1\leq b+1\leq v}.
+\]
+This coefficient equals \(1\) precisely when \((u,v)=(a,b)\) and equals \(0\)
+otherwise. A more detailed telescoping proof is recorded in
+Appendix~\ref{app:inversion}.
+\end{proof}
+
+\begin{definition}[Admissible rank-pattern set]
+\[
+\mathcal R_d
+:=
+\left\{
+\rho\in \Z_{\geq 0}^{\mathcal I}
+\ \middle|\
+\begin{array}{l}
+\rho_{aa}=d_a \text{ for every }0\leq a\leq L,\\[2pt]
+\rho_{ab}-\rho_{a-1,b}-\rho_{a,b+1}+\rho_{a-1,b+1}\geq 0\\
+\hspace{2.7cm}\text{for every }(a,b)\in \mathcal I
+\end{array}
+\right\}.
+\]
+\end{definition}
+
+\begin{proposition}[Multiplicity-rank bijection]
+\label{thm:rank-bijection}
+The multiplicity-pattern set and the rank-pattern set are canonically in
+bijection:
+\[
+\mathcal M_d^+
+\xrightarrow{\sim}
+\mathcal R_d.
+\]
+\end{proposition}
+
+\begin{proof}
+The forward map sends a multiplicity pattern to the rank pattern given by
+Proposition~\ref{prop:forward}. The inverse map is the finite-difference formula
+of Proposition~\ref{prop:inversion}. The diagonal condition \(\rho_{aa}=d_a\)
+ensures that the resulting multiplicity pattern has dimension vector \(d\).
+\end{proof}
 \section{Stratification of the critical loci}
-
+We are now in a position to import the stratification of the cyclic variety $\Gamma_d$ to the critical loci. First we have to specialize the stratification to the $S$-cyclic variety $\Gamma^S_d$. Let $O_{\rho}$ by a $G_d$ orbit associated with the rank pattern $\rho$. First from the definition of $\Gamma_d^r$ as intersecting $\Sigma_d^r \times \text{Mat}_{d_0,d_L}$ we have:
+\[
+\Gamma_d^r = \bigsqcup_{\substack{\rho\in \mathcal{R}_d \\ \rho_{0L} = r }} O_{\rho} = \bigsqcup_{\rho \in \mathcal{R}_d } O^r_{\rho}
+\]
+With \(O^r_{\rho}\) defined as $O_{\rho}$ with the constraint that $\rho_{0L} = r$. By definition of $\Gamma_d^S=\iota^{-1}(\Gamma^r_d)$. Defining $\mathcal{O}^r_{\rho} : = \iota^{-1}(O^r_{\rho})$ and using the stability of the stratification by pre-image we have:
+\[
+\Gamma^S_d = \bigsqcup_{\rho \in \mathcal{R}_d } \mathcal{O}^r_{\rho}
+\]
+Now some of the strata $\mathcal{O}^r_{\rho}$ will be empty because not all element of $\Gamma^S_d$ maps to an orbit $O^r_{\rho}$. In particular, a necessary refinement is that for a given $S$ subset of singular vectors of the teacher matrix we have:
+\[
+\operatorname{rank}(\Sigma_{XY}P_Q) = d_L - r
+\]
+So we have:
+\[
+\Gamma^S_d = \bigsqcup_{\rho \in \mathcal{R}_d } \mathcal{O}^S_{\rho}
+\]
+With $O^S_{\rho}$ being the orbit $O^r_{\rho}$ with the additional constraint that $\rho_{L,L+1} = d_L - r$. In other words, define the following set of admissible cyclic rank patterns:
+\[
+\mathcal{R}_d^S := \{\rho\in\mathcal{R}_d|\ \rho_{0L}=r, \ 
+\rho_{L,0} = d_L-r\}
+\]
+Then we have the following refined stratification:
+\[
+\Gamma^S_d = \bigsqcup_{\rho \in \mathcal{R}_d^S } \mathcal{O}_{\rho}
+\]
+As we have shown in proposition \ref{prop:critical-rank-pattern-decomposition} this stratification induces a stratification over the $S$-critical loci and therefore we have the stratification:
+\[
+\mathcal{C}_d = \bigsqcup_r \mathcal{C}^r_d = \bigsqcup_r \bigsqcup_{|S|=r} \mathcal{C}^S_d = \bigsqcup_{r,|S|=r} \bigsqcup_{\rho\in\mathcal{R}^S_d} \mathcal{O}_{\rho}\cap \mu^{-1}(P_SW^{\star})
+\]
+Which correspond to theorem \ref{main-result}. 
+Next steps: clean up writing and discussion. Share with Simon.
 \section{Discussion}
 
 \section{Appendix}
@@ -1048,6 +1187,45 @@ degeneration of \(O_\rho^r\) in the full cyclic variety while not being reachabl
 by a degeneration that remains inside the fixed specialization determined by
 \(\iota_S\). Therefore the natural statement for the \(S\)-critical locus is the
 one-sided frontier condition above.
+\subsection{Proof of the Inversion Formula}
+\label{app:inversion}
+
+We give a slightly more explicit version of the proof of
+Proposition~\ref{prop:inversion}. For every admissible interval \((a,b)\), the
+forward formula gives
+\[
+\rho_{ab}
+=
+\sum_{u\leq a\leq b\leq v} m_{uv}.
+\]
+Therefore
+\[
+\rho_{ab}-\rho_{a-1,b}-\rho_{a,b+1}+\rho_{a-1,b+1}
+=
+\sum_{u,v} m_{uv}\,\Xi_{uv},
+\]
+where
+\[
+\Xi_{uv}
+:=
+\mathbf 1_{u\leq a\leq b\leq v}
+-\mathbf 1_{u\leq a-1\leq b\leq v}
+-\mathbf 1_{u\leq a\leq b+1\leq v}
++\mathbf 1_{u\leq a-1\leq b+1\leq v}.
+\]
+
+If \(u<a\), then the first two indicators cancel, and likewise the last two
+indicators cancel. If \(v>b\), then the first and third indicators cancel, and
+likewise the second and fourth indicators cancel. The only way for a nonzero
+coefficient to remain is therefore
+\[
+u=a,\qquad v=b.
+\]
+In that case
+\[
+\Xi_{ab}=1.
+\]
+Thus the entire sum reduces to \(m_{ab}\), proving the inversion formula.
 \section{Deprecated}
 \begin{comment}
 \section{Geometry: Rank pattern stratification}
