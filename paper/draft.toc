@@ -5,11 +5,11 @@
 \contentsline {section}{\numberline {5}Stratification of the cyclic variety with multiplicity patterns}{4}{section.5}%
 \contentsline {subsection}{\numberline {5.1}Essentials of Quiver representation theory}{4}{subsection.5.1}%
 \contentsline {subsection}{\numberline {5.2}The cyclic Nakayama algebra}{4}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Specialization to fixed closing arrow}{8}{subsection.5.3}%
-\contentsline {section}{\numberline {6}From multiplicity patterns to rank patterns}{8}{section.6}%
-\contentsline {section}{\numberline {7}Stratification of the critical loci}{8}{section.7}%
-\contentsline {section}{\numberline {8}Discussion}{8}{section.8}%
-\contentsline {section}{\numberline {9}Appendix}{8}{section.9}%
-\contentsline {subsection}{\numberline {9.1}Detailed proof of Proposition~\ref {prop:S-critical-fiber}}{8}{subsection.9.1}%
-\contentsline {subsection}{\numberline {9.2}Detailed proof of Proposition~\ref {prop:critical-rank-pattern-decomposition}}{10}{subsection.9.2}%
-\contentsline {section}{\numberline {10}Deprecated}{12}{section.10}%
+\contentsline {subsection}{\numberline {5.3}Specialization to fixed closing arrow}{9}{subsection.5.3}%
+\contentsline {section}{\numberline {6}From multiplicity patterns to rank patterns}{9}{section.6}%
+\contentsline {section}{\numberline {7}Stratification of the critical loci}{9}{section.7}%
+\contentsline {section}{\numberline {8}Discussion}{9}{section.8}%
+\contentsline {section}{\numberline {9}Appendix}{9}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Detailed proof of Proposition~\ref {prop:S-critical-fiber}}{9}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Detailed proof of Proposition~\ref {prop:critical-rank-pattern-decomposition}}{11}{subsection.9.2}%
+\contentsline {section}{\numberline {10}Deprecated}{13}{section.10}%

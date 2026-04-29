@@ -545,19 +545,89 @@ Finally, uniqueness follows because the top of \(M(i,i+r-1)\) is
 which determines the endpoint \(i+r-1\). This proves the classification.
 \end{proof}
 
-\begin{corollary}
-Every finite-dimensional \(A\)-module admits a Krull--Schmidt
-decomposition
+\begin{definition}
+Let
 \[
-M\cong \bigoplus_{\alpha} M(i_\alpha,j_\alpha),
+c_0=L+1,
+\qquad
+c_i=L \quad \text{for }1\leq i\leq L.
 \]
-where each interval satisfies
+Define the set of admissible intervals by
 \[
-\delta(i_\alpha,j_\alpha)+1\leq c_{i_\alpha}.
+\mathcal I
+:=
+\{(i,r)\mid i\in \{0,\ldots,L\},\ 1\leq r\leq c_i\}.
 \]
-This decomposition is unique up to permutation and isomorphism of the
-summands.
+For \((i,r)\in \mathcal I\), write
+\[
+j(i,r):=i+r-1 \pmod {L+1}.
+\]
+The corresponding interval module is
+\[
+M_r(i):=M(i,j(i,r)).
+\]
+Equivalently, \(M_r(i)\) is supported on the nonzero path
+\[
+i\to i+1\to \cdots \to i+r-1,
+\]
+with one-dimensional vector spaces along this path and identity maps
+along the arrows of the path.
+
+The number of admissible intervals is
+\[
+|\mathcal I|
+=
+c_0+\sum_{i=1}^L c_i
+=
+(L+1)+L^2
+=
+L^2+L+1.
+\]
+\end{definition}
+
+\begin{corollary}[Krull--Schmidt decomposition for \(\Rep_d(A)\)]
+Every finite-dimensional \(A\)-module \(M\) admits a decomposition
+\[
+M
+\cong
+\bigoplus_{(i,r)\in \mathcal I}
+M_r(i)^{\oplus m_{i,r}},
+\]
+where \(m_{i,r}\in \mathbb Z_{\geq 0}\), and only finitely many
+multiplicities are nonzero.
+
+Moreover, the multiplicities \(m_{i,r}\) are uniquely determined by
+\(M\). Equivalently, the decomposition is unique up to permutation and
+isomorphism of the indecomposable summands.
 \end{corollary}
+
+\begin{proof}
+Since \(A\) is finite-dimensional, the category of finite-dimensional
+\(A\)-modules is a Krull--Schmidt category. Hence every finite-dimensional
+\(A\)-module decomposes as a finite direct sum of indecomposable
+\(A\)-modules, and this decomposition is unique up to permutation and
+isomorphism of the indecomposable summands.
+
+By the classification theorem, every nonzero indecomposable
+\(A\)-module is isomorphic to an interval module
+\[
+M_r(i)\cong P_i/J^rP_i
+\]
+for a unique pair
+\[
+(i,r)\in \mathcal I.
+\]
+Therefore every finite-dimensional \(A\)-module has a decomposition of
+the form
+\[
+M
+\cong
+\bigoplus_{(i,r)\in \mathcal I}
+M_r(i)^{\oplus m_{i,r}}.
+\]
+The uniqueness statement in Krull--Schmidt implies that the
+multiplicities \(m_{i,r}\) are uniquely determined.
+\end{proof}
 \subsection{Specialization to fixed closing arrow}
 
 \section{From multiplicity patterns to rank patterns}
