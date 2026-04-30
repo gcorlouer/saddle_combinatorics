@@ -37,7 +37,7 @@
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{example}[theorem]{Example}
 
-\title{A stratification of the critical loci of Deep Linear Networks}
+\title{Combinatorics of the critical loci of Deep Linear Networks}
 \author{Guillaume Corlouer}
 \date{}
 
@@ -50,14 +50,27 @@
 
 \tableofcontents
 
-\section{Introduction: Informal statement of the main theorem}
+\section{Introduction}
 Flow of the paper:
 The main theorem will be the stratification of the critical loci via the stratification of the cyclic variety and its intersection wit the specialization. We introduce notation, we state the main theorem (without any quiver representation theory simply in terms of the rank patterns). 
 
 \section{Related works}
 
-\section{Setup and main theorems}
-The critical loci of rank $r$ critical points in the loss landscape of a deep linear network admits a stratification parametrized by the rank of the critical points, rank patterns and a subset $S$ of singular vectors of the teacher matrix $M$.
+\section{Setup and main theorem}
+The central result of this paper is that the algebraic variety of critical points of the loss landscape of a deep linear network admits a stratification parametrized by a finite set of geometric invariants which are given by some rank patterns. These rank patterns are the rank of a product made of weight matrices and some projection of the input-output covariance matrix. 
+\begin{definition}[Deep Linear Network]
+A $L$-layers Deep Linear Network (DLN) is a function:
+\begin{align*}
+    f: \ & \mathbb{R}^{d_0} \times \prod_{l=0}^{L-1}\mathbb{R}^{d_l \times d_{l+1}}  \to \mathbb{R}^{d_L} \\
+       & (x,\theta = (W_1,...,W_L)) \mapsto \mu(\theta)x = W_L...W_1 x
+\end{align*}
+The dimension $d_0$ is the dimension of the input data and the dimensions $d_l,\ 1\leq l \leq L$ are the width of the layers. A Deep Linear Network is a multi-linear function (in parameter space $\Omega=\prod_{l=0}^{L-1}\mathbb{R}^{d_l \times d_{l+1}}$) which is linear in each of the weight matrix $W_l$ and the data. It is linear in function space $\mathcal{F}:=\operatorname{Mat}_{d_L\times d_0}$ over $\mu(\theta):=W:=W_L...W_1$ where $\mu$ is the product map. For the input-output data $(X,Y)\sim P$ we have the input and input-out covariance matrices $\Sigma_X = \mathbb{E}[XX^{\top}]$ and $\Sigma_{YX}=\mathbb{E}[YX^{\top}]$ and we will work with the quadratic population loss:
+\[
+L(\theta) := ||M - \mu(\theta)\Sigma_x^{-\frac{1}{2}}||^2_F
+\]
+where $||\cdot||_F$ is the Frobenius norm and $M:=\Sigma_{YX}\Sigma_X^{-1}$ is the teacher matrix which is the ordinary least square regressor. 
+\end{definition}
+We define some algebraic varieties that will be important to derive the main result. The cyclic variety $\Gamma_d$ is defined by a set of vanishing polynomial cyclic conditions which relates to the critical loci. This variety will be then stratified and the critical loci will inherit a stratification. 
 \begin{definition}[Determinantal, cyclic, and critical loci]
 Define
 \[

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.6.4)  30 APR 2026 12:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.6.4)  30 APR 2026 14:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -400,26 +400,26 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [1
 
 {/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (39.7872pt too wide) detected at line 102
+
+[2]
+Overfull \hbox (39.7872pt too wide) detected at line 115
 \OML/cmm/m/it/10.95 ^^Z\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^^\OT1/cmr/m/n/10.95 ) = (\OML/cmm/m/it/10.95 r[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^^\OT1/cmr/m/n/10.95 ))[] [] \OML/cmm/m/it/10.95 ^^Z[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^^\OT1/cmr/m/n/10.95 ) := [][]\OML/cmm/m/it/10.95 W[]:::W[][] [] [] ^^Z[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^^\OT1/cmr/m/n/10.95 ) = \OML/cmm/m/it/10.95 d[][] ^^Z[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^^\OT1/cmr/m/n/10.95 ) = [][]\OML/cmm/m/it/10.95 W[][]
  []
 
 
-
-[2]
 
 [3]
 
 [4]
 
 [5]
-Overfull \hbox (1.15613pt too wide) in paragraph at lines 442--444
+
+[6]
+Overfull \hbox (1.15613pt too wide) in paragraph at lines 455--457
 []\OT1/cmr/m/n/10.95 This comes from the Ar-tinian char-ac-ter-i-za-tion of Nakayama al-ge-bras: for a finite-dimensional
  []
 
 
-
-[6]
 
 [7]
 
@@ -437,29 +437,31 @@ Overfull \hbox (1.15613pt too wide) in paragraph at lines 442--444
 
 [14]
 
-[15] Excluding 'comment' comment.
+[15]
 
-[16] (./draft.aux)
+[16] Excluding 'comment' comment.
+
+[17] (./draft.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `draft.out' has not changed.
-(rerunfilecheck)             Checksum: 327E4C7541B57613C159697402FFE4B4;3632.
+(rerunfilecheck)             Checksum: D0B9BEC02F1392069948C74F6FFA1A00;3409.
  ) 
 Here is how much of TeX's memory you used:
- 11150 strings out of 473190
- 171526 string characters out of 5715801
- 581647 words of memory out of 5000000
+ 11152 strings out of 473190
+ 171544 string characters out of 5715801
+ 582644 words of memory out of 5000000
  34204 multiletter control sequences out of 15000+600000
  568525 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,15n,79p,670b,589s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,15n,79p,776b,583s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on draft.pdf (16 pages, 261156 bytes).
+Output written on draft.pdf (17 pages, 265645 bytes).
 PDF statistics:
- 293 PDF objects out of 1000 (max. 8388607)
- 238 compressed objects within 3 object streams
- 59 named destinations out of 1000 (max. 500000)
+ 299 PDF objects out of 1000 (max. 8388607)
+ 243 compressed objects within 3 object streams
+ 61 named destinations out of 1000 (max. 500000)
  121 words of extra memory for PDF output out of 10000 (max. 10000000)
 
