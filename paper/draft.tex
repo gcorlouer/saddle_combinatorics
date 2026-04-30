@@ -45,7 +45,7 @@
 \maketitle
 
 \begin{abstract}
-  
+We stratify the space of critical points of the loss landscape of deep linear networks for the quadratic loss. The stratification provides a combinatorial description of the minima and the saddle points. We also define cyclic rank patterns which are geometric invariant observables that parameterize the stratification of the critical points. 
 \end{abstract}
 
 \tableofcontents
@@ -64,9 +64,9 @@ A $L$-layers Deep Linear Network (DLN) is a function:
     f: \ & \mathbb{R}^{d_0} \times \prod_{l=0}^{L-1}\mathbb{R}^{d_l \times d_{l+1}}  \to \mathbb{R}^{d_L} \\
        & (x,\theta = (W_1,...,W_L)) \mapsto \mu(\theta)x = W_L...W_1 x
 \end{align*}
-The dimension $d_0$ is the dimension of the input data and the dimensions $d_l,\ 1\leq l \leq L$ are the width of the layers. A Deep Linear Network is a multi-linear function (in parameter space $\Omega=\prod_{l=0}^{L-1}\mathbb{R}^{d_l \times d_{l+1}}$) which is linear in each of the weight matrix $W_l$ and the data. It is linear in function space $\mathcal{F}:=\operatorname{Mat}_{d_L\times d_0}$ over $\mu(\theta):=W:=W_L...W_1$ where $\mu$ is the product map. For the input-output data $(X,Y)\sim P$ we have the input and input-out covariance matrices $\Sigma_X = \mathbb{E}[XX^{\top}]$ and $\Sigma_{YX}=\mathbb{E}[YX^{\top}]$ and we will work with the quadratic population loss:
+The dimension $d_0$ is the dimension of the input data and the dimensions $d_l,\ 1\leq l \leq L$ are the width of the layers. A Deep Linear Network is a multi-linear function (in parameter space $\Omega=\prod_{l=0}^{L-1}\mathbb{R}^{d_l \times d_{l+1}}$) which is linear in each of the weight matrix $W_l$ and the data. It is linear in function space $\mathcal{F}:=\operatorname{Mat}_{d_L\times d_0}$ over $\mu(\theta):=W:=W_L...W_1$ where $\mu$ is the product map. For the input-output data $(X,Y)\sim P$ we have the input and input-out covariance matrices $\Sigma_X = \mathbb{E}[XX^{\top}]$ and $\Sigma_{YX}=\mathbb{E}[YX^{\top}]$. Throughout the paper, without loss of generality, we assume that the inputs are whitened i.e. $\Sigma_X = I_{d_L}$ and we work with the quadratic population loss:
 \[
-L(\theta) := ||M - \mu(\theta)\Sigma_x^{-\frac{1}{2}}||^2_F
+L(\theta) := ||(M - \mu(\theta))||^2_F
 \]
 where $||\cdot||_F$ is the Frobenius norm and $M:=\Sigma_{YX}\Sigma_X^{-1}$ is the teacher matrix which is the ordinary least square regressor. 
 \end{definition}
@@ -93,7 +93,7 @@ Let $\iota_S:\Omega \longrightarrow \Omega \times \text{Mat}_{d_0 \times d_L}$ b
 \[
 \Gamma_{d}^r:=\Gamma_{d}\cap (\Sigma_d^r \times \text{Mat}_{d_0 \times d_L})
 \]
-Let $S$ be a subset of left-singular vectors of $M$, define the $S$-critical loci:
+Let $S$ be a subset of left-singular vectors of $M$ and $P_S$ is a projector over the space spanned by these left singular values. Define the $S$-critical loci:
 \[
 \mathcal C^S_{d} = \{\theta\in\Omega | \ \nabla_{\theta} L(\theta)=0; \mu(\theta)= P_SW^{\star}\}
 \]
@@ -128,6 +128,104 @@ Assuming that the data is non degenerate and the input covariance matrix is inve
   \mathcal{C}^r_d & = \bigsqcup_{|S|=r}\mathcal{C}^S_d = \bigsqcup_{|S|=r}\bigsqcup_{\substack{\rho\in R_d^{\mathrm{orb}}\\ \operatorname{rank}(\rho)=\operatorname{rank}(\Sigma_{XY}P_Q)}} \mathcal{O}^S_{\rho} \\
 \end{align*}
 \end{theorem}
+\subsection{Whitened realisable convention}
+\label{subsec:whitened-realisable-convention}
+
+Throughout the paper, unless explicitly stated otherwise, we work in the
+realisable whitened setting. Thus the input covariance is
+\[
+\Sigma_X=\mathbb E[XX^\top]=I_{d_0},
+\]
+and there is a linear teacher
+\[
+M\in \Mat_{d_L\times d_0}
+\]
+such that
+\[
+Y=MX.
+\]
+Consequently
+\[
+\Sigma_{YX}=\mathbb E[YX^\top]=M,
+\qquad
+\Sigma_{XY}=\Sigma_{YX}^\top=M^\top,
+\]
+and the OLS minimizer is
+\[
+W^\star=\Sigma_{YX}\Sigma_X^{-1}=M.
+\]
+The population loss is therefore
+\[
+\mathcal L(\theta)
+=
+\frac12\mathbb E\|Y-\mu(\theta)X\|^2
+=
+\frac12\|\mu(\theta)-M\|_F^2.
+\]
+In particular, the minimum population loss is zero and is attained precisely
+when
+\[
+\mu(\theta)=M.
+\]
+
+Let
+\[
+M=U\Lambda V^\top
+\]
+be a singular value decomposition of the teacher. For a subset \(S\) of the
+left singular directions, let \(P_S\) be the orthogonal projector onto their
+span and let
+\[
+P_Q:=I_{d_L}-P_S.
+\]
+We define
+\[
+B_S:=P_SM,
+\qquad
+E_S:=\Sigma_{XY}P_Q=M^\top P_Q.
+\]
+Then the pair \((B_S,E_S)\) is compatible with the cyclic equations:
+\[
+B_SE_S=0,
+\qquad
+E_SB_S=0.
+\]
+Indeed,
+\[
+B_SE_S
+=
+P_SMM^\top P_Q
+=
+0,
+\]
+because \(P_S\) and \(P_Q\) are complementary spectral projectors for
+\(MM^\top\). Also,
+\[
+E_SB_S
+=
+M^\top P_QP_SM
+=
+0.
+\]
+
+Moreover, \(E_S\) is exactly the residual-gradient factor associated with the
+specialization \(\mu(\theta)=P_SM\), up to sign. Namely,
+\[
+\mu(\theta)=P_SM
+\quad\Longrightarrow\quad
+\mu(\theta)^\top-M^\top
+=
+M^\top P_S-M^\top
+=
+-M^\top P_Q
+=
+-E_S.
+\]
+Since the cyclic equations are homogeneous in the closing arrow, this sign
+does not affect the equations
+\[
+W_{<\ell}E_SW_{>\ell}=0.
+\]
 \section{A stratification of the cyclic variety induces a stratification of the critical loci}
 \label{sec:cyclic-stratification-critical-loci}
 
@@ -1473,9 +1571,151 @@ does not affect the cyclic rank-pattern labels, the \(K_S\)-orbit
 stratification, the Zariski closure relation, or the codimension computations.
 \end{remark}
 \section{Discussion}
-Have shown that the critical points can be stratified into strata parameterized by geometric invariant: cyclic rank patterns. This stratification provides a combinatorial description of the loss landscape of DLNs. This is useful as a coarse grained description of the loss landscape. The loss landscape can be thought as a graph that is hierachically structured with particular nodes corresponding to a strata given by the rank $r$, the subset $S$ of singular vectors and cyclic rank patterns $\rho\in \mathcal{R}^S_d$. The stratification also induce some constraint on the training dynamics. The strata with high rank patterns are less degenerate and over a given $S$-critical loci the learning process can only move toward more degenerate strata which generalise the results from \cite{pepin}. We also discover geometrically principled observables: rank patterns. Rank patterns are useful observables to discuss the implicit biases of the learning process, for example SGD. Indeed using the rank patterns we can make explicit an implicit bias of SGD during training which over a given critical loci will favour solution with certain rank patterns. For example in the case of DLN at small initialization we expect from \cite{saxe} that SGD will have an implicit biases toward more degenerate strata i.e. solutions with low rank patterns. We should be able to make these implicit biases explicit by showing that SGD reduce some free energy functional of the student $W$ with an entropic regularization depending on the cyclic rank patterns or some corresponding continuous version using the singular values of partial product of weight matrices of the DLN. 
+\label{sec:discussion}
 
-\subsection{Future work} Promising next step would be to derive a codimension formula extending the results of \cite{simon} to all the local minima and the saddle points. One could also relax the assumptions of non degenerate data and invertible input covariance matrix. Future work could also make the implicit biases of SGD more explicit using the geometric invariant and use the stratification to coarse grain the training dynamics of SGD over the loss landscape. For example one could model SGD as a random walk over a graph with nodes indexed by the strata and edges corresponding to transition between strata. Another exciting direction would be investigate the quiver representation theoretic perspective on non-linear models for example ReLU networks to derive useful geometric invariant and a combinatorial description of ReLU loss landscapes.
+We have shown that the critical locus of a deep linear network admits a
+stratification by geometric invariants: the cyclic rank patterns of the
+associated cyclic quiver representation. More precisely, in the realisable setting with whitened input, each fixed \(S\)-critical locus is identified with the fiber
+\[
+\Gamma_d^S
+=
+\pi^{-1}(P_SM,M^\top P_Q)
+\]
+inside the cyclic variety, and this fiber decomposes into \(K_S\)-orbits
+\[
+\mathcal O_\rho^S
+=
+\mathcal O_\rho\cap \Gamma_d^S
+\]
+indexed by the admissible cyclic rank patterns
+\[
+\rho\in \mathcal R_d^S.
+\]
+Thus the critical locus is decomposed into pieces indexed by the data
+\[
+(r,S,\rho),
+\]
+where \(r=|S|\), \(S\) is a subset of teacher singular directions, and
+\(\rho\) is an admissible cyclic rank pattern for the corresponding fixed
+fiber. This gives a combinatorial description of
+the critical points of deep linear networks.
+
+This stratification gives a coarse-grained picture of the loss landscape. One
+may view the critical locus as a partially ordered graph whose nodes are the
+strata \(\mathcal O_\rho^S\), or their corresponding strata inside
+\(\mathcal C_d^S\), and whose edges possible transitions between strata. For a fixed
+subset \(S\), the relevant order is the fiberwise closure order
+\[
+\rho'\leq_S\rho
+\quad\Longleftrightarrow\quad
+\mathcal O_{\rho'}^S
+\subseteq
+\overline{\mathcal O_\rho^S}^{\,\Gamma_d^S}.
+\]
+This order is compatible with the ambient coordinatewise cyclic rank order:
+\[
+\rho'\leq_S\rho
+\quad\Longrightarrow\quad
+\rho'\leq_{\mathrm{rk}}\rho.
+\]
+Hence, within a fixed \(S\)-critical locus, specialization can only decrease
+cyclic ranks. In this precise sense, higher-rank strata are less degenerate,
+whereas lower-rank strata lie deeper in the boundary of a stratum. The converse
+need not hold: not every coordinatewise lower rank pattern appears in a fixed
+fiber, and even among the nonempty fiber strata the relation \(\leq_S\) can be
+strictly finer than \(\leq_{\mathrm{rk}}\).
+
+This extends the quiver-geometric perspective on multiplication fibers studied
+in \cite{simon}. In the realisable case, the global minima are described by the
+multiplication fiber
+\[
+\mu^{-1}(M),
+\]
+which is the bottom of the loss landscape. The present construction places this
+fiber inside a larger family of critical loci, indexed by subsets \(S\) of
+teacher singular directions, and equips each such locus with a compatible
+cyclic-rank stratification. Thus the same representation-theoretic invariants
+that describe multiplication fibers also organize non-global critical points,
+including saddle strata.
+
+The cyclic rank patterns also provide natural observables for studying training
+dynamics. Unlike the rank of the student or the loss value alone, a cyclic rank pattern records the ranks
+of all partial products around the associated cyclic quiver. These ranks measure
+how information is distributed across layers and how degenerate the
+corresponding factorization is. They therefore provide a discrete coordinate
+system for discussing possible implicit biases of optimization algorithms such
+as gradient descent or stochastic gradient descent.
+
+The exact dynamics of deep linear networks at small initialization
+show that the teacher singular values are learned sequentially \cite{saxe}. From the
+present geometric viewpoint, this suggest that the saddle-to-saddle dynamics biases trajectories toward critical strata with smaller rank patterns that are more degenerate. A possible future formulation is to associate to each
+rank-pattern stratum an effective energetic and entropic contribution, leading
+to a coarse-grained description of SGD in terms of a free-energy-like
+functional. In such a description, the entropy term would reflect the volume
+of a strata with a given cyclic rank pattern, or
+a continuous analogue obtained from the singular values of the partial products
+of the network.
+
+\subsection{Future work}
+
+A first direction is to derive explicit codimension formulas for all
+rank-pattern strata in the critical locus. The results of \cite{simon} compute
+the codimension and the top-dimensional irreducible components of
+the fibers of the multiplication map over global minima. In the present setting, one would like analogous formulas
+for the strata
+\[
+\mathcal O_\rho^S
+=
+\mathcal O_\rho\cap \pi^{-1}(P_SM,M^\top P_Q),
+\]
+including both the global-minimum fiber and the saddle and local minima strata. Such
+formulas would give a quantitative description of the size and singularity
+structure of each critical stratum. They may also lead to local invariants, such
+as local codimensions or local real log-canonical thresholds, for the loss near
+non-global critical points.
+
+A second direction is to relax the simplifying assumptions used in this paper.
+We have worked in the realisable whitened setting, where
+\[
+\Sigma_X=I,
+\qquad
+Y=MX,
+\qquad
+W^\star=M.
+\]
+For non-whitened inputs, the same geometry should persist after replacing the
+teacher matrix \(M\) by the whitened teacher
+\[
+M_{\mathrm{wh}}=M\Sigma_X^{1/2}.
+\]
+It would be useful to state and prove the full non-whitened version explicitly,
+including the corresponding specialization of the closing arrow
+\[
+E_S=\Sigma_{XY}P_Q.
+\]
+One could also relax genericity assumptions on the teacher. When singular
+values have multiplicities, the indexing by subsets \(S\) of individual
+singular directions should be replaced by a formulation in terms of spectral
+subspaces.
+
+A third direction is to use cyclic rank patterns to coarse-grain training
+dynamics. Using the combinatorial description of the DLN loss landscape,
+one can model near-critical stochastic dynamics by a graph whose nodes are
+strata and whose edges represent possible degenerations or transitions between
+nearby geometric regimes. Such a graph model could provide a finite-state approximation of how
+SGD moves between geometrically distinct regions of the loss landscape. Making
+this precise would require deriving transition rates or effective potentials
+from the original stochastic process.
+
+Finally, it would be interesting to extend the representation-theoretic
+perspective beyond linear networks. ReLU networks, for example, are
+piecewise-linear and decompose into activation regions. On each activation
+region, the network behaves like a structured linear map, suggesting that
+quiver- or representation-theoretic invariants may still be useful locally. A
+stratification for such models would have to incorporate both activation
+patterns and matrix-factorization ranks. Developing these invariants could
+provide a combinatorial description of more general neural network loss
+landscapes.
 \section{Appendix}
 \subsection{Detailed proof of Proposition~\ref{prop:S-critical-fiber}}
 \label{app:proof-S-critical-fiber}
