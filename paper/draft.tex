@@ -48,40 +48,42 @@
 \maketitle
 
 \begin{abstract}
-We stratify the space of critical points of the loss landscape of deep linear networks for the quadratic loss. The stratification provides a combinatorial description of the minima and saddle points of a deep linear network. The stratification is parametrized by specific geometric invariants, the cyclic rank patterns which are the ranks of partial product of a DLN layers.
+We stratify the space of critical points of the loss landscape of deep linear networks for the quadratic loss. The stratification provides a combinatorial description of the minima and saddle points of a deep linear network. The stratification is parameterized by specific geometric invariants, the cyclic rank patterns, which are the ranks of partial products of the layers of a DLN.
 \end{abstract}
 
 \tableofcontents
 
 \section{Introduction}
+\subsection{Motivation}
+The motivation for this combinatorial description is that it can provide a coarse-grained description of the loss landscape that distinguishes between different strata of degenerate solutions. Because the parameter-function map is highly degenerate, i.e.\ it has a whole group of symmetries, so is the loss, and there are infinitely many parameters that map to the same DLN. Singular learning theory (SLT) \cite{watanabe2009algebraic} shows that model degeneracies are important and related to generalization in the context of Bayesian statistics. We also know that deep neural networks are highly degenerate and that their internal symmetries should influence generalization \cite{wei2022deep}. The work of \cite{lehalleur2024geometry} shows that the codimension of the largest strata in the stratification of the global minima is exactly related to the learning coefficient of SLT, which informally measures the amount of degeneracy in a degenerate statistical model. However, frontier deep learning models such as large language models are not typically trained to convergence. To better understand the solutions selected by a training process before convergence, we want to have better models of such solutions. In this regime, it is important to model the effect of critical points that are not global minima and can also govern the training dynamics. An example of such a phenomenon is the saddle-to-saddle dynamics in deep linear networks \cite{jacot2018neural,saxe2019mathematical}. In the saddle-to-saddle regime of deep linear networks, gradient flow performs a low-rank approximation of a teacher matrix, where a transition between saddles corresponds to increasing the rank of the student by one. A combinatorial description of all the critical points enables us to coarse-grain the loss landscape into a graph where each node corresponds to a stratum and the dynamics of the training process can be modeled as transitions between these strata. In summary, our combinatorial description can provide a global description of the training dynamics.
 \subsection{Setup and main theorem}
-The central result of this paper is that the algebraic variety of critical points of the loss landscape of a deep linear network admits a stratification parametrized by a finite set of geometric invariants which are given by some rank patterns. These rank patterns are the rank of a product made of weight matrices and some projection of the input-output covariance matrix. 
+The central result of this paper is that the algebraic variety of critical points of the loss landscape of a deep linear network admits a stratification parameterized by a finite set of geometric invariants given by rank patterns. These rank patterns are the ranks of products made of weight matrices and a projection of the input-output covariance matrix.
 \begin{definition}[Deep Linear Network]
-A $L$-layers Deep Linear Network (DLN) is a function:
+An \(L\)-layer Deep Linear Network (DLN) is a function:
 \begin{align*}
     f: \ & \mathbb{R}^{d_0} \times \prod_{l=0}^{L-1}\mathbb{R}^{d_l \times d_{l+1}}  \to \mathbb{R}^{d_L} \\
-       & (x,\theta = (W_1,...,W_L)) \mapsto \mu(\theta)x = W_L...W_1 x
+       & (x,\theta = (W_1,\ldots,W_L)) \mapsto \mu(\theta)x = W_L\cdots W_1 x
 \end{align*}
-The dimension $d_0$ is the dimension of the input data and the dimensions $d_l,\ 1\leq l \leq L$ are the width of the layers. A Deep Linear Network is a multi-linear function (in parameter space $\Omega=\prod_{l=0}^{L-1}\mathbb{R}^{d_l \times d_{l+1}}$) which is linear in each of the weight matrix $W_l$ and the data. It is linear in function space $\mathcal{F}:=\operatorname{Mat}_{d_L\times d_0}$ over $\mu(\theta):=W:=W_L...W_1$ where $\mu$ is the product map. For the input-output data $(X,Y)\sim P$ we have the input and input-out covariance matrices $\Sigma_X = \mathbb{E}[XX^{\top}]$ and $\Sigma_{YX}=\mathbb{E}[YX^{\top}]$. Throughout the paper, without loss of generality, we assume that the inputs are \textbf{whitened} i.e. $\Sigma_X = I_{d_L}$ and we work with the quadratic population loss:
+The dimension \(d_0\) is the dimension of the input data, and the dimensions \(d_l\), \(1\leq l \leq L\), are the widths of the layers. A Deep Linear Network is a multilinear function in parameter space \(\Omega=\prod_{l=0}^{L-1}\mathbb{R}^{d_l \times d_{l+1}}\), which is linear in each weight matrix \(W_l\) and in the data. It is linear in function space \(\mathcal{F}:=\operatorname{Mat}_{d_L\times d_0}\) over \(\mu(\theta):=W:=W_L\cdots W_1\), where \(\mu\) is the product map. For the input-output data \((X,Y)\sim P\), we have the input and input-output covariance matrices \(\Sigma_X = \mathbb{E}[XX^{\top}]\) and \(\Sigma_{YX}=\mathbb{E}[YX^{\top}]\). Throughout the paper, without loss of generality, we assume that the inputs are \textbf{whitened}, i.e.\ \(\Sigma_X = I_{d_0}\), and we work with the quadratic population loss
 \[
-L(\theta) := ||(M - \mu(\theta))||^2_F
+L(\theta) := \|M - \mu(\theta)\|^2_F,
 \]
-where $||\cdot||_F$ is the Frobenius norm and $M:=\Sigma_{YX}\Sigma_X^{-1} = \Sigma_{YX}$ is the teacher matrix which is the ordinary least square regressor. 
+where \(\|\cdot\|_F\) is the Frobenius norm and \(M:=\Sigma_{YX}\Sigma_X^{-1} = \Sigma_{YX}\) is the teacher matrix, which is the ordinary least-squares regressor.
 \end{definition}
-The teacher matrix $M$ admits the following SVD:
+The teacher matrix \(M\) admits the following SVD:
 \[
 M = U\Lambda V^{\top}
 \]
-With $\Lambda = \operatorname{diag}(s_1,...,s_{d_L}, 0_{d_0-d_L})$ and $s_1 > s_2 > ... > s_{d_L} > 0$ (full rank and non degenerate data). We \textbf{assume a realizable setting} i.e. $d_l \geq d_0 \geq d_L$ for $l$ running over the hidden layers of the DLN and thus the global minimum is $W^{\star}=M=\Sigma_{YX}$ with a corresponding loss of zero. Let $S$ be a subset indexing singular vectors of $M$. We define $P_S$ a projector over these singular vectors and $P_Q$ a projector over singular vectors orthogonal to these indexed by $S$. The projectors $P_S$ and $P_Q$ are orthogonal to each other. Recall the following important proposition from \cite{achour2024loss} proposition 1:
+with \(\Lambda = \operatorname{diag}(s_1,\ldots,s_{d_L}, 0_{d_0-d_L})\) and \(s_1 > s_2 > \cdots > s_{d_L} > 0\) (full-rank and nondegenerate data). We \textbf{assume a realizable setting}, i.e.\ \(d_l \geq d_0 \geq d_L\) for \(l\) running over the hidden layers of the DLN, and thus the global minimum is \(W^{\star}=M=\Sigma_{YX}\) with corresponding loss zero. Let \(S\) be a subset indexing singular vectors of \(M\). We define \(P_S\) to be the projector onto these singular vectors and \(P_Q\) to be the projector onto the singular vectors orthogonal to those indexed by \(S\). The projectors \(P_S\) and \(P_Q\) are orthogonal to each other. Recall Proposition~1 of \cite{achour2024loss}:
 \begin{proposition}
-  Let $\theta$ be a critical point then there exist a subset $S$ of singular values of $M$ such that 
+  Let \(\theta\) be a critical point. Then there exists a subset \(S\) of singular directions of \(M\) such that
   \[
-  \mu(\theta) = P_SW^{\star} = P_SM
+  \mu(\theta) = P_S W^{\star} = P_S M
   \]
 \end{proposition}
-Under whitened input assumptions this means that $\mu(\theta)=P_S\Sigma_{YX}$ we denote $W_S :=  P_S\Sigma_{YX}$ and $W_S^{\dagger}=\Sigma_{XY}P_Q$. We have $W_S^{\dagger}W_S=0$ by orthogonality of $P_S$ and $P_Q$ and since $M^{\top}=\Sigma_{XY}$ also have $W_SW_S^{\dagger}=0$ as $P_S$ and $P_Q$ project onto orthogonal subsets of left singular vectors of $M$.
+Under the whitened input assumptions, this means that \(\mu(\theta)=P_S\Sigma_{YX}\). We denote \(W_S := P_S\Sigma_{YX}\) and \(W_S^{\dagger}:=\Sigma_{XY}P_Q\). We have \(W_S^{\dagger}W_S=0\) by orthogonality of \(P_S\) and \(P_Q\), and since \(M^{\top}=\Sigma_{XY}\), we also have \(W_S W_S^{\dagger}=0\), as \(P_S\) and \(P_Q\) project onto orthogonal subsets of left singular vectors of \(M\).
 
-We define some algebraic varieties that will be important to derive the main result. The cyclic variety $\Gamma_d$ is defined by a set of vanishing polynomial cyclic conditions which relates to the critical loci. This variety will be then stratified and the critical loci will inherit a stratification. 
+We define some algebraic varieties that will be important for deriving the main result. The cyclic variety \(\Gamma_d\) is defined by a set of vanishing polynomial cyclic conditions related to the critical loci. This variety will then be stratified, and the critical loci will inherit a stratification.
 \begin{definition}[Determinantal, cyclic, and critical loci]
 Define
 \[
@@ -97,52 +99,55 @@ W_{<\ell}W_{0}W_{>\ell}=0
 \text{ for all }1\leq \ell\leq L
 \right\}, \quad \text{\textit{Cyclic variety}}
 \]
-Let $\mathcal{F}^t:=\operatorname{Mat}_{d_0\times d_L}$ and let $\pi: \Gamma_d \to \mathcal{F} \times \mathcal{F}^t$ such that $\pi(\theta, W_0):= (\mu(\theta), W_0)$. Define the determinantal cyclic variety:  
+Let \(\mathcal{F}^t:=\operatorname{Mat}_{d_0\times d_L}\), and let \(\pi: \Gamma_d \to \mathcal{F} \times \mathcal{F}^t\) be the map \(\pi(\theta, W_0):= (\mu(\theta), W_0)\). Define the determinantal cyclic variety:
 \begin{comment}
 Let $\iota_S:\Omega \longrightarrow \Omega \times \text{Mat}_{d_0 \times d_L}$ be an inclusion map such that $\iota_S(\theta):=(\theta, \Sigma_{XY}P_Q)$ and define:
 \end{comment}
 \[
 \Gamma_{d}^r:=\Gamma_{d}\cap (\Sigma_d^r \times \text{Mat}_{d_0 \times d_L})
 \]
-Let $S$ be a subset of left-singular vectors of $M$ and $P_S$ is a projector over the space spanned by these left singular values. Define the $S$-critical loci:
+Let \(S\) be a subset of left singular vectors of \(M\), and let \(P_S\) be the projector onto the space spanned by these left singular vectors. Define the \(S\)-critical locus:
 \[
-\mathcal C^S_{d} = \{\theta\in\Omega | \ \nabla_{\theta} L(\theta)=0; \mu(\theta)= P_SW^{\star}\}
+\mathcal C^S_{d} = \{\theta\in\Omega \mid \nabla_{\theta} L(\theta)=0,\ \mu(\theta)=P_S W^{\star}\}.
 \]
 \end{definition}
-In proposition \ref{} we show that the $S$- critical loci is a fiber of $\pi$:
+In Proposition~\ref{prop:S-critical-fiber}, we show that the \(S\)-critical locus is a fiber of \(\pi\):
 \[
-\mathcal C^S_{d} \cong \Gamma^S_d:=\pi^{-1}(P_SW^{\star}, \Sigma_{XY}P_Q) \subset \Gamma^r_d
+\mathcal C^S_{d} \cong \Gamma^S_d:=\pi^{-1}(W_S, W_S^{\dagger}) \subset \Gamma^r_d.
 \]
 \begin{definition}[Symmetry group]
-For dimension vector $d=(d_0,...,d_L)$ define the symmetry group:
+For the dimension vector \(d=(d_0,\ldots,d_L)\), define the symmetry group:
 \[
 G_d = \prod_{i=0}^{L} GL_{d_i}
 \]
-Consider the action of $G_d$:
+Consider the action of \(G_d\):
 \[
-g.(\theta, W_0) = (g_L W_L g_{L-1}^{-1}, \dots, g_1 W_1 g_0^{-1}, g_0W_0g_L^{-1})
+g.(\theta, W_0) = (g_L W_L g_{L-1}^{-1}, \dots, g_1 W_1 g_0^{-1}, g_0 W_0g_L^{-1})
 \]
-and note that we have a well defined action of $G_d$ over the cyclic variety from $G_d$-invariance of the equations defining the cyclic variety. The variety $\Gamma_d^r$ also inherits an action of $G_d$ from the action of $G_d$ over $\Sigma_d^r \times \text{Mat}_{d_0 \times d_L}$, since the rank is invariant under action of $GL_d$. A consequence of the action is that we can stratify the variety $\Gamma^r_d$ into orbits (strata) $O_{\rho}$. In this paper we will show that the relevant geometric invariant $\rho$ parametrizing the orbits are the cyclic rank patterns.
+and note that we have a well-defined action of \(G_d\) on the cyclic variety by \(G_d\)-invariance of the equations defining the cyclic variety. The variety \(\Gamma_d^r\) also inherits an action of \(G_d\) from the action of \(G_d\) on \(\Sigma_d^r \times \text{Mat}_{d_0 \times d_L}\), since rank is invariant under the action of \(GL_d\). A consequence of the action is that we can stratify the variety \(\Gamma^r_d\) into orbits (strata) \(O_{\rho}\). In this paper we will show that the relevant geometric invariants \(\rho\) parameterizing the orbits are the cyclic rank patterns.
 \end{definition}
 \begin{definition}\label{def:cyclic-rank-pattern}
-For $\phi = (\theta,W_0)\in\Gamma_{d}$ we define its \emph{cyclic rank pattern} to be the array
+For \(\phi = (\theta,W_0)\in\Gamma_{d}\), we define its \emph{cyclic rank pattern} to be the array
 \[
 \rho(\phi)=(r_{ij}(\phi))_{0\le i,j\le L}
 \quad\text{where}\quad
-\rho_{ij}(\phi):=\mathrm{rank}\bigl(W_{j}...W_i\bigr) \quad \text{for} \quad \text{and} \quad \rho_{ii}(\phi) = d_i \text{and} \quad \rho_{i+1i}(\phi) = \mathrm{rank}\bigl(W_i\bigr)
+\rho_{ij}(\phi):=\mathrm{rank}\bigl(W_{j}\cdots W_i\bigr),
+\quad
+\rho_{ii}(\phi)=d_i,
+\quad
+\rho_{i+1,i}(\phi)=\mathrm{rank}\bigl(W_i\bigr),
 \]
+with indices read cyclically.
 \end{definition}
 \begin{theorem}\label{main-result}
-Define the strata $\mathcal O^S_{\rho} := \mathcal O_{\rho} \cap \Gamma^S_{d}$ where  $\mathcal{O}_{\rho}$ is a $G_d$-orbit of the cyclic variety $\Gamma^r_{d}$. We also identify $\mathcal{C}_d^S$ with $\Gamma^S_{d}$. 
-Assuming that the data is non degenerate and the input covariance matrix is invertible then the loci of critical points of rank $r<r_\text{max}$ admits the following stratification parameterized by subset $S$ of singular vectors of the teacher with $r$ elements and admissible cyclic rank patterns $\rho\in R_d^{\mathrm{orb}}$:
+Define the strata \(\mathcal O^S_{\rho} := \mathcal O_{\rho} \cap \Gamma^S_{d}\), where \(\mathcal{O}_{\rho}\) is a \(G_d\)-orbit of the cyclic variety \(\Gamma^r_{d}\). We also identify \(\mathcal{C}_d^S\) with \(\Gamma^S_{d}\).
+Assuming that the data are nondegenerate and the input covariance matrix is invertible, the locus of critical points of rank \(r<r_\text{max}\) admits the following stratification, parameterized by subsets \(S\) of singular vectors of the teacher with \(r\) elements and admissible cyclic rank patterns \(\rho\in R_d^{\mathrm{orb}}\):
 \begin{align*}
   \mathcal{C}^r_d & = \bigsqcup_{|S|=r}\mathcal{C}^S_d = \bigsqcup_{|S|=r}\bigsqcup_{\substack{\rho\in R_d^{\mathrm{orb}}\\ \operatorname{rank}(\rho)=\operatorname{rank}(\Sigma_{XY}P_Q)}} \mathcal{O}^S_{\rho} \\
 \end{align*}
 \end{theorem}
-\subsection{Related works and Motivation}
-A first important result is that the loss landscape of a deep linear networks has no non global local minima \cite{baldi1989neural,kawaguchi2016deep}. A second order analysis has also extended these results to classify the saddle points of the DLN loss landscape giving conditions on the rank partial product of the weights to classify them into strict and non-strict saddle points \cite{achour2024loss}. Furthermore when the DLN has all its layer width strictly larger than the input and output dimension, we know that all the global minima are connected \cite{trager2019pure}. DLNs have whole groups of symmetries and their study could be simplified by coarse-graining their internal symmetries. This is the perspective taken in \cite{lehalleur2024geometry} which essentially show that the global minima admit a stratification which gives a combinatorial and hierarchical description of the minima via \textit{rank patterns}. This work is an extension of the previous paper where we derive a combinatorial description of all the critical points which include saddle points. The important geometric invariant are the rank patterns instead of the cyclic rank patterns which arise from cyclic vanishing equations describing the space of critical points beyond the constraint that the parameter function map, which is the product map, maps to a particular critical value.
-
-The motivation for this combinatorics description is that it can provide a coarse grained description of the loss landscape that enables to distinguish between different strata of degenerate solutions. Because the parameter function map is highly degenerate, i.e. it has a whole group of symmetry, then so is the loss and there are an infinite amount of parameters that map to the same DLN. Singular learning theory (SLT) \cite{watanabe2009algebraic} shows that model degeneracies are important and related to generalization in the context of Bayesian statistics. We also know that deep neural networks are highly degenerate and that their internal symmetries should also influence generalization \cite{wei2022deep}. The work of \cite{lehalleur2024geometry} in fact shows that the codimension of the largest strata in the stratification of the global minima is exactly related to the learning coefficient of SLT which informally measures the amount of degeneracies in a degenerate statistical model. However frontier deep learning models such as large language models are not typically trained to convergence. To better understand solution that are selected by a training process before convergence we want to have better models of solutions that are selected during training, before convergence. In this regime it is important to model the effect of critical points that are not global minima that can also govern the training dynamics. An example of such phenomena is the saddle to saddle dynamics in deep linear networks \cite{jacot2018neural,saxe2019mathematical}. In the saddle to saddle regime of deep linear networks, gradient flow is doing a low rank approximation of a teacher matrix where a transition between saddles correspond to increasing the rank of the student by one. A combinatorics description of all the critical points enables us to coarse grain the loss landscape into a graph where each nodes correspond to a strata and the dynamics of the training process can be modelled as a transition between these strata. In summary our combinatorial description can provide a global description of the training dynamics.   
+\subsection{Related work}
+A first important result is that the loss landscape of a deep linear network has no nonglobal local minima \cite{baldi1989neural,kawaguchi2016deep}. A second-order analysis has also extended these results to classify the saddle points of the DLN loss landscape, giving conditions on the ranks of partial products of the weights that classify them into strict and non-strict saddle points \cite{achour2024loss}. Furthermore, when the DLN has all its layer widths strictly larger than the input and output dimensions, all global minima are connected \cite{trager2019pure}. DLNs have whole groups of symmetries, and their study could be simplified by coarse-graining their internal symmetries. This is the perspective taken in \cite{lehalleur2024geometry}, which essentially shows that the global minima admit a stratification giving a combinatorial and hierarchical description of the minima via \textit{rank patterns}. This work is an extension of the previous paper, where we derive a combinatorial description of all the critical points, including saddle points. The important geometric invariants are the rank patterns, rather than the cyclic rank patterns, which arise from cyclic vanishing equations describing the space of critical points beyond the constraint that the parameter-function map, namely the product map, maps to a particular critical value.
 \section{A stratification of the cyclic variety induces a stratification of the critical loci}
 \label{sec:cyclic-stratification-critical-loci}
 
@@ -150,7 +155,7 @@ In this section we explain how the orbit stratification of the cyclic variety
 induces an orbit stratification of each fixed-\(S\) critical locus. All
 closures are relative Zariski closures.
 
-Fix a subset \(S\) of left singular vectors of $M$. We have \(W_S\in\mathcal F=\operatorname{Mat}_{d_L\times d_0}\) and
+Fix a subset \(S\) of left singular vectors of \(M\). We have \(W_S\in\mathcal F=\operatorname{Mat}_{d_L\times d_0}\) and
 \(W_S^{\dagger}\in\mathcal F^t=\operatorname{Mat}_{d_0\times d_L}\). Recall that
 \[
 \pi:\Gamma_d\longrightarrow \mathcal F\times \mathcal F^t,
@@ -183,9 +188,9 @@ is an isomorphism of varieties, with inverse given by projection onto the
 \begin{proof}
 Let \(\theta\in\Omega\) satisfy \(\mu(\theta)=W_S\). Then
 \[
-(P_SW^\star)^\top-\Sigma_{XY}
+(P_S W^\star)^\top-\Sigma_{XY}
 =
--\Sigma_{XY}P_Q =-W_S^{\dagger}
+-\Sigma_{XY}P_Q =-W_S^{\dagger}.
 \]
 Hence, for every \(1\leq \ell\leq L\),
 \[
@@ -194,7 +199,7 @@ Hence, for every \(1\leq \ell\leq L\),
 -2W_{<\ell}W_S^{\dagger}W_{>\ell}.
 \]
 Therefore the gradient equations are equivalent, under the constraint
-\(\mu(\theta)=W_S=P_SW^{\star}\), to the cyclic equations
+\(\mu(\theta)=W_S=P_S W^{\star}\), to the cyclic equations
 \[
 W_{<\ell}W_S^{\dagger}W_{>\ell}=0
 \qquad
@@ -222,13 +227,13 @@ acts on \(\Gamma_d\) by
 \[
 g\cdot(\theta,W_0)
 =
-(g_LW_Lg_{L-1}^{-1},\dots,g_1W_1g_0^{-1},g_0W_0g_L^{-1}).
+(g_L W_Lg_{L-1}^{-1},\dots,g_1 W_1g_0^{-1},g_0 W_0g_L^{-1}).
 \]
 The map \(\pi\) is equivariant in the following sense:
 \[
 \pi(g\cdot(\theta,W_0))
 =
-(g_L\mu(\theta)g_0^{-1},\,g_0W_0g_L^{-1}).
+(g_L\mu(\theta)g_0^{-1},\,g_0 W_0g_L^{-1}).
 \]
 Define the stabilizer of the fixed pair \((W_S,W_S^{\dagger})\) by
 \[
@@ -237,8 +242,8 @@ K_S
 \left\{
 g\in G_d
 \ \middle|\
-g_LW_Sg_0^{-1}=W_S,\;
-g_0W_S^{\dagger}g_L^{-1}=W_S^{\dagger}
+g_L W_Sg_0^{-1}=W_S,\;
+g_0 W_S^{\dagger}g_L^{-1}=W_S^{\dagger}
 \right\}.
 \]
 Then \(K_S\) acts on the fiber \(\Gamma_d^S\).
@@ -251,7 +256,7 @@ Assume that the rank-\(r\) cyclic variety has a finite
 \bigsqcup_{\rho\in R_d^r} O_\rho,
 \]
 where \(R_d^r\) denotes the finite set of cyclic rank patterns occurring in
-\(\Gamma_d^r\). We assume moreover\footnote{Both of these assumptions will be proven later on in the paper} that the ambient cyclic orbit closures are
+\(\Gamma_d^r\). We assume moreover\footnote{Both assumptions are proven later in the paper.} that the ambient cyclic orbit closures are
 governed by the coordinatewise rank order:
 \[
 \overline{O_\rho}^{\,\Gamma_d^r}
@@ -384,7 +389,7 @@ Using the equivariance of \(\pi\),
 =
 \pi(g\cdot x)
 =
-(g_LW_Sg_0^{-1},\,g_0W_S^{\dagger}g_L^{-1}).
+(g_L W_Sg_0^{-1},\,g_0 W_S^{\dagger}g_L^{-1}).
 \]
 Hence \(g\in K_S\). Therefore \(y\in K_S\cdot x\). Conversely, \(K_S\)
 preserves both the \(G_d\)-orbit \(O_\rho\) and the fiber \(\Gamma_d^S\), so
@@ -431,7 +436,7 @@ Therefore
 \mathcal O_{\rho'}^S\subseteq Z_\rho.
 \]
 This proves the frontier condition. The closure equality follows because the
-\(\mathcal O_{\rho'}^S\)'s form a finite disjoint decomposition of
+strata \(\mathcal O_{\rho'}^S\) form a finite disjoint decomposition of
 \(\Gamma_d^S\).
 
 It remains to compare \(\leq_S\) with the coordinatewise rank order. Since
@@ -501,10 +506,11 @@ O_{\rho'}\cap\pi^{-1}(W_S,W_S^{\dagger})
 may be empty. In that case there is no \(K_S\)-orbit
 \(\mathcal O_{\rho'}^S\) in the fixed-\(S\) critical locus.
 \end{remark}
-In the following sections we will show how to stratify $\Gamma_d^r$ using quiver representation theory.
+
+In the following sections we will show how to stratify \(\Gamma_d^r\) using quiver representation theory.
 \section{The cyclic rank patterns as geometric invariants of deep linear networks}
 \subsection{The cyclic Nakayama algebra}
-We first recall some basic notions of quiver representation theory. A quiver is a directed graph $Q=(I,E)$ with vertices $I$, arrows $E$, multiple arrows and loops are allowed. A quiver representation assigns a vector space to $V_i \cong \mathbb{R}^{d_i}$ and a linear map $\phi_i: V_{i-1} \to V_{i}$ with vector dimension $d=(d_i)_{i=0,..,L}$. We note by $\text{Rep}_d(Q,k)$ the space of quiver representations of dimension $d$ over a field $k$ (which will be $\mathbb{R}$ or $\mathbb{C}$ for us). It is functorialy equivalent to the $kQ$-modules where $k$ is a field a $kQ$ is a path algebra of the quiver $Q$ generated by vertices and composing arrows. 
+We first recall some basic notions of quiver representation theory. A quiver is a directed graph \(Q=(I,E)\) with vertices \(I\) and arrows \(E\), where multiple arrows and loops are allowed. A quiver representation assigns a vector space \(V_i \cong \mathbb{R}^{d_i}\) to each vertex and a linear map \(\phi_i: V_{i-1} \to V_i\), with dimension vector \(d=(d_i)_{i=0,\ldots,L}\). We denote by \(\operatorname{Rep}_d(Q,k)\) the space of quiver representations of dimension \(d\) over a field \(k\), which will be \(\mathbb{R}\) or \(\mathbb{C}\) for us. It is functorially equivalent to the category of \(kQ\)-modules, where \(kQ\) is the path algebra of the quiver \(Q\) generated by vertices and composable arrows.
 
 
 Throughout this subsection, put \(n=L+1\), and take all indices modulo
@@ -521,7 +527,7 @@ a_l:l-1\longrightarrow l,
 \qquad l\in \{0,\ldots,L\},
 \]
 where \(a_0:L\to 0\). We read products of arrows from right to left. For
-\(1\leq l\leq L\), define the length \(L\) path
+\(1\leq l\leq L\), define the length-\(L\) path
 \[
 p_l:=a_{l-1}\cdots a_1a_0a_L\cdots a_{l+1}.
 \]
@@ -566,7 +572,7 @@ exactly the relations generated by the paths \(p_1,\ldots,p_L\). Hence
 \(\Gamma_d\cong \Rep_d(A)\).
 \end{proof}
 
-Let \(R\subset kQ\) be the arrow ideal, i.e. the ideal generated by all
+Let \(R\subset kQ\) be the arrow ideal, i.e.\ the ideal generated by all
 arrows. Every path of length \(L+1\) contains one of the paths
 \(p_1,\ldots,p_L\) as a subpath. Therefore
 \[
@@ -617,7 +623,7 @@ q_{i,\ell}:=a_{i+\ell}\cdots a_{i+1}
 be the unique path of length \(\ell\) starting at \(i\). The path \(q_{i,\ell}\)
 is nonzero precisely for
 \[
-0\leq r<c_i,
+0\leq \ell<c_i,
 \]
 where
 \[
@@ -636,7 +642,7 @@ P_i=\langle q_{i,0},q_{i,1},\ldots,q_{i,c_i-1}\rangle_k,
 \]
 and
 \[
-J^sP_i
+J^s P_i
 =
 \langle q_{i,s},q_{i,s+1},\ldots,q_{i,c_i-1}\rangle_k,
 \qquad
@@ -648,21 +654,21 @@ P_i\supset JP_i\supset J^2P_i\supset\cdots\supset J^{c_i}P_i=0.
 \]
 Moreover,
 \[
-J^sP_i/J^{s+1}P_i\cong S_{i+s}.
+J^s P_i/J^{s+1} P_i\cong S_{i+s}.
 \]
 Hence this chain is a composition series.
 
 It remains to check that it is the unique composition series. Let
 \(N\subset P_i\) be a nonzero submodule. Since the idempotents \(e_v\)
-act as projections and each space \(e_vP_i\) is at most one-dimensional,
+act as projections and each space \(e_v P_i\) is at most one-dimensional,
 \(N\) is spanned by some subset of the basis elements \(q_{i,\ell}\). If
 \(q_{i,r}\in N\), then stability under the action of the arrows implies
 \[
-q_{i,\ell+1},q_{i,\ell+2},\ldots,q_{i,c_i-1}\in N.
+q_{i,r+1},q_{i,r+2},\ldots,q_{i,c_i-1}\in N.
 \]
 Therefore
 \[
-N=J^sP_i
+N=J^s P_i
 \]
 for some \(s\). Hence the submodules of \(P_i\) are totally ordered, and
 \(P_i\) is uniserial.
@@ -679,8 +685,8 @@ indecomposable finite-dimensional \(B\)-module is uniserial.
 \end{lemma}
 
 \begin{proof}
-This comes from the Artinian characterization of Nakayama algebras:
-for a finite-dimensional algebra \(B\), the following are equivalent:
+Use the Artinian characterization of Nakayama algebras. For a
+finite-dimensional algebra \(B\), the following are equivalent:
 \begin{enumerate}
   \item \(B\) is Nakayama;
   \item every indecomposable finite-dimensional \(B\)-module is
@@ -709,7 +715,7 @@ define the interval module \(M(i,j)\) by
 M(i,j)_v=
 \begin{cases}
 k, & \text{if } v\equiv i+\ell \pmod {L+1}
-      \text{ for all }0\leq \ell\leq \delta(i,j),\\
+      \text{ for some }0\leq \ell\leq \delta(i,j),\\
 0, & \text{otherwise,}
 \end{cases}
 \]
@@ -719,7 +725,7 @@ M(i,j)_{a_m}=
 \begin{cases}
 \operatorname{id}_k,
 & \text{if } m\equiv i+\ell \pmod {L+1}
-  \text{ for all }1\leq \ell\leq \delta(i,j),\\
+  \text{ for some }1\leq \ell\leq \delta(i,j),\\
 0, & \text{otherwise.}
 \end{cases}
 \]
@@ -768,14 +774,14 @@ P_i,\ JP_i,\ J^2P_i,\ldots,\ J^{c_i}P_i=0.
 Because \(M\neq 0\), the kernel is not all of \(P_i\). Thus there is a
 unique integer \(\ell\) with \(1\leq \ell\leq c_i\) such that
 \[
-K=J^{\ell}P_i.
+K=J^{\ell} P_i.
 \]
 Therefore
 \[
-M\cong P_i/J^{\ell}P_i.
+M\cong P_i/J^{\ell} P_i.
 \]
 
-As a representation of the quiver, \(P_i/J^lP_i\) has one-dimensional
+As a representation of the quiver, \(P_i/J^\ell P_i\) has one-dimensional
 vector spaces at the vertices
 \[
 i,\ i+1,\ \ldots,\ i+\ell-1
@@ -783,11 +789,11 @@ i,\ i+1,\ \ldots,\ i+\ell-1
 and zero vector spaces elsewhere. The arrow maps along this interval are
 \(\operatorname{id}_k\), and all other arrow maps are zero. Hence
 \[
-P_i/J^{\ell}P_i\cong M(i,i+\ell-1).
+P_i/J^{\ell} P_i\cong M(i,i+\ell-1).
 \]
 
-Conversely, for every \(i\) and every \(1\leq r\leq c_i\), the interval
-module \(M(i,i+\ell-1)\) is isomorphic to \(P_i/J^{\ell}P_i\). Since it is a
+Conversely, for every \(i\) and every \(1\leq \ell\leq c_i\), the interval
+module \(M(i,i+\ell-1)\) is isomorphic to \(P_i/J^{\ell} P_i\). Since it is a
 nonzero quotient of a uniserial module, it is uniserial, hence
 indecomposable.
 
@@ -862,7 +868,7 @@ isomorphism of the indecomposable summands.
 By the classification theorem, every nonzero indecomposable
 \(A\)-module is isomorphic to an interval module
 \[
-M_{\ell}(i)\cong P_i/J^{\ell}P_i
+M_{\ell}(i)\cong P_i/J^{\ell} P_i
 \]
 for a unique pair
 \[
@@ -880,27 +886,41 @@ The uniqueness statement in Krull--Schmidt implies that the
 multiplicities \(m_{i,\ell}\) are uniquely determined.
 \end{proof}
 \subsection{From multiplicity patterns to rank patterns}
-\begin{definition}[Multiplicity Patterns]
-    Consider a $A$-module $M$ of vector dimension $d$ and its Krull-Schmidt decomposition into $M_{\ell}(i)$ for $(i,\ell)\in \mathcal I$. For each vertex $k$ the dimension $d_k$ of the representation $M$ at vertex $k$ satisfies the dimension constraint:
-\[d_k \;=\;
+\begin{definition}[Multiplicity patterns]
+Consider an \(A\)-module \(M\) of dimension vector \(d\) and its Krull--Schmidt decomposition into \(M_{\ell}(i)\) for \((i,\ell)\in \mathcal I\). For each vertex \(k\), the dimension \(d_k\) of the representation \(M\) at vertex \(k\) satisfies the dimension constraint
+\[
+d_k
+=
 \sum_{(i,\ell)\in \mathcal I}
 m_{i,\ell}\,\mathbf{1}\!\left\{
-k \in \{i,i+1,\dots,i+\ell\} \ (\mathrm{mod}\ L+1)
-\right\}\quad k=0,\dots,L\]
+k \in \{i,i+1,\dots,i+\ell-1\} \pmod{L+1}
+\right\},
+\qquad k=0,\dots,L.
+\]
 Define the set of \emph{multiplicity patterns} as
-\[\mathcal M_d^+ := \left\{(m_{i,\ell})\in \mathbb{Z}_{\ge 0}^{\mathcal I}\middle|\ d_k \;=\;
+\[
+\mathcal M_d^+
+:=
+\left\{(m_{i,\ell})\in \mathbb{Z}_{\ge 0}^{\mathcal I}
+\ \middle|\
+\begin{array}{l}
+d_k =
 \sum_{(i,\ell)\in \mathcal I}
 m_{i,\ell}\,\mathbf{1}\!\left\{
-k \in \{i,i+1,\dots,i+\ell\} \ (\mathrm{mod}\ L+1)
-\right\}\quad k=0,\dots,L\right\}.\]
+k \in \{i,i+1,\dots,i+\ell-1\} \pmod{L+1}
+\right\},\\
+\text{for } k=0,\dots,L
+\end{array}
+\right\}.
+\]
 \end{definition}
-We want to stratify the critical loci in terms of the rank patterns as they are more intuitive and native to the DLN representation. In this section we show that there is a bijection between the multiplicity patterns and a set of cyclic rank patterns satisfying some positivity constraint. 
+We want to stratify the critical loci in terms of the rank patterns, as they are more intuitive and native to the DLN representation. In this section we show that there is a bijection between the multiplicity patterns and a set of cyclic rank patterns satisfying a positivity constraint.
 \begin{definition}
 For \((a,b)\in \mathcal I\), let
 \[
 q_{ab}
 \]
-denote the unique nonzero oriented path of \(A\) over the interval \([a,b]\) from vertex $a$ to vertex $b$. 
+denote the unique nonzero oriented path of \(A\) over the interval \([a,b]\) from vertex \(a\) to vertex \(b\).
 \end{definition}
 
 \begin{definition}[Cyclic rank pattern]
@@ -1032,7 +1052,7 @@ above. Then
 \]
 where \(\phi_m\) is any representative whose associated \(A\)-module has
 multiplicity pattern \(m\). In particular, the \(G_d\)-orbits in \(\Gamma_d\)
-are parametrized by the multiplicity data of indecomposable \(A\)-modules.
+are parameterized by the multiplicity data of indecomposable \(A\)-modules.
 \end{proposition}
 
 Using the multiplicity-rank bijection of
@@ -1065,7 +1085,7 @@ of the strictly lower coordinatewise rank-pattern orbits.
 
 We now specialize this stratification to a fixed \(S\)-critical locus. Put
 \[
-W_S:=P_SW^\star,
+W_S:=P_S W^\star,
 \qquad
 W_S^{\dagger}:=\Sigma_{XY}P_Q,
 \]
@@ -1141,15 +1161,15 @@ K_S
 \left\{
 g\in G_d
 \ \middle|\
-g_LW_Sg_0^{-1}=W_S,\;
-g_0W_S^{\dagger}g_L^{-1}=W_S^{\dagger}
+g_L W_Sg_0^{-1}=W_S,\;
+g_0 W_S^{\dagger}g_L^{-1}=W_S^{\dagger}
 \right\}.
 \]
 The equivariance of \(\pi\),
 \[
 \pi(g\cdot(\theta,W_0))
 =
-(g_L\mu(\theta)g_0^{-1},\,g_0W_0g_L^{-1}),
+(g_L\mu(\theta)g_0^{-1},\,g_0 W_0g_L^{-1}),
 \]
 shows that \(K_S\) acts on \(\Gamma_d^S\).
 
@@ -1161,7 +1181,7 @@ For every \(\rho\in\mathcal R_d^S\), the stratum
 =
 \mathcal O_\rho\cap\Gamma_d^S
 \]
-is a single \(K_S\)-orbit. Consequently, from proposition \ref{prop:critical-rank-pattern-stratification}
+is a single \(K_S\)-orbit. Consequently, by Proposition~\ref{prop:critical-rank-pattern-stratification},
 \[
 \Gamma_d^S
 =
@@ -1252,7 +1272,7 @@ Equivalently, after identifying \(\mathcal C_d^S\) with \(\Gamma_d^S\), the last
 strata may be denoted by the corresponding \(K_S\)-orbits
 \(\mathcal O_\rho^S\).
 \end{theorem}
-\begin{remark}[Compatibility of the fixed product fiber and choice of base field (\textbf{SLOP})]
+\begin{remark}[Compatibility of the fixed product fiber and choice of base field]
 \label{rem:base-field-and-fixed-fiber}
 We now discuss the base field. The representation-theoretic constructions are
 valid over both \(k=\mathbb R\) and \(k=\mathbb C\). The cyclic variety
@@ -1263,9 +1283,9 @@ with matrices whose entries lie in \(\{0,1\}\). Thus the same cyclic rank
 patterns occur over \(\mathbb R\) and over \(\mathbb C\), and the
 \(k\)-rational points of each nonempty orbit are Zariski dense in that orbit.
 
-Recall now that the fixed pair \((W_S,W_S^{\dagger})\) is satisfies
+Recall now that the fixed pair \((W_S,W_S^{\dagger})\) satisfies
 \[
-W_SW_S^{\dagger}=0,
+W_S W_S^{\dagger}=0,
 \qquad
 W_S^{\dagger}W_S=0.
 \]
@@ -1344,8 +1364,8 @@ K_S
 \left\{
 g\in G_d
 \ \middle|\
-g_LW_Sg_0^{-1}=W_S,\;
-g_0W_S^{\dagger}g_L^{-1}=W_S^{\dagger}
+g_L W_Sg_0^{-1}=W_S,\;
+g_0 W_S^{\dagger}g_L^{-1}=W_S^{\dagger}
 \right\}
 \]
 acts transitively:
@@ -1369,11 +1389,11 @@ stratification, the Zariski closure relation, or the codimension computations.
 
 We have shown that the critical locus of a deep linear network admits a
 stratification by geometric invariants: the cyclic rank patterns of the
-associated cyclic quiver representation. More precisely, in the realisable setting with whitened input, each fixed \(S\)-critical locus is identified with the fiber
+associated cyclic quiver representation. More precisely, in the realizable setting with whitened input, each fixed \(S\)-critical locus is identified with the fiber
 \[
 \Gamma_d^S
 =
-\pi^{-1}(P_SM,M^\top P_Q)
+\pi^{-1}(W_S,W_S^{\dagger})
 \]
 inside the cyclic variety, and this fiber decomposes into \(K_S\)-orbits
 \[
@@ -1397,7 +1417,7 @@ the critical points of deep linear networks.
 This stratification gives a coarse-grained picture of the loss landscape. One
 may view the critical locus as a partially ordered graph whose nodes are the
 strata \(\mathcal O_\rho^S\), or their corresponding strata inside
-\(\mathcal C_d^S\), and whose edges possible transitions between strata. For a fixed
+\(\mathcal C_d^S\), and whose edges are possible transitions between strata. For a fixed
 subset \(S\), the relevant order is the fiberwise closure order
 \[
 \rho'\leq_S\rho
@@ -1420,7 +1440,7 @@ fiber, and even among the nonempty fiber strata the relation \(\leq_S\) can be
 strictly finer than \(\leq_{\mathrm{rk}}\).
 
 This extends the quiver-geometric perspective on multiplication fibers studied
-in \cite{simon}. In the realisable case, the global minima are described by the
+in \cite{lehalleur2024geometry}. In the realizable case, the global minima are described by the
 multiplication fiber
 \[
 \mu^{-1}(M),
@@ -1441,26 +1461,26 @@ system for discussing possible implicit biases of optimization algorithms such
 as gradient descent or stochastic gradient descent.
 
 The exact dynamics of deep linear networks at small initialization
-show that the teacher singular values are learned sequentially \cite{saxe}. From the
-present geometric viewpoint, this suggest that the saddle-to-saddle dynamics biases trajectories toward critical strata with smaller rank patterns that are more degenerate. A possible future formulation is to associate to each
+show that the teacher singular values are learned sequentially \cite{saxe2019mathematical}. From the
+present geometric viewpoint, this suggests that the saddle-to-saddle dynamics biases trajectories toward critical strata with smaller rank patterns that are more degenerate. A possible future formulation is to associate to each
 rank-pattern stratum an effective energetic and entropic contribution, leading
 to a coarse-grained description of SGD in terms of a free-energy-like
 functional. In such a description, the entropy term would reflect the volume
-of a strata with a given cyclic rank pattern, or
+of a stratum with a given cyclic rank pattern, or
 a continuous analogue obtained from the singular values of the partial products
 of the network.
 
 \subsection{Future work}
 
 A first direction is to derive explicit codimension formulas for all
-rank-pattern strata in the critical locus. The results of \cite{simon} compute
+rank-pattern strata in the critical locus. The results of \cite{lehalleur2024geometry} compute
 the codimension and the top-dimensional irreducible components of
 the fibers of the multiplication map over global minima. In the present setting, one would like analogous formulas
 for the strata
 \[
 \mathcal O_\rho^S
 =
-\mathcal O_\rho\cap \pi^{-1}(P_SM,M^\top P_Q),
+\mathcal O_\rho\cap \pi^{-1}(W_S,W_S^{\dagger}),
 \]
 including both the global-minimum fiber and the saddle and local minima strata. Such
 formulas would give a quantitative description of the size and singularity
@@ -1469,7 +1489,7 @@ as local codimensions or local real log-canonical thresholds, for the loss near
 non-global critical points.
 
 A second direction is to relax the simplifying assumptions used in this paper.
-We have worked in the realisable whitened setting, where
+We have worked in the realizable whitened setting, where
 \[
 \Sigma_X=I,
 \qquad
@@ -1510,7 +1530,8 @@ stratification for such models would have to incorporate both activation
 patterns and matrix-factorization ranks. Developing these invariants could
 provide a combinatorial description of more general neural network loss
 landscapes.
-\section{Acknowledgements} GPT 5 has found the connection of the cyclic variety with Nakayama algebra, and helped with generating and checking proofs and editing the writing of the paper. I benefited greatly from discussions with Simon Pepin Lehalleur. I have checked and vetted all AI generated outputs. This project has been enabled by funding from Pivotal fellowship and the UK AI security institute.  
+\section{Acknowledgements}
+GPT-5 found the connection of the cyclic variety with the Nakayama algebra, and helped with generating and checking proofs and editing the writing of the paper. I benefited greatly from discussions with Simon Pepin Lehalleur. I have checked and vetted all AI-generated outputs. This project has been enabled by funding from the Pivotal Fellowship and the UK AI Security Institute.
 \bibliography{bibliography}
 \section{Appendix}
 \subsection{Inversion Formula}
@@ -1552,7 +1573,6 @@ In that case
 \Xi_{ab}=1.
 \]
 Thus the entire sum reduces to \(m_{ab}\), proving the inversion formula.
-\section*{Deprecated}
 \begin{comment}
   \subsection{Detailed proof of Proposition~\ref{prop:S-critical-fiber}}
 \label{app:proof-S-critical-fiber}
@@ -1561,9 +1581,9 @@ We prove the equality
 \[
 \mathcal C_d^S
 =
-\Gamma_d^S\cap\mu^{-1}(P_SW^\ast)
+\Gamma_d^S\cap\mu^{-1}(P_S W^\ast)
 =
-\iota_S^{-1}(\Gamma_d^r)\cap\mu^{-1}(P_SW^\ast)
+\iota_S^{-1}(\Gamma_d^r)\cap\mu^{-1}(P_S W^\ast)
 \]
 as an equality of subsets of \(\Omega\).
 
@@ -1594,7 +1614,7 @@ We first prove
 \[
 \mathcal C_d^S
 \subseteq
-\Gamma_d^S\cap\mu^{-1}(P_SW^\ast).
+\Gamma_d^S\cap\mu^{-1}(P_S W^\ast).
 \]
 Let \(\theta\in\mathcal C_d^S\). By definition of the \(S\)-critical locus,
 \[
@@ -1602,9 +1622,9 @@ Let \(\theta\in\mathcal C_d^S\). By definition of the \(S\)-critical locus,
 \qquad
 \text{and}
 \qquad
-\mu(\theta)=P_SW^\ast.
+\mu(\theta)=P_S W^\ast.
 \]
-Since \(\operatorname{rank}(P_SW^\ast)=r\), it follows that
+Since \(\operatorname{rank}(P_S W^\ast)=r\), it follows that
 \[
 \operatorname{rank}(\mu(\theta))=r.
 \]
@@ -1618,15 +1638,15 @@ For each layer \(\ell\), the transpose-gradient formula is
 \bigl(\Sigma_X\mu(\theta)^\top-\Sigma_{XY}\bigr)
 W_{>\ell}.
 \]
-Using \(\mu(\theta)=P_SW^\ast\), we get
+Using \(\mu(\theta)=P_S W^\ast\), we get
 \[
 \Sigma_X\mu(\theta)^\top-\Sigma_{XY}
 =
-\Sigma_X(P_SW^\ast)^\top-\Sigma_{XY}.
+\Sigma_X(P_S W^\ast)^\top-\Sigma_{XY}.
 \]
 Since \(P_S\) is an orthogonal projector, \(P_S^\top=P_S\), and therefore
 \[
-(P_SW^\ast)^\top=(W^\ast)^\top P_S.
+(P_S W^\ast)^\top=(W^\ast)^\top P_S.
 \]
 Moreover, by the definition
 \[
@@ -1644,7 +1664,7 @@ and by symmetry of \(\Sigma_X\), we have
 \]
 Hence
 \[
-\Sigma_X(P_SW^\ast)^\top-\Sigma_{XY}
+\Sigma_X(P_S W^\ast)^\top-\Sigma_{XY}
 =
 \Sigma_X(W^\ast)^\top P_S-\Sigma_{XY}
 =
@@ -1652,7 +1672,7 @@ Hence
 \]
 Since \(P_Q=I-P_S\), this becomes
 \[
-\Sigma_X(P_SW^\ast)^\top-\Sigma_{XY}
+\Sigma_X(P_S W^\ast)^\top-\Sigma_{XY}
 =
 -\Sigma_{XY}P_Q.
 \]
@@ -1676,18 +1696,18 @@ or equivalently,
 \[
 \theta\in\Gamma_d^S.
 \]
-Since also \(\mu(\theta)=P_SW^\ast\), we have
+Since also \(\mu(\theta)=P_S W^\ast\), we have
 \[
-\theta\in\Gamma_d^S\cap\mu^{-1}(P_SW^\ast).
+\theta\in\Gamma_d^S\cap\mu^{-1}(P_S W^\ast).
 \]
 
 Conversely, suppose that
 \[
-\theta\in\Gamma_d^S\cap\mu^{-1}(P_SW^\ast).
+\theta\in\Gamma_d^S\cap\mu^{-1}(P_S W^\ast).
 \]
 Then
 \[
-\mu(\theta)=P_SW^\ast
+\mu(\theta)=P_S W^\ast
 \]
 and, because \(\theta\in\Gamma_d^S\),
 \[
@@ -1719,7 +1739,7 @@ So
 \[
 \nabla_\theta\mathcal L(\theta)=0.
 \]
-Together with \(\mu(\theta)=P_SW^\ast\), this gives
+Together with \(\mu(\theta)=P_S W^\ast\), this gives
 \[
 \theta\in\mathcal C_d^S.
 \]
@@ -1742,7 +1762,7 @@ For each \(\rho\in R\), define
 \[
 \mathcal C_\rho^S
 :=
-\iota_S^{-1}(O_\rho^r)\cap\mu^{-1}(P_SW^\ast).
+\iota_S^{-1}(O_\rho^r)\cap\mu^{-1}(P_S W^\ast).
 \]
 
 We first prove that the pieces \(\mathcal C_\rho^S\) give a disjoint
@@ -1750,7 +1770,7 @@ decomposition of \(\mathcal C_d^S\). By Proposition~\ref{prop:S-critical-fiber},
 \[
 \mathcal C_d^S
 =
-\iota_S^{-1}(\Gamma_d^r)\cap\mu^{-1}(P_SW^\ast).
+\iota_S^{-1}(\Gamma_d^r)\cap\mu^{-1}(P_S W^\ast).
 \]
 Since
 \[
@@ -1769,7 +1789,7 @@ disjoint. Hence
 =
 \bigsqcup_{\rho\in R}\iota_S^{-1}(O_\rho^r).
 \]
-Intersecting both sides with \(\mu^{-1}(P_SW^\ast)\) gives
+Intersecting both sides with \(\mu^{-1}(P_S W^\ast)\) gives
 \[
 \mathcal C_d^S
 =
@@ -1777,7 +1797,7 @@ Intersecting both sides with \(\mu^{-1}(P_SW^\ast)\) gives
 \bigsqcup_{\rho\in R}\iota_S^{-1}(O_\rho^r)
 \right)
 \cap
-\mu^{-1}(P_SW^\ast).
+\mu^{-1}(P_S W^\ast).
 \]
 Therefore
 \[
@@ -1785,7 +1805,7 @@ Therefore
 =
 \bigsqcup_{\rho\in R}
 \left(
-\iota_S^{-1}(O_\rho^r)\cap\mu^{-1}(P_SW^\ast)
+\iota_S^{-1}(O_\rho^r)\cap\mu^{-1}(P_S W^\ast)
 \right)
 =
 \bigsqcup_{\rho\in R}\mathcal C_\rho^S.
@@ -1805,15 +1825,15 @@ is continuous, so
 \]
 is locally closed in \(\Omega\). The map \(\mu:\Omega\to
 \operatorname{Mat}_{d_L\times d_0}\) is regular, hence continuous, and the point
-\(\{P_SW^\ast\}\) is closed. Therefore
+\(\{P_S W^\ast\}\) is closed. Therefore
 \[
-\mu^{-1}(P_SW^\ast)
+\mu^{-1}(P_S W^\ast)
 \]
 is closed in \(\Omega\). Consequently
 \[
 \mathcal C_\rho^S
 =
-\iota_S^{-1}(O_\rho^r)\cap\mu^{-1}(P_SW^\ast)
+\iota_S^{-1}(O_\rho^r)\cap\mu^{-1}(P_S W^\ast)
 \]
 is locally closed in \(\Omega\). Since
 \[
@@ -1919,7 +1939,7 @@ one-sided frontier condition above.
 \subsection{Compatible W_S and W_S^\{dagger}}
   Set
 \[
-W_S:=P_SW^\ast,
+W_S:=P_S W^\ast,
 \qquad
 W_S^{\dagger}:=\Sigma_{XY}P_Q.
 \]
@@ -1927,15 +1947,15 @@ Then
 \[
 W_S^{\dagger}W_S
 =
-\Sigma_{XY}P_QP_SW^\ast
+\Sigma_{XY}P_Q P_S W^\ast
 =
 0
 \]
-because \(P_QP_S=0\). However, the other composition
+because \(P_Q P_S=0\). However, the other composition
 \[
-W_SW_S^{\dagger}
+W_S W_S^{\dagger}
 =
-P_SW^\ast\Sigma_{XY}P_Q
+P_S W^\ast\Sigma_{XY}P_Q
 \]
 does not vanish in general. It is an additional compatibility
 condition.
@@ -1971,13 +1991,13 @@ W_L(W_{L-1}\cdots W_1W_0)
 \]
 Similarly, the relation with \(\ell=1\) gives
 \[
-W_0W_L\cdots W_2=0,
+W_0 W_L\cdots W_2=0,
 \]
 and hence
 \[
 W_0\mu(\theta)
 =
-(W_0W_L\cdots W_2)W_1
+(W_0 W_L\cdots W_2)W_1
 =
 0.
 \]
@@ -1987,11 +2007,11 @@ Therefore, if
 \]
 then necessarily
 \[
-W_SW_S^{\dagger}=0,
+W_S W_S^{\dagger}=0,
 \qquad
 W_S^{\dagger}W_S=0.
 \]
-Consequently, if \(W_SW_S^{\dagger}\neq 0\), then
+Consequently, if \(W_S W_S^{\dagger}\neq 0\), then
 \[
 \pi^{-1}(W_S,W_S^{\dagger})=\varnothing,
 \]
@@ -2014,16 +2034,16 @@ MM^\top.
 Hence, if \(P_S\) and \(P_Q\) are complementary spectral projectors for
 \(MM^\top\), then
 \[
-W_SW_S^{\dagger}
+W_S W_S^{\dagger}
 =
-P_SW^\ast\Sigma_{XY}P_Q
+P_S W^\ast\Sigma_{XY}P_Q
 =
-P_SMM^\top P_Q
+P_S MM^\top P_Q
 =
 0.
 \]
 If instead \(P_S\) is defined using the left singular vectors of \(W^\ast\)
-itself, then \(W_SW_S^{\dagger}=0\) need not hold unless, for example, \(\Sigma_X=I\).
+itself, then \(W_S W_S^{\dagger}=0\) need not hold unless, for example, \(\Sigma_X=I\).
 
   \section{Stratification of the critical loci with cyclic rank patterns}
 We have a functorial equivalence between the isomorphism classes of $A$-modules and the $G_d$ orbits of $\Gamma_d$. Given that all $A$-modules have a unique Krull-Schmidt decomposition indexed by the $m(i,j)$ then all $G_d$-orbits are indexed by the multiplicity patterns. In other words we have the following stratification: 
@@ -2051,7 +2071,7 @@ We are now in a position to import the stratification of the cyclic variety $\Ga
 \[
 \Gamma_d^r = \bigsqcup_{\substack{\rho\in \mathcal{R}_d \\ \rho_{0L} = r }} O_{\rho} = \bigsqcup_{\rho \in \mathcal{R}_d } O^r_{\rho}
 \]
-With \(O^r_{\rho}\) defined as $O_{\rho}$ with the constraint that $\rho_{0L} = r$. By definition of $\Gamma_d^S=\pi^{-1}(P_SW^{\star}, \Sigma_{XY}P_Q)\subset \Gamma_d^r$. We define the strata:
+With \(O^r_{\rho}\) defined as $O_{\rho}$ with the constraint that $\rho_{0L} = r$. By definition of $\Gamma_d^S=\pi^{-1}(P_S W^{\star}, \Sigma_{XY}P_Q)\subset \Gamma_d^r$. We define the strata:
 \[
 \mathcal O^{S}_{\rho} := O^r_{\rho} \cap \Gamma_d^S
 \]
@@ -2101,28 +2121,28 @@ Assume that \(\Sigma_X\) is invertible, that
 \[
 W^\ast=\Sigma_{YX}\Sigma_X^{-1},
 \]
-and that \(\operatorname{rank}(P_SW^\ast)=r\). Then, as a subset of \(\Omega\),
+and that \(\operatorname{rank}(P_S W^\ast)=r\). Then, as a subset of \(\Omega\),
 \[
 \mathcal C_d^S
-\cong \pi^{-1}(P_SW^{\star}, \Sigma_{XY}P_Q)
+\cong \pi^{-1}(P_S W^{\star}, \Sigma_{XY}P_Q)
 \]
 
 Equivalently,
 \[
 \mathcal C_d^S
 =
-\Gamma_d^S\cap\mu^{-1}(P_SW^\ast)
+\Gamma_d^S\cap\mu^{-1}(P_S W^\ast)
 =
-\iota_S^{-1}(\Gamma_d^r)\cap\mu^{-1}(P_SW^\ast).
+\iota_S^{-1}(\Gamma_d^r)\cap\mu^{-1}(P_S W^\ast).
 \]
 \end{proposition}
 
 \begin{proof}
 The main point is that the gradient equations with
-\(\mu(\theta)=P_SW^\ast\) are exactly the cyclic equations with closing arrow
+\(\mu(\theta)=P_S W^\ast\) are exactly the cyclic equations with closing arrow
 \(\Sigma_{XY}P_Q\). Indeed,
 \[
-\Sigma_X(P_SW^\ast)^\top-\Sigma_{XY}
+\Sigma_X(P_S W^\ast)^\top-\Sigma_{XY}
 =
 -\Sigma_{XY}P_Q.
 \]
@@ -2138,7 +2158,7 @@ W_{<\ell}\Sigma_{XY}P_QW_{>\ell}=0
 \qquad
 \text{for all }1\leq \ell\leq L.
 \]
-Together with \(\mu(\theta)=P_SW^\ast\) and
+Together with \(\mu(\theta)=P_S W^\ast\) and
 \(W_0 = \Sigma_{XY}P_Q \), this is exactly the condition that
 \(\theta\in\pi^{-1}(P_sW^{\star},\Sigma_{XY}P_Q)\). See
 Appendix~\ref{app:proof-S-critical-fiber} for the full verification.
@@ -2178,7 +2198,7 @@ Define
 \[
 \mathcal C_\rho^S
 :=
-\iota_S^{-1}(O_\rho^r)\cap\mu^{-1}(P_SW^\ast).
+\iota_S^{-1}(O_\rho^r)\cap\mu^{-1}(P_S W^\ast).
 \]
 Then, after discarding empty pieces,
 \[
@@ -2200,13 +2220,13 @@ By Proposition~\ref{prop:S-critical-fiber},
 \[
 \mathcal C_d^S
 =
-\iota_S^{-1}(\Gamma_d^r)\cap\mu^{-1}(P_SW^\ast).
+\iota_S^{-1}(\Gamma_d^r)\cap\mu^{-1}(P_S W^\ast).
 \]
 Since the \(O_\rho^r\) form a disjoint decomposition of \(\Gamma_d^r\), their
-pullbacks along \(\iota_S\), intersected with \(\mu^{-1}(P_SW^\ast)\), form a
+pullbacks along \(\iota_S\), intersected with \(\mu^{-1}(P_S W^\ast)\), form a
 disjoint decomposition of \(\mathcal C_d^S\). Local closedness follows because
 preimages of locally closed sets under continuous maps are locally closed, and
-\(\mu^{-1}(P_SW^\ast)\) is closed.
+\(\mu^{-1}(P_S W^\ast)\) is closed.
 
 For the frontier statement, use the elementary topological inclusion
 \[
@@ -2238,7 +2258,7 @@ codimension holds for the real locus whenever the real locus is nonempty.
 
 Let
 \[
-W_S:=P_SW^\ast,
+W_S:=P_S W^\ast,
 \qquad
 W_S^{\dagger}:=\Sigma_{XY}P_Q,
 \qquad
@@ -2255,7 +2275,7 @@ For a nondegenerate teacher with full output rank, \(r=|S|\) and
 \[
 W_S^{\dagger}W_S=0,
 \qquad
-W_SW_S^{\dagger}=0,
+W_S W_S^{\dagger}=0,
 \]
 which holds in singular-vector coordinates.
 
@@ -2571,7 +2591,7 @@ codimension agrees with the full-rank specialization of the multiplication-fiber
 result.
 \end{corollary}
 \section{Geometry: Rank pattern stratification}
- The $S$-critical loci is the intersection of the $S$-cyclic variety with the fiber of the parameter function map over the critical student $P_SW^\ast$.
+ The $S$-critical loci is the intersection of the $S$-cyclic variety with the fiber of the parameter function map over the critical student $P_S W^\ast$.
 \begin{proposition}
 The $S$-critical loci satisfies:
 \[
@@ -2579,12 +2599,12 @@ The $S$-critical loci satisfies:
 \left\{
 \theta\in \Gamma_{d}^S 
 \ \middle|\
-\mu(\theta)=P_SW^\ast
-\right\} = \Gamma_{d}^S \cap \mu^{-1}(P_SW^\ast) = \iota_S^{-1}(\Gamma_d^r) \cap \mu^{-1}(P_SW^\ast) 
+\mu(\theta)=P_S W^\ast
+\right\} = \Gamma_{d}^S \cap \mu^{-1}(P_S W^\ast) = \iota_S^{-1}(\Gamma_d^r) \cap \mu^{-1}(P_S W^\ast) 
 \]
 \end{proposition}
 \begin{proof}
-  We already know from proposition 1 in \cite{achour2024loss} that for a critical point $\theta$ associated with $S$ we have $\mu(\theta) = P_SW^{\star}$ which is rank $r$. In the other direction, assume that $\mu(\theta)=P_SW^{\star}$. Then recall the gradient equations 
+  We already know from proposition 1 in \cite{achour2024loss} that for a critical point $\theta$ associated with $S$ we have $\mu(\theta) = P_S W^{\star}$ which is rank $r$. In the other direction, assume that $\mu(\theta)=P_S W^{\star}$. Then recall the gradient equations 
   \[
 \bigl(\nabla_{W_\ell}\mathcal L(\theta)\bigr)^\top
 =
@@ -2612,7 +2632,7 @@ where $\rho' \leq \rho$ means that $\rho'_{ij} \leq \rho_{ij}$ for all $i,j$. Th
   \]
   Where we define:
   \[
-  \mathcal{C}^S_\rho :=  \iota_S^{-1}(O^r_{\rho}) \cap \mu^{-1}(P_SW^{\ast})   
+  \mathcal{C}^S_\rho :=  \iota_S^{-1}(O^r_{\rho}) \cap \mu^{-1}(P_S W^{\ast})   
   \]
   Furthermore, the strata $\mathcal{C}^S_\rho$ are locally closed and satisfy the following condition:
   \[
@@ -2624,7 +2644,7 @@ In other words the critical loci admits a combinatorial description by admissibl
 \[
 \overline{\iota_S(O^{r}_{\rho})} \subset \iota_S^{-1}(\overline{O^r_{\rho}}) = \iota_S^{-1}(\bigcup_{\rho'\leq \rho} O^r_{\rho'}) = \bigcup_{\rho'\leq \rho} \iota_S^{-1}(O^r_{\rho'})
 \]
-And the inclusion follows from intersecting the latter inclusion with the fiber of the multiplication map over $P_SW^{\star}$.
+And the inclusion follows from intersecting the latter inclusion with the fiber of the multiplication map over $P_S W^{\star}$.
 
 \end{proof}
 A more detailed proof can be found in the appendix.

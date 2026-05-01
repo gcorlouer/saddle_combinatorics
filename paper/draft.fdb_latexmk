@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex draft"] 1777645276.00728 "draft.aux" "draft.bbl" "draft" 1777645369.40394 0
+["bibtex draft"] 1777646159.35566 "draft.aux" "draft.bbl" "draft" 1777646850.14406 0
   "./bibliography.bib" 1777644626.13152 5451 0f9d036a998e315f61cb79d498f7086f ""
   "/usr/local/texlive/2025/texmf-dist/bibtex/bst/natbib/unsrtnat.bst" 1233624470 24550 a41a6405f4de768c43e871d9fbce2bc8 ""
-  "draft.aux" 1777645369.14214 4434 70d54701010fe91ea17f3a551be44d61 "pdflatex"
+  "draft.aux" 1777646849.87889 4566 731980e23093d1e391358f6cfe42d08c "pdflatex"
   (generated)
   "draft.bbl"
   "draft.blg"
   (rewritten before read)
-["pdflatex"] 1777645368.60613 "/Users/guime/projects/deep_linear_networks/saddle_combinatorics/paper/draft.tex" "draft.pdf" "draft" 1777645369.40407 0
-  "/Users/guime/projects/deep_linear_networks/saddle_combinatorics/paper/draft.tex" 1777645367.76667 88172 a85bca5a8d70d132f0007cae1d8e45be ""
+["pdflatex"] 1777646849.32016 "/Users/guime/projects/deep_linear_networks/saddle_combinatorics/paper/draft.tex" "draft.pdf" "draft" 1777646850.14421 0
+  "/Users/guime/projects/deep_linear_networks/saddle_combinatorics/paper/draft.tex" 1777646177.82567 88465 b8b8f9d065bc617d7af87106a7aad775 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -122,11 +122,11 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1749050915 5467155 19efa205003f9ecad95fbbaa6ff24da1 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1749050869 3345728 6e9d6b4ca934c854c1520d15fef27576 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "draft.aux" 1777645369.14214 4434 70d54701010fe91ea17f3a551be44d61 "pdflatex"
-  "draft.bbl" 1777645276.11351 2748 28b2596cc9f49eaab641ae79a0eb2a22 "bibtex draft"
-  "draft.out" 1777645369.14319 2840 69cb229a0703adb834ee5eb9be2d941f "pdflatex"
-  "draft.tex" 1777645367.76667 88172 a85bca5a8d70d132f0007cae1d8e45be ""
-  "draft.toc" 1777645369.1434 1206 5611faa0647340cc53525b2e101ae9cd "pdflatex"
+  "draft.aux" 1777646849.87889 4566 731980e23093d1e391358f6cfe42d08c "pdflatex"
+  "draft.bbl" 1777646159.45716 2772 de25f27ee218eb9dcd0800f25910ef6b "bibtex draft"
+  "draft.out" 1777646849.87969 2862 91aee171682fe73476bc7bac8c18e138 "pdflatex"
+  "draft.tex" 1777646177.82567 88465 b8b8f9d065bc617d7af87106a7aad775 ""
+  "draft.toc" 1777646849.87987 1266 c89bb80fca629ab20d65e4de7a34f5f2 "pdflatex"
   (generated)
   "draft.aux"
   "draft.log"

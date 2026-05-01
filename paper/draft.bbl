@@ -5,14 +5,50 @@
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[Achour et~al.(2024)Achour, Malgouyres, and Gerchinovitz]{achour2024loss}
+\bibitem[Watanabe(2009)]{watanabe2009algebraic}
+Sumio Watanabe.
+\newblock \emph{Algebraic geometry and statistical learning theory}, volume~25.
+\newblock Cambridge university press, 2009.
+
+\bibitem[Wei et~al.(2022)Wei, Murfet, Gong, Li, Gell-Redman, and
+  Quella]{wei2022deep}
+Susan Wei, Daniel Murfet, Mingming Gong, Hui Li, Jesse Gell-Redman, and Thomas
+  Quella.
+\newblock Deep learning is singular, and that’s good.
+\newblock \emph{IEEE Transactions on Neural Networks and Learning Systems},
+  34\penalty0 (12):\penalty0 10473--10486, 2022.
+
+\bibitem[Lehalleur and Rim{\'a}nyi(2024)]{lehalleur2024geometry}
+Simon~Pepin Lehalleur and Rich{\'a}rd Rim{\'a}nyi.
+\newblock Geometry of fibers of the multiplication map of deep linear neural
+  networks.
+\newblock \emph{arXiv preprint arXiv:2411.19920}, 2024.
+
+\bibitem[Jacot et~al.(2018)Jacot, Gabriel, and Hongler]{jacot2018neural}
+Arthur Jacot, Franck Gabriel, and Cl{\'e}ment Hongler.
+\newblock Neural tangent kernel: Convergence and generalization in neural
+  networks.
+\newblock \emph{Advances in neural information processing systems}, 31, 2018.
+
+\bibitem[Saxe et~al.(2019)Saxe, McClelland, and Ganguli]{saxe2019mathematical}
+Andrew~M Saxe, James~L McClelland, and Surya Ganguli.
+\newblock A mathematical theory of semantic development in deep neural
+  networks.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 116\penalty0
+  (23):\penalty0 11537--11546, 2019.
+
+\bibitem[Achour et~al.(2024)Achour, Malgouyres, and
+  Gerchinovitz]{achour2024loss}
 El~Mehdi Achour, Fran{\c{c}}ois Malgouyres, and S{\'e}bastien Gerchinovitz.
-\newblock The loss landscape of deep linear neural networks: a second-order analysis.
-\newblock \emph{Journal of Machine Learning Research}, 25\penalty0 (242):\penalty0 1--76, 2024.
+\newblock The loss landscape of deep linear neural networks: a second-order
+  analysis.
+\newblock \emph{Journal of Machine Learning Research}, 25\penalty0
+  (242):\penalty0 1--76, 2024.
 
 \bibitem[Baldi and Hornik(1989)]{baldi1989neural}
 Pierre Baldi and Kurt Hornik.
-\newblock Neural networks and principal component analysis: Learning from examples without local minima.
+\newblock Neural networks and principal component analysis: Learning from
+  examples without local minima.
 \newblock \emph{Neural networks}, 2\penalty0 (1):\penalty0 53--58, 1989.
 
 \bibitem[Kawaguchi(2016)]{kawaguchi2016deep}
@@ -22,32 +58,8 @@ Kenji Kawaguchi.
 
 \bibitem[Trager et~al.(2019)Trager, Kohn, and Bruna]{trager2019pure}
 Matthew Trager, Kathl{\'e}n Kohn, and Joan Bruna.
-\newblock Pure and spurious critical points: a geometric study of linear networks.
+\newblock Pure and spurious critical points: a geometric study of linear
+  networks.
 \newblock \emph{arXiv preprint arXiv:1910.01671}, 2019.
-
-\bibitem[Lehalleur and Rim{\'a}nyi(2024)]{lehalleur2024geometry}
-Simon~Pepin Lehalleur and Rich{\'a}rd Rim{\'a}nyi.
-\newblock Geometry of fibers of the multiplication map of deep linear neural networks.
-\newblock \emph{arXiv preprint arXiv:2411.19920}, 2024.
-
-\bibitem[Watanabe(2009)]{watanabe2009algebraic}
-Sumio Watanabe.
-\newblock \emph{Algebraic geometry and statistical learning theory}, volume~25.
-\newblock Cambridge university press, 2009.
-
-\bibitem[Wei et~al.(2022)Wei, Murfet, Gong, Li, Gell-Redman, and Quella]{wei2022deep}
-Susan Wei, Daniel Murfet, Mingming Gong, Hui Li, Jesse Gell-Redman, and Thomas Quella.
-\newblock Deep learning is singular, and that’s good.
-\newblock \emph{IEEE Transactions on Neural Networks and Learning Systems}, 34\penalty0 (12):\penalty0 10473--10486, 2022.
-
-\bibitem[Jacot et~al.(2018)Jacot, Gabriel, and Hongler]{jacot2018neural}
-Arthur Jacot, Franck Gabriel, and Cl{\'e}ment Hongler.
-\newblock Neural tangent kernel: Convergence and generalization in neural networks.
-\newblock \emph{Advances in neural information processing systems}, 31, 2018.
-
-\bibitem[Saxe et~al.(2019)Saxe, McClelland, and Ganguli]{saxe2019mathematical}
-Andrew~M Saxe, James~L McClelland, and Surya Ganguli.
-\newblock A mathematical theory of semantic development in deep neural networks.
-\newblock \emph{Proceedings of the National Academy of Sciences}, 116\penalty0 (23):\penalty0 11537--11546, 2019.
 
 \end{thebibliography}
