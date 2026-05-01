@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1777569809.82733 "/Users/guime/projects/deep_linear_networks/saddle_combinatorics/paper/draft.tex" "draft.pdf" "draft" 1777569810.40595 0
-  "/Users/guime/projects/deep_linear_networks/saddle_combinatorics/paper/draft.tex" 1777569809.13623 83885 f7f8ff88cf0557d816642e955c0d9bc2 ""
+["pdflatex"] 1777634702.79605 "/Users/guime/projects/deep_linear_networks/saddle_combinatorics/paper/draft.tex" "draft.pdf" "draft" 1777634703.36933 0
+  "/Users/guime/projects/deep_linear_networks/saddle_combinatorics/paper/draft.tex" 1777634701.37202 84120 a2a18d088d7ff3f874b2c0a9504038f5 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -113,10 +113,10 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1749050915 5467155 19efa205003f9ecad95fbbaa6ff24da1 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1749050869 3345728 6e9d6b4ca934c854c1520d15fef27576 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "draft.aux" 1777569810.3464 4408 0c0292460f5fcc705a0727af8feb59fe "pdflatex"
-  "draft.out" 1777569810.34774 3739 23c0361f7b5d5c8991905a78c59bde57 "pdflatex"
-  "draft.tex" 1777569809.13623 83885 f7f8ff88cf0557d816642e955c0d9bc2 ""
-  "draft.toc" 1777569810.34801 1651 4b77c478c945421aca092380809b248d "pdflatex"
+  "draft.aux" 1777634703.30965 3730 31278512a0a7b9341ec9474bab2f330b "pdflatex"
+  "draft.out" 1777634703.31045 3196 60c000ab0c92dd6e116a1fcd142f910f "pdflatex"
+  "draft.tex" 1777634701.37202 84120 a2a18d088d7ff3f874b2c0a9504038f5 ""
+  "draft.toc" 1777634703.31068 1344 5db4a75c63ea87a279902d56757d2661 "pdflatex"
   (generated)
   "draft.aux"
   "draft.log"

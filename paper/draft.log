@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.6.4)  30 APR 2026 18:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.6.4)  1 MAY 2026 12:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -399,14 +399,18 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 [1
 
-{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] Excluding 'comment' comment.
+{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
-LaTeX Warning: Reference `' on page 2 undefined on input line 101.
+LaTeX Warning: Citation `achour2024loss' on page 2 undefined on input line 77.
 
-
+Excluding 'comment' comment.
 
 [2]
-Overfull \hbox (39.7872pt too wide) detected at line 122
+
+LaTeX Warning: Reference `' on page 3 undefined on input line 114.
+
+
+Overfull \hbox (39.7872pt too wide) detected at line 135
 \OML/cmm/m/it/10.95 ^^Z\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^^\OT1/cmr/m/n/10.95 ) = (\OML/cmm/m/it/10.95 r[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^^\OT1/cmr/m/n/10.95 ))[] [] \OML/cmm/m/it/10.95 ^^Z[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^^\OT1/cmr/m/n/10.95 ) := [][]\OML/cmm/m/it/10.95 W[]:::W[][] [] [] ^^Z[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^^\OT1/cmr/m/n/10.95 ) = \OML/cmm/m/it/10.95 d[][] ^^Z[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^^\OT1/cmr/m/n/10.95 ) = [][]\OML/cmm/m/it/10.95 W[][]
  []
 
@@ -425,7 +429,7 @@ Overfull \hbox (39.7872pt too wide) detected at line 122
 [8]
 
 [9]
-Overfull \hbox (1.15613pt too wide) in paragraph at lines 780--782
+Overfull \hbox (1.15613pt too wide) in paragraph at lines 683--685
 []\OT1/cmr/m/n/10.95 This comes from the Ar-tinian char-ac-ter-i-za-tion of Nakayama al-ge-bras: for a finite-dimensional
  []
 
@@ -447,33 +451,26 @@ Overfull \hbox (1.15613pt too wide) in paragraph at lines 780--782
 
 [17]
 
+LaTeX Warning: Citation `simon' on page 18 undefined on input line 1424.
+
+
+LaTeX Warning: Citation `saxe' on page 18 undefined on input line 1445.
+
+
+
 [18]
+
+LaTeX Warning: Citation `simon' on page 19 undefined on input line 1457.
+
+
 
 [19]
 
-LaTeX Warning: Citation `simon' on page 20 undefined on input line 1629.
-
-
-LaTeX Warning: Citation `saxe' on page 20 undefined on input line 1650.
-
-
-LaTeX Warning: Citation `simon' on page 20 undefined on input line 1662.
-
-
-
 [20]
 
-[21]
+[21] Excluding 'comment' comment. Excluding 'comment' comment.
 
-[22]
-
-[23]
-
-[24]
-
-[25] Excluding 'comment' comment. Excluding 'comment' comment.
-
-[26] (./draft.aux)
+[22] (./draft.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -483,21 +480,21 @@ L3 programming layer <2025-01-18>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `draft.out' has not changed.
-(rerunfilecheck)             Checksum: 23C0361F7B5D5C8991905A78C59BDE57;3739.
+(rerunfilecheck)             Checksum: 60C000AB0C92DD6E116A1FCD142F910F;3196.
  ) 
 Here is how much of TeX's memory you used:
- 11192 strings out of 473190
- 172119 string characters out of 5715801
- 583094 words of memory out of 5000000
- 34224 multiletter control sequences out of 15000+600000
+ 11182 strings out of 473190
+ 171946 string characters out of 5715801
+ 582932 words of memory out of 5000000
+ 34219 multiletter control sequences out of 15000+600000
  570715 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,15n,79p,887b,589s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,15n,79p,914b,587s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on draft.pdf (26 pages, 308171 bytes).
+Output written on draft.pdf (22 pages, 297631 bytes).
 PDF statistics:
- 358 PDF objects out of 1000 (max. 8388607)
- 291 compressed objects within 3 object streams
- 75 named destinations out of 1000 (max. 500000)
- 137 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 322 PDF objects out of 1000 (max. 8388607)
+ 259 compressed objects within 3 object streams
+ 70 named destinations out of 1000 (max. 500000)
+ 113 words of extra memory for PDF output out of 10000 (max. 10000000)
 

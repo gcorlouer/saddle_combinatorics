@@ -64,12 +64,25 @@ A $L$-layers Deep Linear Network (DLN) is a function:
     f: \ & \mathbb{R}^{d_0} \times \prod_{l=0}^{L-1}\mathbb{R}^{d_l \times d_{l+1}}  \to \mathbb{R}^{d_L} \\
        & (x,\theta = (W_1,...,W_L)) \mapsto \mu(\theta)x = W_L...W_1 x
 \end{align*}
-The dimension $d_0$ is the dimension of the input data and the dimensions $d_l,\ 1\leq l \leq L$ are the width of the layers. A Deep Linear Network is a multi-linear function (in parameter space $\Omega=\prod_{l=0}^{L-1}\mathbb{R}^{d_l \times d_{l+1}}$) which is linear in each of the weight matrix $W_l$ and the data. It is linear in function space $\mathcal{F}:=\operatorname{Mat}_{d_L\times d_0}$ over $\mu(\theta):=W:=W_L...W_1$ where $\mu$ is the product map. For the input-output data $(X,Y)\sim P$ we have the input and input-out covariance matrices $\Sigma_X = \mathbb{E}[XX^{\top}]$ and $\Sigma_{YX}=\mathbb{E}[YX^{\top}]$. Throughout the paper, without loss of generality, we assume that the inputs are whitened i.e. $\Sigma_X = I_{d_L}$ and we work with the quadratic population loss:
+The dimension $d_0$ is the dimension of the input data and the dimensions $d_l,\ 1\leq l \leq L$ are the width of the layers. A Deep Linear Network is a multi-linear function (in parameter space $\Omega=\prod_{l=0}^{L-1}\mathbb{R}^{d_l \times d_{l+1}}$) which is linear in each of the weight matrix $W_l$ and the data. It is linear in function space $\mathcal{F}:=\operatorname{Mat}_{d_L\times d_0}$ over $\mu(\theta):=W:=W_L...W_1$ where $\mu$ is the product map. For the input-output data $(X,Y)\sim P$ we have the input and input-out covariance matrices $\Sigma_X = \mathbb{E}[XX^{\top}]$ and $\Sigma_{YX}=\mathbb{E}[YX^{\top}]$. Throughout the paper, without loss of generality, we assume that the inputs are \textbf{whitened} i.e. $\Sigma_X = I_{d_L}$ and we work with the quadratic population loss:
 \[
 L(\theta) := ||(M - \mu(\theta))||^2_F
 \]
-where $||\cdot||_F$ is the Frobenius norm and $M:=\Sigma_{YX}\Sigma_X^{-1}$ is the teacher matrix which is the ordinary least square regressor. 
+where $||\cdot||_F$ is the Frobenius norm and $M:=\Sigma_{YX}\Sigma_X^{-1} = \Sigma_{YX}$ is the teacher matrix which is the ordinary least square regressor. 
 \end{definition}
+The teacher matrix $M$ admits the following SVD:
+\[
+M = U\Lambda V^{\top}
+\]
+With $\Lambda = \operatorname{diag}(s_1,...,s_{d_L}, 0_{d_0-d_L})$ and $s_1 > s_2 > ... > s_{d_L} > 0$ (full rank and non degenerate data). We \textbf{assume a realizable setting} i.e. $d_l \geq d_0 \geq d_L$ for $l$ running over the hidden layers of the DLN and thus the global minimum is $W^{\star}=M=\Sigma_{YX}$ with a corresponding loss of zero. Let $S$ be a subset indexing singular vectors of $M$. We define $P_S$ a projector over these singular vectors and $P_Q$ a projector over singular vectors orthogonal to these indexed by $S$. The projectors $P_S$ and $P_Q$ are orthogonal to each other. Recall the following important proposition from \cite{achour2024loss} proposition 1:
+\begin{proposition}
+  Let $\theta$ be a critical point then there exist a subset $S$ of singular values of $M$ such that 
+  \[
+  \mu(\theta) = P_SW^{\star} = P_SM
+  \]
+\end{proposition}
+Under whitened input assumptions this means that $\mu(\theta)=P_S\Sigma_{YX}$ we denote $W_S :=  P_S\Sigma_{YX}$ and $W_S^{\dagger}=\Sigma_{XY}P_Q$. We have $W_S^{\dagger}W_S=0$ by orthogonality of $P_S$ and $P_Q$ and since $M^{\top}=\Sigma_{XY}$ also have $W_SW_S^{\dagger}=0$ as $P_S$ and $P_Q$ project onto orthogonal subsets of left singular vectors of $M$.
+
 We define some algebraic varieties that will be important to derive the main result. The cyclic variety $\Gamma_d$ is defined by a set of vanishing polynomial cyclic conditions which relates to the critical loci. This variety will be then stratified and the critical loci will inherit a stratification. 
 \begin{definition}[Determinantal, cyclic, and critical loci]
 Define
@@ -122,125 +135,21 @@ For $\phi = (\theta,W_0)\in\Gamma_{d}$ we define its \emph{cyclic rank pattern} 
 \]
 \end{definition}
 \begin{theorem}\label{main-result}
-Define the strata $\mathcal O^S_{\rho} := \mathcal O_{\rho} \cap \Gamma^S_{d}$ where  $\mathcal{O}_{\rho}$ is a $G_d$-orbit of the cyclic variety $\Gamma^r_{d}$.
+Define the strata $\mathcal O^S_{\rho} := \mathcal O_{\rho} \cap \Gamma^S_{d}$ where  $\mathcal{O}_{\rho}$ is a $G_d$-orbit of the cyclic variety $\Gamma^r_{d}$. We also identify $\mathcal{C}_d^S$ with $\Gamma^S_{d}$. 
 Assuming that the data is non degenerate and the input covariance matrix is invertible then the loci of critical points of rank $r<r_\text{max}$ admits the following stratification parameterized by subset $S$ of singular vectors of the teacher with $r$ elements and admissible cyclic rank patterns $\rho\in R_d^{\mathrm{orb}}$:
 \begin{align*}
   \mathcal{C}^r_d & = \bigsqcup_{|S|=r}\mathcal{C}^S_d = \bigsqcup_{|S|=r}\bigsqcup_{\substack{\rho\in R_d^{\mathrm{orb}}\\ \operatorname{rank}(\rho)=\operatorname{rank}(\Sigma_{XY}P_Q)}} \mathcal{O}^S_{\rho} \\
 \end{align*}
 \end{theorem}
-\subsection{Whitened realisable convention}
-\label{subsec:whitened-realisable-convention}
-
-Throughout the paper, unless explicitly stated otherwise, we work in the
-realisable whitened setting. Thus the input covariance is
-\[
-\Sigma_X=\mathbb E[XX^\top]=I_{d_0},
-\]
-and there is a linear teacher
-\[
-M\in \Mat_{d_L\times d_0}
-\]
-such that
-\[
-Y=MX.
-\]
-Consequently
-\[
-\Sigma_{YX}=\mathbb E[YX^\top]=M,
-\qquad
-\Sigma_{XY}=\Sigma_{YX}^\top=M^\top,
-\]
-and the OLS minimizer is
-\[
-W^\star=\Sigma_{YX}\Sigma_X^{-1}=M.
-\]
-The population loss is therefore
-\[
-\mathcal L(\theta)
-=
-\frac12\mathbb E\|Y-\mu(\theta)X\|^2
-=
-\frac12\|\mu(\theta)-M\|_F^2.
-\]
-In particular, the minimum population loss is zero and is attained precisely
-when
-\[
-\mu(\theta)=M.
-\]
-
-Let
-\[
-M=U\Lambda V^\top
-\]
-be a singular value decomposition of the teacher. For a subset \(S\) of the
-left singular directions, let \(P_S\) be the orthogonal projector onto their
-span and let
-\[
-P_Q:=I_{d_L}-P_S.
-\]
-We define
-\[
-B_S:=P_SM,
-\qquad
-E_S:=\Sigma_{XY}P_Q=M^\top P_Q.
-\]
-Then the pair \((B_S,E_S)\) is compatible with the cyclic equations:
-\[
-B_SE_S=0,
-\qquad
-E_SB_S=0.
-\]
-Indeed,
-\[
-B_SE_S
-=
-P_SMM^\top P_Q
-=
-0,
-\]
-because \(P_S\) and \(P_Q\) are complementary spectral projectors for
-\(MM^\top\). Also,
-\[
-E_SB_S
-=
-M^\top P_QP_SM
-=
-0.
-\]
-
-Moreover, \(E_S\) is exactly the residual-gradient factor associated with the
-specialization \(\mu(\theta)=P_SM\), up to sign. Namely,
-\[
-\mu(\theta)=P_SM
-\quad\Longrightarrow\quad
-\mu(\theta)^\top-M^\top
-=
-M^\top P_S-M^\top
-=
--M^\top P_Q
-=
--E_S.
-\]
-Since the cyclic equations are homogeneous in the closing arrow, this sign
-does not affect the equations
-\[
-W_{<\ell}E_SW_{>\ell}=0.
-\]
 \section{A stratification of the cyclic variety induces a stratification of the critical loci}
 \label{sec:cyclic-stratification-critical-loci}
 
 In this section we explain how the orbit stratification of the cyclic variety
-induces a genuine orbit stratification of each fixed-\(S\) critical locus. All
+induces an orbit stratification of each fixed-\(S\) critical locus. All
 closures are relative Zariski closures.
 
-Fix a subset \(S\) of left singular vectors and set
-\[
-B_S:=P_SW^\star,
-\qquad
-E_S:=\Sigma_{XY}P_Q .
-\]
-Thus \(B_S\in\mathcal F=\operatorname{Mat}_{d_L\times d_0}\) and
-\(E_S\in\mathcal F^t=\operatorname{Mat}_{d_0\times d_L}\). Recall that
+Fix a subset \(S\) of left singular vectors of $M$. We have \(W_S\in\mathcal F=\operatorname{Mat}_{d_L\times d_0}\) and
+\(W_S^{\dagger}\in\mathcal F^t=\operatorname{Mat}_{d_0\times d_L}\). Recall that
 \[
 \pi:\Gamma_d\longrightarrow \mathcal F\times \mathcal F^t,
 \qquad
@@ -248,65 +157,59 @@ Thus \(B_S\in\mathcal F=\operatorname{Mat}_{d_L\times d_0}\) and
 \]
 We write
 \[
-\Gamma_d^S:=\pi^{-1}(B_S,E_S)
+\Gamma_d^S:=\pi^{-1}(W_S,W_S^{\dagger})
 =
-\{(\theta,W_0)\in\Gamma_d\mid \mu(\theta)=B_S,\ W_0=E_S\}.
+\{(\theta,W_0)\in\Gamma_d\mid \mu(\theta)=W_S,\ W_0=W_S^{\dagger}\}.
 \]
-If \(\operatorname{rank}(B_S)=r\), then \(\Gamma_d^S\subseteq \Gamma_d^r\).
+If \(\operatorname{rank}(W_S)=r\), then \(\Gamma_d^S\subseteq \Gamma_d^r\).
 
 \begin{proposition}[The \(S\)-critical locus as a fiber]
 \label{prop:S-critical-fiber}
-Assume that \(\Sigma_X\) is invertible and that
-\[
-W^\star=\Sigma_{YX}\Sigma_X^{-1}.
-\]
-Then the map
+The map
 \[
 \Theta_S:\mathcal C_d^S\longrightarrow \Gamma_d^S,
 \qquad
-\Theta_S(\theta):=(\theta,E_S),
+\Theta_S(\theta):=(\theta,W_S^{\dagger}),
 \]
 is an isomorphism of varieties, with inverse given by projection onto the
 \(\theta\)-coordinates. In particular,
 \[
-\mathcal C_d^S\cong \pi^{-1}(P_SW^\star,\Sigma_{XY}P_Q).
+\mathcal C_d^S\cong \pi^{-1}(W_S, W_S^{\dagger}).
 \]
 \end{proposition}
 
 \begin{proof}
-Let \(\theta\in\Omega\) satisfy \(\mu(\theta)=B_S=P_SW^\star\). Then
+Let \(\theta\in\Omega\) satisfy \(\mu(\theta)=W_S\). Then
 \[
-\Sigma_X(P_SW^\star)^\top-\Sigma_{XY}
+(P_SW^\star)^\top-\Sigma_{XY}
 =
--\Sigma_{XY}P_Q
-=
--E_S.
+-\Sigma_{XY}P_Q =-W_S^{\dagger}
 \]
 Hence, for every \(1\leq \ell\leq L\),
 \[
 \bigl(\nabla_{W_\ell}\mathcal L(\theta)\bigr)^\top
 =
--2W_{<\ell}E_SW_{>\ell}.
+-2W_{<\ell}W_S^{\dagger}W_{>\ell}.
 \]
 Therefore the gradient equations are equivalent, under the constraint
-\(\mu(\theta)=B_S\), to the cyclic equations
+\(\mu(\theta)=W_S=P_SW^{\star}\), to the cyclic equations
 \[
-W_{<\ell}E_SW_{>\ell}=0
+W_{<\ell}W_S^{\dagger}W_{>\ell}=0
 \qquad
 \text{for every }1\leq \ell\leq L.
 \]
 These are precisely the equations saying that
 \[
-(\theta,E_S)\in \Gamma_d
+(\theta,W_S^{\dagger})\in \Gamma_d
 \]
-together with \(\pi(\theta,E_S)=(B_S,E_S)\). Thus
+together with \(\pi(\theta,W_S^{\dagger})=(W_S,W_S^{\dagger})\). Thus
 \[
 \theta\in\mathcal C_d^S
 \quad\Longleftrightarrow\quad
-(\theta,E_S)\in\Gamma_d^S.
+(\theta,W_S^{\dagger})\in\Gamma_d^S.
 \]
-The maps \(\theta\mapsto(\theta,E_S)\) and
-\((\theta,E_S)\mapsto\theta\) are regular and inverse to one another.
+The maps \(\theta\mapsto(\theta,W_S^{\dagger})\) and
+\((\theta,W_S^{\dagger})\mapsto\theta\) are regular and inverse to one another.
 \end{proof}
 
 We now use the symmetry action. The group
@@ -325,15 +228,15 @@ The map \(\pi\) is equivariant in the following sense:
 =
 (g_L\mu(\theta)g_0^{-1},\,g_0W_0g_L^{-1}).
 \]
-Define the stabilizer of the fixed pair \((B_S,E_S)\) by
+Define the stabilizer of the fixed pair \((W_S,W_S^{\dagger})\) by
 \[
 K_S
 :=
 \left\{
 g\in G_d
 \ \middle|\
-g_LB_Sg_0^{-1}=B_S,\;
-g_0E_Sg_L^{-1}=E_S
+g_LW_Sg_0^{-1}=W_S,\;
+g_0W_S^{\dagger}g_L^{-1}=W_S^{\dagger}
 \right\}.
 \]
 Then \(K_S\) acts on the fiber \(\Gamma_d^S\).
@@ -369,7 +272,7 @@ For each \(\rho\in R_d^r\), define
 :=
 O_\rho\cap\Gamma_d^S
 =
-O_\rho\cap\pi^{-1}(B_S,E_S).
+O_\rho\cap\pi^{-1}(W_S,W_S^{\dagger}).
 \]
 Let
 \[
@@ -384,7 +287,7 @@ For every \(\rho\in R_d^S\), the stratum
 \[
 \mathcal O_\rho^S
 =
-O_\rho\cap\pi^{-1}(B_S,E_S)
+O_\rho\cap\pi^{-1}(W_S,W_S^{\dagger})
 \]
 is a single \(K_S\)-orbit. Consequently,
 \[
@@ -469,19 +372,19 @@ y=g\cdot x.
 \]
 Because both \(x\) and \(y\) lie in the fiber \(\Gamma_d^S\), we have
 \[
-\pi(x)=(B_S,E_S),
+\pi(x)=(W_S,W_S^{\dagger}),
 \qquad
-\pi(y)=(B_S,E_S).
+\pi(y)=(W_S,W_S^{\dagger}).
 \]
 Using the equivariance of \(\pi\),
 \[
-(B_S,E_S)
+(W_S,W_S^{\dagger})
 =
 \pi(y)
 =
 \pi(g\cdot x)
 =
-(g_LB_Sg_0^{-1},\,g_0E_Sg_L^{-1}).
+(g_LW_Sg_0^{-1},\,g_0W_S^{\dagger}g_L^{-1}).
 \]
 Hence \(g\in K_S\). Therefore \(y\in K_S\cdot x\). Conversely, \(K_S\)
 preserves both the \(G_d\)-orbit \(O_\rho\) and the fiber \(\Gamma_d^S\), so
@@ -593,7 +496,7 @@ Indeed, even if
 \]
 the intersection
 \[
-O_{\rho'}\cap\pi^{-1}(B_S,E_S)
+O_{\rho'}\cap\pi^{-1}(W_S,W_S^{\dagger})
 \]
 may be empty. In that case there is no \(K_S\)-orbit
 \(\mathcal O_{\rho'}^S\) in the fixed-\(S\) critical locus.
@@ -1163,30 +1066,30 @@ of the strictly lower coordinatewise rank-pattern orbits.
 
 We now specialize this stratification to a fixed \(S\)-critical locus. Put
 \[
-B_S:=P_SW^\star,
+W_S:=P_SW^\star,
 \qquad
-E_S:=\Sigma_{XY}P_Q,
+W_S^{\dagger}:=\Sigma_{XY}P_Q,
 \]
 and recall that
 \[
 \Gamma_d^S
 :=
-\pi^{-1}(B_S,E_S)
+\pi^{-1}(W_S,W_S^{\dagger})
 \subseteq \Gamma_d.
 \]
 By Proposition~\ref{prop:S-critical-fiber}, the map
 \[
 \Theta_S:\mathcal C_d^S\longrightarrow \Gamma_d^S,
 \qquad
-\Theta_S(\theta)=(\theta,E_S),
+\Theta_S(\theta)=(\theta,W_S^{\dagger}),
 \]
 identifies the \(S\)-critical locus with the fiber \(\Gamma_d^S\).
 
 Let
 \[
-r:=\operatorname{rank}(B_S),
+r:=\operatorname{rank}(W_S),
 \qquad
-q_S:=\operatorname{rank}(E_S).
+q_S:=\operatorname{rank}(W_S^{\dagger}).
 \]
 Under the nondegeneracy assumptions of the main theorem, \(r=|S|\) and
 \(q_S=d_L-r\). The two distinguished cyclic rank coordinates satisfy
@@ -1210,7 +1113,7 @@ For each \(\rho\in\mathcal R_d\), define the induced fixed-\(S\) stratum
 :=
 \mathcal O_\rho\cap \Gamma_d^S
 =
-\mathcal O_\rho\cap \pi^{-1}(B_S,E_S).
+\mathcal O_\rho\cap \pi^{-1}(W_S,W_S^{\dagger}).
 \]
 We keep only the nonempty intersections and define
 \[
@@ -1232,15 +1135,15 @@ Thus
 \]
 
 The relevant symmetry group for the fixed fiber is the stabilizer of the pair
-\((B_S,E_S)\). Define
+\((W_S,W_S^{\dagger})\). Define
 \[
 K_S
 :=
 \left\{
 g\in G_d
 \ \middle|\
-g_LB_Sg_0^{-1}=B_S,\;
-g_0E_Sg_L^{-1}=E_S
+g_LW_Sg_0^{-1}=W_S,\;
+g_0W_S^{\dagger}g_L^{-1}=W_S^{\dagger}
 \right\}.
 \]
 The equivariance of \(\pi\),
@@ -1352,114 +1255,6 @@ strata may be denoted by the corresponding \(K_S\)-orbits
 \end{theorem}
 \begin{remark}[Compatibility of the fixed product fiber and choice of base field]
 \label{rem:base-field-and-fixed-fiber}
-Set
-\[
-B_S:=P_SW^\ast,
-\qquad
-E_S:=\Sigma_{XY}P_Q.
-\]
-Then
-\[
-E_SB_S
-=
-\Sigma_{XY}P_QP_SW^\ast
-=
-0
-\]
-because \(P_QP_S=0\). However, the other composition
-\[
-B_SE_S
-=
-P_SW^\ast\Sigma_{XY}P_Q
-\]
-does not vanish in general. It is an additional compatibility
-condition.
-
-This compatibility is necessary for the fixed product fiber
-\[
-\pi^{-1}(B_S,E_S)
-\subseteq \Gamma_d
-\]
-to be nonempty. Indeed, if
-\[
-(\theta,W_0)\in \Gamma_d,
-\qquad
-\mu(\theta)=W_L\cdots W_1,
-\]
-then the cyclic relations imply
-\[
-\mu(\theta)W_0=0,
-\qquad
-W_0\mu(\theta)=0.
-\]
-For example, the relation with \(\ell=L\) gives
-\[
-W_{L-1}\cdots W_1W_0=0,
-\]
-and hence
-\[
-\mu(\theta)W_0
-=
-W_L(W_{L-1}\cdots W_1W_0)
-=
-0.
-\]
-Similarly, the relation with \(\ell=1\) gives
-\[
-W_0W_L\cdots W_2=0,
-\]
-and hence
-\[
-W_0\mu(\theta)
-=
-(W_0W_L\cdots W_2)W_1
-=
-0.
-\]
-Therefore, if
-\[
-\pi(\theta,W_0)=(B_S,E_S),
-\]
-then necessarily
-\[
-B_SE_S=0,
-\qquad
-E_SB_S=0.
-\]
-Consequently, if \(B_SE_S\neq 0\), then
-\[
-\pi^{-1}(B_S,E_S)=\varnothing,
-\]
-and the corresponding \(S\)-critical locus is empty.
-
-In our deep linear network setting, this condition is
-satisfied when \(P_S\) and \(P_Q\) are the spectral projectors associated with
-the left singular directions of the teacher matrix
-\[
-M:=\Sigma_{YX}\Sigma_X^{-1/2}.
-\]
-Indeed,
-\[
-W^\ast\Sigma_{XY}
-=
-\Sigma_{YX}\Sigma_X^{-1}\Sigma_{XY}
-=
-MM^\top.
-\]
-Hence, if \(P_S\) and \(P_Q\) are complementary spectral projectors for
-\(MM^\top\), then
-\[
-B_SE_S
-=
-P_SW^\ast\Sigma_{XY}P_Q
-=
-P_SMM^\top P_Q
-=
-0.
-\]
-If instead \(P_S\) is defined using the left singular vectors of \(W^\ast\)
-itself, then \(B_SE_S=0\) need not hold unless, for example, \(\Sigma_X=I\).
-
 We now discuss the base field. The representation-theoretic constructions are
 valid over both \(k=\mathbb R\) and \(k=\mathbb C\). The cyclic variety
 \(\Gamma_{d,k}\), the group \(G_{d,k}\), and the orbit strata
@@ -1469,19 +1264,19 @@ with matrices whose entries lie in \(\{0,1\}\). Thus the same cyclic rank
 patterns occur over \(\mathbb R\) and over \(\mathbb C\), and the
 \(k\)-rational points of each nonempty orbit are Zariski dense in that orbit.
 
-Assume now that the fixed pair \((B_S,E_S)\) is compatible, i.e.
+Recall now that the fixed pair \((W_S,W_S^{\dagger})\) is satisfies
 \[
-B_SE_S=0,
+W_SW_S^{\dagger}=0,
 \qquad
-E_SB_S=0.
+W_S^{\dagger}W_S=0.
 \]
 Let
 \[
-r:=\operatorname{rank}(B_S),
+r:=\operatorname{rank}(W_S),
 \qquad
-q_S:=\operatorname{rank}(E_S).
+q_S:=\operatorname{rank}(W_S^{\dagger}).
 \]
-The pair \((B_S,E_S)\) is then a representation of the two-vertex
+The pair \((W_S,W_S^{\dagger})\) is then a representation of the two-vertex
 radical-square-zero cyclic quiver
 \[
 V_0 \rightleftarrows V_L,
@@ -1508,7 +1303,7 @@ algebraic geometry.
 
 Therefore, for the fixed fiber
 \[
-\Gamma_{d,k}^S:=\pi_k^{-1}(B_S,E_S),
+\Gamma_{d,k}^S:=\pi_k^{-1}(W_S,W_S^{\dagger}),
 \]
 the induced strata
 \[
@@ -1540,7 +1335,7 @@ safe definition is instead
 \mathcal R_d^S
 :=
 \{\rho\in\mathcal R_d\mid
-\mathcal O_\rho\cap \pi^{-1}(B_S,E_S)\neq\varnothing\}.
+\mathcal O_\rho\cap \pi^{-1}(W_S,W_S^{\dagger})\neq\varnothing\}.
 \]
 
 For every nonempty induced stratum, the stabilizer
@@ -1550,8 +1345,8 @@ K_S
 \left\{
 g\in G_d
 \ \middle|\
-g_LB_Sg_0^{-1}=B_S,\;
-g_0E_Sg_L^{-1}=E_S
+g_LW_Sg_0^{-1}=W_S,\;
+g_0W_S^{\dagger}g_L^{-1}=W_S^{\dagger}
 \right\}
 \]
 acts transitively:
@@ -1691,7 +1486,7 @@ M_{\mathrm{wh}}=M\Sigma_X^{1/2}.
 It would be useful to state and prove the full non-whitened version explicitly,
 including the corresponding specialization of the closing arrow
 \[
-E_S=\Sigma_{XY}P_Q.
+W_S^{\dagger}=\Sigma_{XY}P_Q.
 \]
 One could also relax genericity assumptions on the teacher. When singular
 values have multiplicities, the indexing by subsets \(S\) of individual
@@ -1887,7 +1682,47 @@ Together with \(\mu(\theta)=P_SW^\ast\), this gives
 \theta\in\mathcal C_d^S.
 \]
 This proves the reverse inclusion and therefore the proposition.
+\subsection{Proof of the Inversion Formula}
+\label{app:inversion}
 
+We give a slightly more explicit version of the proof of
+Proposition~\ref{prop:inversion}. For every admissible interval \((a,b)\), the
+forward formula gives
+\[
+\rho_{ab}
+=
+\sum_{u\leq a\leq b\leq v} m_{uv}.
+\]
+Therefore
+\[
+\rho_{ab}-\rho_{a-1,b}-\rho_{a,b+1}+\rho_{a-1,b+1}
+=
+\sum_{u,v} m_{uv}\,\Xi_{uv},
+\]
+where
+\[
+\Xi_{uv}
+:=
+\mathbf 1_{u\leq a\leq b\leq v}
+-\mathbf 1_{u\leq a-1\leq b\leq v}
+-\mathbf 1_{u\leq a\leq b+1\leq v}
++\mathbf 1_{u\leq a-1\leq b+1\leq v}.
+\]
+
+If \(u<a\), then the first two indicators cancel, and likewise the last two
+indicators cancel. If \(v>b\), then the first and third indicators cancel, and
+likewise the second and fourth indicators cancel. The only way for a nonzero
+coefficient to remain is therefore
+\[
+u=a,\qquad v=b.
+\]
+In that case
+\[
+\Xi_{ab}=1.
+\]
+Thus the entire sum reduces to \(m_{ab}\), proving the inversion formula.
+\section*{Deprecated}
+\begin{comment}
 \subsection{Detailed proof of Proposition~\ref{prop:critical-rank-pattern-decomposition}}
 \label{app:proof-critical-rank-pattern-decomposition}
 
@@ -2080,47 +1915,115 @@ degeneration of \(O_\rho^r\) in the full cyclic variety while not being reachabl
 by a degeneration that remains inside the fixed specialization determined by
 \(\iota_S\). Therefore the natural statement for the \(S\)-critical locus is the
 one-sided frontier condition above.
-\subsection{Proof of the Inversion Formula}
-\label{app:inversion}
-
-We give a slightly more explicit version of the proof of
-Proposition~\ref{prop:inversion}. For every admissible interval \((a,b)\), the
-forward formula gives
+\subsection{Compatible W_S and W_S^\{dagger}}
+  Set
 \[
-\rho_{ab}
+W_S:=P_SW^\ast,
+\qquad
+W_S^{\dagger}:=\Sigma_{XY}P_Q.
+\]
+Then
+\[
+W_S^{\dagger}W_S
 =
-\sum_{u\leq a\leq b\leq v} m_{uv}.
-\]
-Therefore
-\[
-\rho_{ab}-\rho_{a-1,b}-\rho_{a,b+1}+\rho_{a-1,b+1}
+\Sigma_{XY}P_QP_SW^\ast
 =
-\sum_{u,v} m_{uv}\,\Xi_{uv},
+0
 \]
-where
+because \(P_QP_S=0\). However, the other composition
 \[
-\Xi_{uv}
-:=
-\mathbf 1_{u\leq a\leq b\leq v}
--\mathbf 1_{u\leq a-1\leq b\leq v}
--\mathbf 1_{u\leq a\leq b+1\leq v}
-+\mathbf 1_{u\leq a-1\leq b+1\leq v}.
+W_SW_S^{\dagger}
+=
+P_SW^\ast\Sigma_{XY}P_Q
 \]
+does not vanish in general. It is an additional compatibility
+condition.
 
-If \(u<a\), then the first two indicators cancel, and likewise the last two
-indicators cancel. If \(v>b\), then the first and third indicators cancel, and
-likewise the second and fourth indicators cancel. The only way for a nonzero
-coefficient to remain is therefore
+This compatibility is necessary for the fixed product fiber
 \[
-u=a,\qquad v=b.
+\pi^{-1}(W_S,W_S^{\dagger})
+\subseteq \Gamma_d
 \]
-In that case
+to be nonempty. Indeed, if
 \[
-\Xi_{ab}=1.
+(\theta,W_0)\in \Gamma_d,
+\qquad
+\mu(\theta)=W_L\cdots W_1,
 \]
-Thus the entire sum reduces to \(m_{ab}\), proving the inversion formula.
-\section{Deprecated}
-\begin{comment}
+then the cyclic relations imply
+\[
+\mu(\theta)W_0=0,
+\qquad
+W_0\mu(\theta)=0.
+\]
+For example, the relation with \(\ell=L\) gives
+\[
+W_{L-1}\cdots W_1W_0=0,
+\]
+and hence
+\[
+\mu(\theta)W_0
+=
+W_L(W_{L-1}\cdots W_1W_0)
+=
+0.
+\]
+Similarly, the relation with \(\ell=1\) gives
+\[
+W_0W_L\cdots W_2=0,
+\]
+and hence
+\[
+W_0\mu(\theta)
+=
+(W_0W_L\cdots W_2)W_1
+=
+0.
+\]
+Therefore, if
+\[
+\pi(\theta,W_0)=(W_S,W_S^{\dagger}),
+\]
+then necessarily
+\[
+W_SW_S^{\dagger}=0,
+\qquad
+W_S^{\dagger}W_S=0.
+\]
+Consequently, if \(W_SW_S^{\dagger}\neq 0\), then
+\[
+\pi^{-1}(W_S,W_S^{\dagger})=\varnothing,
+\]
+and the corresponding \(S\)-critical locus is empty.
+
+In our deep linear network setting, this condition is
+satisfied when \(P_S\) and \(P_Q\) are the spectral projectors associated with
+the left singular directions of the teacher matrix
+\[
+M:=\Sigma_{YX}\Sigma_X^{-1/2}.
+\]
+Indeed,
+\[
+W^\ast\Sigma_{XY}
+=
+\Sigma_{YX}\Sigma_X^{-1}\Sigma_{XY}
+=
+MM^\top.
+\]
+Hence, if \(P_S\) and \(P_Q\) are complementary spectral projectors for
+\(MM^\top\), then
+\[
+W_SW_S^{\dagger}
+=
+P_SW^\ast\Sigma_{XY}P_Q
+=
+P_SMM^\top P_Q
+=
+0.
+\]
+If instead \(P_S\) is defined using the left singular vectors of \(W^\ast\)
+itself, then \(W_SW_S^{\dagger}=0\) need not hold unless, for example, \(\Sigma_X=I\).
+
   \section{Stratification of the critical loci with cyclic rank patterns}
 We have a functorial equivalence between the isomorphism classes of $A$-modules and the $G_d$ orbits of $\Gamma_d$. Given that all $A$-modules have a unique Krull-Schmidt decomposition indexed by the $m(i,j)$ then all $G_d$-orbits are indexed by the multiplicity patterns. In other words we have the following stratification: 
 \begin{proposition}[Orbit stratification of $\Gamma_{d}$ by indecomposable Nakayama modules]
@@ -2334,24 +2237,24 @@ codimension holds for the real locus whenever the real locus is nonempty.
 
 Let
 \[
-B_S:=P_SW^\ast,
+W_S:=P_SW^\ast,
 \qquad
-E_S:=\Sigma_{XY}P_Q,
+W_S^{\dagger}:=\Sigma_{XY}P_Q,
 \qquad
 P_Q=I-P_S.
 \]
 Put
 \[
-r:=\rank(B_S),
+r:=\rank(W_S),
 \qquad
-q:=\rank(E_S).
+q:=\rank(W_S^{\dagger}).
 \]
 For a nondegenerate teacher with full output rank, \(r=|S|\) and
 \(q=d_L-r\). More generally, the argument below only uses
 \[
-E_SB_S=0,
+W_S^{\dagger}W_S=0,
 \qquad
-B_SE_S=0,
+W_SW_S^{\dagger}=0,
 \]
 which holds in singular-vector coordinates.
 
@@ -2494,7 +2397,7 @@ By Proposition~\ref{prop:S-critical-fiber},
 \left\{
 \theta\in\Omega
 \ \middle|\
-(\theta,E_S)\in\Gamma_d,\ \mu(\theta)=B_S
+(\theta,W_S^{\dagger})\in\Gamma_d,\ \mu(\theta)=W_S
 \right\}.
 \]
 Equivalently, if
@@ -2506,7 +2409,7 @@ Equivalently, if
 \]
 then
 \[
-\mathcal C_d^S=\pi^{-1}(B_S,E_S).
+\mathcal C_d^S=\pi^{-1}(W_S,W_S^{\dagger}).
 \]
 
 Let
@@ -2559,7 +2462,7 @@ g_d-\mathfrak e(m).
 Now fix \(m\). The image \(\pi(O_m)\) is a single \(G_{\mathrm{out}}\)-orbit,
 because \(\pi\) is \(G_d\)-equivariant and the projection
 \(G_d\to G_{\mathrm{out}}\) is surjective. The orbit \(O_m\) meets
-\(\pi^{-1}(B_S,E_S)\) if and only if
+\(\pi^{-1}(W_S,W_S^{\dagger})\) if and only if
 \[
 m_{(0,L+1)}=r
 \qquad\text{and}\qquad
@@ -2568,7 +2471,7 @@ m_{(0,L+1)}=r
 that is, if and only if \(m\in\mathcal M_d^{r,q}\). For such \(m\), the image is
 \(\mathcal P_{r,q}\). Hence
 \[
-\dim\bigl(O_m\cap \pi^{-1}(B_S,E_S)\bigr)
+\dim\bigl(O_m\cap \pi^{-1}(W_S,W_S^{\dagger})\bigr)
 =
 \dim O_m-\dim\mathcal P_{r,q}
 =
@@ -2580,7 +2483,7 @@ Since
 \mathcal C_d^S
 =
 \bigsqcup_{m\in\mathcal M_d^{r,q}}
-\left(O_m\cap \pi^{-1}(B_S,E_S)\right),
+\left(O_m\cap \pi^{-1}(W_S,W_S^{\dagger})\right),
 \]
 we get
 \[
@@ -2606,11 +2509,11 @@ D_d+p_{r,q}-g_d
 
 Finally, each nonempty piece
 \[
-O_m\cap \pi^{-1}(B_S,E_S)
+O_m\cap \pi^{-1}(W_S,W_S^{\dagger})
 \]
 is an orbit of the connected algebraic group
 \[
-\{g\in G_d\mid (g_0,g_L)\cdot(B_S,E_S)=(B_S,E_S)\}.
+\{g\in G_d\mid (g_0,g_L)\cdot(W_S,W_S^{\dagger})=(W_S,W_S^{\dagger})\}.
 \]
 Hence each such piece is irreducible. Its closure gives a top-dimensional
 irreducible component precisely when its dimension is maximal, equivalently
@@ -2640,13 +2543,13 @@ Thus the formula is intrinsic to the cyclic rank-pattern stratification.
 
 \begin{corollary}[Recovery of the multiplication-fiber formula]
 \label{cor:recover-simon}
-If \(Q=\varnothing\), equivalently \(E_S=0\) and \(q=0\), then
+If \(Q=\varnothing\), equivalently \(W_S^{\dagger}=0\) and \(q=0\), then
 \[
-\mathcal C_d^S=\mu^{-1}(B_S).
+\mathcal C_d^S=\mu^{-1}(W_S).
 \]
 In this case Theorem~\ref{thm:fixed-S-critical-codim} becomes
 \[
-\codim_{\Omega}\mu^{-1}(B_S)
+\codim_{\Omega}\mu^{-1}(W_S)
 =
 D_d+r(d_0+d_L-r)-g_d
 +
