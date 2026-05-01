@@ -7,6 +7,9 @@
 \usepackage{geometry}
 \usepackage{hyperref}
 \usepackage{comment}
+\usepackage{natbib} 
+\bibliographystyle{unsrtnat}
+
 \geometry{margin=1in}
 
 \newcommand{\diag}{\operatorname{diag}}
@@ -45,18 +48,13 @@
 \maketitle
 
 \begin{abstract}
-We stratify the space of critical points of the loss landscape of deep linear networks for the quadratic loss. The stratification provides a combinatorial description of the minima and the saddle points. We also define cyclic rank patterns which are geometric invariant observables that parameterize the stratification of the critical points. 
+We stratify the space of critical points of the loss landscape of deep linear networks for the quadratic loss. The stratification provides a combinatorial description of the minima and saddle points of a deep linear network. The stratification is parametrized by specific geometric invariants, the cyclic rank patterns which are the ranks of partial product of a DLN layers.
 \end{abstract}
 
 \tableofcontents
 
 \section{Introduction}
-Flow of the paper:
-The main theorem will be the stratification of the critical loci via the stratification of the cyclic variety and its intersection wit the specialization. We introduce notation, we state the main theorem (without any quiver representation theory simply in terms of the rank patterns). 
-
-\section{Related works}
-
-\section{Setup and main theorem}
+\subsection{Setup and main theorem}
 The central result of this paper is that the algebraic variety of critical points of the loss landscape of a deep linear network admits a stratification parametrized by a finite set of geometric invariants which are given by some rank patterns. These rank patterns are the rank of a product made of weight matrices and some projection of the input-output covariance matrix. 
 \begin{definition}[Deep Linear Network]
 A $L$-layers Deep Linear Network (DLN) is a function:
@@ -141,6 +139,10 @@ Assuming that the data is non degenerate and the input covariance matrix is inve
   \mathcal{C}^r_d & = \bigsqcup_{|S|=r}\mathcal{C}^S_d = \bigsqcup_{|S|=r}\bigsqcup_{\substack{\rho\in R_d^{\mathrm{orb}}\\ \operatorname{rank}(\rho)=\operatorname{rank}(\Sigma_{XY}P_Q)}} \mathcal{O}^S_{\rho} \\
 \end{align*}
 \end{theorem}
+\subsection{Related works and Motivation}
+A first important result is that the loss landscape of a deep linear networks has no non global local minima \cite{baldi1989neural,kawaguchi2016deep}. A second order analysis has also extended these results to classify the saddle points of the DLN loss landscape giving conditions on the rank partial product of the weights to classify them into strict and non-strict saddle points \cite{achour2024loss}. Furthermore when the DLN has all its layer width strictly larger than the input and output dimension, we know that all the global minima are connected \cite{trager2019pure}. DLNs have whole groups of symmetries and their study could be simplified by coarse-graining their internal symmetries. This is the perspective taken in \cite{lehalleur2024geometry} which essentially show that the global minima admit a stratification which gives a combinatorial and hierarchical description of the minima via \textit{rank patterns}. This work is an extension of the previous paper where we derive a combinatorial description of all the critical points which include saddle points. The important geometric invariant are the rank patterns instead of the cyclic rank patterns which arise from cyclic vanishing equations describing the space of critical points beyond the constraint that the parameter function map, which is the product map, maps to a particular critical value.
+
+The motivation for this combinatorics description is that it can provide a coarse grained description of the loss landscape that enables to distinguish between different strata of degenerate solutions. Because the parameter function map is highly degenerate, i.e. it has a whole group of symmetry, then so is the loss and there are an infinite amount of parameters that map to the same DLN. Singular learning theory (SLT) \cite{watanabe2009algebraic} shows that model degeneracies are important and related to generalization in the context of Bayesian statistics. We also know that deep neural networks are highly degenerate and that their internal symmetries should also influence generalization \cite{wei2022deep}. The work of \cite{lehalleur2024geometry} in fact shows that the codimension of the largest strata in the stratification of the global minima is exactly related to the learning coefficient of SLT which informally measures the amount of degeneracies in a degenerate statistical model. However frontier deep learning models such as large language models are not typically trained to convergence. To better understand solution that are selected by a training process before convergence we want to have better models of solutions that are selected during training, before convergence. In this regime it is important to model the effect of critical points that are not global minima that can also govern the training dynamics. An example of such phenomena is the saddle to saddle dynamics in deep linear networks \cite{jacot2018neural,saxe2019mathematical}. In the saddle to saddle regime of deep linear networks, gradient flow is doing a low rank approximation of a teacher matrix where a transition between saddles correspond to increasing the rank of the student by one. A combinatorics description of all the critical points enables us to coarse grain the loss landscape into a graph where each nodes correspond to a strata and the dynamics of the training process can be modelled as a transition between these strata. In summary our combinatorial description can provide a global description of the training dynamics.   
 \section{A stratification of the cyclic variety induces a stratification of the critical loci}
 \label{sec:cyclic-stratification-critical-loci}
 
@@ -241,7 +243,7 @@ g_0W_S^{\dagger}g_L^{-1}=W_S^{\dagger}
 \]
 Then \(K_S\) acts on the fiber \(\Gamma_d^S\).
 
-Assume from now on that the rank-\(r\) cyclic variety has a finite
+Assume that the rank-\(r\) cyclic variety has a finite
 \(G_d\)-orbit stratification by cyclic rank patterns:
 \[
 \Gamma_d^r
@@ -298,9 +300,7 @@ is a single \(K_S\)-orbit. Consequently,
 is a finite decomposition into smooth locally closed \(K_S\)-orbits. Via the
 identification \(\mathcal C_d^S\cong\Gamma_d^S\) from
 Proposition~\ref{prop:S-critical-fiber}, this gives a stratification of
-\(\mathcal C_d^S\).
-
-Define the fixed-\(S\) closure relation on \(R_d^S\) by
+\(\mathcal C_d^S\). Indeed, define the fixed-\(S\) closure relation on \(R_d^S\) by
 \[
 \rho'\leq_S\rho
 \quad\Longleftrightarrow\quad
@@ -503,10 +503,9 @@ may be empty. In that case there is no \(K_S\)-orbit
 \end{remark}
 In the following sections we will show how to stratify $\Gamma_d^r$ using quiver representation theory.
 \section{The cyclic rank patterns as geometric invariants of deep linear networks}
-Goal: Stratify the cyclic variety with cyclic rank patterns.
-\subsection{Essentials of Quiver representation theory}
-A quiver is a graph $(I,E)$ with vertices $I$, edges $E$ and an orientation. A quiver representation assigns a vector space to $V_i \cong \mathbb{R}^{d_i}$ and a linear map $\phi: V_i \to V_{i+1}$ with vector dimension $d_i$. 
 \subsection{The cyclic Nakayama algebra}
+We first recall some basic notions of quiver representation theory. A quiver is a directed graph $Q=(I,E)$ with vertices $I$, arrows $E$, multiple arrows and loops are allowed. A quiver representation assigns a vector space to $V_i \cong \mathbb{R}^{d_i}$ and a linear map $\phi_i: V_{i-1} \to V_{i}$ with vector dimension $d=(d_i)_{i=0,..,L}$. We note by $\text{Rep}_d(Q,k)$ the space of quiver representations of dimension $d$ over a field $k$ (which will be $\mathbb{R}$ or $\mathbb{C}$ for us). It is functorialy equivalent to the $kQ$-modules where $k$ is a field a $kQ$ is a path algebra of the quiver $Q$ generated by vertices and composing arrows. 
+
 
 Throughout this subsection, put \(n=L+1\), and take all indices modulo
 \(n\). Unless otherwise stated, all \(A\)-modules are finite-dimensional
@@ -1253,7 +1252,7 @@ Equivalently, after identifying \(\mathcal C_d^S\) with \(\Gamma_d^S\), the last
 strata may be denoted by the corresponding \(K_S\)-orbits
 \(\mathcal O_\rho^S\).
 \end{theorem}
-\begin{remark}[Compatibility of the fixed product fiber and choice of base field]
+\begin{remark}[Compatibility of the fixed product fiber and choice of base field (\textbf{SLOP})]
 \label{rem:base-field-and-fixed-fiber}
 We now discuss the base field. The representation-theoretic constructions are
 valid over both \(k=\mathbb R\) and \(k=\mathbb C\). The cyclic variety
@@ -1511,8 +1510,51 @@ stratification for such models would have to incorporate both activation
 patterns and matrix-factorization ranks. Developing these invariants could
 provide a combinatorial description of more general neural network loss
 landscapes.
+\section{Acknowledgements} GPT 5 has found the connection of the cyclic variety with Nakayama algebra, and helped with generating and checking proofs and editing the writing of the paper. I benefited greatly from discussions with Simon Pepin Lehalleur. I have checked and vetted all AI generated outputs. This project has been enabled by funding from Pivotal fellowship and the UK AI security institute.  
+\bibliography{bibliography}
 \section{Appendix}
-\subsection{Detailed proof of Proposition~\ref{prop:S-critical-fiber}}
+\subsection{Inversion Formula}
+\label{app:inversion}
+
+We give a slightly more explicit version of the proof of
+Proposition~\ref{prop:inversion}. For every admissible interval \((a,b)\), the
+forward formula gives
+\[
+\rho_{ab}
+=
+\sum_{u\leq a\leq b\leq v} m_{uv}.
+\]
+Therefore
+\[
+\rho_{ab}-\rho_{a-1,b}-\rho_{a,b+1}+\rho_{a-1,b+1}
+=
+\sum_{u,v} m_{uv}\,\Xi_{uv},
+\]
+where
+\[
+\Xi_{uv}
+:=
+\mathbf 1_{u\leq a\leq b\leq v}
+-\mathbf 1_{u\leq a-1\leq b\leq v}
+-\mathbf 1_{u\leq a\leq b+1\leq v}
++\mathbf 1_{u\leq a-1\leq b+1\leq v}.
+\]
+
+If \(u<a\), then the first two indicators cancel, and likewise the last two
+indicators cancel. If \(v>b\), then the first and third indicators cancel, and
+likewise the second and fourth indicators cancel. The only way for a nonzero
+coefficient to remain is therefore
+\[
+u=a,\qquad v=b.
+\]
+In that case
+\[
+\Xi_{ab}=1.
+\]
+Thus the entire sum reduces to \(m_{ab}\), proving the inversion formula.
+\section*{Deprecated}
+\begin{comment}
+  \subsection{Detailed proof of Proposition~\ref{prop:S-critical-fiber}}
 \label{app:proof-S-critical-fiber}
 
 We prove the equality
@@ -1682,47 +1724,6 @@ Together with \(\mu(\theta)=P_SW^\ast\), this gives
 \theta\in\mathcal C_d^S.
 \]
 This proves the reverse inclusion and therefore the proposition.
-\subsection{Proof of the Inversion Formula}
-\label{app:inversion}
-
-We give a slightly more explicit version of the proof of
-Proposition~\ref{prop:inversion}. For every admissible interval \((a,b)\), the
-forward formula gives
-\[
-\rho_{ab}
-=
-\sum_{u\leq a\leq b\leq v} m_{uv}.
-\]
-Therefore
-\[
-\rho_{ab}-\rho_{a-1,b}-\rho_{a,b+1}+\rho_{a-1,b+1}
-=
-\sum_{u,v} m_{uv}\,\Xi_{uv},
-\]
-where
-\[
-\Xi_{uv}
-:=
-\mathbf 1_{u\leq a\leq b\leq v}
--\mathbf 1_{u\leq a-1\leq b\leq v}
--\mathbf 1_{u\leq a\leq b+1\leq v}
-+\mathbf 1_{u\leq a-1\leq b+1\leq v}.
-\]
-
-If \(u<a\), then the first two indicators cancel, and likewise the last two
-indicators cancel. If \(v>b\), then the first and third indicators cancel, and
-likewise the second and fourth indicators cancel. The only way for a nonzero
-coefficient to remain is therefore
-\[
-u=a,\qquad v=b.
-\]
-In that case
-\[
-\Xi_{ab}=1.
-\]
-Thus the entire sum reduces to \(m_{ab}\), proving the inversion formula.
-\section*{Deprecated}
-\begin{comment}
 \subsection{Detailed proof of Proposition~\ref{prop:critical-rank-pattern-decomposition}}
 \label{app:proof-critical-rank-pattern-decomposition}
 
